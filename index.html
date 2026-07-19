@@ -1,12 +1,86 @@
 <!DOCTYPE html>
-<html>
-<body style="background:black;text-align:center">
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>МаЛяВоЧка радио</title>
 
-<h1 style="color:white;">🎵 МаЛяВоЧка Radio 🎵</h1>
+<style>
+body{
+    margin:0;
+    background:#111;
+    color:white;
+    font-family:Arial;
+}
 
-<audio controls autoplay loop>
-    <source src="music.mp3" type="audio/mpeg">
+header{
+    background:#181818;
+    padding:25px;
+    text-align:center;
+    font-size:42px;
+    font-weight:bold;
+    color:#00ff88;
+    box-shadow:0 0 20px #000;
+}
+
+.song{
+    background:#222;
+    width:700px;
+    margin:20px auto;
+    border-radius:12px;
+    padding:15px;
+    transition:.2s;
+}
+
+.song:hover{
+    background:#333;
+    transform:scale(1.02);
+}
+
+.title{
+    font-size:24px;
+    margin-bottom:10px;
+}
+
+audio{
+    width:100%;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+🎧 МаЛяВоЧка радио
+</header>
+
+<div class="song">
+<div class="title">🎵 Exponat</div>
+<audio controls>
+<source src="Exponat.mp3" type="audio/mpeg">
 </audio>
+</div>
+
+<div class="song">
+<div class="title">🎵 Ella Dance</div>
+<audio controls>
+<source src="elladance.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<div class="song">
+<div class="title">🎵 Music</div>
+<audio controls>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<div class="song">
+<div class="title">🎵 Wanpis</div>
+<audio controls>
+<source src="wanpis.mp3" type="audio/mpeg">
+</audio>
+</div>
 
 </body>
 </html>
