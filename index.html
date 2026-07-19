@@ -56,31 +56,47 @@ audio{
 
 <div class="song">
 <div class="title">🎵 Exponat</div>
-<audio controls>
+<audio controls onplay="pauseOthers(this)">
 <source src="Exponat.mp3" type="audio/mpeg">
 </audio>
 </div>
 
 <div class="song">
 <div class="title">🎵 Ella Dance</div>
-<audio controls>
+<audio controls onplay="pauseOthers(this)">
 <source src="elladance.mp3" type="audio/mpeg">
 </audio>
 </div>
 
 <div class="song">
 <div class="title">🎵 Music</div>
-<audio controls>
+<audio controls onplay="pauseOthers(this)">
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 </div>
 
 <div class="song">
 <div class="title">🎵 Wanpis</div>
-<audio controls>
+<audio controls onplay="pauseOthers(this)">
 <source src="wanpis.mp3" type="audio/mpeg">
 </audio>
 </div>
+
+<script>
+function pauseOthers(current)
+{
+    let players = document.querySelectorAll("audio");
+
+    players.forEach(function(player)
+    {
+        if(player !== current)
+        {
+            player.pause();
+            player.currentTime = 0;
+        }
+    });
+}
+</script>
 
 </body>
 </html>
