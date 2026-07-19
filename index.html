@@ -12,7 +12,33 @@ body{
     font-family:Arial;
 }
 
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:170px;
+    height:100%;
+    background:#181818;
+    box-shadow:3px 0 10px #000;
+    padding-top:120px;
+}
+
+.menu{
+    display:block;
+    color:white;
+    text-decoration:none;
+    font-size:22px;
+    padding:18px;
+    transition:.2s;
+}
+
+.menu:hover{
+    background:#333;
+    color:#00ff88;
+}
+
 header{
+    margin-left:170px;
     background:#181818;
     padding:25px;
     text-align:center;
@@ -26,6 +52,7 @@ header{
     background:#222;
     width:700px;
     margin:20px auto;
+    margin-left:250px;
     border-radius:12px;
     padding:15px;
     transition:.2s;
@@ -50,11 +77,15 @@ audio{
 
 <body>
 
+<div class="sidebar">
+    <a href="index.html" class="menu">🎧 Радио</a>
+    <a href="sounds.html" class="menu">😂 Рофл звуки</a>
+</div>
+
 <header>
 🎧 МаЛяВоЧка радио
 </header>
-
-<div class="song">
+    <div class="song">
 <div class="title">🎵 Exponat</div>
 <audio controls onplay="pauseOthers(this)">
 <source src="Exponat.mp3" type="audio/mpeg">
@@ -170,3 +201,5 @@ function pauseOthers(current)
 
 </body>
 </html>
+
+<!-- ↓↓↓ СЮДА ВСТАВЛЯЙ ВСЕ СВОИ <div class="song"> ... </div> ↓↓↓ -->
