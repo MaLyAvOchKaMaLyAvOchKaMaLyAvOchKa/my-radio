@@ -71,6 +71,25 @@ header{
 audio{
     width:100%;
 }
+
+.btn{
+    display:inline-block;
+    margin-top:10px;
+    margin-right:10px;
+    padding:10px 18px;
+    background:#00aa66;
+    color:white;
+    text-decoration:none;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:18px;
+    transition:.2s;
+}
+
+.btn:hover{
+    background:#00dd88;
+}
 </style>
 
 </head>
@@ -87,34 +106,24 @@ audio{
 </header>
 
 <div class="song">
-<div class="title">😂 Название звука</div>
+
+<div class="title">😂 Privet</div>
+
 <audio controls onplay="pauseOthers(this)">
-<source src="sound1.mp3" type="audio/mpeg">
+<source src="Privet.mp3" type="audio/mpeg">
 </audio>
+
+<br><br>
+
+<a class="btn" href="Privet.mp3" download>
+⬇️ Скачать
+</a>
+
+<button class="btn"
+onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Privet.mp3')">
+🔗 Скопировать ссылку
+</button>
+
 </div>
 
-<div class="song">
-<div class="title">💀 Второй звук</div>
-<audio controls onplay="pauseOthers(this)">
-<source src="sound2.mp3" type="audio/mpeg">
-</audio>
-</div>
-
-<script>
-function pauseOthers(current)
-{
-    let players=document.querySelectorAll("audio");
-
-    players.forEach(function(player)
-    {
-        if(player!==current)
-        {
-            player.pause();
-            player.currentTime=0;
-        }
-    });
-}
-</script>
-
-</body>
-</html>
+<!-- ↓↓↓ СЮДА ДОБАВЛЯЙ БЛОКИ ЗВУКОВ ↓↓↓ -->
