@@ -1,3005 +1,914 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>МаЛяВоЧка - Music</title>
 
 <style>
-
-*{
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 
 body{
     margin:0;
-
-    background:
-        radial-gradient(
-            circle at 70% 10%,
-            rgba(0,255,136,0.07),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 80%,
-            rgba(0,180,255,0.05),
-            transparent 30%
-        ),
-        #0d0d0f;
-
-    color:white;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
     min-height:100vh;
+    background:
+        radial-gradient(circle at 70% 10%,rgba(0,255,136,.07),transparent 30%),
+        radial-gradient(circle at 90% 80%,rgba(0,180,255,.05),transparent 30%),
+        #0d0d0f;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif
 }
 
-
-/* =========================================================
-   SIDEBAR
-========================================================= */
+/* SIDEBAR */
 
 .sidebar{
-
     position:fixed;
-
     left:0;
     top:0;
-
     width:190px;
     height:100vh;
-
-    background:
-        linear-gradient(
-            180deg,
-            #18181b,
-            #111113
-        );
-
-    border-right:
-        1px solid
-        rgba(255,255,255,0.06);
-
-    box-shadow:
-        5px 0 25px
-        rgba(0,0,0,0.45);
-
     padding-top:110px;
-
-    z-index:100;
+    background:linear-gradient(180deg,#18181b,#111113);
+    border-right:1px solid rgba(255,255,255,.06);
+    box-shadow:5px 0 25px rgba(0,0,0,.45);
+    z-index:100
 }
-
 
 .menu{
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
-    color:#ddd;
-
-    text-decoration:none;
-
-    font-size:20px;
-
-    padding:17px 20px;
-
     margin:5px 10px;
-
+    padding:17px 20px;
     border-radius:12px;
-
-    transition:
-        background .2s,
-        color .2s,
-        transform .2s,
-        box-shadow .2s;
+    color:#ddd;
+    text-decoration:none;
+    font-size:20px;
+    transition:.2s
 }
-
 
 .menu:hover{
-
-    background:
-        rgba(0,255,136,0.08);
-
+    background:rgba(0,255,136,.08);
     color:#00ff88;
-
-    transform:
-        translateX(4px);
-
-    box-shadow:
-        inset 3px 0 0
-        #00ff88;
+    transform:translateX(4px);
+    box-shadow:inset 3px 0 #00ff88
 }
-
-
-/* АКТИВНЫЙ РАЗДЕЛ */
 
 .menu.active{
-
-    background:
-        rgba(0,255,136,0.09);
-
+    background:rgba(0,255,136,.08);
     color:#00ff88;
-
-    box-shadow:
-        inset 3px 0 0
-        #00ff88;
+    box-shadow:inset 3px 0 #00ff88
 }
 
-
-/* =========================================================
-   HEADER
-========================================================= */
+/* HEADER */
 
 header{
-
     margin-left:190px;
-
-    min-height:105px;
-
-    padding:28px 35px;
-
+    padding:30px 35px;
+    background:linear-gradient(180deg,#18181a,#151517);
+    border-bottom:1px solid rgba(255,255,255,.06);
+    box-shadow:0 8px 30px rgba(0,0,0,.35);
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
-    position:relative;
-
-    background:
-        linear-gradient(
-            180deg,
-            #18181a,
-            #151517
-        );
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,0.06);
-
-    box-shadow:
-        0 8px 30px
-        rgba(0,0,0,0.35);
+    position:relative
 }
-
 
 .logo{
-
     font-size:42px;
-
     font-weight:bold;
-
     color:#00ff88;
-
     letter-spacing:1px;
-
-    text-shadow:
-        0 0 15px
-        rgba(0,255,136,0.25);
-
-    white-space:nowrap;
+    text-shadow:0 0 15px rgba(0,255,136,.25)
 }
 
+/* SEARCH */
 
-/* =========================================================
-   SEARCH
-========================================================= */
-
-.search-wrapper{
-
+.search{
     position:absolute;
-
     right:30px;
-
     top:50%;
-
-    transform:
-        translateY(-50%);
-
-    display:flex;
-
-    align-items:center;
-
-    width:230px;
-
-    height:43px;
-
-    background:
-        rgba(255,255,255,0.055);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.09);
-
-    border-radius:13px;
-
-    transition:
-        width .25s,
-        border .25s,
-        background .25s,
-        box-shadow .25s;
-
-    overflow:hidden;
+    transform:translateY(-50%);
+    width:230px
 }
 
-
-.search-wrapper:focus-within{
-
-    width:290px;
-
-    background:
-        rgba(255,255,255,0.075);
-
-    border-color:
-        rgba(0,255,136,0.35);
-
-    box-shadow:
-        0 0 20px
-        rgba(0,255,136,0.08);
-}
-
-
-.search-icon{
-
-    width:43px;
-
-    min-width:43px;
-
-    height:43px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:#aaa;
-
-    font-size:19px;
-
-    pointer-events:none;
-}
-
-
-/* настоящая CSS-лупа */
-
-.search-icon::before{
-
-    content:"";
-
-    width:13px;
-    height:13px;
-
-    border:
-        2px solid
-        currentColor;
-
-    border-radius:50%;
-
-    position:absolute;
-}
-
-
-.search-icon::after{
-
-    content:"";
-
-    width:8px;
-    height:2px;
-
-    background:currentColor;
-
-    transform:
-        rotate(45deg);
-
-    position:absolute;
-
-    margin-left:14px;
-
-    margin-top:14px;
-
-    border-radius:2px;
-}
-
-
-.search-wrapper:focus-within
-.search-icon{
-
-    color:#00ff88;
-}
-
-
-.search-input{
-
+.search-box{
+    height:42px;
     width:100%;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:0 13px;
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:13px;
+    transition:.25s
+}
 
-    height:100%;
+.search-box:focus-within{
+    border-color:rgba(0,255,136,.5);
+    background:rgba(0,255,136,.045);
+    box-shadow:0 0 18px rgba(0,255,136,.08)
+}
 
+.search-icon{
+    width:15px;
+    height:15px;
+    border:2px solid #aaa;
+    border-radius:50%;
+    position:relative;
+    flex:none
+}
+
+.search-icon:after{
+    content:"";
+    position:absolute;
+    width:7px;
+    height:2px;
+    background:#aaa;
+    right:-6px;
+    bottom:-3px;
+    transform:rotate(45deg);
+    border-radius:2px
+}
+
+.search-box:focus-within .search-icon{
+    border-color:#00ff88
+}
+
+.search-box:focus-within .search-icon:after{
+    background:#00ff88
+}
+
+.search input{
+    width:100%;
     border:0;
-
-    outline:none;
-
+    outline:0;
     background:transparent;
-
-    color:white;
-
-    font-size:15px;
-
-    padding:0 12px 0 0;
+    color:#fff;
+    font-size:14px
 }
 
-
-.search-input::placeholder{
-
-    color:#777;
+.search input::placeholder{
+    color:#888
 }
 
-
-/* крестик очистки */
-
-.search-clear{
-
-    width:38px;
-
-    min-width:38px;
-
-    height:100%;
-
-    border:0;
-
-    background:transparent;
-
-    color:#777;
-
-    font-size:20px;
-
-    cursor:pointer;
-
-    display:none;
-}
-
-
-.search-clear:hover{
-
-    color:#00ff88;
-}
-
-
-/* =========================================================
-   CONTENT
-========================================================= */
+/* CONTENT */
 
 .content{
-
     margin-left:190px;
-
-    width:
-        calc(100% - 190px);
-
-    padding:
-        35px
-        30px
-        80px;
+    width:calc(100% - 190px);
+    max-width:1200px;
+    padding:35px 30px 80px;
+    margin-right:auto
 }
 
+/* SECTION */
 
-/* =========================================================
-   MUSIC TOP
-========================================================= */
-
-.music-heading{
-
-    width:min(760px, 90%);
-
-    margin:
-        0 auto
-        25px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    font-size:24px;
-
-    font-weight:bold;
-
-    color:#f1f1f1;
+.section-title{
+    width:min(760px,90%);
+    margin:0 auto 18px;
+    font-size:25px;
+    font-weight:bold
 }
 
-
-.music-heading-icon{
-
-    color:#a66cff;
-
-    font-size:28px;
-
-    filter:
-        drop-shadow(
-            0 0 7px
-            rgba(160,90,255,0.35)
-        );
+.section-title span{
+    color:#9a6cff;
+    margin-right:7px
 }
 
-
-/* =========================================================
-   SONG
-========================================================= */
+/* SONG */
 
 .song{
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(38,38,41,0.96),
-            rgba(29,29,32,0.96)
-        );
-
-    width:min(760px, 90%);
-
-    margin:
-        0 auto
-        18px;
-
+    width:min(760px,90%);
+    margin:0 auto 20px;
+    padding:18px 20px;
+    background:linear-gradient(145deg,rgba(38,38,41,.96),rgba(29,29,32,.96));
+    border:1px solid rgba(255,255,255,.05);
     border-radius:17px;
-
-    padding:18px 20px 20px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.05);
-
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,0.25);
-
-    transition:
-        transform .2s,
-        border .2s,
-        box-shadow .2s;
-
-    position:relative;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    transition:.2s
 }
-
 
 .song:hover{
-
-    transform:
-        translateY(-2px);
-
-    border:
-        1px solid
-        rgba(0,255,136,0.16);
-
-    box-shadow:
-        0 14px 35px
-        rgba(0,0,0,0.4),
-        0 0 25px
-        rgba(0,255,136,0.04);
+    transform:translateY(-2px);
+    border-color:rgba(0,255,136,.16);
+    box-shadow:0 14px 35px rgba(0,0,0,.4)
 }
-
-
-/* =========================================================
-   SONG TITLE + FFT
-========================================================= */
-
-.title-row{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-    margin-bottom:13px;
-
-    min-height:32px;
-}
-
-
-.title{
-
-    font-size:23px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:9px;
-
-    color:#f2f2f2;
-
-    min-width:0;
-}
-
-
-.music-icon{
-
-    font-size:26px;
-
-    flex-shrink:0;
-
-    filter:
-        drop-shadow(
-            0 0 6px
-            rgba(150,80,255,0.4)
-        );
-}
-
-
-.song-name{
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
-
-    white-space:nowrap;
-}
-
-
-/* =========================================================
-   FFT
-========================================================= */
-
-.fft-box{
-
-    width:125px;
-
-    height:34px;
-
-    flex-shrink:0;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:9px;
-
-    background:
-        rgba(0,0,0,0.16);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.035);
-
-    opacity:.35;
-
-    transition:
-        opacity .25s,
-        border .25s,
-        box-shadow .25s;
-}
-
-
-.song.playing .fft-box{
-
-    opacity:1;
-
-    border-color:
-        rgba(0,255,136,0.13);
-
-    box-shadow:
-        0 0 14px
-        rgba(0,255,136,0.045);
-}
-
-
-.fft{
-
-    width:115px;
-
-    height:28px;
-
-    display:block;
-}
-
-
-/* =========================================================
-   AUDIO
-========================================================= */
-
-audio{
-
-    width:100%;
-
-    height:48px;
-
-    border-radius:12px;
-
-    margin-bottom:14px;
-}
-
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.buttons{
-
-    display:flex;
-
-    gap:10px;
-
-    width:100%;
-}
-
-
-.btn{
-
-    flex:1;
-
-    border:0;
-
-    border-radius:10px;
-
-    padding:11px 15px;
-
-    font-size:15px;
-
-    font-weight:bold;
-
-    text-align:center;
-
-    text-decoration:none;
-
-    cursor:pointer;
-
-    transition:
-        transform .15s,
-        filter .15s,
-        box-shadow .15s;
-}
-
-
-.btn:hover{
-
-    transform:
-        translateY(-2px);
-
-    filter:
-        brightness(1.08);
-}
-
-
-.btn:active{
-
-    transform:
-        translateY(0);
-}
-
-
-/* DOWNLOAD */
-
-.download{
-
-    background:#00c878;
-
-    color:white;
-
-    box-shadow:
-        0 5px 15px
-        rgba(0,200,120,0.12);
-}
-
-
-.download:hover{
-
-    box-shadow:
-        0 7px 20px
-        rgba(0,200,120,0.2);
-}
-
-
-/* COPY */
-
-.copy{
-
-    background:#0796d1;
-
-    color:white;
-
-    border:0;
-}
-
-
-.copy:hover{
-
-    box-shadow:
-        0 7px 20px
-        rgba(0,150,210,0.18);
-}
-
-
-/* COPY SUCCESS */
-
-.copy.copied{
-
-    background:#00b86b;
-}
-
-
-/* =========================================================
-   NO RESULTS
-========================================================= */
-
-.no-results{
-
-    width:min(760px, 90%);
-
-    margin:
-        50px auto;
-
-    text-align:center;
-
-    color:#777;
-
-    font-size:17px;
-
-    display:none;
-}
-
-
-.no-results strong{
-
-    color:#aaa;
-}
-
-
-/* =========================================================
-   HIDDEN SONG
-========================================================= */
 
 .song.hidden{
-
-    display:none;
+    display:none
 }
 
+.song-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:13px
+}
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+.title{
+    min-width:0;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:23px;
+    color:#f2f2f2
+}
+
+.music-icon{
+    flex:none;
+    font-size:27px;
+    filter:drop-shadow(0 0 6px rgba(150,80,255,.4))
+}
+
+/* FFT */
+
+.fft{
+    width:120px;
+    height:28px;
+    flex:none;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .2s
+}
+
+.fft.active{
+    opacity:1;
+    visibility:visible
+}
+
+.fft canvas{
+    display:block;
+    width:120px;
+    height:28px
+}
+
+/* AUDIO */
+
+audio{
+    display:block;
+    width:100%;
+    height:48px;
+    margin-bottom:14px;
+    border-radius:12px
+}
+
+/* BUTTONS */
+
+.buttons{
+    display:flex;
+    gap:10px
+}
+
+.btn{
+    flex:1;
+    border:0;
+    border-radius:10px;
+    padding:12px 15px;
+    font-size:16px;
+    font-weight:bold;
+    text-align:center;
+    text-decoration:none;
+    cursor:pointer;
+    transition:.15s
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.08)
+}
+
+.btn:active{
+    transform:translateY(0)
+}
+
+.download{
+    background:#00c878;
+    color:#fff;
+    box-shadow:0 5px 15px rgba(0,200,120,.12)
+}
+
+.download:hover{
+    box-shadow:0 7px 20px rgba(0,200,120,.2)
+}
+
+.copy{
+    background:#0796d1;
+    color:#fff
+}
+
+.copy:hover{
+    box-shadow:0 7px 20px rgba(0,150,210,.18)
+}
+
+.copy.copied{
+    background:#00b86b
+}
+
+/* NO RESULTS */
+
+.no-results{
+    width:min(760px,90%);
+    margin:50px auto;
+    text-align:center;
+    color:#777;
+    font-size:17px;
+    display:none
+}
+
+.no-results.show{
+    display:block
+}
+
+/* MOBILE */
 
 @media(max-width:900px){
 
-    .search-wrapper{
-
-        width:190px;
-
-        right:20px;
-    }
-
-    .search-wrapper:focus-within{
-
-        width:230px;
-    }
-
-    .logo{
-
-        font-size:31px;
-    }
-}
-
-
-@media(max-width:800px){
-
     .sidebar{
-
         width:70px;
-
-        padding-top:90px;
+        padding-top:90px
     }
-
 
     .menu{
-
         justify-content:center;
-
-        font-size:0;
-
         padding:15px;
-
         margin:6px;
+        font-size:0
     }
 
-
-    .menu:first-letter{
-
-        font-size:25px;
+    .menu span{
+        display:none
     }
-
 
     header{
-
         margin-left:70px;
-
-        min-height:100px;
-
-        padding:
-            25px
-            10px;
-
-        justify-content:flex-start;
+        padding:22px 10px;
+        justify-content:center
     }
-
 
     .logo{
-
-        font-size:27px;
-
-        margin-left:10px;
+        font-size:27px
     }
 
-
-    .search-wrapper{
-
-        position:absolute;
-
-        right:10px;
-
-        width:43px;
-
-        height:43px;
-
-        border-radius:12px;
-
-        transition:
-            width .25s;
+    .search{
+        position:fixed;
+        right:15px;
+        top:auto;
+        bottom:15px;
+        transform:none;
+        width:calc(100% - 100px);
+        z-index:200
     }
-
-
-    .search-wrapper:focus-within{
-
-        width:210px;
-    }
-
-
-    .search-input{
-
-        opacity:0;
-
-        transition:opacity .15s;
-    }
-
-
-    .search-wrapper:focus-within
-    .search-input{
-
-        opacity:1;
-    }
-
 
     .content{
-
         margin-left:70px;
-
-        width:
-            calc(100% - 70px);
-
-        padding:
-            25px
-            10px
-            60px;
+        width:calc(100% - 70px);
+        padding:25px 10px 80px
     }
 
-
-    .music-heading,
     .song,
+    .section-title,
     .no-results{
-
-        width:100%;
-    }
-
-
-    .song{
-
-        padding:15px;
-    }
-
-
-    .title{
-
-        font-size:20px;
-    }
-
-
-    .fft-box{
-
-        width:95px;
-
-        height:31px;
-    }
-
-
-    .fft{
-
-        width:87px;
-    }
-
-
-    .buttons{
-
-        flex-direction:column;
-    }
-
-
-    .btn{
-
-        width:100%;
+        width:100%
     }
 }
 
-
-@media(max-width:520px){
+@media(max-width:600px){
 
     .logo{
-
-        font-size:22px;
+        font-size:23px
     }
 
-
-    .title-row{
-
-        align-items:flex-start;
+    .song{
+        padding:15px
     }
 
-
-    .fft-box{
-
-        width:75px;
+    .title{
+        font-size:19px
     }
 
+    .music-icon{
+        font-size:23px
+    }
 
     .fft{
-
-        width:68px;
+        width:90px
     }
 
+    .fft canvas{
+        width:90px
+    }
 
-    .song-name{
+    .buttons{
+        flex-direction:column
+    }
 
-        white-space:normal;
-
-        line-height:1.2;
+    .btn{
+        width:100%
     }
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =========================================================
-     SIDEBAR
-========================================================= -->
+<!-- SIDEBAR -->
 
 <div class="sidebar">
-
-    <a href="index.html" class="menu active">
-        🎧 <span>Music</span>
-    </a>
-
-    <a href="Roflan.html" class="menu">
-        😂 <span>Рофл звуки</span>
-    </a>
-
-    <a href="Gachi.html" class="menu">
-        🎤 <span>Gachi</span>
-    </a>
-
-    <a href="Skrimer.html" class="menu">
-        😱 <span>Скримеры</span>
-    </a>
-
+    <a href="index.html" class="menu active">🎧 <span>Music</span></a>
+    <a href="Roflan.html" class="menu">😂 <span>Рофл звуки</span></a>
+    <a href="Gachi.html" class="menu">🎤 <span>Gachi</span></a>
+    <a href="Skrimer.html" class="menu">😱 <span>Скримеры</span></a>
 </div>
 
-
-<!-- =========================================================
-     HEADER
-========================================================= -->
+<!-- HEADER -->
 
 <header>
+    <div class="logo">🎧 МаЛяВоЧка - Music 🎧</div>
 
-    <div class="logo">
-        🎧 МаЛяВоЧка - Music 🎧
+    <div class="search">
+        <div class="search-box">
+            <div class="search-icon"></div>
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="Найти трек..."
+                autocomplete="off">
+        </div>
     </div>
-
-
-    <div class="search-wrapper">
-
-        <div class="search-icon"></div>
-
-        <input
-            id="searchInput"
-            class="search-input"
-            type="text"
-            placeholder="Поиск музыки..."
-            autocomplete="off"
-        >
-
-        <button
-            id="searchClear"
-            class="search-clear"
-            onclick="clearSearch()"
-        >
-            ×
-        </button>
-
-    </div>
-
 </header>
 
-
-<!-- =========================================================
-     CONTENT
-========================================================= -->
+<!-- CONTENT -->
 
 <div class="content">
 
-
-    <div class="music-heading">
-
-        <span class="music-heading-icon">
-            ♫
-        </span>
-
-        Музыка
-
+    <div class="section-title">
+        <span>🎵</span>Музыка
     </div>
 
+    <div id="songs"></div>
 
-    <!-- =====================================================
-         1
-    ====================================================== -->
-
-    <div
-        class="song"
-        data-search="
-            Exponat
-            Экспонат
-            Экспонат
-            MIA BOYKA
-            Мия Бойка
-            Миа Бойка
-        "
-    >
-
-        <div class="title-row">
-
-            <div class="title">
-
-                <span class="music-icon">
-                    🎵
-                </span>
-
-                <span class="song-name">
-                    MIA BOYKA - Экспонат
-                </span>
-
-            </div>
-
-            <div class="fft-box">
-                <canvas class="fft"></canvas>
-            </div>
-
-        </div>
-
-
-        <audio
-            controls
-            onplay="pauseOthers(this)"
-        >
-
-            <source
-                src="Exponat.mp3"
-                type="audio/mpeg"
-            >
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="Exponat.mp3"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this, 'Exponat.mp3')"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
+    <div id="noResults" class="no-results">
+        Ничего не найдено 😔
     </div>
-
-
-    <!-- =====================================================
-         2
-    ====================================================== -->
-
-    <div
-        class="song"
-        data-search="
-            Ella Dance
-            Элла Дэнс
-            Элла
-            Dance
-        "
-    >
-
-        <div class="title-row">
-
-            <div class="title">
-
-                <span class="music-icon">
-                    🎵
-                </span>
-
-                <span class="song-name">
-                    Ella Dance
-                </span>
-
-            </div>
-
-            <div class="fft-box">
-                <canvas class="fft"></canvas>
-            </div>
-
-        </div>
-
-
-        <audio
-            controls
-            onplay="pauseOthers(this)"
-        >
-
-            <source
-                src="elladance.mp3"
-                type="audio/mpeg"
-            >
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="elladance.mp3"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this, 'elladance.mp3')"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         3
-    ====================================================== -->
-
-    <div
-        class="song"
-        data-search="
-            Music
-            музыка
-        "
-    >
-
-        <div class="title-row">
-
-            <div class="title">
-
-                <span class="music-icon">
-                    🎵
-                </span>
-
-                <span class="song-name">
-                    Music
-                </span>
-
-            </div>
-
-            <div class="fft-box">
-                <canvas class="fft"></canvas>
-            </div>
-
-        </div>
-
-
-        <audio
-            controls
-            onplay="pauseOthers(this)"
-        >
-
-            <source
-                src="music.mp3"
-                type="audio/mpeg"
-            >
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="music.mp3"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this, 'music.mp3')"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         4
-    ====================================================== -->
-
-    <div
-        class="song"
-        data-search="
-            Wanpis
-            Ванпис
-            One Piece
-            Ванпис
-        "
-    >
-
-        <div class="title-row">
-
-            <div class="title">
-
-                <span class="music-icon">
-                    🎵
-                </span>
-
-                <span class="song-name">
-                    Wanpis
-                </span>
-
-            </div>
-
-            <div class="fft-box">
-                <canvas class="fft"></canvas>
-            </div>
-
-        </div>
-
-
-        <audio
-            controls
-            onplay="pauseOthers(this)"
-        >
-
-            <source
-                src="wanpis.mp3"
-                type="audio/mpeg"
-            >
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="wanpis.mp3"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this, 'wanpis.mp3')"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         5
-    ====================================================== -->
-
-    <div
-        class="song"
-        data-search="
-            Kesha
-            Кеша
-            Кэша
-        "
-    >
-
-        <div class="title-row">
-
-            <div class="title">
-
-                <span class="music-icon">
-                    🎵
-                </span>
-
-                <span class="song-name">
-                    Kesha
-                </span>
-
-            </div>
-
-            <div class="fft-box">
-                <canvas class="fft"></canvas>
-            </div>
-
-        </div>
-
-
-        <audio
-            controls
-            onplay="pauseOthers(this)"
-        >
-
-            <source
-                src="Kesha.mp3"
-                type="audio/mpeg"
-            >
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="Kesha.mp3"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this, 'Kesha.mp3')"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         6
-    ====================================================== -->
-
-    <div
-        class="song"
-        data-search="
-            Mount Noize
-            Mount
-            Noize
-            Generation Around The World
-            Генерейшн Араунд Зе Ворлд
-            генерация вокруг мира
-        "
-    >
-
-        <div class="title-row">
-
-            <div class="title">
-
-                <span class="music-icon">
-                    🎵
-                </span>
-
-                <span class="song-name">
-                    Mount Noize - Generation Around The World
-                </span>
-
-            </div>
-
-            <div class="fft-box">
-                <canvas class="fft"></canvas>
-            </div>
-
-        </div>
-
-
-        <audio
-            controls
-            onplay="pauseOthers(this)"
-        >
-
-            <source
-                src="Mount_Noize_Generation-AroundTheWorld.mp3"
-                type="audio/mpeg"
-            >
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="Mount_Noize_Generation-AroundTheWorld.mp3"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this, 'Mount_Noize_Generation-AroundTheWorld.mp3')"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         7
-    ====================================================== -->
-
-    <div
-        class="song"
-        data-search="
-            R3hab
-            R3
-            Реаб
-            A Touch Of Class
-            All Around The World
-            Ла Ла Ла
-            Ла ла ла
-        "
-    >
-
-        <div class="title-row">
-
-            <div class="title">
-
-                <span class="music-icon">
-                    🎵
-                </span>
-
-                <span class="song-name">
-                    R3hab - All Around The World
-                </span>
-
-            </div>
-
-            <div class="fft-box">
-                <canvas class="fft"></canvas>
-            </div>
-
-        </div>
-
-
-        <audio
-            controls
-            onplay="pauseOthers(this)"
-        >
-
-            <source
-                src="R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3"
-                type="audio/mpeg"
-            >
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this, 'R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3')"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         8
-    ====================================================== -->
-
-    <div
-        class="song"
-        data-search="
-            Daryana
-            Дарьяна
-            Дарья
-            Дарь
-            Juice
-            Джус
-        "
-    >
-
-        <div class="title-row">
-
-            <div class="title">
-
-                <span class="music-icon">
-                    🎵
-                </span>
-
-                <span class="song-name">
-                    Daryana - Juice
-                </span>
-
-            </div>
-
-            <div class="fft-box">
-                <canvas class="fft"></canvas>
-            </div>
-
-        </div>
-
-
-        <audio
-            controls
-            onplay="pauseOthers(this)"
-        >
-
-            <source
-                src="Daryana-Juice.mp3"
-                type="audio/mpeg"
-            >
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="Daryana-Juice.mp3"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this, 'Daryana-Juice.mp3')"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         9
-    ====================================================== -->
-
-    <div
-        class="song"
-        data-search="
-            Dora
-            Дора
-            Vturilas
-            Втурилась
-            Втюрилась
-        "
-    >
-
-        <div class="title-row">
-
-            <div class="title">
-
-                <span class="music-icon">
-                    🎵
-                </span>
-
-                <span class="song-name">
-                    Dora - Vturilas
-                </span>
-
-            </div>
-
-            <div class="fft-box">
-                <canvas class="fft"></canvas>
-            </div>
-
-        </div>
-
-
-        <audio
-            controls
-            onplay="pauseOthers(this)"
-        >
-
-            <source
-                src="Dora-Vturilas.mp3"
-                type="audio/mpeg"
-            >
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="Dora-Vturilas.mp3"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this, 'Dora-Vturilas.mp3')"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         10
-    ====================================================== -->
-
-    <div
-        class="song"
-        data-search="
-            PSY
-            Пси
-            Gangnam
-            Gangnam Style
-            Гангнам
-            Гангнам Стайл
-        "
-    >
-
-        <div class="title-row">
-
-            <div class="title">
-
-                <span class="music-icon">
-                    🎵
-                </span>
-
-                <span class="song-name">
-                    PSY - Gangnam Style
-                </span>
-
-            </div>
-
-            <div class="fft-box">
-                <canvas class="fft"></canvas>
-            </div>
-
-        </div>
-
-
-        <audio
-            controls
-            onplay="pauseOthers(this)"
-        >
-
-            <source
-                src="PSY-Gangnam_Style.mp3"
-                type="audio/mpeg"
-            >
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="PSY-Gangnam_Style.mp3"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this, 'PSY-Gangnam_Style.mp3')"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         11
-    ====================================================== -->
-
-    <div
-        class="song"
-        data-search="
-            Skriptonit
-            Скриптонит
-            Скрип
-            Baby Mama
-            Бейби Мама
-            Бэби Мама
-        "
-    >
-
-        <div class="title-row">
-
-            <div class="title">
-
-                <span class="music-icon">
-                    🎵
-                </span>
-
-                <span class="song-name">
-                    Skriptonit - Baby Mama
-                </span>
-
-            </div>
-
-            <div class="fft-box">
-                <canvas class="fft"></canvas>
-            </div>
-
-        </div>
-
-
-        <audio
-            controls
-            onplay="pauseOthers(this)"
-        >
-
-            <source
-                src="Skriptonit-Baby_Mama.mp3"
-                type="audio/mpeg"
-            >
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="Skriptonit-Baby_Mama.mp3"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this, 'Skriptonit-Baby_Mama.mp3')"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         12
-    ====================================================== -->
-
-    <div
-        class="song"
-        data-search="
-            Deti Rave
-            Дети Рэйв
-            Дети Рейв
-            Abonnement
-            Абонемент
-        "
-    >
-
-        <div class="title-row">
-
-            <div class="title">
-
-                <span class="music-icon">
-                    🎵
-                </span>
-
-                <span class="song-name">
-                    Deti Rave - Abonnement
-                </span>
-
-            </div>
-
-            <div class="fft-box">
-                <canvas class="fft"></canvas>
-            </div>
-
-        </div>
-
-
-        <audio
-            controls
-            onplay="pauseOthers(this)"
-        >
-
-            <source
-                src="Deti_Rave-Abonnement.mp3"
-                type="audio/mpeg"
-            >
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="Deti_Rave-Abonnement.mp3"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this, 'Deti_Rave-Abonnement.mp3')"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         13
-    ====================================================== -->
-
-    <div
-        class="song"
-        data-search="
-            Dead Blonde
-            Дед Блонд
-            Dead
-            Blonde
-            Мальчик на девятке
-            Мальчик
-            Девятке
-        "
-    >
-
-        <div class="title-row">
-
-            <div class="title">
-
-                <span class="music-icon">
-                    🎵
-                </span>
-
-                <span class="song-name">
-                    Dead Blonde - Мальчик на девятке
-                </span>
-
-            </div>
-
-            <div class="fft-box">
-                <canvas class="fft"></canvas>
-            </div>
-
-        </div>
-
-
-        <audio
-            controls
-            onplay="pauseOthers(this)"
-        >
-
-            <source
-                src="Dead_Blonde-Malchik_Na_Devyatke.mp3"
-                type="audio/mpeg"
-            >
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="Dead_Blonde-Malchik_Na_Devyatke.mp3"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this, 'Dead_Blonde-Malchik_Na_Devyatke.mp3')"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         14
-    ====================================================== -->
-
-    <div
-        class="song"
-        data-search="
-            Poshlaya Molly
-            Пошлая Молли
-            Пошлая
-            Молли
-            Non Stop
-            Нон Стоп
-        "
-    >
-
-        <div class="title-row">
-
-            <div class="title">
-
-                <span class="music-icon">
-                    🎵
-                </span>
-
-                <span class="song-name">
-                    Poshlaya Molly - Non Stop
-                </span>
-
-            </div>
-
-            <div class="fft-box">
-                <canvas class="fft"></canvas>
-            </div>
-
-        </div>
-
-
-        <audio
-            controls
-            onplay="pauseOthers(this)"
-        >
-
-            <source
-                src="Poshlaya_Molli-Non_Stop.mp3"
-                type="audio/mpeg"
-            >
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="Poshlaya_Molli-Non_Stop.mp3"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this, 'Poshlaya_Molli-Non_Stop.mp3')"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         15
-    ====================================================== -->
-
-    <div
-        class="song"
-        data-search="
-            Gachi
-            Гачи
-            Гачи
-            Gachimuchi
-            Гачимучи
-        "
-    >
-
-        <div class="title-row">
-
-            <div class="title">
-
-                <span class="music-icon">
-                    🎵
-                </span>
-
-                <span class="song-name">
-                    Gachi
-                </span>
-
-            </div>
-
-            <div class="fft-box">
-                <canvas class="fft"></canvas>
-            </div>
-
-        </div>
-
-
-        <audio
-            controls
-            onplay="pauseOthers(this)"
-        >
-
-            <source
-                src="Gachi.mp3"
-                type="audio/mpeg"
-            >
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="Gachi.mp3"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this, 'Gachi.mp3')"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         NO RESULTS
-    ====================================================== -->
-
-    <div
-        id="noResults"
-        class="no-results"
-    >
-
-        Ничего не найдено по запросу
-        <strong id="searchText"></strong>
-
-    </div>
-
 
 </div>
 
-
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
-
 <script>
 
+/* =========================
+   ТРЕКИ
+   aliases — дополнительные слова для поиска
+   ========================= */
 
-/* =========================================================
-   ПОИСК
-========================================================= */
-
-const searchInput =
-    document.getElementById("searchInput");
-
-const searchClear =
-    document.getElementById("searchClear");
-
-const noResults =
-    document.getElementById("noResults");
-
-const searchText =
-    document.getElementById("searchText");
-
-
-const songs =
-    document.querySelectorAll(".song");
-
-
-/*
-    Нормализуем текст.
-
-    Убираем:
-    - регистр
-    - лишние пробелы
-    - дефисы
-    - точки
-    - запятые
-
-    Поэтому поиск становится намного приятнее.
-*/
-
-function normalizeText(text)
-{
-    return text
-        .toLowerCase()
-        .replace(/ё/g, "е")
-        .replace(/[^a-zа-я0-9]+/gi, "")
-        .trim();
-}
-
-
-function searchSongs()
-{
-    let query =
-        normalizeText(searchInput.value);
-
-
-    let found = 0;
-
-
-    songs.forEach(function(song)
+const tracks=[
     {
-
-        let title =
-            song.querySelector(".song-name")
-                .textContent;
-
-
-        let aliases =
-            song.getAttribute("data-search") || "";
-
-
-        let searchData =
-            normalizeText(
-                title + " " + aliases
-            );
-
-
-        /*
-            includes означает:
-
-            "дарь"
-
-            найдёт:
-
-            "дарьяна"
-        */
-
-        if(
-            query === "" ||
-            searchData.includes(query)
-        )
-        {
-            song.classList.remove("hidden");
-
-            found++;
-        }
-        else
-        {
-            song.classList.add("hidden");
-        }
-
-    });
-
-
-    if(query !== "" && found === 0)
+        name:"MIA BOYKA - Экспонат",
+        file:"Exponat.mp3",
+        aliases:"экспонат exponat mia boyka мия бойка"
+    },
     {
-        noResults.style.display = "block";
-
-        searchText.textContent =
-            "«" + searchInput.value + "»";
+        name:"Ella Dance",
+        file:"elladance.mp3",
+        aliases:"ella dance элла данс элла"
+    },
+    {
+        name:"Music",
+        file:"music.mp3",
+        aliases:"music музыка"
+    },
+    {
+        name:"Wanpis",
+        file:"wanpis.mp3",
+        aliases:"wanpis ванпис"
+    },
+    {
+        name:"Kesha",
+        file:"Kesha.mp3",
+        aliases:"kesha кеша"
+    },
+    {
+        name:"Mount Noize - Generation Around The World",
+        file:"Mount_Noize_Generation-AroundTheWorld.mp3",
+        aliases:"mount noize generation around the world маунт нойз"
+    },
+    {
+        name:"R3hab - All Around The World",
+        file:"R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3",
+        aliases:"r3hab all around the world рэхаб ребхаб ла ла ла"
+    },
+    {
+        name:"Daryana - Juice",
+        file:"Daryana-Juice.mp3",
+        aliases:"daryana juice дарьяна дарья дарь juice джус"
+    },
+    {
+        name:"Dora - Vturilas",
+        file:"Dora-Vturilas.mp3",
+        aliases:"dora vturilas дора втюрилась"
+    },
+    {
+        name:"PSY - Gangnam Style",
+        file:"PSY-Gangnam_Style.mp3",
+        aliases:"psy gangnam style псай ганганм стайл ганнам стайл"
+    },
+    {
+        name:"Skriptonit - Baby Mama",
+        file:"Skriptonit-Baby_Mama.mp3",
+        aliases:"skriptonit baby mama скриптонит бэйби мама"
+    },
+    {
+        name:"Deti Rave - Abonnement",
+        file:"Deti_Rave-Abonnement.mp3",
+        aliases:"deti rave abonnement дети рейв абонемент"
+    },
+    {
+        name:"Dead Blonde - Мальчик на девятке",
+        file:"Dead_Blonde-Malchik_Na_Devyatke.mp3",
+        aliases:"dead blonde мальчик на девятке дед блонд девятка мальчик"
+    },
+    {
+        name:"Poshlaya Molly - Non Stop",
+        file:"Poshlaya_Molli-Non_Stop.mp3",
+        aliases:"poshlaya molly non stop пошлая молли нон стоп молли"
+    },
+    {
+        name:"Gachi",
+        file:"Gachi.mp3",
+        aliases:"gachi гачи гачі"
     }
-    else
-    {
-        noResults.style.display = "none";
-    }
-
-
-    if(searchInput.value.length > 0)
-    {
-        searchClear.style.display = "block";
-    }
-    else
-    {
-        searchClear.style.display = "none";
-    }
-}
-
-
-searchInput.addEventListener(
-    "input",
-    searchSongs
-);
-
-
-function clearSearch()
-{
-    searchInput.value = "";
-
-    searchSongs();
-
-    searchInput.focus();
-}
-
-
-/* =========================================================
-   ОСТАНАВЛИВАЕМ ДРУГИЕ ПЕСНИ
-========================================================= */
-
-function pauseOthers(current)
-{
-
-    let players =
-        document.querySelectorAll("audio");
-
-
-    players.forEach(function(player)
-    {
-
-        if(player !== current)
-        {
-            player.pause();
-
-            player.currentTime = 0;
-        }
-
-    });
-
-
-    /*
-        Убираем визуальное
-        состояние playing
-        со всех треков.
-    */
-
-    document
-        .querySelectorAll(".song")
-        .forEach(function(song)
-        {
-            song.classList.remove("playing");
-        });
-
-
-    current
-        .closest(".song")
-        .classList.add("playing");
-
-
-    /*
-        Восстанавливаем
-        общую громкость.
-    */
-
-    let savedVolume =
-        localStorage.getItem("musicVolume");
-
-
-    if(savedVolume !== null)
-    {
-        current.volume =
-            parseFloat(savedVolume);
-    }
-
-
-    startFFT(current);
-}
-
-
-/* =========================================================
-   КОПИРОВАНИЕ ПРЯМОЙ MP3 ССЫЛКИ
-========================================================= */
-
-function copyLink(button, file)
-{
-
-    let link =
-        "https://malyavochkamalyavochkamalyavochka.github.io/my-radio/"
-        + file;
-
-
-    navigator.clipboard.writeText(link)
-
-    .then(function()
-    {
-
-        let oldText =
-            button.innerHTML;
-
-
-        button.innerHTML =
-            "✓ Ссылка скопирована!";
-
-
-        button.classList.add("copied");
-
-
-        setTimeout(function()
-        {
-
-            button.innerHTML =
-                oldText;
-
-
-            button.classList.remove(
-                "copied"
-            );
-
-        },1500);
-
-    })
-
-    .catch(function()
-    {
-
-        /*
-            Запасной вариант
-            для старых браузеров.
-        */
-
-        let input =
-            document.createElement("input");
-
-
-        input.value =
-            link;
-
-
-        document.body.appendChild(
-            input
-        );
-
-
-        input.select();
-
-
-        document.execCommand(
-            "copy"
-        );
-
-
-        document.body.removeChild(
-            input
-        );
-
-
-        let oldText =
-            button.innerHTML;
-
-
-        button.innerHTML =
-            "✓ Ссылка скопирована!";
-
-
-        button.classList.add(
-            "copied"
-        );
-
-
-        setTimeout(function()
-        {
-
-            button.innerHTML =
-                oldText;
-
-
-            button.classList.remove(
-                "copied"
-            );
-
-        },1500);
-
-    });
-
-}
-
-
-/* =========================================================
-   ОБЩАЯ ГРОМКОСТЬ
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function()
-    {
-
-        let players =
-            document.querySelectorAll("audio");
-
-
-        let savedVolume =
-            localStorage.getItem(
-                "musicVolume"
-            );
-
-
-        if(savedVolume === null)
-        {
-            savedVolume = 1;
-        }
-        else
-        {
-            savedVolume =
-                parseFloat(savedVolume);
-        }
-
-
-        players.forEach(function(player)
-        {
-
-            player.volume =
-                savedVolume;
-
-
-            player.addEventListener(
-                "volumechange",
-                function()
-                {
-
-                    localStorage.setItem(
-                        "musicVolume",
-                        player.volume
-                    );
-
-
-                    players.forEach(
-                        function(other)
-                        {
-
-                            if(other !== player)
-                            {
-                                other.volume =
-                                    player.volume;
-                            }
-
-                        }
-                    );
-
-                }
-            );
-
-        });
-
-    }
-);
-
-
-/* =========================================================
-   FFT VISUALIZER
-========================================================= */
-
-
-/*
-    Здесь используется Web Audio API.
-
-    Для каждого audio создаём
-    свой небольшой анализатор.
-
-    Он НЕ воспроизводит звук заново.
-
-    Он только анализирует
-    уже играющий audio.
-*/
-
-
-const audioData =
-    new WeakMap();
-
-
-let audioContext = null;
-
-
-function createAudioAnalyzer(audio)
-{
-
-    if(audioData.has(audio))
-    {
-        return audioData.get(audio);
-    }
-
-
-    /*
-        AudioContext создаётся
-        только после действия пользователя.
-    */
+];
+
+/* =========================
+   СОЗДАНИЕ ТРЕКОВ
+   ========================= */
+
+const songsBox=document.getElementById("songs");
+
+tracks.forEach((track,index)=>{
+
+    const song=document.createElement("div");
+    song.className="song";
+
+    song.dataset.search=(
+        track.name+" "+track.aliases
+    ).toLowerCase();
+
+    song.innerHTML=`
+        <div class="song-top">
+            <div class="title">
+                <span class="music-icon">🎵</span>
+                <span>${track.name}</span>
+            </div>
+
+            <div class="fft">
+                <canvas></canvas>
+            </div>
+        </div>
+
+        <audio controls preload="metadata">
+            <source src="${track.file}" type="audio/mpeg">
+        </audio>
+
+        <div class="buttons">
+            <a
+                class="btn download"
+                href="${track.file}"
+                download>
+                ↓ Скачать MP3
+            </a>
+
+            <button
+                class="btn copy"
+                onclick="copyLink(this,'${track.file}')">
+                🔗 Копировать ссылку
+            </button>
+        </div>
+    `;
+
+    songsBox.appendChild(song);
+});
+
+/* =========================
+   AUDIO
+   ========================= */
+
+const players=[...document.querySelectorAll("audio")];
+
+let audioContext=null;
+let activeAudio=null;
+let activeFFT=null;
+let activeAnalyser=null;
+let activeData=null;
+let animationFrame=null;
+
+/* =========================
+   FFT
+   ========================= */
+
+function createAnalyser(audio){
+
+    if(audio._analyser)
+        return audio._analyser;
 
     if(!audioContext)
-    {
-        audioContext =
-            new (
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
-    }
+        audioContext=new(window.AudioContext||window.webkitAudioContext)();
 
+    const source=audioContext.createMediaElementSource(audio);
+    const analyser=audioContext.createAnalyser();
 
-    /*
-        Подключаем конкретный
-        audio элемент к анализатору.
-    */
-
-    let source =
-        audioContext.createMediaElementSource(
-            audio
-        );
-
-
-    let analyser =
-        audioContext.createAnalyser();
-
-
-    analyser.fftSize = 128;
-
-
-    analyser.smoothingTimeConstant =
-        0.82;
-
+    analyser.fftSize=128;
+    analyser.smoothingTimeConstant=.78;
 
     source.connect(analyser);
+    analyser.connect(audioContext.destination);
 
+    audio._analyser=analyser;
+    audio._source=source;
 
-    analyser.connect(
-        audioContext.destination
-    );
-
-
-    let data =
-        new Uint8Array(
-            analyser.frequencyBinCount
-        );
-
-
-    let result = {
-
-        source:source,
-
-        analyser:analyser,
-
-        data:data
-
-    };
-
-
-    audioData.set(
-        audio,
-        result
-    );
-
-
-    return result;
+    return analyser;
 }
 
+function clearFFT(){
 
-/* =========================================================
-   ЗАПУСК FFT
-========================================================= */
-
-function startFFT(audio)
-{
-
-    try
-    {
-
-        if(!audioContext)
-        {
-            createAudioAnalyzer(audio);
-        }
-
-
-        if(audioContext.state === "suspended")
-        {
-            audioContext.resume();
-        }
-
-
-        drawFFT(audio);
-
-    }
-    catch(error)
-    {
-
-        console.log(
-            "FFT error:",
-            error
-        );
-
+    if(animationFrame){
+        cancelAnimationFrame(animationFrame);
+        animationFrame=null;
     }
 
+    document.querySelectorAll(".fft").forEach(fft=>{
+        fft.classList.remove("active");
+
+        const canvas=fft.querySelector("canvas");
+        if(canvas){
+            const ctx=canvas.getContext("2d");
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+        }
+    });
+
+    activeAudio=null;
+    activeFFT=null;
+    activeAnalyser=null;
+    activeData=null;
 }
 
+function drawFFT(){
 
-/* =========================================================
-   РИСОВАНИЕ FFT
-========================================================= */
-
-function drawFFT(audio)
-{
-
-    let song =
-        audio.closest(".song");
-
-
-    if(!song)
-    {
+    if(!activeAudio||
+       activeAudio.paused||
+       activeAudio.ended||
+       !activeFFT||
+       !activeAnalyser){
+        clearFFT();
         return;
     }
 
+    const canvas=activeFFT.querySelector("canvas");
+    const ctx=canvas.getContext("2d");
 
-    let canvas =
-        song.querySelector(".fft");
+    const width=canvas.width;
+    const height=canvas.height;
 
+    activeAnalyser.getByteFrequencyData(activeData);
 
-    if(!canvas)
-    {
-        return;
-    }
+    ctx.clearRect(0,0,width,height);
 
+    const bars=26;
+    const gap=2;
+    const barWidth=(width-(bars-1)*gap)/bars;
 
-    let ctx =
-        canvas.getContext("2d");
+    for(let i=0;i<bars;i++){
 
-
-    let rect =
-        canvas.getBoundingClientRect();
-
-
-    let dpr =
-        window.devicePixelRatio || 1;
-
-
-    canvas.width =
-        rect.width * dpr;
-
-
-    canvas.height =
-        rect.height * dpr;
-
-
-    ctx.setTransform(
-        dpr,
-        0,
-        0,
-        dpr,
-        0,
-        0
-    );
-
-
-    let analyzerData =
-        audioData.get(audio);
-
-
-    if(!analyzerData)
-    {
-        return;
-    }
-
-
-    analyzerData.analyser.getByteFrequencyData(
-        analyzerData.data
-    );
-
-
-    ctx.clearRect(
-        0,
-        0,
-        rect.width,
-        rect.height
-    );
-
-
-    let bars = 24;
-
-    let gap = 2;
-
-    let barWidth =
-        (
-            rect.width -
-            gap * (bars - 1)
-        ) / bars;
-
-
-    /*
-        Рисуем только низкие
-        и средние частоты.
-
-        Поэтому FFT выглядит
-        компактно и красиво,
-        а не как огромный эквалайзер.
-    */
-
-    for(
-        let i = 0;
-        i < bars;
-        i++
-    )
-    {
-
-        let index =
-            Math.floor(
-                i *
-                analyzerData.data.length /
-                bars *
-                0.65
-            );
-
-
-        let value =
-            analyzerData.data[index] / 255;
-
-
-        /*
-            Немного усиливаем
-            низкие значения.
-        */
-
-        value =
-            Math.pow(value, 0.72);
-
-
-        let maxHeight =
-            rect.height - 3;
-
-
-        let height =
-            Math.max(
-                2,
-                value * maxHeight
-            );
-
-
-        /*
-            Небольшая волна,
-            чтобы визуализатор
-            выглядел живее.
-        */
-
-        let x =
-            i *
-            (barWidth + gap);
-
-
-        let y =
-            rect.height -
-            height;
-
-
-        /*
-            Градиент от зелёного
-            к голубому.
-        */
-
-        let gradient =
-            ctx.createLinearGradient(
-                0,
-                y,
-                0,
-                rect.height
-            );
-
-
-        gradient.addColorStop(
-            0,
-            "#00ff88"
+        const index=Math.floor(
+            i*activeData.length/bars
         );
 
+        let value=activeData[index]/255;
 
-        gradient.addColorStop(
-            1,
-            "#00aaff"
+        value=Math.pow(value,.75);
+
+        const barHeight=Math.max(
+            2,
+            value*(height-2)
         );
 
+        const x=i*(barWidth+gap);
+        const y=height-barHeight;
 
-        ctx.fillStyle =
-            gradient;
+        const gradient=ctx.createLinearGradient(
+            0,y,
+            0,height
+        );
 
+        gradient.addColorStop(0,"#00ff88");
+        gradient.addColorStop(1,"#007f66");
 
-        /*
-            Закругляем верх
-            столбиков.
-        */
-
-        let radius = 2;
-
+        ctx.fillStyle=gradient;
 
         ctx.beginPath();
 
-
-        ctx.roundRect(
-            x,
-            y,
-            barWidth,
-            height,
-            radius
-        );
-
-
-        ctx.fill();
-
-    }
-
-
-    /*
-        Пока трек играет —
-        продолжаем рисование.
-    */
-
-    if(!audio.paused)
-    {
-
-        requestAnimationFrame(
-            function()
-            {
-                drawFFT(audio);
-            }
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   PLAY / PAUSE EVENTS
-========================================================= */
-
-document
-    .querySelectorAll("audio")
-    .forEach(function(audio)
-    {
-
-        audio.addEventListener(
-            "play",
-            function()
-            {
-
-                pauseOthers(audio);
-
-            }
-        );
-
-
-        audio.addEventListener(
-            "pause",
-            function()
-            {
-
-                let song =
-                    audio.closest(".song");
-
-
-                if(song)
-                {
-                    song.classList.remove(
-                        "playing"
-                    );
-                }
-
-            }
-        );
-
-
-        audio.addEventListener(
-            "ended",
-            function()
-            {
-
-                let song =
-                    audio.closest(".song");
-
-
-                if(song)
-                {
-                    song.classList.remove(
-                        "playing"
-                    );
-                }
-
-            }
-        );
-
-    });
-
-
-/* =========================================================
-   ESC — ОЧИСТИТЬ ПОИСК
-========================================================= */
-
-document.addEventListener(
-    "keydown",
-    function(event)
-    {
-
-        if(
-            event.key === "Escape" &&
-            document.activeElement === searchInput
-        )
-        {
-            clearSearch();
+        if(ctx.roundRect){
+            ctx.roundRect(
+                x,
+                y,
+                barWidth,
+                barHeight,
+                2
+            );
+        }else{
+            ctx.rect(
+                x,
+                y,
+                barWidth,
+                barHeight
+            );
         }
 
+        ctx.fill();
     }
-);
+
+    animationFrame=requestAnimationFrame(drawFFT);
+}
+
+function startFFT(audio){
+
+    clearFFT();
+
+    activeAudio=audio;
+
+    const song=audio.closest(".song");
+    activeFFT=song.querySelector(".fft");
+
+    activeFFT.classList.add("active");
+
+    activeAnalyser=createAnalyser(audio);
+
+    activeData=new Uint8Array(
+        activeAnalyser.frequencyBinCount
+    );
+
+    if(audioContext.state==="suspended")
+        audioContext.resume();
+
+    drawFFT();
+}
+
+/* =========================
+   PLAY / PAUSE
+   ========================= */
+
+players.forEach(audio=>{
+
+    audio.addEventListener("play",()=>{
+
+        players.forEach(other=>{
+            if(other!==audio){
+                other.pause();
+                other.currentTime=0;
+            }
+        });
+
+        startFFT(audio);
+    });
+
+    audio.addEventListener("pause",()=>{
+
+        if(activeAudio===audio)
+            clearFFT();
+    });
+
+    audio.addEventListener("ended",()=>{
+
+        if(activeAudio===audio)
+            clearFFT();
+    });
+});
+
+/* =========================
+   ПОИСК
+   ========================= */
+
+const searchInput=document.getElementById("searchInput");
+const noResults=document.getElementById("noResults");
+
+searchInput.addEventListener("input",()=>{
+
+    const query=normalize(searchInput.value);
+
+    let found=0;
+
+    document.querySelectorAll(".song").forEach(song=>{
+
+        const text=song.dataset.search;
+
+        const visible=
+            !query||
+            text.includes(query);
+
+        song.classList.toggle(
+            "hidden",
+            !visible
+        );
+
+        if(visible)
+            found++;
+    });
+
+    noResults.classList.toggle(
+        "show",
+        found===0
+    );
+});
+
+function normalize(text){
+
+    return text
+        .toLowerCase()
+        .trim()
+        .replace(/ё/g,"е");
+}
+
+/* =========================
+   КОПИРОВАНИЕ ССЫЛКИ
+   ========================= */
+
+function copyLink(button,file){
+
+    const link=
+        location.origin+
+        location.pathname.replace(/[^\/]*$/,"")+
+        file;
+
+    navigator.clipboard.writeText(link)
+    .then(()=>showCopied(button))
+    .catch(()=>{
+
+        const input=document.createElement("input");
+
+        input.value=link;
+        document.body.appendChild(input);
+        input.select();
+
+        document.execCommand("copy");
+
+        input.remove();
+
+        showCopied(button);
+    });
+}
+
+function showCopied(button){
+
+    const oldText=button.innerHTML;
+
+    button.innerHTML="✓ Ссылка скопирована!";
+    button.classList.add("copied");
+
+    setTimeout(()=>{
+        button.innerHTML=oldText;
+        button.classList.remove("copied");
+    },1500);
+}
+
+/* =========================
+   ОБЩАЯ ГРОМКОСТЬ
+   ========================= */
+
+let savedVolume=
+    localStorage.getItem("musicVolume");
+
+savedVolume=
+    savedVolume===null?
+    1:
+    parseFloat(savedVolume);
+
+players.forEach(player=>{
+
+    player.volume=savedVolume;
+
+    player.addEventListener(
+        "volumechange",
+        ()=>{
+
+            localStorage.setItem(
+                "musicVolume",
+                player.volume
+            );
+
+            players.forEach(other=>{
+
+                if(other!==player)
+                    other.volume=player.volume;
+
+            });
+        }
+    );
+});
 
 </script>
 
-
 </body>
-
 </html>
