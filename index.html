@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -21,6 +22,7 @@ body{
     background:#181818;
     box-shadow:3px 0 10px #000;
     padding-top:120px;
+    z-index:10;
 }
 
 .menu{
@@ -56,6 +58,7 @@ header{
     border-radius:12px;
     padding:15px;
     transition:.2s;
+    box-sizing:border-box;
 }
 
 .song:hover{
@@ -70,6 +73,69 @@ header{
 
 audio{
     width:100%;
+    margin-bottom:12px;
+}
+
+.buttons{
+    display:flex;
+    gap:10px;
+}
+
+.btn{
+    flex:1;
+    border:none;
+    border-radius:8px;
+    padding:11px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+    text-align:center;
+    text-decoration:none;
+    box-sizing:border-box;
+}
+
+.download{
+    background:#00cc66;
+    color:white;
+}
+
+.download:hover{
+    background:#00ff88;
+    transform:scale(1.03);
+}
+
+.copy{
+    background:#0088cc;
+    color:white;
+}
+
+.copy:hover{
+    background:#00aaff;
+    transform:scale(1.03);
+}
+
+#notification{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    background:#00cc66;
+    color:white;
+    padding:14px 22px;
+    border-radius:10px;
+    font-size:17px;
+    font-weight:bold;
+    box-shadow:0 0 15px #000;
+    opacity:0;
+    transform:translateY(20px);
+    transition:.3s;
+    pointer-events:none;
+    z-index:100;
+}
+
+#notification.show{
+    opacity:1;
+    transform:translateY(0);
 }
 </style>
 
@@ -89,111 +155,371 @@ audio{
 </header>
 
 <div class="song">
-<div class="title">😱 Exponat</div>
+    <div class="title">🎵 Exponat</div>
+
+```
 <audio controls onplay="pauseOthers(this)">
-<source src="Exponat.mp3" type="audio/mpeg">
+    <source src="Exponat.mp3" type="audio/mpeg">
 </audio>
+
+<div class="buttons">
+    <a class="btn download"
+       href="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Exponat.mp3"
+       download>
+       ⬇ Скачать MP3
+    </a>
+
+    <button class="btn copy"
+            onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Exponat.mp3')">
+        🔗 Копировать ссылку
+    </button>
+</div>
+```
+
 </div>
 
 <div class="song">
-<div class="title">😱 Ella Dance</div>
+    <div class="title">🎵 Ella Dance</div>
+
+```
 <audio controls onplay="pauseOthers(this)">
-<source src="elladance.mp3" type="audio/mpeg">
+    <source src="elladance.mp3" type="audio/mpeg">
 </audio>
+
+<div class="buttons">
+    <a class="btn download"
+       href="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/elladance.mp3"
+       download>
+       ⬇ Скачать MP3
+    </a>
+
+    <button class="btn copy"
+            onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/elladance.mp3')">
+        🔗 Копировать ссылку
+    </button>
+</div>
+```
+
 </div>
 
 <div class="song">
-<div class="title">😱 Music</div>
+    <div class="title">🎵 Music</div>
+
+```
 <audio controls onplay="pauseOthers(this)">
-<source src="music.mp3" type="audio/mpeg">
+    <source src="music.mp3" type="audio/mpeg">
 </audio>
+
+<div class="buttons">
+    <a class="btn download"
+       href="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/music.mp3"
+       download>
+       ⬇ Скачать MP3
+    </a>
+
+    <button class="btn copy"
+            onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/music.mp3')">
+        🔗 Копировать ссылку
+    </button>
+</div>
+```
+
 </div>
 
 <div class="song">
-<div class="title">😱 Wanpis</div>
+    <div class="title">🎵 Wanpis</div>
+
+```
 <audio controls onplay="pauseOthers(this)">
-<source src="wanpis.mp3" type="audio/mpeg">
+    <source src="wanpis.mp3" type="audio/mpeg">
 </audio>
+
+<div class="buttons">
+    <a class="btn download"
+       href="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/wanpis.mp3"
+       download>
+       ⬇ Скачать MP3
+    </a>
+
+    <button class="btn copy"
+            onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/wanpis.mp3')">
+        🔗 Копировать ссылку
+    </button>
+</div>
+```
+
 </div>
 
 <div class="song">
-<div class="title">😱 Kesha</div>
+    <div class="title">🎵 Kesha</div>
+
+```
 <audio controls onplay="pauseOthers(this)">
-<source src="Kesha.mp3" type="audio/mpeg">
+    <source src="Kesha.mp3" type="audio/mpeg">
 </audio>
+
+<div class="buttons">
+    <a class="btn download"
+       href="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Kesha.mp3"
+       download>
+       ⬇ Скачать MP3
+    </a>
+
+    <button class="btn copy"
+            onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Kesha.mp3')">
+        🔗 Копировать ссылку
+    </button>
+</div>
+```
+
 </div>
 
 <div class="song">
-<div class="title">😱 Mount_Noize_Generation-AroundTheWorld</div>
+    <div class="title">🎵 Mount_Noize_Generation-AroundTheWorld</div>
+
+```
 <audio controls onplay="pauseOthers(this)">
-<source src="Mount_Noize_Generation-AroundTheWorld.mp3" type="audio/mpeg">
+    <source src="Mount_Noize_Generation-AroundTheWorld.mp3" type="audio/mpeg">
 </audio>
+
+<div class="buttons">
+    <a class="btn download"
+       href="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Mount_Noize_Generation-AroundTheWorld.mp3"
+       download>
+       ⬇ Скачать MP3
+    </a>
+
+    <button class="btn copy"
+            onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Mount_Noize_Generation-AroundTheWorld.mp3')">
+        🔗 Копировать ссылку
+    </button>
+</div>
+```
+
 </div>
 
 <div class="song">
-<div class="title">😱 R3hab - All Around The World</div>
+    <div class="title">🎵 R3hab - All Around The World</div>
+
+```
 <audio controls onplay="pauseOthers(this)">
-<source src="R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3" type="audio/mpeg">
+    <source src="R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3" type="audio/mpeg">
 </audio>
+
+<div class="buttons">
+    <a class="btn download"
+       href="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3"
+       download>
+       ⬇ Скачать MP3
+    </a>
+
+    <button class="btn copy"
+            onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3')">
+        🔗 Копировать ссылку
+    </button>
+</div>
+```
+
 </div>
 
 <div class="song">
-<div class="title">😱 Daryana - Juice</div>
+    <div class="title">🎵 Daryana - Juice</div>
+
+```
 <audio controls onplay="pauseOthers(this)">
-<source src="Daryana-Juice.mp3" type="audio/mpeg">
+    <source src="Daryana-Juice.mp3" type="audio/mpeg">
 </audio>
+
+<div class="buttons">
+    <a class="btn download"
+       href="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Daryana-Juice.mp3"
+       download>
+       ⬇ Скачать MP3
+    </a>
+
+    <button class="btn copy"
+            onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Daryana-Juice.mp3')">
+        🔗 Копировать ссылку
+    </button>
+</div>
+```
+
 </div>
 
 <div class="song">
-<div class="title">😱 Dora - Vturilas</div>
+    <div class="title">🎵 Dora - Vturilas</div>
+
+```
 <audio controls onplay="pauseOthers(this)">
-<source src="Dora-Vturilas.mp3" type="audio/mpeg">
+    <source src="Dora-Vturilas.mp3" type="audio/mpeg">
 </audio>
+
+<div class="buttons">
+    <a class="btn download"
+       href="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Dora-Vturilas.mp3"
+       download>
+       ⬇ Скачать MP3
+    </a>
+
+    <button class="btn copy"
+            onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Dora-Vturilas.mp3')">
+        🔗 Копировать ссылку
+    </button>
+</div>
+```
+
 </div>
 
 <div class="song">
-<div class="title">😱 PSY - Gangnam Style</div>
+    <div class="title">🎵 PSY - Gangnam Style</div>
+
+```
 <audio controls onplay="pauseOthers(this)">
-<source src="PSY-Gangnam_Style.mp3" type="audio/mpeg">
+    <source src="PSY-Gangnam_Style.mp3" type="audio/mpeg">
 </audio>
+
+<div class="buttons">
+    <a class="btn download"
+       href="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/PSY-Gangnam_Style.mp3"
+       download>
+       ⬇ Скачать MP3
+    </a>
+
+    <button class="btn copy"
+            onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/PSY-Gangnam_Style.mp3')">
+        🔗 Копировать ссылку
+    </button>
+</div>
+```
+
 </div>
 
 <div class="song">
-<div class="title">😱 Skriptonit - Baby Mama</div>
+    <div class="title">🎵 Skriptonit - Baby Mama</div>
+
+```
 <audio controls onplay="pauseOthers(this)">
-<source src="Skriptonit-Baby_Mama.mp3" type="audio/mpeg">
+    <source src="Skriptonit-Baby_Mama.mp3" type="audio/mpeg">
 </audio>
+
+<div class="buttons">
+    <a class="btn download"
+       href="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Skriptonit-Baby_Mama.mp3"
+       download>
+       ⬇ Скачать MP3
+    </a>
+
+    <button class="btn copy"
+            onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Skriptonit-Baby_Mama.mp3')">
+        🔗 Копировать ссылку
+    </button>
+</div>
+```
+
 </div>
 
 <div class="song">
-<div class="title">😱 Deti Rave - Abonnement</div>
+    <div class="title">🎵 Deti Rave - Abonnement</div>
+
+```
 <audio controls onplay="pauseOthers(this)">
-<source src="Deti_Rave-Abonnement.mp3" type="audio/mpeg">
+    <source src="Deti_Rave-Abonnement.mp3" type="audio/mpeg">
 </audio>
+
+<div class="buttons">
+    <a class="btn download"
+       href="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Deti_Rave-Abonnement.mp3"
+       download>
+       ⬇ Скачать MP3
+    </a>
+
+    <button class="btn copy"
+            onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Deti_Rave-Abonnement.mp3')">
+        🔗 Копировать ссылку
+    </button>
+</div>
+```
+
 </div>
 
 <div class="song">
-<div class="title">😱 Dead Blonde - Malchik Na Devyatke</div>
+    <div class="title">🎵 Dead Blonde - Malchik Na Devyatke</div>
+
+```
 <audio controls onplay="pauseOthers(this)">
-<source src="Dead_Blonde-Malchik_Na_Devyatke.mp3" type="audio/mpeg">
+    <source src="Dead_Blonde-Malchik_Na_Devyatke.mp3" type="audio/mpeg">
 </audio>
+
+<div class="buttons">
+    <a class="btn download"
+       href="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Dead_Blonde-Malchik_Na_Devyatke.mp3"
+       download>
+       ⬇ Скачать MP3
+    </a>
+
+    <button class="btn copy"
+            onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Dead_Blonde-Malchik_Na_Devyatke.mp3')">
+        🔗 Копировать ссылку
+    </button>
+</div>
+```
+
 </div>
 
 <div class="song">
-<div class="title">😱 Poshlaya Molly - Non Stop</div>
+    <div class="title">🎵 Poshlaya Molly - Non Stop</div>
+
+```
 <audio controls onplay="pauseOthers(this)">
-<source src="Poshlaya_Molli-Non_Stop.mp3" type="audio/mpeg">
+    <source src="Poshlaya_Molli-Non_Stop.mp3" type="audio/mpeg">
 </audio>
+
+<div class="buttons">
+    <a class="btn download"
+       href="https://malyavochkamalyavochka.github.io/my-radio/Poshlaya_Molli-Non_Stop.mp3"
+       download>
+       ⬇ Скачать MP3
+    </a>
+
+    <button class="btn copy"
+            onclick="copyLink('https://malyavochkamalyavochka.github.io/my-radio/Poshlaya_Molli-Non_Stop.mp3')">
+        🔗 Копировать ссылку
+    </button>
+</div>
+```
+
 </div>
 
 <div class="song">
-<div class="title">😱 Gachi</div>
+    <div class="title">🎵 Gachi</div>
+
+```
 <audio controls onplay="pauseOthers(this)">
-<source src="Gachi.mp3" type="audio/mpeg">
+    <source src="Gachi.mp3" type="audio/mpeg">
 </audio>
+
+<div class="buttons">
+    <a class="btn download"
+       href="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Gachi.mp3"
+       download>
+       ⬇ Скачать MP3
+    </a>
+
+    <button class="btn copy"
+            onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Gachi.mp3')">
+        🔗 Копировать ссылку
+    </button>
+</div>
+```
+
+</div>
+
+<div id="notification">
+    🔗 Ссылка скопирована!
 </div>
 
 <script>
+
 function pauseOthers(current)
 {
     let players = document.querySelectorAll("audio");
@@ -207,6 +533,23 @@ function pauseOthers(current)
         }
     });
 }
+
+
+function copyLink(link)
+{
+    navigator.clipboard.writeText(link).then(function()
+    {
+        let notification = document.getElementById("notification");
+
+        notification.classList.add("show");
+
+        setTimeout(function()
+        {
+            notification.classList.remove("show");
+        }, 1800);
+    });
+}
+
 </script>
 
 </body>
