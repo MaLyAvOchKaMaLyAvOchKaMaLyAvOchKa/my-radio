@@ -21,7 +21,6 @@ min-height:100vh
 }
 
 /* SIDEBAR */
-
 .sidebar{
 position:fixed;
 left:0;
@@ -56,7 +55,6 @@ box-shadow:inset 3px 0 0 #00ff88
 }
 
 /* HEADER */
-
 header{
 margin-left:190px;
 padding:30px 20px;
@@ -73,7 +71,6 @@ position:relative
 }
 
 /* SEARCH */
-
 .search{
 position:absolute;
 right:25px;
@@ -93,9 +90,7 @@ box-shadow:inset 0 0 15px rgba(0,0,0,.25)
 
 .search:focus-within{
 border-color:#00ff88;
-box-shadow:
-0 0 12px rgba(0,255,136,.18),
-inset 0 0 15px rgba(0,0,0,.25)
+box-shadow:0 0 12px rgba(0,255,136,.18),inset 0 0 15px rgba(0,0,0,.25)
 }
 
 .search-icon{
@@ -130,13 +125,8 @@ border-radius:2px;
 transition:.2s
 }
 
-.search:focus-within .search-icon:before{
-border-color:#00ff88
-}
-
-.search:focus-within .search-icon:after{
-background:#00ff88
-}
+.search:focus-within .search-icon:before{border-color:#00ff88}
+.search:focus-within .search-icon:after{background:#00ff88}
 
 .search input{
 width:100%;
@@ -149,81 +139,67 @@ font-size:15px;
 padding:0 15px 0 0
 }
 
-.search input::placeholder{
-color:#888
-}
+.search input::placeholder{color:#888}
 
 /* CONTENT */
-
 .content{
 margin-left:190px;
 width:calc(100% - 190px);
 padding:35px 30px 80px
 }
 
-/* LOADING */
-
-.loading{
+.loading,.no-results,.error{
 width:min(760px,90%);
 margin:30px auto;
-text-align:center;
+text-align:center
+}
+
+.loading{
 color:#777;
 font-size:17px
 }
 
-.loading span{
-color:#00ff88
-}
+.loading span{color:#00ff88}
 
-/* ERROR */
+.no-results{
+display:none;
+color:#777;
+font-size:18px
+}
 
 .error{
 display:none;
-width:min(760px,90%);
-margin:30px auto;
 padding:20px;
 border-radius:12px;
 background:rgba(255,50,50,.06);
 border:1px solid rgba(255,50,50,.15);
 color:#aaa;
-line-height:1.6;
-text-align:center
+line-height:1.6
 }
 
-.error b{
-color:#ff6666
-}
+.error b{color:#ff6666}
 
 /* SONG */
-
 .song{
-background:
-linear-gradient(145deg,rgba(27,31,31,.97),rgba(22,25,26,.97));
+background:linear-gradient(145deg,rgba(27,31,31,.97),rgba(22,25,26,.97));
 width:min(760px,90%);
 margin:0 auto 12px;
 border-radius:14px;
 padding:13px 18px 10px;
 border:1px solid rgba(255,255,255,.055);
-box-shadow:
-0 8px 25px rgba(0,0,0,.28),
-inset 0 0 20px rgba(0,255,136,.015);
+box-shadow:0 8px 25px rgba(0,0,0,.28),inset 0 0 20px rgba(0,255,136,.015);
 transition:.2s
 }
 
 .song:hover{
 transform:translateY(-2px);
 border-color:rgba(0,255,136,.18);
-box-shadow:
-0 12px 30px rgba(0,0,0,.4),
-0 0 20px rgba(0,255,136,.035)
+box-shadow:0 12px 30px rgba(0,0,0,.4),0 0 20px rgba(0,255,136,.035)
 }
 
-.song.hidden{
-display:none
-}
+.song.hidden{display:none}
 
 /* TITLE */
-
 .title{
 height:37px;
 font-size:20px;
@@ -248,7 +224,6 @@ text-overflow:ellipsis
 }
 
 /* FFT */
-
 .fft{
 display:none;
 width:220px;
@@ -257,12 +232,9 @@ margin-left:auto;
 flex-shrink:0
 }
 
-.song.playing .fft{
-display:block
-}
+.song.playing .fft{display:block}
 
 /* AUDIO */
-
 audio{
 display:block;
 width:100%;
@@ -272,7 +244,6 @@ margin:0 0 9px
 }
 
 /* BUTTONS */
-
 .buttons{
 display:flex;
 gap:10px;
@@ -297,9 +268,7 @@ transform:translateY(-1px);
 filter:brightness(1.08)
 }
 
-.btn:active{
-transform:translateY(0)
-}
+.btn:active{transform:translateY(0)}
 
 .download{
 background:#00c878;
@@ -312,25 +281,10 @@ background:#087fd0;
 color:#fff
 }
 
-.copy.copied{
-background:#00b86b
-}
-
-/* NO RESULTS */
-
-.no-results{
-display:none;
-width:min(760px,90%);
-margin:40px auto;
-text-align:center;
-color:#777;
-font-size:18px
-}
+.copy.copied{background:#00b86b}
 
 /* MOBILE */
-
 @media(max-width:800px){
-
 .sidebar{
 width:70px;
 padding-top:90px
@@ -343,9 +297,7 @@ padding:15px;
 margin:6px
 }
 
-.menu:first-letter{
-font-size:25px
-}
+.menu:first-letter{font-size:25px}
 
 header{
 margin-left:70px;
@@ -374,40 +326,16 @@ width:100%;
 padding:12px
 }
 
-.buttons{
-flex-direction:column
-}
-
-.btn{
-width:100%
-}
-
-.title{
-font-size:19px
-}
-
-.fft{
-width:150px;
-height:40px
-}
-
+.buttons{flex-direction:column}
+.btn{width:100%}
+.title{font-size:19px}
+.fft{width:150px;height:40px}
 }
 
 @media(max-width:500px){
-
-.title{
-gap:6px
-}
-
-.title .music-icon{
-font-size:21px
-}
-
-.fft{
-width:120px;
-height:34px
-}
-
+.title{gap:6px}
+.title .music-icon{font-size:21px}
+.fft{width:120px;height:34px}
 }
 </style>
 </head>
@@ -415,446 +343,276 @@ height:34px
 <body>
 
 <div class="sidebar">
-
-<a href="index.html" class="menu">
-🎧 <span>Music</span>
-</a>
-
-<a href="Roflan.html" class="menu">
-😂 <span>Рофл звуки</span>
-</a>
-
-<a href="Gachi.html" class="menu">
-🎤 <span>Gachi</span>
-</a>
-
-<a href="Skrimer.html" class="menu">
-😱 <span>Скримеры</span>
-</a>
-
+<a href="index.html" class="menu">🎧 <span>Music</span></a>
+<a href="Roflan.html" class="menu">😂 <span>Рофл звуки</span></a>
+<a href="Gachi.html" class="menu">🎤 <span>Gachi</span></a>
+<a href="Skrimer.html" class="menu">😱 <span>Скримеры</span></a>
 </div>
 
 <header>
-
 🎧 МаЛяВоЧка - Music 🎧
 
 <div class="search">
-
 <span class="search-icon"></span>
-
-<input
-id="searchInput"
-type="text"
-placeholder="Найти трек..."
-autocomplete="off"
->
-
+<input id="searchInput" type="text" placeholder="Найти трек...">
 </div>
-
 </header>
 
 <div class="content">
-
-<div class="loading" id="loading">
-Загрузка каталога... <span>♪</span>
-</div>
-
+<div class="loading" id="loading">Загрузка каталога... <span>♪</span></div>
 <div class="error" id="error"></div>
-
 <div id="songsContainer"></div>
-
-<div class="no-results" id="noResults">
-Ничего не найдено 😔
-</div>
-
+<div class="no-results" id="noResults">Ничего не найдено 😔</div>
 </div>
 
 <script>
-
-/* ==============================
-   НАСТРОЙКИ
-================================ */
-
-const REPO_API=
-"https://api.github.com/repos/malyavochkamalyavochkamalyavochka/my-radio/contents/Music";
-
+const REPO_API="https://api.github.com/repos/malyavochkamalyavochkamalyavochka/my-radio/contents/Music";
 const MUSIC_FOLDER="Music/";
-
-const BASE=
-"https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Music/";
-
-/* Кэш списка музыки */
-
-const CACHE_KEY="malya_music_cache_v2";
-
-/* Через сколько проверять GitHub */
-
-const CACHE_TIME=5*60*1000;
-
-
-/* ==============================
-   ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
-================================ */
+const BASE="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Music/";
 
 let songs=[];
 let players=[];
 let currentAudio=null;
-
 let audioCtx=null;
 let raf=null;
 
 const sourceMap=new WeakMap();
 
+/* РУССКИЙ -> АНГЛИЙСКИЙ */
+const translit={
+"а":"a","б":"b","в":"v","г":"g","д":"d","е":"e","ё":"yo",
+"ж":"zh","з":"z","и":"i","й":"y","к":"k","л":"l","м":"m",
+"н":"n","о":"o","п":"p","р":"r","с":"s","т":"t","у":"u",
+"ф":"f","х":"h","ц":"ts","ч":"ch","ш":"sh","щ":"sch",
+"ъ":"","ы":"y","ь":"","э":"e","ю":"yu","я":"ya"
+};
 
-/* ==============================
-   ЗАПУСК
-================================ */
+/* ЧАСТЫЕ АНГЛИЙСКИЕ СЛОВА В РУССКОМ ПРОИЗНОШЕНИИ */
+const aliases={
+"зе":"the",
+"зэ":"the",
+"тхе":"the",
+"да":"the",
+"викенд":"weeknd",
+"уикенд":"weeknd",
+"викэнд":"weeknd",
+"уикэнд":"weeknd",
+"стайл":"style",
+"стайл":"style",
+"гангнам":"gangnam",
+"лайтс":"lights",
+"бэби":"baby",
+"бейби":"baby",
+"мама":"mama",
+"блэкинг":"blacking",
+"блидинг":"bleeding",
+"блиндинг":"blinding",
+"дэнс":"dance",
+"данс":"dance",
+"джус":"juice",
+"джусе":"juice",
+"бойка":"boyka",
+"бойки":"boyka",
+"скриптонит":"skriptonit",
+"пси":"psy",
+"псай":"psy",
+"дора":"dora",
+"дарьяна":"daryana",
+"мия":"mia",
+"миябойка":"miaboyka"
+};
 
-loadMusic();
+/* РУССКАЯ ПРИМЕРНАЯ ТРАНСКРИПЦИЯ АНГЛИЙСКОГО */
+const latinToRu=[
+["sch","щ"],
+["sh","ш"],
+["ch","ч"],
+["zh","ж"],
+["th","з"],
+["ph","ф"],
+["ck","к"],
+["qu","кв"],
+["ee","и"],
+["ea","и"],
+["oo","у"],
+["ou","ау"],
+["ow","ау"],
+["ai","эй"],
+["ay","эй"],
+["ei","эй"],
+["ey","эй"],
+["tion","шн"],
+["sion","жн"],
+["ing","инг"],
+["a","а"],
+["b","б"],
+["c","к"],
+["d","д"],
+["e","е"],
+["f","ф"],
+["g","г"],
+["h","х"],
+["i","и"],
+["j","дж"],
+["k","к"],
+["l","л"],
+["m","м"],
+["n","н"],
+["o","о"],
+["p","п"],
+["q","к"],
+["r","р"],
+["s","с"],
+["t","т"],
+["u","у"],
+["v","в"],
+["w","в"],
+["x","кс"],
+["y","й"],
+["z","з"]
+];
 
-
-/* ==============================
-   ЗАГРУЗКА МУЗЫКИ
-================================ */
-
-async function loadMusic(){
-
-const loading=
-document.getElementById("loading");
-
-const error=
-document.getElementById("error");
-
-try{
-
-/*
-   СНАЧАЛА МГНОВЕННО
-   ПОКАЗЫВАЕМ КЭШ
-*/
-
-const cached=
-localStorage.getItem(CACHE_KEY);
-
-if(cached){
-
-try{
-
-const data=
-JSON.parse(cached);
-
-if(
-Array.isArray(data.files)&&
-data.files.length
-){
-
-renderMusic(data.files);
-
-loading.style.display="none";
-
-/*
-   Если кэш свежий —
-   сразу показываем музыку
-   и вообще не ждём GitHub.
-*/
-
-if(
-Date.now()-data.time<CACHE_TIME
-){
-
-updateMusicInBackground();
-return;
-
+/* НОРМАЛИЗАЦИЯ */
+function normalizeSearch(text){
+return text
+.toLowerCase()
+.replace(/ё/g,"е")
+.replace(/й/g,"и")
+.replace(/[^a-zа-я0-9\s]/gi," ")
+.replace(/\s+/g," ")
+.trim();
 }
 
+/* ТРАНСЛИТ */
+function transliterate(text){
+return text
+.toLowerCase()
+.split("")
+.map(char=>translit[char]!==undefined?translit[char]:char)
+.join("");
 }
 
-}catch(e){
+/* ПРЕОБРАЗОВАНИЕ АНГЛИЙСКОГО В РУССКОЕ ПРОИЗНОШЕНИЕ */
+function latinToRussian(text){
+let result=text.toLowerCase();
 
-console.log("Кэш повреждён");
-
+for(const pair of latinToRu){
+result=result.split(pair[0]).join(pair[1]);
 }
 
+return result;
 }
 
+/* СОЗДАНИЕ ВСЕХ ВАРИАНТОВ НАЗВАНИЯ */
+function makeSearchVariants(text){
+const original=normalizeSearch(text);
+const variants=new Set();
 
-/*
-   ПЕРВИЧНАЯ ЗАГРУЗКА
-*/
+variants.add(original);
+variants.add(normalizeSearch(transliterate(original)));
+variants.add(normalizeSearch(latinToRussian(original)));
 
-const response=
-await fetch(
-REPO_API+
-"?t="+Date.now(),
-{
-cache:"no-store"
-}
+/* Варианты с частыми словами */
+let aliasText=original;
+
+for(const word in aliases){
+const value=aliases[word];
+aliasText=aliasText.replace(
+new RegExp("(^|\\s)"+word+"(?=\\s|$)","gi"),
+"$1"+value
 );
+}
+
+variants.add(normalizeSearch(aliasText));
+variants.add(normalizeSearch(transliterate(aliasText)));
+variants.add(normalizeSearch(latinToRussian(aliasText)));
+
+return [...variants].filter(Boolean);
+}
+
+/* ЭКРАНИРОВАНИЕ HTML */
+function escapeHTML(text){
+return text
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+}
+
+/* ЗАГРУЗКА СПИСКА МУЗЫКИ */
+async function loadMusic(){
+const loading=document.getElementById("loading");
+const error=document.getElementById("error");
+const container=document.getElementById("songsContainer");
+
+try{
+const response=await fetch(REPO_API+"?t="+Date.now());
 
 if(!response.ok){
-
-throw new Error(
-"GitHub API: "+response.status
-);
-
+throw new Error("GitHub API: "+response.status);
 }
 
-const files=
-await response.json();
+const files=await response.json();
 
-
-const musicFiles=
-files
+const musicFiles=files
 .filter(file=>
 file.type==="file"&&
-file.name
-.toLowerCase()
-.endsWith(".mp3")
+file.name.toLowerCase().endsWith(".mp3")
 )
-.map(file=>file.name)
 .sort((a,b)=>
-a.localeCompare(
-b,
+a.name.localeCompare(
+b.name,
 "ru",
 {
 numeric:true,
 sensitivity:"base"
 }
-));
-
-
-/*
-   СОХРАНЯЕМ СПИСОК
-*/
-
-localStorage.setItem(
-CACHE_KEY,
-JSON.stringify({
-time:Date.now(),
-files:musicFiles
-})
-);
-
-
-/*
-   РИСУЕМ МУЗЫКУ
-*/
-
-renderMusic(musicFiles);
-
-}catch(e){
-
-console.error(e);
-
-if(!songs.length){
-
-loading.style.display="none";
-
-error.style.display="block";
-
-error.innerHTML=
-"<b>🎧 Музыка куда-то сбежала...</b><br><br>"+
-"МаЛяВоЧка не смогла получить список треков 😔<br>"+
-"Попробуй обновить страницу через несколько секунд.";
-
-}
-
-}
-
-}
-
-
-/* ==============================
-   ФОНОВАЯ ПРОВЕРКА
-================================ */
-
-async function updateMusicInBackground(){
-
-try{
-
-const response=
-await fetch(
-REPO_API+
-"?t="+Date.now(),
-{
-cache:"no-store"
-}
-);
-
-if(!response.ok)return;
-
-const files=
-await response.json();
-
-
-const musicFiles=
-files
-.filter(file=>
-file.type==="file"&&
-file.name
-.toLowerCase()
-.endsWith(".mp3")
 )
-.map(file=>file.name)
-.sort((a,b)=>
-a.localeCompare(
-b,
-"ru",
-{
-numeric:true,
-sensitivity:"base"
-}
-));
-
-
-const old=
-localStorage.getItem(
-CACHE_KEY
-);
-
-let oldFiles=[];
-
-if(old){
-
-try{
-
-oldFiles=
-JSON.parse(old).files||[];
-
-}catch(e){}
-
-}
-
-
-/*
-   ЕСЛИ ДОБАВИЛАСЬ НОВАЯ ПЕСНЯ
-   ПЕРЕРИСОВЫВАЕМ КАТАЛОГ
-*/
-
-if(
-JSON.stringify(oldFiles)!==
-JSON.stringify(musicFiles)
-){
-
-localStorage.setItem(
-CACHE_KEY,
-JSON.stringify({
-time:Date.now(),
-files:musicFiles
-})
-);
-
-renderMusic(musicFiles);
-
-}
-
-}catch(e){
-
-console.log(
-"Фоновая проверка недоступна"
-);
-
-}
-
-}
-
-
-/* ==============================
-   СОЗДАНИЕ КАТАЛОГА
-================================ */
-
-function renderMusic(musicFiles){
-
-const container=
-document.getElementById(
-"songsContainer"
-);
-
-const loading=
-document.getElementById(
-"loading"
 );
 
 container.innerHTML="";
 
+musicFiles.forEach(file=>{
+createSong(file.name,container);
+});
 
-musicFiles.forEach(
-fileName=>{
-createSong(
-fileName,
-container
-);
-}
-);
-
-
-songs=[
-...document.querySelectorAll(
-".song"
-)
-];
-
-players=[
-...document.querySelectorAll(
-"audio"
-)
-];
-
-
-if(musicFiles.length){
+songs=[...document.querySelectorAll(".song")];
+players=[...document.querySelectorAll("audio")];
 
 loading.style.display="none";
 
-}else{
-
+if(!musicFiles.length){
 loading.style.display="block";
-
-loading.innerHTML=
-'В папке <span>Music</span> пока нет MP3 🎵';
-
+loading.innerHTML="В каталоге пока тихо... 🎵";
 }
-
 
 setupPlayers();
 setupVolume();
 setupSearch();
 
+}catch(e){
+console.error(e);
+
+loading.style.display="none";
+error.style.display="block";
+
+error.innerHTML=
+"<b>🎧 Музыка куда-то сбежала...</b>"+
+"<br><br>"+
+"МаЛяВоЧка не смогла открыть музыкальный каталог 😔"+
+"<br>"+
+"Попробуй обновить страницу чуть позже!";
+}
 }
 
-
-/* ==============================
-   СОЗДАНИЕ ПЕСНИ
-================================ */
-
-function createSong(
-fileName,
-container
-){
-
-let title=
-fileName.replace(
-/\.mp3$/i,
-""
-);
+/* СОЗДАНИЕ ПЕСНИ */
+function createSong(fileName,container){
+let title=fileName.replace(/\.mp3$/i,"");
 
 try{
-
-title=
-decodeURIComponent(title);
-
+title=decodeURIComponent(title);
 }catch(e){}
-
-
-/*
-   Убираем "_" и "-"
-   для нормального поиска
-*/
-
-const searchText=
-title
-.replace(/[_\-]+/g," ")
-.replace(/\s+/g," ")
-.trim();
-
 
 const fileURL=
 MUSIC_FOLDER+
@@ -864,595 +622,129 @@ const fullURL=
 BASE+
 encodeURIComponent(fileName);
 
+const searchVariants=
+makeSearchVariants(title);
 
-const song=
-document.createElement("div");
+const song=document.createElement("div");
 
 song.className="song";
 
-
-/*
-   ВАЖНО:
-
-   Сохраняем несколько вариантов
-   названия для поиска.
-*/
-
 song.dataset.search=
-makeSearchText(searchText);
-
+searchVariants.join(" ");
 
 song.innerHTML=`
-
 <div class="title">
-
-<span class="music-icon">
-🎵
-</span>
-
-<span title="${escapeHTML(title)}">
-${escapeHTML(title)}
-</span>
-
-<canvas
-class="fft"
-width="440"
-height="96"
-></canvas>
-
+<span class="music-icon">🎵</span>
+<span title="${escapeHTML(title)}">${escapeHTML(title)}</span>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 
-
-<audio
-controls
-preload="none"
->
-
-<source
-src="${fileURL}"
-type="audio/mpeg"
->
-
+<audio controls preload="none">
+<source src="${fileURL}" type="audio/mpeg">
 </audio>
 
-
 <div class="buttons">
-
-<a
-class="btn download"
-href="${fileURL}"
-download
->
+<a class="btn download" href="${fileURL}" download>
 ↓ Скачать MP3
 </a>
 
-
-<button
-class="btn copy"
->
+<button class="btn copy">
 🔗 Копировать ссылку
 </button>
-
 </div>
-
 `;
-
 
 song
 .querySelector(".copy")
-.addEventListener(
-"click",
-()=>{
-
+.addEventListener("click",()=>{
 copyLink(
 song.querySelector(".copy"),
 fullURL
 );
-
-}
-);
-
+});
 
 container.appendChild(song);
-
 }
 
-
-/* ==============================
-   HTML SAFE
-================================ */
-
-function escapeHTML(text){
-
-return text
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
-/* ==============================
-   РУССКИЙ → АНГЛИЙСКИЙ
-================================ */
-
-const translitMap={
-
-"а":"a",
-"б":"b",
-"в":"v",
-"г":"g",
-"д":"d",
-"е":"e",
-"ё":"yo",
-"ж":"zh",
-"з":"z",
-"и":"i",
-"й":"y",
-"к":"k",
-"л":"l",
-"м":"m",
-"н":"n",
-"о":"o",
-"п":"p",
-"р":"r",
-"с":"s",
-"т":"t",
-"у":"u",
-"ф":"f",
-"х":"h",
-"ц":"c",
-"ч":"ch",
-"ш":"sh",
-"щ":"shch",
-"ъ":"",
-"ы":"y",
-"ь":"",
-"э":"e",
-"ю":"yu",
-"я":"ya"
-
-};
-
-
-/* ==============================
-   ТРАНСЛИТ
-================================ */
-
-function transliterate(text){
-
-return text
-.toLowerCase()
-.split("")
-.map(char=>
-translitMap[char]!==undefined
-?translitMap[char]
-:char
-)
-.join("");
-
-}
-
-
-/* ==============================
-   НОРМАЛИЗАЦИЯ
-================================ */
-
-function normalizeSearch(text){
-
-return text
-.toLowerCase()
-.replace(/ё/g,"е")
-.replace(/й/g,"и")
-.replace(
-/[^a-zа-я0-9\s]/gi,
-" "
-)
-.replace(/\s+/g," ")
-.trim();
-
-}
-
-
-/* ==============================
-   ПОИСКОВЫЙ ТЕКСТ
-================================ */
-
-function makeSearchText(text){
-
-const normal=
-normalizeSearch(text);
-
-const translit=
-transliterate(normal);
-
-return(
-normal+
-" "+
-translit
-)
-.replace(/\s+/g," ")
-.trim();
-
-}
-
-
-/* ==============================
-   РАССТОЯНИЕ МЕЖДУ СЛОВАМИ
-   ДЛЯ НЕИДЕАЛЬНОГО ПОИСКА
-================================ */
-
-function levenshtein(a,b){
-
-if(a===b)return 0;
-
-if(!a.length)return b.length;
-if(!b.length)return a.length;
-
-const matrix=[];
-
-for(
-let i=0;
-i<=b.length;
-i++
-){
-
-matrix[i]=[i];
-
-}
-
-for(
-let j=0;
-j<=a.length;
-j++
-){
-
-matrix[0][j]=j;
-
-}
-
-for(
-let i=1;
-i<=b.length;
-i++
-){
-
-for(
-let j=1;
-j<=a.length;
-j++
-){
-
-if(
-b.charAt(i-1)===
-a.charAt(j-1)
-){
-
-matrix[i][j]=
-matrix[i-1][j-1];
-
-}else{
-
-matrix[i][j]=
-Math.min(
-matrix[i-1][j-1]+1,
-matrix[i][j-1]+1,
-matrix[i-1][j]+1
-);
-
-}
-
-}
-
-}
-
-return matrix[b.length][a.length];
-
-}
-
-
-/* ==============================
-   НЕТОЧНОЕ СОВПАДЕНИЕ
-================================ */
-
-function fuzzyWordMatch(
-word,
-text
-){
-
-if(!word)return true;
-
-if(text.includes(word)){
-return true;
-}
-
-
-/*
-   Проверяем каждое слово
-   в названии отдельно.
-*/
-
-const textWords=
-text.split(/\s+/);
-
-
-for(
-const target of textWords
-){
-
-if(
-target.startsWith(word)||
-word.startsWith(target)
-){
-
-return true;
-
-}
-
-
-/*
-   Для коротких слов
-   нужна большая точность.
-*/
-
-if(word.length>=4){
-
-const distance=
-levenshtein(
-word,
-target
-);
-
-const maxDistance=
-word.length<=5
-?1
-:2;
-
-if(distance<=maxDistance){
-return true;
-}
-
-}
-
-}
-
-return false;
-
-}
-
-
-/* ==============================
-   ПОИСК
-================================ */
-
-function setupSearch(){
-
-const input=
-document.getElementById(
-"searchInput"
-);
-
-const noResults=
-document.getElementById(
-"noResults"
-);
-
-
-/*
-   oninput вместо addEventListener,
-   чтобы повторная перерисовка каталога
-   не создавала несколько обработчиков.
-*/
-
-input.oninput=function(){
-
-const query=
-makeSearchText(
-this.value
-);
-
-const words=
-query
-.split(" ")
-.filter(Boolean);
-
-
-let found=0;
-
-
-songs.forEach(song=>{
-
-const text=
-song.dataset.search;
-
-
-const visible=
-!words.length||
-words.every(word=>
-fuzzyWordMatch(
-word,
-text
-)
-);
-
-
-song.classList.toggle(
-"hidden",
-!visible
-);
-
-
-if(visible){
-found++;
-}
-
-});
-
-
-noResults.style.display=
-found===0&&words.length
-?"block"
-:"none";
-
-};
-
-}
-
-
-/* ==============================
-   ОСТАНОВКА ДРУГИХ ПЕСЕН
-================================ */
-
+/* ОСТАНОВКА ДРУГИХ ТРЕКОВ */
 function pauseOthers(current){
-
 players.forEach(player=>{
-
 if(player!==current){
-
 player.pause();
-
 player.currentTime=0;
 
-const oldSong=
-player.closest(".song");
+const oldSong=player.closest(".song");
 
 if(oldSong){
-
-oldSong.classList.remove(
-"playing"
-);
-
+oldSong.classList.remove("playing");
 clearFFT(oldSong);
-
 }
-
 }
-
 });
-
 
 currentAudio=current;
 
-
-const currentSong=
-current.closest(".song");
+const currentSong=current.closest(".song");
 
 if(currentSong){
-
-currentSong.classList.add(
-"playing"
-);
-
+currentSong.classList.add("playing");
 }
-
 
 const saved=
-localStorage.getItem(
-"musicVolume"
-);
-
+localStorage.getItem("musicVolume");
 
 if(saved!==null){
-
-current.volume=
-parseFloat(saved);
-
+current.volume=parseFloat(saved);
+}
 }
 
-}
-
-
-/* ==============================
-   AUDIO CONTEXT
-================================ */
-
+/* AUDIO CONTEXT */
 function getAudioContext(){
-
 if(!audioCtx){
-
 audioCtx=
 new(
 window.AudioContext||
 window.webkitAudioContext
 )();
-
 }
 
 return audioCtx;
-
 }
 
-
-/* ==============================
-   ANALYSER
-================================ */
-
+/* ANALYSER */
 function setupAudio(audio){
-
-if(
-sourceMap.has(audio)
-){
-
+if(sourceMap.has(audio)){
 return sourceMap.get(audio);
-
 }
 
-
-const ctx=
-getAudioContext();
-
+const ctx=getAudioContext();
 
 const source=
-ctx.createMediaElementSource(
-audio
-);
-
+ctx.createMediaElementSource(audio);
 
 const analyser=
 ctx.createAnalyser();
 
-
 analyser.fftSize=1024;
-
 analyser.smoothingTimeConstant=.28;
-
 analyser.minDecibels=-95;
-
 analyser.maxDecibels=-8;
 
-
 source.connect(analyser);
-
-analyser.connect(
-ctx.destination
-);
-
+analyser.connect(ctx.destination);
 
 const result={
-source,
-analyser
+source:source,
+analyser:analyser
 };
 
-
-sourceMap.set(
-audio,
-result
-);
-
+sourceMap.set(audio,result);
 
 return result;
-
 }
 
-
-/* ==============================
-   ОЧИСТКА FFT
-================================ */
-
+/* ОЧИСТКА FFT */
 function clearFFT(song){
-
 if(!song)return;
 
 const canvas=
@@ -1468,70 +760,37 @@ canvas
 canvas.width,
 canvas.height
 );
-
 }
 
-
-/* ==============================
-   FFT
-================================ */
-
+/* FFT */
 function startFFT(audio){
-
 if(raf){
-
 cancelAnimationFrame(raf);
-
 raf=null;
-
 }
-
 
 songs.forEach(song=>{
-
-if(
-song!==audio.closest(".song")
-){
-
-song.classList.remove(
-"playing"
-);
-
+if(song!==audio.closest(".song")){
+song.classList.remove("playing");
 clearFFT(song);
-
 }
-
 });
-
 
 let analyser;
 
-
 try{
+const ctx=getAudioContext();
 
-const ctx=
-getAudioContext();
-
-
-if(
-ctx.state==="suspended"
-){
-
+if(ctx.state==="suspended"){
 ctx.resume();
-
 }
-
 
 analyser=
 setupAudio(audio).analyser;
 
-
 }catch(e){
-
 return;
-
 }
-
 
 const song=
 audio.closest(".song");
@@ -1547,12 +806,9 @@ new Uint8Array(
 analyser.frequencyBinCount
 );
 
-
 const bars=38;
-
 const values=
 new Float32Array(bars);
-
 
 function draw(){
 
@@ -1562,23 +818,16 @@ audio.paused||
 audio.ended||
 !song.classList.contains("playing")
 ){
-
 ctx.clearRect(
 0,
 0,
 canvas.width,
 canvas.height
 );
-
 return;
-
 }
 
-
-analyser.getByteFrequencyData(
-data
-);
-
+analyser.getByteFrequencyData(data);
 
 ctx.clearRect(
 0,
@@ -1586,7 +835,6 @@ ctx.clearRect(
 canvas.width,
 canvas.height
 );
-
 
 const gap=3;
 
@@ -1596,20 +844,13 @@ canvas.width-
 gap*(bars-1)
 )/bars;
 
-
 const time=
 performance.now();
 
-
-for(
-let i=0;
-i<bars;
-i++
-){
+for(let i=0;i<bars;i++){
 
 const t=
 i/(bars-1);
-
 
 let minBin=
 Math.floor(
@@ -1620,7 +861,6 @@ t
 )
 );
 
-
 let maxBin=
 Math.floor(
 3*
@@ -1630,21 +870,12 @@ t
 )
 );
 
-
-if(
-maxBin<=minBin
-){
-
-maxBin=
-minBin+1;
-
+if(maxBin<=minBin){
+maxBin=minBin+1;
 }
 
-
 let sum=0;
-
 let count=0;
-
 
 for(
 let j=minBin;
@@ -1655,60 +886,41 @@ j++
 const weight=
 1-
 Math.abs(
-j-
-(minBin+maxBin)/2
+j-(minBin+maxBin)/2
 )/
 (maxBin-minBin+1);
-
 
 sum+=
 data[j]*
 (.65+weight);
 
-
 count+=
 .65+weight;
-
 }
 
-
 let value=
-count
-?sum/count/255
-:0;
-
+count?
+sum/count/255:
+0;
 
 value=
-Math.pow(
-value,
-.48
-);
-
+Math.pow(value,.48);
 
 value*=
 .9+t*.8;
-
 
 value+=
 Math.sin(
 time*.012+i*1.7
 )*.012;
 
-
-if(
-value>values[i]
-){
-
+if(value>values[i]){
 values[i]+=
 (value-values[i])*.72;
-
 }else{
-
 values[i]+=
 (value-values[i])*.34;
-
 }
-
 
 const floor=
 .025+
@@ -1716,13 +928,11 @@ Math.sin(
 time*.006+i*.9
 )*.008;
 
-
 const finalValue=
 Math.max(
 values[i],
 floor
 );
-
 
 const h=
 Math.max(
@@ -1732,14 +942,11 @@ canvas.height*
 .94
 );
 
-
 const x=
 i*(bw+gap);
 
-
 const y=
 canvas.height-h;
-
 
 const grad=
 ctx.createLinearGradient(
@@ -1748,7 +955,6 @@ y,
 0,
 canvas.height
 );
-
 
 grad.addColorStop(
 0,
@@ -1765,11 +971,8 @@ grad.addColorStop(
 "#00a96b"
 );
 
-
 ctx.fillStyle=grad;
-
 ctx.globalAlpha=.95;
-
 
 ctx.fillRect(
 Math.round(x),
@@ -1780,229 +983,134 @@ Math.round(bw)
 ),
 Math.round(h)
 );
-
 }
-
 
 ctx.globalAlpha=1;
 
-
 raf=
-requestAnimationFrame(
-draw
-);
-
+requestAnimationFrame(draw);
 }
-
 
 draw();
-
 }
 
-
-/* ==============================
-   AUDIO EVENTS
-================================ */
-
+/* PLAYERS */
 function setupPlayers(){
-
 players.forEach(player=>{
 
 player.addEventListener(
 "play",
 ()=>{
-
 pauseOthers(player);
-
 startFFT(player);
-
 }
 );
-
 
 player.addEventListener(
 "pause",
 ()=>{
-
-if(
-player===currentAudio
-){
+if(player===currentAudio){
 
 const song=
 player.closest(".song");
 
-
 if(song){
-
-song.classList.remove(
-"playing"
-);
-
+song.classList.remove("playing");
 clearFFT(song);
-
 }
-
 
 if(raf){
-
 cancelAnimationFrame(raf);
-
 raf=null;
-
 }
-
 }
-
 }
 );
-
 
 player.addEventListener(
 "ended",
 ()=>{
-
-if(
-player===currentAudio
-){
+if(player===currentAudio){
 
 const song=
 player.closest(".song");
 
-
 if(song){
-
-song.classList.remove(
-"playing"
-);
-
+song.classList.remove("playing");
 clearFFT(song);
-
 }
-
 
 if(raf){
-
-cancelAnimationFrame(
-raf
-);
-
+cancelAnimationFrame(raf);
 raf=null;
-
 }
-
 
 currentAudio=null;
-
 }
-
 }
 );
 
 });
-
 }
 
-
-/* ==============================
-   КОПИРОВАНИЕ ССЫЛКИ
-================================ */
-
-function copyLink(
-button,
-link
-){
+/* КОПИРОВАНИЕ */
+function copyLink(button,link){
 
 navigator.clipboard
 .writeText(link)
 .then(()=>{
-
 showCopied(button);
-
 })
 .catch(()=>{
 
 const input=
-document.createElement(
-"input"
-);
+document.createElement("input");
 
 input.value=link;
 
-document.body.appendChild(
-input
-);
+document.body.appendChild(input);
 
 input.select();
 
-document.execCommand(
-"copy"
-);
+document.execCommand("copy");
 
-document.body.removeChild(
-input
-);
+document.body.removeChild(input);
 
 showCopied(button);
-
 });
-
 }
 
-
-/* ==============================
-   COPIED
-================================ */
-
+/* СКОПИРОВАНО */
 function showCopied(button){
 
 const old=
 button.innerHTML;
 
-
 button.innerHTML=
 "✓ Ссылка скопирована!";
 
-
-button.classList.add(
-"copied"
-);
-
+button.classList.add("copied");
 
 setTimeout(()=>{
-
 button.innerHTML=old;
-
-button.classList.remove(
-"copied"
-);
-
+button.classList.remove("copied");
 },1500);
-
 }
 
-
-/* ==============================
-   ГРОМКОСТЬ
-================================ */
-
+/* ГРОМКОСТЬ */
 function setupVolume(){
 
 const saved=
-localStorage.getItem(
-"musicVolume"
-);
-
+localStorage.getItem("musicVolume");
 
 const volume=
-saved===null
-?1
-:parseFloat(saved);
-
+saved===null?
+1:
+parseFloat(saved);
 
 players.forEach(player=>{
 
 player.volume=volume;
-
 
 player.addEventListener(
 "volumechange",
@@ -2013,28 +1121,114 @@ localStorage.setItem(
 player.volume
 );
 
-
 players.forEach(other=>{
-
-if(
-other!==player
-){
-
+if(other!==player){
 other.volume=
 player.volume;
-
 }
-
 });
-
+}
+);
+});
 }
 
+/* УМНЫЙ ПОИСК */
+function setupSearch(){
+
+const input=
+document.getElementById(
+"searchInput"
 );
 
-});
+const noResults=
+document.getElementById(
+"noResults"
+);
 
+input.addEventListener(
+"input",
+function(){
+
+const raw=
+this.value.trim();
+
+const queryVariants=
+makeSearchVariants(raw);
+
+const words=
+normalizeSearch(raw)
+.split(" ")
+.filter(Boolean);
+
+let found=0;
+
+songs.forEach(song=>{
+
+const text=
+song.dataset.search;
+
+let visible=false;
+
+/* Полный вариант */
+if(!raw){
+visible=true;
+}else{
+
+/* Проверяем все варианты запроса */
+for(const variant of queryVariants){
+
+if(
+variant&&
+text.includes(variant)
+){
+visible=true;
+break;
+}
 }
 
+/* Если целиком не совпало,
+   проверяем отдельные слова */
+if(!visible&&words.length){
+
+visible=words.every(word=>{
+
+const translated=
+normalizeSearch(
+transliterate(word)
+);
+
+const alias=
+aliases[word]||
+"";
+
+return(
+text.includes(word)||
+text.includes(translated)||
+(alias&&text.includes(alias))
+);
+});
+}
+}
+
+song.classList.toggle(
+"hidden",
+!visible
+);
+
+if(visible){
+found++;
+}
+});
+
+noResults.style.display=
+found===0&&raw?
+"block":
+"none";
+});
+}
+
+/* ЗАПУСК */
+loadMusic();
 </script>
 
 </body>
