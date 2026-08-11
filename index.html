@@ -6,47 +6,49 @@
 <meta charset="UTF-8">
 
 <meta
-    name="viewport"
-    content="width=device-width,initial-scale=1.0"
+name="viewport"
+content="width=device-width,initial-scale=1.0"
 >
 
 <title>МаЛяВоЧка - Music</title>
 
+
 <style>
 
 *{
-    box-sizing:border-box;
+box-sizing:border-box
 }
 
 html{
-    scroll-behavior:smooth;
+scroll-behavior:smooth
 }
 
 body{
 
-    margin:0;
+margin:0;
 
-    background:
-        radial-gradient(
-            circle at 70% 10%,
-            rgba(0,255,136,.07),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 80%,
-            rgba(0,180,255,.05),
-            transparent 30%
-        ),
-        #0d0d0f;
+background:
+radial-gradient(
+circle at 70% 10%,
+rgba(0,255,136,.07),
+transparent 30%
+),
+radial-gradient(
+circle at 90% 80%,
+rgba(0,180,255,.05),
+transparent 30%
+),
+#0d0d0f;
 
-    color:#fff;
+color:#fff;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+font-family:
+Arial,
+Helvetica,
+sans-serif;
 
-    min-height:100vh;
+min-height:100vh;
+
 }
 
 
@@ -56,72 +58,75 @@ body{
 
 .sidebar{
 
-    position:fixed;
+position:fixed;
 
-    left:0;
-    top:0;
+left:0;
+top:0;
 
-    width:190px;
-    height:100vh;
+width:190px;
+height:100vh;
 
-    background:
-        linear-gradient(
-            180deg,
-            #18181b,
-            #111113
-        );
+background:
+linear-gradient(
+180deg,
+#18181b,
+#111113
+);
 
-    border-right:
-        1px solid
-        rgba(255,255,255,.06);
+border-right:
+1px solid
+rgba(255,255,255,.06);
 
-    box-shadow:
-        5px 0 25px
-        rgba(0,0,0,.45);
+box-shadow:
+5px 0 25px
+rgba(0,0,0,.45);
 
-    padding-top:110px;
+padding-top:110px;
 
-    z-index:100;
+z-index:100;
+
 }
 
 
 .menu{
 
-    display:flex;
+display:flex;
 
-    align-items:center;
+align-items:center;
 
-    gap:12px;
+gap:12px;
 
-    color:#ddd;
+color:#ddd;
 
-    text-decoration:none;
+text-decoration:none;
 
-    font-size:20px;
+font-size:20px;
 
-    padding:17px 20px;
+padding:17px 20px;
 
-    margin:5px 10px;
+margin:5px 10px;
 
-    border-radius:12px;
+border-radius:12px;
 
-    transition:.2s;
+transition:.2s;
+
 }
 
 
 .menu:hover{
 
-    background:
-        rgba(0,255,136,.08);
+background:
+rgba(0,255,136,.08);
 
-    color:#00ff88;
+color:#00ff88;
 
-    transform:
-        translateX(4px);
+transform:
+translateX(4px);
 
-    box-shadow:
-        inset 3px 0 0
-        #00ff88;
+box-shadow:
+inset 3px 0 0
+#00ff88;
+
 }
 
 
@@ -131,40 +136,41 @@ body{
 
 header{
 
-    margin-left:190px;
+margin-left:190px;
 
-    padding:30px 20px;
+padding:30px 20px;
 
-    text-align:center;
+text-align:center;
 
-    background:
-        linear-gradient(
-            180deg,
-            #18181a,
-            #151517
-        );
+background:
+linear-gradient(
+180deg,
+#18181a,
+#151517
+);
 
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.06);
+border-bottom:
+1px solid
+rgba(255,255,255,.06);
 
-    box-shadow:
-        0 8px 30px
-        rgba(0,0,0,.35);
+box-shadow:
+0 8px 30px
+rgba(0,0,0,.35);
 
-    font-size:42px;
+font-size:42px;
 
-    font-weight:bold;
+font-weight:bold;
 
-    color:#00ff88;
+color:#00ff88;
 
-    letter-spacing:1px;
+letter-spacing:1px;
 
-    text-shadow:
-        0 0 15px
-        rgba(0,255,136,.25);
+text-shadow:
+0 0 15px
+rgba(0,255,136,.25);
 
-    position:relative;
+position:relative;
+
 }
 
 
@@ -174,143 +180,156 @@ header{
 
 .search{
 
-    position:absolute;
+position:absolute;
 
-    right:25px;
+right:25px;
 
-    top:50%;
+top:50%;
 
-    transform:
-        translateY(-50%);
+transform:
+translateY(-50%);
 
-    width:260px;
+width:260px;
 
-    height:43px;
+height:43px;
 
-    display:flex;
+display:flex;
 
-    align-items:center;
+align-items:center;
 
-    background:
-        rgba(20,20,22,.85);
+background:
+rgba(20,20,22,.85);
 
-    border:
-        1px solid
-        rgba(255,255,255,.1);
+border:
+1px solid
+rgba(255,255,255,.1);
 
-    border-radius:22px;
+border-radius:22px;
 
-    overflow:hidden;
+overflow:hidden;
 
-    transition:.2s;
+transition:.2s;
 
-    box-shadow:
-        inset 0 0 15px
-        rgba(0,0,0,.25);
+box-shadow:
+inset 0 0 15px
+rgba(0,0,0,.25);
+
 }
 
 
 .search:focus-within{
 
-    border-color:#00ff88;
+border-color:#00ff88;
 
-    box-shadow:
-        0 0 12px
-        rgba(0,255,136,.18),
-        inset 0 0 15px
-        rgba(0,0,0,.25);
+box-shadow:
+0 0 12px
+rgba(0,255,136,.18),
+inset 0 0 15px
+rgba(0,0,0,.25);
+
 }
 
 
 .search-icon{
 
-    position:relative;
+position:relative;
 
-    width:45px;
+width:45px;
 
-    height:100%;
+height:100%;
 
-    flex-shrink:0;
+flex-shrink:0;
+
 }
 
 
 .search-icon:before{
 
-    content:"";
+content:"";
 
-    position:absolute;
+position:absolute;
 
-    width:11px;
-    height:11px;
+width:11px;
+height:11px;
 
-    border:
-        2px solid
-        #aaa;
+border:
+2px solid
+#aaa;
 
-    border-radius:50%;
+border-radius:50%;
 
-    left:14px;
-    top:12px;
+left:14px;
+top:12px;
+
+transition:.2s;
+
 }
 
 
 .search-icon:after{
 
-    content:"";
+content:"";
 
-    position:absolute;
+position:absolute;
 
-    width:7px;
-    height:2px;
+width:7px;
+height:2px;
 
-    background:#aaa;
+background:#aaa;
 
-    transform:
-        rotate(45deg);
+transform:
+rotate(45deg);
 
-    left:25px;
-    top:25px;
+left:25px;
+top:25px;
 
-    border-radius:2px;
+border-radius:2px;
+
+transition:.2s;
+
 }
 
 
 .search:focus-within
 .search-icon:before{
 
-    border-color:#00ff88;
+border-color:#00ff88;
+
 }
 
 
 .search:focus-within
 .search-icon:after{
 
-    background:#00ff88;
+background:#00ff88;
+
 }
 
 
 .search input{
 
-    width:100%;
-    height:100%;
+width:100%;
+height:100%;
 
-    border:0;
-    outline:0;
+border:0;
+outline:0;
 
-    background:transparent;
+background:transparent;
 
-    color:#fff;
+color:#fff;
 
-    font-size:15px;
+font-size:15px;
 
-    padding:
-        0 15px 0 0;
+padding:
+0 15px 0 0;
+
 }
 
 
 .search input::placeholder{
 
-    color:#888;
+color:#888;
+
 }
 
 
@@ -320,13 +339,14 @@ header{
 
 .content{
 
-    margin-left:190px;
+margin-left:190px;
 
-    width:
-        calc(100% - 190px);
+width:
+calc(100% - 190px);
 
-    padding:
-        35px 30px 80px;
+padding:
+35px 30px 80px;
+
 }
 
 
@@ -338,37 +358,42 @@ header{
 .no-results,
 .error{
 
-    width:min(760px,90%);
+width:min(760px,90%);
 
-    margin:30px auto;
+margin:30px auto;
 
-    text-align:center;
+text-align:center;
+
 }
 
 
 .loading{
 
-    color:#777;
+color:#777;
 
-    font-size:17px;
+font-size:17px;
+
 }
 
 
 .loading span{
 
-    color:#00ff88;
+color:#00ff88;
+
 }
 
 
 .loading.retrying{
 
-    color:#aaa;
+color:#aaa;
+
 }
 
 
 .loading.retrying span{
 
-    color:#ffaa00;
+color:#ffaa00;
+
 }
 
 
@@ -378,28 +403,30 @@ header{
 
 .error{
 
-    display:none;
+display:none;
 
-    padding:20px;
+padding:20px;
 
-    border-radius:12px;
+border-radius:12px;
 
-    background:
-        rgba(255,50,50,.06);
+background:
+rgba(255,50,50,.06);
 
-    border:
-        1px solid
-        rgba(255,50,50,.15);
+border:
+1px solid
+rgba(255,50,50,.15);
 
-    color:#aaa;
+color:#aaa;
 
-    line-height:1.6;
+line-height:1.6;
+
 }
 
 
 .error b{
 
-    color:#ff6666;
+color:#ff6666;
+
 }
 
 
@@ -409,11 +436,12 @@ header{
 
 .no-results{
 
-    display:none;
+display:none;
 
-    color:#777;
+color:#777;
 
-    font-size:18px;
+font-size:18px;
+
 }
 
 
@@ -423,56 +451,59 @@ header{
 
 .song{
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(27,31,31,.97),
-            rgba(22,25,26,.97)
-        );
+background:
+linear-gradient(
+145deg,
+rgba(27,31,31,.97),
+rgba(22,25,26,.97)
+);
 
-    width:min(760px,90%);
+width:min(760px,90%);
 
-    margin:
-        0 auto 12px;
+margin:
+0 auto 12px;
 
-    border-radius:14px;
+border-radius:14px;
 
-    padding:
-        13px 18px 10px;
+padding:
+13px 18px 10px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.055);
+border:
+1px solid
+rgba(255,255,255,.055);
 
-    box-shadow:
-        0 8px 25px
-        rgba(0,0,0,.28),
-        inset 0 0 20px
-        rgba(0,255,136,.015);
+box-shadow:
+0 8px 25px
+rgba(0,0,0,.28),
+inset 0 0 20px
+rgba(0,255,136,.015);
 
-    transition:.2s;
+transition:.2s;
+
 }
 
 
 .song:hover{
 
-    transform:
-        translateY(-2px);
+transform:
+translateY(-2px);
 
-    border-color:
-        rgba(0,255,136,.18);
+border-color:
+rgba(0,255,136,.18);
 
-    box-shadow:
-        0 12px 30px
-        rgba(0,0,0,.4),
-        0 0 20px
-        rgba(0,255,136,.035);
+box-shadow:
+0 12px 30px
+rgba(0,0,0,.4),
+0 0 20px
+rgba(0,255,136,.035);
+
 }
 
 
 .song.hidden{
 
-    display:none;
+display:none;
+
 }
 
 
@@ -482,45 +513,48 @@ header{
 
 .title{
 
-    min-height:37px;
+min-height:37px;
 
-    font-size:20px;
+font-size:20px;
 
-    display:flex;
+display:flex;
 
-    align-items:center;
+align-items:center;
 
-    gap:10px;
+gap:10px;
 
-    color:#f2f2f2;
+color:#f2f2f2;
 
-    white-space:nowrap;
+white-space:nowrap;
 
-    overflow:hidden;
+overflow:hidden;
+
 }
 
 
 .title .music-icon{
 
-    font-size:24px;
+font-size:24px;
 
-    color:#9b62ff;
+color:#9b62ff;
 
-    filter:
-        drop-shadow(
-            0 0 5px
-            rgba(140,70,255,.45)
-        );
+filter:
+drop-shadow(
+0 0 5px
+rgba(140,70,255,.45)
+);
 
-    flex-shrink:0;
+flex-shrink:0;
+
 }
 
 
 .title>span:nth-child(2){
 
-    overflow:hidden;
+overflow:hidden;
 
-    text-overflow:ellipsis;
+text-overflow:ellipsis;
+
 }
 
 
@@ -530,21 +564,23 @@ header{
 
 .fft{
 
-    display:none;
+display:none;
 
-    width:220px;
+width:220px;
 
-    height:48px;
+height:48px;
 
-    margin-left:auto;
+margin-left:auto;
 
-    flex-shrink:0;
+flex-shrink:0;
+
 }
 
 
 .song.playing .fft{
 
-    display:block;
+display:block;
+
 }
 
 
@@ -554,16 +590,17 @@ header{
 
 audio{
 
-    display:block;
+display:block;
 
-    width:100%;
+width:100%;
 
-    height:48px;
+height:48px;
 
-    border-radius:12px;
+border-radius:12px;
 
-    margin:
-        0 0 9px;
+margin:
+0 0 9px;
+
 }
 
 
@@ -573,75 +610,86 @@ audio{
 
 .buttons{
 
-    display:flex;
+display:flex;
 
-    gap:10px;
+gap:10px;
 
-    width:100%;
+width:100%;
+
 }
 
 
 .btn{
 
-    flex:1;
+flex:1;
 
-    border:0;
+border:0;
 
-    border-radius:7px;
+border-radius:7px;
 
-    padding:
-        8px 15px;
+padding:
+8px 15px;
 
-    font-size:14px;
+font-size:14px;
 
-    font-weight:bold;
+font-weight:bold;
 
-    text-align:center;
+text-align:center;
 
-    text-decoration:none;
+text-decoration:none;
 
-    cursor:pointer;
+cursor:pointer;
 
-    transition:.15s;
+transition:.15s;
+
 }
 
 
 .btn:hover{
 
-    transform:
-        translateY(-1px);
+transform:
+translateY(-1px);
 
-    filter:
-        brightness(1.08);
+filter:
+brightness(1.08);
+
 }
 
 
 .btn:active{
 
-    transform:
-        translateY(0);
+transform:
+translateY(0);
+
 }
 
 
 .download{
 
-    background:#00c878;
+background:#00c878;
 
-    color:#fff;
+color:#fff;
+
+box-shadow:
+0 4px 12px
+rgba(0,200,120,.1);
+
 }
 
 
 .copy{
 
-    background:#087fd0;
+background:#087fd0;
 
-    color:#fff;
+color:#fff;
+
 }
 
 
 .copy.copied{
 
-    background:#00b86b;
+background:#00b86b;
+
 }
 
 
@@ -651,130 +699,144 @@ audio{
 
 @media(max-width:800px){
 
-    .sidebar{
+.sidebar{
 
-        width:70px;
+width:70px;
 
-        padding-top:90px;
-    }
+padding-top:90px;
 
-
-    .menu{
-
-        justify-content:center;
-
-        font-size:0;
-
-        padding:15px;
-
-        margin:6px;
-    }
+}
 
 
-    .menu:first-letter{
+.menu{
 
-        font-size:25px;
-    }
+justify-content:center;
 
+font-size:0;
 
-    header{
+padding:15px;
 
-        margin-left:70px;
+margin:6px;
 
-        font-size:30px;
-
-        padding:
-            25px 10px;
-    }
+}
 
 
-    .search{
+.menu:first-letter{
 
-        position:relative;
+font-size:25px;
 
-        right:auto;
-
-        top:auto;
-
-        transform:none;
-
-        margin:
-            18px auto 0;
-
-        width:min(400px,90%);
-
-        height:40px;
-    }
+}
 
 
-    .content{
+header{
 
-        margin-left:70px;
+margin-left:70px;
 
-        width:
-            calc(100% - 70px);
+font-size:30px;
 
-        padding:
-            25px 10px 60px;
-    }
+padding:
+25px 10px;
 
-
-    .song{
-
-        width:100%;
-
-        padding:12px;
-    }
+}
 
 
-    .buttons{
+.search{
 
-        flex-direction:column;
-    }
+position:relative;
+
+right:auto;
+
+top:auto;
+
+transform:none;
+
+margin:
+18px auto 0;
+
+width:min(400px,90%);
+
+height:40px;
+
+}
 
 
-    .btn{
+.content{
 
-        width:100%;
-    }
+margin-left:70px;
+
+width:
+calc(100% - 70px);
+
+padding:
+25px 10px 60px;
+
+}
 
 
-    .title{
+.song{
 
-        font-size:19px;
-    }
+width:100%;
+
+padding:12px;
+
+}
 
 
-    .fft{
+.buttons{
 
-        width:150px;
+flex-direction:column;
 
-        height:40px;
-    }
+}
+
+
+.btn{
+
+width:100%;
+
+}
+
+
+.title{
+
+font-size:19px;
+
+}
+
+
+.fft{
+
+width:150px;
+
+height:40px;
+
+}
 
 }
 
 
 @media(max-width:500px){
 
-    .title{
+.title{
 
-        gap:6px;
-    }
+gap:6px;
 
-
-    .title .music-icon{
-
-        font-size:21px;
-    }
+}
 
 
-    .fft{
+.title .music-icon{
 
-        width:120px;
+font-size:21px;
 
-        height:34px;
-    }
+}
+
+
+.fft{
+
+width:120px;
+
+height:34px;
+
+}
 
 }
 
@@ -793,34 +855,34 @@ audio{
 <div class="sidebar">
 
 <a
-    href="index.html"
-    class="menu"
+href="index.html"
+class="menu"
 >
-    🎧 <span>Music</span>
+🎧 <span>Music</span>
 </a>
 
 
 <a
-    href="Roflan.html"
-    class="menu"
+href="Roflan.html"
+class="menu"
 >
-    😂 <span>Рофл звуки</span>
+😂 <span>Рофл звуки</span>
 </a>
 
 
 <a
-    href="Gachi.html"
-    class="menu"
+href="Gachi.html"
+class="menu"
 >
-    🎤 <span>Gachi</span>
+🎤 <span>Gachi</span>
 </a>
 
 
 <a
-    href="Skrimer.html"
-    class="menu"
+href="Skrimer.html"
+class="menu"
 >
-    😱 <span>Скримеры</span>
+😱 <span>Скримеры</span>
 </a>
 
 </div>
@@ -840,9 +902,9 @@ audio{
 <span class="search-icon"></span>
 
 <input
-    id="searchInput"
-    type="text"
-    placeholder="Найти трек..."
+id="searchInput"
+type="text"
+placeholder="Найти трек..."
 >
 
 </div>
@@ -858,33 +920,33 @@ audio{
 
 
 <div
-    class="loading"
-    id="loading"
+class="loading"
+id="loading"
 >
 
-    Загрузка музыки...
-    <span>♪</span>
+Загрузка музыки...
+<span>♪</span>
 
 </div>
 
 
 <div
-    class="error"
-    id="error"
+class="error"
+id="error"
 ></div>
 
 
 <div
-    id="songsContainer"
+id="songsContainer"
 ></div>
 
 
 <div
-    class="no-results"
-    id="noResults"
+class="no-results"
+id="noResults"
 >
 
-    Ничего не найдено 😔
+Ничего не найдено 😔
 
 </div>
 
@@ -894,27 +956,31 @@ audio{
 
 <script>
 
+/* =========================================================
+   MaLyAvOchKa Music
+   JSON VERSION
+   ========================================================= */
 
-// =========================================================
-// MaLyAvOchKa Music
-// =========================================================
 
-
-// =========================================================
-// WORKER
-// =========================================================
+/* =========================================================
+   WORKER
+   ========================================================= */
 
 const WORKER =
-    "https://malyavochka-music.rxmlopdt.workers.dev";
+"https://malyavochka-music.rxmlopdt.workers.dev";
 
+
+/*
+   НОВЫЙ JSON
+*/
 
 const LIST_URL =
-    WORKER + "/list";
+WORKER + "/list.json";
 
 
-// =========================================================
-// GLOBAL
-// =========================================================
+/* =========================================================
+   GLOBAL
+   ========================================================= */
 
 let songs = [];
 
@@ -925,1655 +991,1847 @@ let currentAudio = null;
 let fakeFFTAnimation = null;
 
 
-// =========================================================
-// TRANSLIT
-// =========================================================
+/* =========================================================
+   TRANSLIT
+   ========================================================= */
 
 const translit = {
 
-    "а":"a",
-    "б":"b",
-    "в":"v",
-    "г":"g",
-    "д":"d",
-    "е":"e",
-    "ё":"yo",
-    "ж":"zh",
-    "з":"z",
-    "и":"i",
-    "й":"y",
-    "к":"k",
-    "л":"l",
-    "м":"m",
-    "н":"n",
-    "о":"o",
-    "п":"p",
-    "р":"r",
-    "с":"s",
-    "т":"t",
-    "у":"u",
-    "ф":"f",
-    "х":"h",
-    "ц":"ts",
-    "ч":"ch",
-    "ш":"sh",
-    "щ":"sch",
-    "ъ":"",
-    "ы":"y",
-    "ь":"",
-    "э":"e",
-    "ю":"yu",
-    "я":"ya"
+"а":"a",
+"б":"b",
+"в":"v",
+"г":"g",
+"д":"d",
+"е":"e",
+"ё":"yo",
+"ж":"zh",
+"з":"z",
+"и":"i",
+"й":"y",
+"к":"k",
+"л":"l",
+"м":"m",
+"н":"n",
+"о":"o",
+"п":"p",
+"р":"r",
+"с":"s",
+"т":"t",
+"у":"u",
+"ф":"f",
+"х":"h",
+"ц":"ts",
+"ч":"ch",
+"ш":"sh",
+"щ":"sch",
+"ъ":"",
+"ы":"y",
+"ь":"",
+"э":"e",
+"ю":"yu",
+"я":"ya"
 
 };
 
 
-// =========================================================
-// NORMALIZE
-// =========================================================
+/* =========================================================
+   NORMALIZE
+   ========================================================= */
 
 function normalizeSearch(text){
 
-    return String(text)
+return String(text)
 
-        .toLowerCase()
+.toLowerCase()
 
-        .replace(
-            /ё/g,
-            "е"
-        )
+.replace(
+/ё/g,
+"е"
+)
 
-        .replace(
-            /й/g,
-            "и"
-        )
+.replace(
+/й/g,
+"и"
+)
 
-        .replace(
-            /[_\-–—]+/g,
-            " "
-        )
+.replace(
+/[_\-–—]+/g,
+" "
+)
 
-        .replace(
-            /[^a-zа-я0-9\s]/gi,
-            " "
-        )
+.replace(
+/[^a-zа-я0-9\s]/gi,
+" "
+)
 
-        .replace(
-            /\s+/g,
-            " "
-        )
+.replace(
+/\s+/g,
+" "
+)
 
-        .trim();
+.trim();
 
 }
 
 
-// =========================================================
-// SEARCH VARIANTS
-// =========================================================
+/* =========================================================
+   SEARCH VARIANTS
+   ========================================================= */
 
 function makeSearchVariants(text){
 
-    const base =
-        normalizeSearch(text);
+const base =
+normalizeSearch(text);
 
 
-    let transliterated = "";
+let transliterated = "";
 
 
-    for(
-        const char
-        of base
-    ){
+for(
+const char of base
+){
 
-        transliterated +=
+transliterated +=
 
-            translit[char] !== undefined
+translit[char] !== undefined
 
-                ?
+?
 
-            translit[char]
+translit[char]
 
-                :
+:
 
-            char;
-
-    }
-
-
-    return (
-
-        base +
-        " " +
-        normalizeSearch(
-            transliterated
-        )
-
-    ).trim();
+char;
 
 }
 
 
-// =========================================================
-// HTML ESCAPE
-// =========================================================
+return (
+
+base +
+
+" " +
+
+normalizeSearch(
+transliterated
+)
+
+).trim();
+
+}
+
+
+/* =========================================================
+   HTML ESCAPE
+   ========================================================= */
 
 function escapeHTML(text){
 
-    return String(text)
+return String(text)
 
-        .replace(
-            /&/g,
-            "&amp;"
-        )
+.replace(
+/&/g,
+"&amp;"
+)
 
-        .replace(
-            /</g,
-            "&lt;"
-        )
+.replace(
+/</g,
+"&lt;"
+)
 
-        .replace(
-            />/g,
-            "&gt;"
-        )
+.replace(
+/>/g,
+"&gt;"
+)
 
-        .replace(
-            /"/g,
-            "&quot;"
-        )
+.replace(
+/"/g,
+"&quot;"
+)
 
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+.replace(
+/'/g,
+"&#039;"
+);
 
 }
 
 
-// =========================================================
-// FETCH WITH TIMEOUT
-// =========================================================
+/* =========================================================
+   FETCH WITH TIMEOUT
+   ========================================================= */
 
 async function fetchWithTimeout(
-    url,
-    timeout=15000
+url,
+timeout=10000
 ){
 
-    const controller =
-        new AbortController();
+const controller =
+new AbortController();
 
 
-    const timer =
-        setTimeout(
-            () =>
-                controller.abort(),
-            timeout
-        );
+const timer =
+setTimeout(
+()=>controller.abort(),
+timeout
+);
 
 
-    try{
+try{
 
-        const response =
-            await fetch(
-                url,
-                {
-                    cache:
-                        "no-store",
+const response =
+await fetch(
+url,
+{
 
-                    signal:
-                        controller.signal
-                }
-            );
+cache:
+"no-store",
 
+signal:
+controller.signal
 
-        clearTimeout(
-            timer
-        );
+}
+);
 
 
-        return response;
+clearTimeout(
+timer
+);
 
-    }catch(error){
 
-        clearTimeout(
-            timer
-        );
+return response;
 
-        throw error;
 
-    }
+}catch(error){
+
+clearTimeout(
+timer
+);
+
+throw error;
+
+}
 
 }
 
 
-// =========================================================
-// GET MUSIC LIST
-// =========================================================
+/* =========================================================
+   ЗАГРУЗКА JSON
+   ========================================================= */
 
 async function getMusicList(){
 
-    let lastError = null;
+let lastError =
+null;
 
 
-    for(
-        let attempt=1;
-        attempt<=3;
-        attempt++
-    ){
-
-        try{
-
-            const loading =
-                document.getElementById(
-                    "loading"
-                );
-
-
-            if(
-                attempt > 1
-            ){
-
-                loading.classList.add(
-                    "retrying"
-                );
-
-
-                loading.innerHTML =
-                    "Повторная загрузка... " +
-                    "<span>" +
-                    attempt +
-                    "/3" +
-                    "</span>";
-
-            }
-
-
-            const response =
-                await fetchWithTimeout(
-                    LIST_URL,
-                    15000
-                );
-
-
-            if(
-                !response.ok
-            ){
-
-                let errorText = "";
-
-                try{
-
-                    errorText =
-                        await response.text();
-
-                }catch(e){}
-
-
-                throw new Error(
-                    "Worker HTTP " +
-                    response.status +
-                    (
-                        errorText
-                            ?
-                        ": " + errorText
-                            :
-                        ""
-                    )
-                );
-
-            }
-
-
-            const data =
-                await response.json();
-
-
-            console.log(
-                "Worker /list:",
-                data
-            );
-
-
-            if(
-                !data ||
-                data.success !== true
-            ){
-
-                throw new Error(
-                    data &&
-                    data.error
-                        ?
-                    data.error
-                        :
-                    "Worker вернул неправильный список"
-                );
-
-            }
-
-
-            if(
-                !Array.isArray(
-                    data.songs
-                )
-            ){
-
-                throw new Error(
-                    "В ответе Worker нет массива songs"
-                );
-
-            }
-
-
-            return data.songs;
-
-
-        }catch(error){
-
-            console.warn(
-                "Ошибка загрузки /list:",
-                attempt,
-                error
-            );
-
-
-            lastError =
-                error;
-
-
-            if(
-                attempt < 3
-            ){
-
-                await new Promise(
-                    resolve =>
-                        setTimeout(
-                            resolve,
-                            800
-                        )
-                );
-
-            }
-
-        }
-
-    }
-
-
-    throw (
-        lastError ||
-        new Error(
-            "Не удалось загрузить список"
-        )
-    );
-
-}
-
-
-// =========================================================
-// CREATE SONG
-// =========================================================
-
-function createSong(
-    filePath,
-    id,
-    container
+for(
+let attempt=1;
+attempt<=3;
+attempt++
 ){
 
-    let fileName =
-        filePath
-            .split("/")
-            .pop();
+try{
+
+const loading =
+document.getElementById(
+"loading"
+);
 
 
-    try{
+if(
+attempt > 1
+){
 
-        fileName =
-            decodeURIComponent(
-                fileName
-            );
-
-    }catch(e){}
-
-
-    let title =
-        fileName.replace(
-            /\.mp3$/i,
-            ""
-        );
+loading.classList.add(
+"retrying"
+);
 
 
-    const searchText =
-        title
+loading.innerHTML =
 
-            .replace(
-                /[_\-]+/g,
-                " "
-            )
+"Повторная загрузка..."
 
-            .replace(
-                /\s+/g,
-                " "
-            )
++
 
-            .trim();
+" <span>"
 
++
 
-    // =====================================================
-    // WORKER URL
-    // =====================================================
+attempt
 
-    const fullURL =
-        WORKER +
-        "/music/" +
-        encodeURIComponent(
-            id
-        );
++
 
+"/3"
 
-    const song =
-        document.createElement(
-            "div"
-        );
++
 
-
-    song.className =
-        "song";
-
-
-    song.dataset.search =
-        makeSearchVariants(
-            searchText
-        );
-
-
-    song.innerHTML = `
-
-        <div class="title">
-
-            <span class="music-icon">
-                🎵
-            </span>
-
-            <span
-                title="${escapeHTML(title)}"
-            >
-                ${escapeHTML(title)}
-            </span>
-
-            <canvas
-                class="fft"
-                width="440"
-                height="96"
-            ></canvas>
-
-        </div>
-
-
-        <audio
-            controls
-            preload="metadata"
-            crossorigin="anonymous"
-        >
-
-            <source
-                src="${fullURL}"
-                type="audio/mpeg"
-            >
-
-            Ваш браузер не поддерживает
-            воспроизведение MP3.
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="${fullURL}"
-                download
-            >
-
-                ↓ Скачать MP3
-
-            </a>
-
-
-            <button
-                class="btn copy"
-                type="button"
-            >
-
-                🔗 Копировать ссылку
-
-            </button>
-
-        </div>
-
-    `;
-
-
-    // =====================================================
-    // COPY
-    // =====================================================
-
-    const copyButton =
-        song.querySelector(
-            ".copy"
-        );
-
-
-    copyButton.addEventListener(
-        "click",
-        () => {
-
-            copyLink(
-                copyButton,
-                fullURL
-            );
-
-        }
-    );
-
-
-    container.appendChild(
-        song
-    );
+"</span>";
 
 }
 
 
-// =========================================================
-// LOAD MUSIC
-// =========================================================
+/*
+   Добавляем timestamp,
+   чтобы браузер не использовал
+   старый JSON.
+*/
+
+const url =
+
+LIST_URL +
+
+"?t=" +
+
+Date.now() +
+
+"&attempt=" +
+
+attempt;
+
+
+const response =
+
+await fetchWithTimeout(
+url,
+10000
+);
+
+
+if(
+!response.ok
+){
+
+throw new Error(
+"Worker HTTP " +
+response.status
+);
+
+}
+
+
+const data =
+await response.json();
+
+
+if(
+!Array.isArray(data)
+){
+
+throw new Error(
+"Worker вернул неправильный JSON"
+);
+
+}
+
+
+if(
+!data.length
+){
+
+throw new Error(
+"Worker вернул пустой список"
+);
+
+}
+
+
+return data;
+
+
+}catch(error){
+
+console.warn(
+"Попытка загрузки /list.json:",
+attempt,
+error
+);
+
+
+lastError =
+error;
+
+
+if(
+attempt < 3
+){
+
+await new Promise(
+resolve =>
+setTimeout(
+resolve,
+700
+)
+);
+
+}
+
+}
+
+}
+
+
+throw lastError ||
+
+new Error(
+"Не удалось загрузить список музыки"
+);
+
+}
+
+
+/* =========================================================
+   CREATE SONG
+   ========================================================= */
+
+function createSong(
+file,
+container
+){
+
+/*
+   Берём название
+   прямо из JSON.
+*/
+
+let fileName =
+file.name || "";
+
+
+/*
+   На всякий случай
+   убираем .mp3.
+*/
+
+let title =
+fileName.replace(
+/\.mp3$/i,
+""
+);
+
+
+try{
+
+title =
+decodeURIComponent(
+title
+);
+
+}catch(e){}
+
+
+/*
+   Текст для поиска.
+*/
+
+const searchText =
+
+title
+
+.replace(
+/[_\-–—]+/g,
+" "
+)
+
+.replace(
+/\s+/g,
+" "
+)
+
+.trim();
+
+
+/*
+   ID приходит
+   прямо из JSON.
+
+   URL тоже приходит,
+   но строим сами,
+   чтобы всегда использовать
+   правильный Worker.
+*/
+
+const id =
+String(
+file.id
+)
+.toLowerCase();
+
+
+const fullURL =
+
+WORKER +
+
+"/music/" +
+
+encodeURIComponent(
+id
+);
+
+
+/* =======================================================
+   SONG ELEMENT
+   ======================================================= */
+
+const song =
+document.createElement(
+"div"
+);
+
+
+song.className =
+"song";
+
+
+song.dataset.search =
+makeSearchVariants(
+searchText
+);
+
+
+/*
+   Сохраняем путь.
+   Можно будет использовать
+   дальше для категорий.
+*/
+
+song.dataset.path =
+file.path || "";
+
+
+/* =======================================================
+   HTML
+   ======================================================= */
+
+song.innerHTML = `
+
+<div class="title">
+
+<span class="music-icon">
+🎵
+</span>
+
+<span
+title="${escapeHTML(title)}"
+>
+${escapeHTML(title)}
+</span>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
+</div>
+
+
+<audio
+controls
+preload="metadata"
+crossorigin="anonymous"
+>
+
+<source
+src="${escapeHTML(fullURL)}"
+type="audio/mpeg"
+>
+
+Ваш браузер не поддерживает
+воспроизведение MP3.
+
+</audio>
+
+
+<div class="buttons">
+
+<a
+class="btn download"
+href="${escapeHTML(fullURL)}"
+download
+>
+
+↓ Скачать MP3
+
+</a>
+
+
+<button
+class="btn copy"
+type="button"
+>
+
+🔗 Копировать ссылку
+
+</button>
+
+</div>
+
+`;
+
+
+/* =======================================================
+   COPY
+   ======================================================= */
+
+const copyButton =
+song.querySelector(
+".copy"
+);
+
+
+copyButton.addEventListener(
+"click",
+()=>{
+
+copyLink(
+copyButton,
+fullURL
+);
+
+}
+);
+
+
+/* =======================================================
+   ADD
+   ======================================================= */
+
+container.appendChild(
+song
+);
+
+}
+
+
+/* =========================================================
+   LOAD MUSIC
+   ========================================================= */
 
 async function loadMusic(){
 
-    const loading =
-        document.getElementById(
-            "loading"
-        );
+const loading =
+document.getElementById(
+"loading"
+);
 
 
-    const error =
-        document.getElementById(
-            "error"
-        );
+const error =
+document.getElementById(
+"error"
+);
 
 
-    const container =
-        document.getElementById(
-            "songsContainer"
-        );
+const container =
+document.getElementById(
+"songsContainer"
+);
 
 
-    loading.style.display =
-        "block";
+loading.style.display =
+"block";
 
 
-    error.style.display =
-        "none";
+error.style.display =
+"none";
 
 
-    container.innerHTML =
-        "";
+container.innerHTML =
+"";
 
 
-    try{
+try{
 
-        const musicFiles =
-            await getMusicList();
+/*
+   Получаем настоящий JSON.
+*/
 
+const musicFiles =
+await getMusicList();
 
-        console.log(
-            "Всего MP3:",
-            musicFiles.length
-        );
 
+console.log(
+"Ответ Worker /list.json:",
+musicFiles
+);
 
-        if(
-            !musicFiles.length
-        ){
 
-            throw new Error(
-                "В репозитории не найдено MP3."
-            );
+console.log(
+"Найдено MP3:",
+musicFiles.length
+);
 
-        }
 
+/*
+   Создаём карточки.
 
-        // =================================================
-        // Создаём карточки
-        // =================================================
+   Здесь НЕТ фильтра Music/.
 
-        for(
-            const file
-            of musicFiles
-        ){
+   Поэтому показываются
+   абсолютно все MP3.
+*/
 
-            if(
-                !file ||
-                !file.id ||
-                !file.path
-            ){
+for(
+const file
+of musicFiles
+){
 
-                continue;
+/*
+   Проверяем минимально,
+   что объект нормальный.
+*/
 
-            }
+if(
+!file ||
+!file.id ||
+!file.name
+){
 
-
-            createSong(
-                file.path,
-                file.id,
-                container
-            );
-
-        }
-
-
-        // =================================================
-        // DOM
-        // =================================================
-
-        songs = [
-            ...document.querySelectorAll(
-                ".song"
-            )
-        ];
-
-
-        players = [
-            ...document.querySelectorAll(
-                "audio"
-            )
-        ];
-
-
-        loading.style.display =
-            "none";
-
-
-        loading.classList.remove(
-            "retrying"
-        );
-
-
-        setupPlayers();
-
-        setupVolume();
-
-        setupSearch();
-
-
-        console.log(
-            "Карточек создано:",
-            songs.length
-        );
-
-
-    }catch(e){
-
-        console.error(
-            "Ошибка загрузки музыки:",
-            e
-        );
-
-
-        loading.style.display =
-            "none";
-
-
-        error.style.display =
-            "block";
-
-
-        error.innerHTML =
-
-            "<b>🎧 Музыка куда-то сбежала...</b>" +
-
-            "<br><br>" +
-
-            "Не удалось получить список музыки." +
-
-            "<br><br>" +
-
-            "<small>" +
-
-            escapeHTML(
-                e.message ||
-                "Неизвестная ошибка"
-            ) +
-
-            "</small>" +
-
-            "<br><br>" +
-
-            "<button " +
-
-            "onclick='location.reload()' " +
-
-            "style='" +
-
-            "background:#00c878;" +
-
-            "color:white;" +
-
-            "border:0;" +
-
-            "border-radius:8px;" +
-
-            "padding:10px 18px;" +
-
-            "cursor:pointer;" +
-
-            "font-weight:bold;" +
-
-            "'" +
-
-            ">" +
-
-            "↻ Повторить" +
-
-            "</button>";
-
-    }
+continue;
 
 }
 
 
-// =========================================================
-// PLAYERS
-// =========================================================
+createSong(
+file,
+container
+);
+
+}
+
+
+/*
+   Получаем DOM.
+*/
+
+songs = [
+
+...document.querySelectorAll(
+".song"
+)
+
+];
+
+
+players = [
+
+...document.querySelectorAll(
+"audio"
+)
+
+];
+
+
+/*
+   Проверяем,
+   что реально создались карточки.
+*/
+
+if(
+!songs.length
+){
+
+throw new Error(
+"JSON загрузился, но карточки MP3 не создались."
+);
+
+}
+
+
+/*
+   Скрываем loading.
+*/
+
+loading.style.display =
+"none";
+
+
+loading.classList.remove(
+"retrying"
+);
+
+
+/*
+   Настройки.
+*/
+
+setupPlayers();
+
+setupVolume();
+
+setupSearch();
+
+
+}catch(e){
+
+console.error(
+"Ошибка загрузки музыки:",
+e
+);
+
+
+loading.style.display =
+"none";
+
+
+error.style.display =
+"block";
+
+
+error.innerHTML =
+
+"<b>🎧 Музыка куда-то сбежала...</b>"
+
++
+
+"<br><br>"
+
++
+
+"Не удалось получить список музыки."
+
++
+
+"<br>"
+
++
+
+"Попробуй обновить страницу ещё раз."
+
++
+
+"<br><br>"
+
++
+
+"<small>"
+
++
+
+escapeHTML(
+e.message ||
+"Неизвестная ошибка"
+)
+
++
+
+"</small>"
+
++
+
+"<br><br>"
+
++
+
+"<button "
+
++
+
+"onclick='location.reload()' "
+
++
+
+"style='"
+
++
+
+"background:#00c878;"
+
++
+
+"color:white;"
+
++
+
+"border:0;"
+
++
+
+"border-radius:8px;"
+
++
+
+"padding:10px 18px;"
+
++
+
+"cursor:pointer;"
+
++
+
+"font-weight:bold;"
+
++
+
+"'"
+
++
+
+">"
+
++
+
+"↻ Повторить"
+
++
+
+"</button>";
+
+}
+
+}
+
+
+/* =========================================================
+   PLAYERS
+   ========================================================= */
 
 function setupPlayers(){
 
-    players.forEach(
-        player => {
-
-            player.addEventListener(
-                "play",
-                () => {
-
-                    pauseOthers(
-                        player
-                    );
+players.forEach(
+player=>{
 
 
-                    startFFT(
-                        player
-                    );
+/* =======================================================
+   PLAY
+   ======================================================= */
 
-                }
-            );
+player.addEventListener(
+"play",
+()=>{
 
+pauseOthers(
+player
+);
 
-            player.addEventListener(
-                "pause",
-                () => {
+startFFT(
+player
+);
 
-                    if(
-                        player ===
-                        currentAudio
-                    ){
-
-                        const song =
-                            player.closest(
-                                ".song"
-                            );
+}
+);
 
 
-                        if(song){
+/* =======================================================
+   PAUSE
+   ======================================================= */
 
-                            song.classList.remove(
-                                "playing"
-                            );
+player.addEventListener(
+"pause",
+()=>{
 
+if(
+player === currentAudio
+){
 
-                            clearFFT(
-                                song
-                            );
-
-                        }
-
-
-                        stopFFT();
-
-                    }
-
-                }
-            );
+const song =
+player.closest(
+".song"
+);
 
 
-            player.addEventListener(
-                "ended",
-                () => {
+if(song){
 
-                    if(
-                        player ===
-                        currentAudio
-                    ){
+song.classList.remove(
+"playing"
+);
 
-                        const song =
-                            player.closest(
-                                ".song"
-                            );
-
-
-                        if(song){
-
-                            song.classList.remove(
-                                "playing"
-                            );
-
-
-                            clearFFT(
-                                song
-                            );
-
-                        }
-
-
-                        stopFFT();
-
-
-                        currentAudio =
-                            null;
-
-                    }
-
-                }
-            );
-
-
-            player.addEventListener(
-                "error",
-                () => {
-
-                    console.error(
-                        "Ошибка audio:",
-                        player.error,
-                        player.currentSrc
-                    );
-
-                }
-            );
-
-        }
-    );
+clearFFT(
+song
+);
 
 }
 
 
-// =========================================================
-// PAUSE OTHERS
-// =========================================================
+stopFFT();
+
+}
+
+}
+);
+
+
+/* =======================================================
+   ENDED
+   ======================================================= */
+
+player.addEventListener(
+"ended",
+()=>{
+
+if(
+player === currentAudio
+){
+
+const song =
+player.closest(
+".song"
+);
+
+
+if(song){
+
+song.classList.remove(
+"playing"
+);
+
+clearFFT(
+song
+);
+
+}
+
+
+stopFFT();
+
+
+currentAudio =
+null;
+
+}
+
+}
+);
+
+
+/* =======================================================
+   ERROR
+   ======================================================= */
+
+player.addEventListener(
+"error",
+()=>{
+
+console.error(
+"Ошибка audio:",
+player.error,
+player.currentSrc
+);
+
+}
+);
+
+});
+
+}
+
+
+/* =========================================================
+   PAUSE OTHERS
+   ========================================================= */
 
 function pauseOthers(
-    current
+current
 ){
 
-    players.forEach(
-        player => {
+players.forEach(
+player=>{
 
-            if(
-                player !== current
-            ){
+if(
+player !== current
+){
 
-                player.pause();
+player.pause();
 
-                player.currentTime =
-                    0;
-
-
-                const oldSong =
-                    player.closest(
-                        ".song"
-                    );
+player.currentTime =
+0;
 
 
-                if(oldSong){
-
-                    oldSong.classList.remove(
-                        "playing"
-                    );
-
-
-                    clearFFT(
-                        oldSong
-                    );
-
-                }
-
-            }
-
-        }
-    );
+const oldSong =
+player.closest(
+".song"
+);
 
 
-    currentAudio =
-        current;
+if(oldSong){
+
+oldSong.classList.remove(
+"playing"
+);
+
+clearFFT(
+oldSong
+);
+
+}
+
+}
+
+});
 
 
-    const saved =
-        localStorage.getItem(
-            "musicVolume"
-        );
+currentAudio =
+current;
 
 
-    if(
-        saved !== null
-    ){
+/*
+   Сохраняем громкость.
+*/
 
-        const volume =
-            parseFloat(
-                saved
-            );
-
-
-        if(
-            Number.isFinite(
-                volume
-            )
-        ){
-
-            current.volume =
-                Math.max(
-                    0,
-                    Math.min(
-                        1,
-                        volume
-                    )
-                );
-
-        }
-
-    }
+const saved =
+localStorage.getItem(
+"musicVolume"
+);
 
 
-    const currentSong =
-        current.closest(
-            ".song"
-        );
+if(
+saved !== null
+){
+
+const volume =
+parseFloat(saved);
 
 
-    if(
-        currentSong
-    ){
+if(
+Number.isFinite(volume)
+){
 
-        currentSong.classList.add(
-            "playing"
-        );
+current.volume =
+Math.max(
+0,
+Math.min(
+1,
+volume
+)
+);
 
-    }
+}
 
 }
 
 
-// =========================================================
-// CLEAR FFT
-// =========================================================
+/*
+   Текущий song.
+*/
+
+const currentSong =
+current.closest(
+".song"
+);
+
+
+if(currentSong){
+
+currentSong.classList.add(
+"playing"
+);
+
+}
+
+}
+
+
+/* =========================================================
+   CLEAR FFT
+   ========================================================= */
 
 function clearFFT(
-    song
+song
 ){
 
-    if(!song){
+if(!song){
 
-        return;
-
-    }
-
-
-    const canvas =
-        song.querySelector(
-            ".fft"
-        );
-
-
-    if(!canvas){
-
-        return;
-
-    }
-
-
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
-
-
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
+return;
 
 }
 
 
-// =========================================================
-// STOP FFT
-// =========================================================
+const canvas =
+song.querySelector(
+".fft"
+);
+
+
+if(!canvas){
+
+return;
+
+}
+
+
+const ctx =
+canvas.getContext(
+"2d"
+);
+
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+}
+
+
+/* =========================================================
+   STOP FFT
+   ========================================================= */
 
 function stopFFT(){
 
-    if(
-        fakeFFTAnimation
-    ){
+if(
+fakeFFTAnimation
+){
 
-        cancelAnimationFrame(
-            fakeFFTAnimation
-        );
+cancelAnimationFrame(
+fakeFFTAnimation
+);
 
+fakeFFTAnimation =
+null;
 
-        fakeFFTAnimation =
-            null;
-
-    }
+}
 
 }
 
 
-// =========================================================
-// FFT
-// =========================================================
+/* =========================================================
+   FFT
+   ========================================================= */
+
+/*
+   Это визуальный FFT.
+
+   AudioContext НЕ используется.
+
+   Поэтому визуализатор
+   не вмешивается в звук.
+*/
 
 function startFFT(
-    audio
+audio
 ){
 
-    stopFFT();
+stopFFT();
 
 
-    if(
-        !audio ||
-        audio.paused
-    ){
+if(
+!audio ||
+audio.paused
+){
 
-        return;
-
-    }
-
-
-    const song =
-        audio.closest(
-            ".song"
-        );
-
-
-    if(!song){
-
-        return;
-
-    }
-
-
-    const canvas =
-        song.querySelector(
-            ".fft"
-        );
-
-
-    if(!canvas){
-
-        return;
-
-    }
-
-
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
-
-
-    const bars =
-        38;
-
-
-    const values =
-        new Float32Array(
-            bars
-        );
-
-
-    function draw(){
-
-        if(
-            audio !== currentAudio ||
-            audio.paused ||
-            audio.ended ||
-            !song.classList.contains(
-                "playing"
-            )
-        ){
-
-            ctx.clearRect(
-                0,
-                0,
-                canvas.width,
-                canvas.height
-            );
-
-
-            return;
-
-        }
-
-
-        ctx.clearRect(
-            0,
-            0,
-            canvas.width,
-            canvas.height
-        );
-
-
-        const gap =
-            3;
-
-
-        const bw =
-            (
-                canvas.width -
-                gap *
-                (bars - 1)
-            ) /
-            bars;
-
-
-        const time =
-            performance.now();
-
-
-        const duration =
-            audio.duration ||
-            100;
-
-
-        const progress =
-            audio.currentTime /
-            duration;
-
-
-        for(
-            let i=0;
-            i<bars;
-            i++
-        ){
-
-            const wave =
-                Math.sin(
-                    time * .012 +
-                    i * 1.7
-                );
-
-
-            const wave2 =
-                Math.sin(
-                    time * .007 -
-                    i * .9
-                );
-
-
-            const center =
-                1 -
-                Math.abs(
-                    i -
-                    bars / 2
-                ) /
-                (bars / 2);
-
-
-            let value =
-                .16 +
-                center * .12 +
-                Math.abs(wave) * .18 +
-                Math.abs(wave2) * .08;
-
-
-            value +=
-                progress * .05;
-
-
-            if(
-                value >
-                values[i]
-            ){
-
-                values[i] +=
-                    (
-                        value -
-                        values[i]
-                    ) * .35;
-
-            }else{
-
-                values[i] +=
-                    (
-                        value -
-                        values[i]
-                    ) * .18;
-
-            }
-
-
-            const h =
-                Math.max(
-                    2,
-                    Math.min(
-                        canvas.height,
-                        values[i] *
-                        canvas.height
-                    )
-                );
-
-
-            const x =
-                i *
-                (bw + gap);
-
-
-            const y =
-                canvas.height -
-                h;
-
-
-            const grad =
-                ctx.createLinearGradient(
-                    0,
-                    y,
-                    0,
-                    canvas.height
-                );
-
-
-            grad.addColorStop(
-                0,
-                "#00ff88"
-            );
-
-
-            grad.addColorStop(
-                .45,
-                "#00ed91"
-            );
-
-
-            grad.addColorStop(
-                1,
-                "#00a96b"
-            );
-
-
-            ctx.fillStyle =
-                grad;
-
-
-            ctx.globalAlpha =
-                .95;
-
-
-            ctx.fillRect(
-                Math.round(x),
-                Math.round(y),
-                Math.max(
-                    1,
-                    Math.round(bw)
-                ),
-                Math.round(h)
-            );
-
-        }
-
-
-        ctx.globalAlpha =
-            1;
-
-
-        fakeFFTAnimation =
-            requestAnimationFrame(
-                draw
-            );
-
-    }
-
-
-    draw();
+return;
 
 }
 
 
-// =========================================================
-// COPY LINK
-// =========================================================
+const song =
+audio.closest(
+".song"
+);
+
+
+if(!song){
+
+return;
+
+}
+
+
+const canvas =
+song.querySelector(
+".fft"
+);
+
+
+if(!canvas){
+
+return;
+
+}
+
+
+const ctx =
+canvas.getContext(
+"2d"
+);
+
+
+const bars =
+38;
+
+
+const values =
+new Float32Array(
+bars
+);
+
+
+function draw(){
+
+if(
+audio !== currentAudio ||
+audio.paused ||
+audio.ended ||
+!song.classList.contains(
+"playing"
+)
+){
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+return;
+
+}
+
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+
+const gap =
+3;
+
+
+const bw =
+
+(
+canvas.width -
+gap *
+(bars - 1)
+) /
+bars;
+
+
+const time =
+performance.now();
+
+
+/*
+   Приблизительная
+   анимация амплитуды.
+*/
+
+const duration =
+audio.duration ||
+100;
+
+
+const progress =
+
+audio.currentTime /
+duration;
+
+
+for(
+let i=0;
+i<bars;
+i++
+){
+
+const wave =
+
+Math.sin(
+time * .012 +
+i * 1.7
+);
+
+
+const wave2 =
+
+Math.sin(
+time * .007 -
+i * .9
+);
+
+
+const center =
+
+1 -
+Math.abs(
+i - bars / 2
+) /
+(bars / 2);
+
+
+let value =
+
+.16 +
+center * .12 +
+Math.abs(wave) * .18 +
+Math.abs(wave2) * .08;
+
+
+/*
+   Небольшая реакция
+   на позицию песни.
+*/
+
+value +=
+progress * .05;
+
+
+if(
+value >
+values[i]
+){
+
+values[i] +=
+
+(
+value -
+values[i]
+) *
+.35;
+
+}else{
+
+values[i] +=
+
+(
+value -
+values[i]
+) *
+.18;
+
+}
+
+
+const h =
+
+Math.max(
+2,
+Math.min(
+canvas.height,
+values[i] *
+canvas.height
+)
+);
+
+
+const x =
+
+i *
+(bw + gap);
+
+
+const y =
+
+canvas.height -
+h;
+
+
+const grad =
+
+ctx.createLinearGradient(
+0,
+y,
+0,
+canvas.height
+);
+
+
+grad.addColorStop(
+0,
+"#00ff88"
+);
+
+
+grad.addColorStop(
+.45,
+"#00ed91"
+);
+
+
+grad.addColorStop(
+1,
+"#00a96b"
+);
+
+
+ctx.fillStyle =
+grad;
+
+
+ctx.globalAlpha =
+.95;
+
+
+ctx.fillRect(
+
+Math.round(x),
+
+Math.round(y),
+
+Math.max(
+1,
+Math.round(bw)
+),
+
+Math.round(h)
+
+);
+
+}
+
+
+ctx.globalAlpha =
+1;
+
+
+fakeFFTAnimation =
+requestAnimationFrame(
+draw
+);
+
+}
+
+
+draw();
+
+}
+
+
+/* =========================================================
+   COPY LINK
+   ========================================================= */
 
 async function copyLink(
-    button,
-    link
+button,
+link
 ){
 
-    try{
+try{
 
-        await navigator.clipboard.writeText(
-            link
-        );
+/*
+   Современный способ.
+*/
 
-
-        showCopied(
-            button
-        );
-
-
-    }catch(error){
-
-        console.warn(
-            "Clipboard API:",
-            error
-        );
+await navigator.clipboard.writeText(
+link
+);
 
 
-        try{
-
-            const input =
-                document.createElement(
-                    "input"
-                );
+showCopied(
+button
+);
 
 
-            input.value =
-                link;
+}catch(error){
+
+console.warn(
+"Clipboard API недоступен:",
+error
+);
 
 
-            input.style.position =
-                "fixed";
+/*
+   Запасной способ.
+*/
+
+try{
+
+const input =
+document.createElement(
+"input"
+);
 
 
-            input.style.opacity =
-                "0";
+input.value =
+link;
 
 
-            document.body.appendChild(
-                input
-            );
+input.style.position =
+"fixed";
 
 
-            input.focus();
-
-            input.select();
-
-
-            input.setSelectionRange(
-                0,
-                input.value.length
-            );
+input.style.opacity =
+"0";
 
 
-            const success =
-                document.execCommand(
-                    "copy"
-                );
+document.body.appendChild(
+input
+);
 
 
-            document.body.removeChild(
-                input
-            );
+input.focus();
+
+input.select();
+
+input.setSelectionRange(
+0,
+input.value.length
+);
 
 
-            if(success){
+const success =
+document.execCommand(
+"copy"
+);
 
-                showCopied(
-                    button
-                );
 
-            }else{
+document.body.removeChild(
+input
+);
 
-                throw new Error(
-                    "Не удалось скопировать"
-                );
 
-            }
+if(success){
 
-        }catch(e){
+showCopied(
+button
+);
 
-            alert(
-                "Не удалось скопировать ссылку.\n\n" +
-                link
-            );
+}else{
 
-        }
+throw new Error(
+"Не удалось скопировать"
+);
 
-    }
+}
+
+}catch(e){
+
+alert(
+"Не удалось скопировать ссылку.\n\n"
++
+link
+);
+
+}
 
 }
 
 
-// =========================================================
-// COPIED
-// =========================================================
+/* =========================================================
+   COPIED
+   ========================================================= */
 
 function showCopied(
-    button
+button
 ){
 
-    const old =
-        button.innerHTML;
+const old =
+button.innerHTML;
 
 
-    button.innerHTML =
-        "✓ Ссылка скопирована!";
+button.innerHTML =
+"✓ Ссылка скопирована!";
 
 
-    button.classList.add(
-        "copied"
-    );
+button.classList.add(
+"copied"
+);
 
 
-    setTimeout(
-        () => {
+setTimeout(
+()=>{
 
-            button.innerHTML =
-                old;
+button.innerHTML =
+old;
 
 
-            button.classList.remove(
-                "copied"
-            );
+button.classList.remove(
+"copied"
+);
 
-        },
-        1500
-    );
+},
+1500
+);
 
 }
 
 
-// =========================================================
-// VOLUME
-// =========================================================
+/* =========================================================
+   VOLUME
+   ========================================================= */
 
 function setupVolume(){
 
-    const saved =
-        localStorage.getItem(
-            "musicVolume"
-        );
+const saved =
+localStorage.getItem(
+"musicVolume"
+);
 
 
-    let volume =
-        saved === null
-            ?
-        1
-            :
-        parseFloat(
-            saved
-        );
+let volume =
+
+saved === null
+
+?
+
+1
+
+:
+
+parseFloat(
+saved
+);
 
 
-    if(
-        !Number.isFinite(
-            volume
-        )
-    ){
+if(
+!Number.isFinite(volume)
+){
 
-        volume =
-            1;
-
-    }
-
-
-    volume =
-        Math.max(
-            0,
-            Math.min(
-                1,
-                volume
-            )
-        );
-
-
-    players.forEach(
-        player => {
-
-            player.volume =
-                volume;
-
-
-            player.addEventListener(
-                "volumechange",
-                () => {
-
-                    localStorage.setItem(
-                        "musicVolume",
-                        String(
-                            player.volume
-                        )
-                    );
-
-
-                    players.forEach(
-                        other => {
-
-                            if(
-                                other !== player
-                            ){
-
-                                other.volume =
-                                    player.volume;
-
-                            }
-
-                        }
-                    );
-
-                }
-            );
-
-        }
-    );
+volume =
+1;
 
 }
 
 
-// =========================================================
-// SEARCH
-// =========================================================
+volume =
+Math.max(
+0,
+Math.min(
+1,
+volume
+)
+);
+
+
+players.forEach(
+player=>{
+
+player.volume =
+volume;
+
+
+player.addEventListener(
+"volumechange",
+()=>{
+
+/*
+   Сохраняем громкость.
+*/
+
+localStorage.setItem(
+"musicVolume",
+String(
+player.volume
+)
+);
+
+
+/*
+   Одинаковая громкость
+   у всех плееров.
+*/
+
+players.forEach(
+other=>{
+
+if(
+other !== player
+){
+
+other.volume =
+player.volume;
+
+}
+
+});
+
+}
+);
+
+});
+
+}
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
 
 function setupSearch(){
 
-    const input =
-        document.getElementById(
-            "searchInput"
-        );
+const input =
+document.getElementById(
+"searchInput"
+);
 
 
-    const noResults =
-        document.getElementById(
-            "noResults"
-        );
+const noResults =
+document.getElementById(
+"noResults"
+);
 
 
-    input.addEventListener(
-        "input",
-        function(){
+input.addEventListener(
+"input",
+function(){
 
-            const query =
-                normalizeSearch(
-                    this.value
-                );
-
-
-            const words =
-                query
-                    .split(" ")
-                    .filter(Boolean);
+const query =
+normalizeSearch(
+this.value
+);
 
 
-            let found =
-                0;
+const words =
+query
+.split(" ")
+.filter(Boolean);
 
 
-            songs.forEach(
-                song => {
-
-                    const text =
-                        song.dataset.search ||
-                        "";
+let found =
+0;
 
 
-                    const visible =
+songs.forEach(
+song=>{
 
-                        !words.length ||
-
-                        words.every(
-                            word =>
-                                text.includes(
-                                    word
-                                )
-                        );
+const text =
+song.dataset.search ||
+"";
 
 
-                    song.classList.toggle(
-                        "hidden",
-                        !visible
-                    );
+const visible =
+
+!words.length ||
+
+words.every(
+word =>
+text.includes(word)
+);
 
 
-                    if(
-                        visible
-                    ){
-
-                        found++;
-
-                    }
-
-                }
-            );
+song.classList.toggle(
+"hidden",
+!visible
+);
 
 
-            noResults.style.display =
+if(visible){
 
-                found === 0 &&
-                words.length
+found++;
 
-                    ?
+}
 
-                "block"
+});
 
-                    :
 
-                "none";
+noResults.style.display =
 
-        }
-    );
+found === 0 &&
+words.length
+
+?
+
+"block"
+
+:
+
+"none";
+
+}
+);
 
 }
 
 
-// =========================================================
-// START
-// =========================================================
+/* =========================================================
+   START
+   ========================================================= */
 
 loadMusic();
 
