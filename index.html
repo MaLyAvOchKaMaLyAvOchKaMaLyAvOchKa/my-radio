@@ -10,904 +10,698 @@
 html{scroll-behavior:smooth}
 
 body{
-    margin:0;
-    min-height:100vh;
-    background:
-        radial-gradient(circle at 70% 10%,rgba(0,255,136,.07),transparent 30%),
-        radial-gradient(circle at 90% 80%,rgba(0,180,255,.05),transparent 30%),
-        #0d0d0f;
-    color:#fff;
-    font-family:Arial,Helvetica,sans-serif
+margin:0;
+background:
+radial-gradient(circle at 70% 10%,rgba(0,255,136,.07),transparent 30%),
+radial-gradient(circle at 90% 80%,rgba(0,180,255,.05),transparent 30%),
+#0d0d0f;
+color:white;
+font-family:Arial,Helvetica,sans-serif;
+min-height:100vh
 }
 
 /* SIDEBAR */
-
 .sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    width:190px;
-    height:100vh;
-    padding-top:110px;
-    background:linear-gradient(180deg,#18181b,#111113);
-    border-right:1px solid rgba(255,255,255,.06);
-    box-shadow:5px 0 25px rgba(0,0,0,.45);
-    z-index:100
+position:fixed;left:0;top:0;width:190px;height:100vh;
+background:linear-gradient(180deg,#18181b,#111113);
+border-right:1px solid rgba(255,255,255,.06);
+box-shadow:5px 0 25px rgba(0,0,0,.45);
+padding-top:110px;z-index:100
 }
 
 .menu{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin:5px 10px;
-    padding:17px 20px;
-    border-radius:12px;
-    color:#ddd;
-    text-decoration:none;
-    font-size:20px;
-    transition:.2s
+display:flex;align-items:center;gap:12px;color:#ddd;
+text-decoration:none;font-size:20px;padding:17px 20px;
+margin:5px 10px;border-radius:12px;
+transition:background .2s,color .2s,transform .2s,box-shadow .2s
 }
 
 .menu:hover{
-    background:rgba(0,255,136,.08);
-    color:#00ff88;
-    transform:translateX(4px);
-    box-shadow:inset 3px 0 #00ff88
-}
-
-.menu.active{
-    background:rgba(0,255,136,.08);
-    color:#00ff88;
-    box-shadow:inset 3px 0 #00ff88
+background:rgba(0,255,136,.08);
+color:#00ff88;
+transform:translateX(4px);
+box-shadow:inset 3px 0 0 #00ff88
 }
 
 /* HEADER */
-
 header{
-    margin-left:190px;
-    padding:30px 35px;
-    background:linear-gradient(180deg,#18181a,#151517);
-    border-bottom:1px solid rgba(255,255,255,.06);
-    box-shadow:0 8px 30px rgba(0,0,0,.35);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative
-}
-
-.logo{
-    font-size:42px;
-    font-weight:bold;
-    color:#00ff88;
-    letter-spacing:1px;
-    text-shadow:0 0 15px rgba(0,255,136,.25)
+margin-left:190px;padding:30px 20px;text-align:center;
+background:linear-gradient(180deg,#18181a,#151517);
+border-bottom:1px solid rgba(255,255,255,.06);
+box-shadow:0 8px 30px rgba(0,0,0,.35);
+font-size:42px;font-weight:bold;color:#00ff88;
+letter-spacing:1px;
+text-shadow:0 0 15px rgba(0,255,136,.25);
+position:relative
 }
 
 /* SEARCH */
-
 .search{
-    position:absolute;
-    right:30px;
-    top:50%;
-    transform:translateY(-50%);
-    width:230px
+position:absolute;
+right:25px;
+top:50%;
+transform:translateY(-50%);
+display:flex;
+align-items:center;
+width:260px;
+height:42px;
+background:rgba(255,255,255,.055);
+border:1px solid rgba(255,255,255,.1);
+border-radius:22px;
+transition:.25s;
+overflow:hidden
 }
 
-.search-box{
-    height:42px;
-    width:100%;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:0 13px;
-    background:rgba(255,255,255,.055);
-    border:1px solid rgba(255,255,255,.09);
-    border-radius:13px;
-    transition:.25s
-}
-
-.search-box:focus-within{
-    border-color:rgba(0,255,136,.5);
-    background:rgba(0,255,136,.045);
-    box-shadow:0 0 18px rgba(0,255,136,.08)
+.search:focus-within{
+border-color:rgba(0,255,136,.45);
+box-shadow:0 0 18px rgba(0,255,136,.08)
 }
 
 .search-icon{
-    width:15px;
-    height:15px;
-    border:2px solid #aaa;
-    border-radius:50%;
-    position:relative;
-    flex:none
-}
-
-.search-icon:after{
-    content:"";
-    position:absolute;
-    width:7px;
-    height:2px;
-    background:#aaa;
-    right:-6px;
-    bottom:-3px;
-    transform:rotate(45deg);
-    border-radius:2px
-}
-
-.search-box:focus-within .search-icon{
-    border-color:#00ff88
-}
-
-.search-box:focus-within .search-icon:after{
-    background:#00ff88
+width:45px;
+text-align:center;
+font-size:20px;
+color:#aaa
 }
 
 .search input{
-    width:100%;
-    border:0;
-    outline:0;
-    background:transparent;
-    color:#fff;
-    font-size:14px
+width:100%;
+height:100%;
+border:0;
+outline:0;
+background:transparent;
+color:white;
+font-size:15px;
+padding-right:14px
 }
 
-.search input::placeholder{
-    color:#888
-}
+.search input::placeholder{color:#888}
 
 /* CONTENT */
-
 .content{
-    margin-left:190px;
-    width:calc(100% - 190px);
-    max-width:1200px;
-    padding:35px 30px 80px;
-    margin-right:auto
-}
-
-/* SECTION */
-
-.section-title{
-    width:min(760px,90%);
-    margin:0 auto 18px;
-    font-size:25px;
-    font-weight:bold
-}
-
-.section-title span{
-    color:#9a6cff;
-    margin-right:7px
+margin-left:190px;
+width:calc(100% - 190px);
+padding:35px 30px 80px
 }
 
 /* SONG */
-
 .song{
-    width:min(760px,90%);
-    margin:0 auto 20px;
-    padding:18px 20px;
-    background:linear-gradient(145deg,rgba(38,38,41,.96),rgba(29,29,32,.96));
-    border:1px solid rgba(255,255,255,.05);
-    border-radius:17px;
-    box-shadow:0 10px 30px rgba(0,0,0,.25);
-    transition:.2s
+background:linear-gradient(145deg,rgba(38,38,41,.96),rgba(29,29,32,.96));
+width:min(760px,90%);
+margin:0 auto 22px;
+border-radius:17px;
+padding:20px;
+border:1px solid rgba(255,255,255,.05);
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+transition:transform .2s,border .2s,box-shadow .2s
 }
 
 .song:hover{
-    transform:translateY(-2px);
-    border-color:rgba(0,255,136,.16);
-    box-shadow:0 14px 35px rgba(0,0,0,.4)
+transform:translateY(-3px);
+border-color:rgba(0,255,136,.16);
+box-shadow:0 14px 35px rgba(0,0,0,.4),0 0 25px rgba(0,255,136,.04)
 }
 
-.song.hidden{
-    display:none
-}
+.song.hidden{display:none}
 
-.song-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-    margin-bottom:13px
-}
-
+/* TITLE */
 .title{
-    min-width:0;
-    display:flex;
-    align-items:center;
-    gap:9px;
-    font-size:23px;
-    color:#f2f2f2
+font-size:24px;
+margin-bottom:13px;
+display:flex;
+align-items:center;
+gap:9px;
+color:#f2f2f2;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+padding-right:5px
 }
 
-.music-icon{
-    flex:none;
-    font-size:27px;
-    filter:drop-shadow(0 0 6px rgba(150,80,255,.4))
+.title .music-icon{
+font-size:27px;
+filter:drop-shadow(0 0 6px rgba(150,80,255,.4));
+flex-shrink:0
 }
 
 /* FFT */
-
 .fft{
-    width:120px;
-    height:28px;
-    flex:none;
-    opacity:0;
-    visibility:hidden;
-    transition:opacity .2s
+display:block;
+width:120px;
+height:30px;
+margin-left:auto;
+flex-shrink:0;
+opacity:0;
+transition:opacity .25s;
+filter:drop-shadow(0 0 5px rgba(0,255,136,.2))
 }
 
-.fft.active{
-    opacity:1;
-    visibility:visible
-}
-
-.fft canvas{
-    display:block;
-    width:120px;
-    height:28px
-}
+.song.playing .fft{opacity:1}
 
 /* AUDIO */
-
 audio{
-    display:block;
-    width:100%;
-    height:48px;
-    margin-bottom:14px;
-    border-radius:12px
+width:100%;
+height:48px;
+border-radius:12px;
+margin-bottom:14px
 }
 
 /* BUTTONS */
-
 .buttons{
-    display:flex;
-    gap:10px
+display:flex;
+gap:10px;
+width:100%
 }
 
 .btn{
-    flex:1;
-    border:0;
-    border-radius:10px;
-    padding:12px 15px;
-    font-size:16px;
-    font-weight:bold;
-    text-align:center;
-    text-decoration:none;
-    cursor:pointer;
-    transition:.15s
+flex:1;border:0;border-radius:10px;padding:12px 15px;
+font-size:16px;font-weight:bold;text-align:center;
+text-decoration:none;cursor:pointer;
+transition:transform .15s,filter .15s,box-shadow .15s
 }
 
-.btn:hover{
-    transform:translateY(-2px);
-    filter:brightness(1.08)
-}
-
-.btn:active{
-    transform:translateY(0)
-}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn:active{transform:translateY(0)}
 
 .download{
-    background:#00c878;
-    color:#fff;
-    box-shadow:0 5px 15px rgba(0,200,120,.12)
+background:#00c878;color:white;
+box-shadow:0 5px 15px rgba(0,200,120,.12)
 }
 
-.download:hover{
-    box-shadow:0 7px 20px rgba(0,200,120,.2)
-}
+.download:hover{box-shadow:0 7px 20px rgba(0,200,120,.2)}
 
-.copy{
-    background:#0796d1;
-    color:#fff
-}
-
-.copy:hover{
-    box-shadow:0 7px 20px rgba(0,150,210,.18)
-}
-
-.copy.copied{
-    background:#00b86b
-}
+.copy{background:#0796d1;color:white;border:0}
+.copy:hover{box-shadow:0 7px 20px rgba(0,150,210,.18)}
+.copy.copied{background:#00b86b}
 
 /* NO RESULTS */
-
 .no-results{
-    width:min(760px,90%);
-    margin:50px auto;
-    text-align:center;
-    color:#777;
-    font-size:17px;
-    display:none
-}
-
-.no-results.show{
-    display:block
+display:none;
+width:min(760px,90%);
+margin:40px auto;
+text-align:center;
+color:#777;
+font-size:18px
 }
 
 /* MOBILE */
+@media(max-width:800px){
+.sidebar{width:70px;padding-top:90px}
+.menu{
+justify-content:center;font-size:0;padding:15px;margin:6px
+}
+.menu:first-letter{font-size:25px}
 
-@media(max-width:900px){
-
-    .sidebar{
-        width:70px;
-        padding-top:90px
-    }
-
-    .menu{
-        justify-content:center;
-        padding:15px;
-        margin:6px;
-        font-size:0
-    }
-
-    .menu span{
-        display:none
-    }
-
-    header{
-        margin-left:70px;
-        padding:22px 10px;
-        justify-content:center
-    }
-
-    .logo{
-        font-size:27px
-    }
-
-    .search{
-        position:fixed;
-        right:15px;
-        top:auto;
-        bottom:15px;
-        transform:none;
-        width:calc(100% - 100px);
-        z-index:200
-    }
-
-    .content{
-        margin-left:70px;
-        width:calc(100% - 70px);
-        padding:25px 10px 80px
-    }
-
-    .song,
-    .section-title,
-    .no-results{
-        width:100%
-    }
+header{
+margin-left:70px;
+font-size:30px;
+padding:25px 10px
 }
 
-@media(max-width:600px){
+.search{
+position:relative;
+right:auto;
+top:auto;
+transform:none;
+margin:18px auto 0;
+width:min(400px,90%);
+height:40px
+}
 
-    .logo{
-        font-size:23px
-    }
+.content{
+margin-left:70px;
+width:calc(100% - 70px);
+padding:25px 10px 60px
+}
 
-    .song{
-        padding:15px
-    }
+.song{width:100%;padding:15px}
+.buttons{flex-direction:column}
+.btn{width:100%}
 
-    .title{
-        font-size:19px
-    }
-
-    .music-icon{
-        font-size:23px
-    }
-
-    .fft{
-        width:90px
-    }
-
-    .fft canvas{
-        width:90px
-    }
-
-    .buttons{
-        flex-direction:column
-    }
-
-    .btn{
-        width:100%
-    }
+.title{font-size:21px}
+.fft{width:95px;height:27px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
-
 <div class="sidebar">
-    <a href="index.html" class="menu active">🎧 <span>Music</span></a>
-    <a href="Roflan.html" class="menu">😂 <span>Рофл звуки</span></a>
-    <a href="Gachi.html" class="menu">🎤 <span>Gachi</span></a>
-    <a href="Skrimer.html" class="menu">😱 <span>Скримеры</span></a>
+<a href="index.html" class="menu">🎧 <span>Music</span></a>
+<a href="Roflan.html" class="menu">😂 <span>Рофл звуки</span></a>
+<a href="Gachi.html" class="menu">🎤 <span>Gachi</span></a>
+<a href="Skrimer.html" class="menu">😱 <span>Скримеры</span></a>
 </div>
 
-<!-- HEADER -->
-
 <header>
-    <div class="logo">🎧 МаЛяВоЧка - Music 🎧</div>
+🎧 МаЛяВоЧка - Music 🎧
 
-    <div class="search">
-        <div class="search-box">
-            <div class="search-icon"></div>
-            <input
-                id="searchInput"
-                type="text"
-                placeholder="Найти трек..."
-                autocomplete="off">
-        </div>
-    </div>
+<div class="search">
+<span class="search-icon">⌕</span>
+<input id="searchInput" type="text" placeholder="Найти трек...">
+</div>
 </header>
-
-<!-- CONTENT -->
 
 <div class="content">
 
-    <div class="section-title">
-        <span>🎵</span>Музыка
-    </div>
+<div class="song" data-search="exponat экспонат мия бойка мия">
+<div class="title">
+<span class="music-icon">🎵</span>
+<span>MIA BOYKA - Экспонат</span>
+<canvas class="fft" width="240" height="60"></canvas>
+</div>
+<audio controls>
+<source src="Exponat.mp3" type="audio/mpeg">
+</audio>
+<div class="buttons">
+<a class="btn download" href="Exponat.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Exponat.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
 
-    <div id="songs"></div>
+<div class="song" data-search="ella dance элла элла данс">
+<div class="title">
+<span class="music-icon">🎵</span>
+<span>Ella Dance</span>
+<canvas class="fft" width="240" height="60"></canvas>
+</div>
+<audio controls>
+<source src="elladance.mp3" type="audio/mpeg">
+</audio>
+<div class="buttons">
+<a class="btn download" href="elladance.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'elladance.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
 
-    <div id="noResults" class="no-results">
-        Ничего не найдено 😔
-    </div>
+<div class="song" data-search="music музыка">
+<div class="title">
+<span class="music-icon">🎵</span>
+<span>Music</span>
+<canvas class="fft" width="240" height="60"></canvas>
+</div>
+<audio controls>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+<div class="buttons">
+<a class="btn download" href="music.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'music.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
+
+<div class="song" data-search="wanpis ванпис">
+<div class="title">
+<span class="music-icon">🎵</span>
+<span>Wanpis</span>
+<canvas class="fft" width="240" height="60"></canvas>
+</div>
+<audio controls>
+<source src="wanpis.mp3" type="audio/mpeg">
+</audio>
+<div class="buttons">
+<a class="btn download" href="wanpis.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'wanpis.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
+
+<div class="song" data-search="kesha кеша">
+<div class="title">
+<span class="music-icon">🎵</span>
+<span>Kesha</span>
+<canvas class="fft" width="240" height="60"></canvas>
+</div>
+<audio controls>
+<source src="Kesha.mp3" type="audio/mpeg">
+</audio>
+<div class="buttons">
+<a class="btn download" href="Kesha.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Kesha.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
+
+<div class="song" data-search="mount noize generation around the world маунт нойз генератион араунд зе ворлд">
+<div class="title">
+<span class="music-icon">🎵</span>
+<span>Mount Noize - Generation Around The World</span>
+<canvas class="fft" width="240" height="60"></canvas>
+</div>
+<audio controls>
+<source src="Mount_Noize_Generation-AroundTheWorld.mp3" type="audio/mpeg">
+</audio>
+<div class="buttons">
+<a class="btn download" href="Mount_Noize_Generation-AroundTheWorld.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Mount_Noize_Generation-AroundTheWorld.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
+
+<div class="song" data-search="r3hab all around the world рэаб рэхаб раунд зе ворлд">
+<div class="title">
+<span class="music-icon">🎵</span>
+<span>R3hab - All Around The World</span>
+<canvas class="fft" width="240" height="60"></canvas>
+</div>
+<audio controls>
+<source src="R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3" type="audio/mpeg">
+</audio>
+<div class="buttons">
+<a class="btn download" href="R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
+
+<div class="song" data-search="daryana juice дарьяна дарь даша джус">
+<div class="title">
+<span class="music-icon">🎵</span>
+<span>Daryana - Juice</span>
+<canvas class="fft" width="240" height="60"></canvas>
+</div>
+<audio controls>
+<source src="Daryana-Juice.mp3" type="audio/mpeg">
+</audio>
+<div class="buttons">
+<a class="btn download" href="Daryana-Juice.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Daryana-Juice.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
+
+<div class="song" data-search="dora vturilas дoра втурилась втурилас">
+<div class="title">
+<span class="music-icon">🎵</span>
+<span>Dora - Vturilas</span>
+<canvas class="fft" width="240" height="60"></canvas>
+</div>
+<audio controls>
+<source src="Dora-Vturilas.mp3" type="audio/mpeg">
+</audio>
+<div class="buttons">
+<a class="btn download" href="Dora-Vturilas.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Dora-Vturilas.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
+
+<div class="song" data-search="psy gangnam style ганнам стайл псай гангнам">
+<div class="title">
+<span class="music-icon">🎵</span>
+<span>PSY - Gangnam Style</span>
+<canvas class="fft" width="240" height="60"></canvas>
+</div>
+<audio controls>
+<source src="PSY-Gangnam_Style.mp3" type="audio/mpeg">
+</audio>
+<div class="buttons">
+<a class="btn download" href="PSY-Gangnam_Style.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'PSY-Gangnam_Style.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
+
+<div class="song" data-search="skriptonit baby mama скриптонит бэйби мама">
+<div class="title">
+<span class="music-icon">🎵</span>
+<span>Skriptonit - Baby Mama</span>
+<canvas class="fft" width="240" height="60"></canvas>
+</div>
+<audio controls>
+<source src="Skriptonit-Baby_Mama.mp3" type="audio/mpeg">
+</audio>
+<div class="buttons">
+<a class="btn download" href="Skriptonit-Baby_Mama.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skriptonit-Baby_Mama.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
+
+<div class="song" data-search="deti rave abonnement дети рейв абонемент">
+<div class="title">
+<span class="music-icon">🎵</span>
+<span>Deti Rave - Abonnement</span>
+<canvas class="fft" width="240" height="60"></canvas>
+</div>
+<audio controls>
+<source src="Deti_Rave-Abonnement.mp3" type="audio/mpeg">
+</audio>
+<div class="buttons">
+<a class="btn download" href="Deti_Rave-Abonnement.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Deti_Rave-Abonnement.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
+
+<div class="song" data-search="dead blonde мальчик на девятке дед блонд мaльчик девятке">
+<div class="title">
+<span class="music-icon">🎵</span>
+<span>Dead Blonde - Мальчик на девятке</span>
+<canvas class="fft" width="240" height="60"></canvas>
+</div>
+<audio controls>
+<source src="Dead_Blonde-Malchik_Na_Devyatke.mp3" type="audio/mpeg">
+</audio>
+<div class="buttons">
+<a class="btn download" href="Dead_Blonde-Malchik_Na_Devyatke.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Dead_Blonde-Malchik_Na_Devyatke.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
+
+<div class="song" data-search="poshlaya molly non stop пошлая молли нон стоп">
+<div class="title">
+<span class="music-icon">🎵</span>
+<span>Poshlaya Molly - Non Stop</span>
+<canvas class="fft" width="240" height="60"></canvas>
+</div>
+<audio controls>
+<source src="Poshlaya_Molli-Non_Stop.mp3" type="audio/mpeg">
+</audio>
+<div class="buttons">
+<a class="btn download" href="Poshlaya_Molli-Non_Stop.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Poshlaya_Molli-Non_Stop.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
+
+<div class="song" data-search="gachi гачи">
+<div class="title">
+<span class="music-icon">🎵</span>
+<span>Gachi</span>
+<canvas class="fft" width="240" height="60"></canvas>
+</div>
+<audio controls>
+<source src="Gachi.mp3" type="audio/mpeg">
+</audio>
+<div class="buttons">
+<a class="btn download" href="Gachi.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Gachi.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
+
+<div class="no-results" id="noResults">Ничего не найдено 😔</div>
 
 </div>
 
 <script>
-
-/* =========================
-   ТРЕКИ
-   aliases — дополнительные слова для поиска
-   ========================= */
-
-const tracks=[
-    {
-        name:"MIA BOYKA - Экспонат",
-        file:"Exponat.mp3",
-        aliases:"экспонат exponat mia boyka мия бойка"
-    },
-    {
-        name:"Ella Dance",
-        file:"elladance.mp3",
-        aliases:"ella dance элла данс элла"
-    },
-    {
-        name:"Music",
-        file:"music.mp3",
-        aliases:"music музыка"
-    },
-    {
-        name:"Wanpis",
-        file:"wanpis.mp3",
-        aliases:"wanpis ванпис"
-    },
-    {
-        name:"Kesha",
-        file:"Kesha.mp3",
-        aliases:"kesha кеша"
-    },
-    {
-        name:"Mount Noize - Generation Around The World",
-        file:"Mount_Noize_Generation-AroundTheWorld.mp3",
-        aliases:"mount noize generation around the world маунт нойз"
-    },
-    {
-        name:"R3hab - All Around The World",
-        file:"R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3",
-        aliases:"r3hab all around the world рэхаб ребхаб ла ла ла"
-    },
-    {
-        name:"Daryana - Juice",
-        file:"Daryana-Juice.mp3",
-        aliases:"daryana juice дарьяна дарья дарь juice джус"
-    },
-    {
-        name:"Dora - Vturilas",
-        file:"Dora-Vturilas.mp3",
-        aliases:"dora vturilas дора втюрилась"
-    },
-    {
-        name:"PSY - Gangnam Style",
-        file:"PSY-Gangnam_Style.mp3",
-        aliases:"psy gangnam style псай ганганм стайл ганнам стайл"
-    },
-    {
-        name:"Skriptonit - Baby Mama",
-        file:"Skriptonit-Baby_Mama.mp3",
-        aliases:"skriptonit baby mama скриптонит бэйби мама"
-    },
-    {
-        name:"Deti Rave - Abonnement",
-        file:"Deti_Rave-Abonnement.mp3",
-        aliases:"deti rave abonnement дети рейв абонемент"
-    },
-    {
-        name:"Dead Blonde - Мальчик на девятке",
-        file:"Dead_Blonde-Malchik_Na_Devyatke.mp3",
-        aliases:"dead blonde мальчик на девятке дед блонд девятка мальчик"
-    },
-    {
-        name:"Poshlaya Molly - Non Stop",
-        file:"Poshlaya_Molli-Non_Stop.mp3",
-        aliases:"poshlaya molly non stop пошлая молли нон стоп молли"
-    },
-    {
-        name:"Gachi",
-        file:"Gachi.mp3",
-        aliases:"gachi гачи гачі"
-    }
-];
-
-/* =========================
-   СОЗДАНИЕ ТРЕКОВ
-   ========================= */
-
-const songsBox=document.getElementById("songs");
-
-tracks.forEach((track,index)=>{
-
-    const song=document.createElement("div");
-    song.className="song";
-
-    song.dataset.search=(
-        track.name+" "+track.aliases
-    ).toLowerCase();
-
-    song.innerHTML=`
-        <div class="song-top">
-            <div class="title">
-                <span class="music-icon">🎵</span>
-                <span>${track.name}</span>
-            </div>
-
-            <div class="fft">
-                <canvas></canvas>
-            </div>
-        </div>
-
-        <audio controls preload="metadata">
-            <source src="${track.file}" type="audio/mpeg">
-        </audio>
-
-        <div class="buttons">
-            <a
-                class="btn download"
-                href="${track.file}"
-                download>
-                ↓ Скачать MP3
-            </a>
-
-            <button
-                class="btn copy"
-                onclick="copyLink(this,'${track.file}')">
-                🔗 Копировать ссылку
-            </button>
-        </div>
-    `;
-
-    songsBox.appendChild(song);
-});
-
-/* =========================
-   AUDIO
-   ========================= */
-
+const BASE="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/";
+const songs=[...document.querySelectorAll(".song")];
 const players=[...document.querySelectorAll("audio")];
+let currentAudio=null;
+let audioCtx=null;
+let analyser=null;
+let sourceMap=new WeakMap();
+let raf=null;
 
-let audioContext=null;
-let activeAudio=null;
-let activeFFT=null;
-let activeAnalyser=null;
-let activeData=null;
-let animationFrame=null;
-
-/* =========================
-   FFT
-   ========================= */
-
-function createAnalyser(audio){
-
-    if(audio._analyser)
-        return audio._analyser;
-
-    if(!audioContext)
-        audioContext=new(window.AudioContext||window.webkitAudioContext)();
-
-    const source=audioContext.createMediaElementSource(audio);
-    const analyser=audioContext.createAnalyser();
-
-    analyser.fftSize=128;
-    analyser.smoothingTimeConstant=.78;
-
-    source.connect(analyser);
-    analyser.connect(audioContext.destination);
-
-    audio._analyser=analyser;
-    audio._source=source;
-
-    return analyser;
+function pauseOthers(current){
+players.forEach(p=>{
+if(p!==current){
+p.pause();
+p.currentTime=0;
+p.closest(".song").classList.remove("playing");
+}
+});
+currentAudio=current;
+current.closest(".song").classList.add("playing");
+startFFT(current);
+let v=localStorage.getItem("musicVolume");
+if(v!==null)current.volume=parseFloat(v);
 }
 
-function clearFFT(){
-
-    if(animationFrame){
-        cancelAnimationFrame(animationFrame);
-        animationFrame=null;
-    }
-
-    document.querySelectorAll(".fft").forEach(fft=>{
-        fft.classList.remove("active");
-
-        const canvas=fft.querySelector("canvas");
-        if(canvas){
-            const ctx=canvas.getContext("2d");
-            ctx.clearRect(0,0,canvas.width,canvas.height);
-        }
-    });
-
-    activeAudio=null;
-    activeFFT=null;
-    activeAnalyser=null;
-    activeData=null;
-}
-
-function drawFFT(){
-
-    if(!activeAudio||
-       activeAudio.paused||
-       activeAudio.ended||
-       !activeFFT||
-       !activeAnalyser){
-        clearFFT();
-        return;
-    }
-
-    const canvas=activeFFT.querySelector("canvas");
-    const ctx=canvas.getContext("2d");
-
-    const width=canvas.width;
-    const height=canvas.height;
-
-    activeAnalyser.getByteFrequencyData(activeData);
-
-    ctx.clearRect(0,0,width,height);
-
-    const bars=26;
-    const gap=2;
-    const barWidth=(width-(bars-1)*gap)/bars;
-
-    for(let i=0;i<bars;i++){
-
-        const index=Math.floor(
-            i*activeData.length/bars
-        );
-
-        let value=activeData[index]/255;
-
-        value=Math.pow(value,.75);
-
-        const barHeight=Math.max(
-            2,
-            value*(height-2)
-        );
-
-        const x=i*(barWidth+gap);
-        const y=height-barHeight;
-
-        const gradient=ctx.createLinearGradient(
-            0,y,
-            0,height
-        );
-
-        gradient.addColorStop(0,"#00ff88");
-        gradient.addColorStop(1,"#007f66");
-
-        ctx.fillStyle=gradient;
-
-        ctx.beginPath();
-
-        if(ctx.roundRect){
-            ctx.roundRect(
-                x,
-                y,
-                barWidth,
-                barHeight,
-                2
-            );
-        }else{
-            ctx.rect(
-                x,
-                y,
-                barWidth,
-                barHeight
-            );
-        }
-
-        ctx.fill();
-    }
-
-    animationFrame=requestAnimationFrame(drawFFT);
+function setupAudio(audio){
+if(sourceMap.has(audio))return sourceMap.get(audio);
+if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+let source=audioCtx.createMediaElementSource(audio);
+let a=audioCtx.createAnalyser();
+a.fftSize=512;
+a.smoothingTimeConstant=.72;
+a.minDecibels=-90;
+a.maxDecibels=-10;
+source.connect(a);
+a.connect(audioCtx.destination);
+sourceMap.set(audio,{source:source,analyser:a});
+return sourceMap.get(audio);
 }
 
 function startFFT(audio){
-
-    clearFFT();
-
-    activeAudio=audio;
-
-    const song=audio.closest(".song");
-    activeFFT=song.querySelector(".fft");
-
-    activeFFT.classList.add("active");
-
-    activeAnalyser=createAnalyser(audio);
-
-    activeData=new Uint8Array(
-        activeAnalyser.frequencyBinCount
-    );
-
-    if(audioContext.state==="suspended")
-        audioContext.resume();
-
-    drawFFT();
-}
-
-/* =========================
-   PLAY / PAUSE
-   ========================= */
-
-players.forEach(audio=>{
-
-    audio.addEventListener("play",()=>{
-
-        players.forEach(other=>{
-            if(other!==audio){
-                other.pause();
-                other.currentTime=0;
-            }
-        });
-
-        startFFT(audio);
-    });
-
-    audio.addEventListener("pause",()=>{
-
-        if(activeAudio===audio)
-            clearFFT();
-    });
-
-    audio.addEventListener("ended",()=>{
-
-        if(activeAudio===audio)
-            clearFFT();
-    });
+if(raf)cancelAnimationFrame(raf);
+document.querySelectorAll(".song").forEach(s=>{
+if(s!==audio.closest(".song"))s.classList.remove("playing");
 });
 
-/* =========================
-   ПОИСК
-   ========================= */
+try{
+if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+if(audioCtx.state==="suspended")audioCtx.resume();
+analyser=setupAudio(audio).analyser;
+}catch(e){return}
 
-const searchInput=document.getElementById("searchInput");
-const noResults=document.getElementById("noResults");
+let canvas=audio.closest(".song").querySelector(".fft");
+let ctx=canvas.getContext("2d");
+let data=new Uint8Array(analyser.frequencyBinCount);
+let smooth=new Float32Array(28);
 
-searchInput.addEventListener("input",()=>{
-
-    const query=normalize(searchInput.value);
-
-    let found=0;
-
-    document.querySelectorAll(".song").forEach(song=>{
-
-        const text=song.dataset.search;
-
-        const visible=
-            !query||
-            text.includes(query);
-
-        song.classList.toggle(
-            "hidden",
-            !visible
-        );
-
-        if(visible)
-            found++;
-    });
-
-    noResults.classList.toggle(
-        "show",
-        found===0
-    );
-});
-
-function normalize(text){
-
-    return text
-        .toLowerCase()
-        .trim()
-        .replace(/ё/g,"е");
+function draw(){
+if(audio!==currentAudio||audio.paused||audio.ended){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+audio.closest(".song").classList.remove("playing");
+return;
 }
 
-/* =========================
-   КОПИРОВАНИЕ ССЫЛКИ
-   ========================= */
+analyser.getByteFrequencyData(data);
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+let bars=28;
+let gap=3;
+let bw=(canvas.width-gap*(bars-1))/bars;
+
+for(let i=0;i<bars;i++){
+let t=i/(bars-1);
+
+let minF=1;
+let maxF=data.length-1;
+let index=Math.floor(minF*Math.pow(maxF/minF,t));
+
+let spread=Math.max(1,Math.floor(index*.12));
+let sum=0,count=0;
+
+for(let j=Math.max(0,index-spread);j<=Math.min(data.length-1,index+spread);j++){
+sum+=data[j];
+count++;
+}
+
+let value=sum/count/255;
+
+/* усиливаем тихие частоты */
+value=Math.pow(value,.62);
+
+/* высокие частоты слегка поднимаем */
+let highBoost=.92+t*.48;
+value*=highBoost;
+
+/* немного живого движения даже на тихих частотах */
+let floor=.025+Math.sin(performance.now()*.004+i*.8)*.006;
+value=Math.max(value,floor);
+
+/* плавность */
+smooth[i]+=((value)-smooth[i])*.28;
+
+let h=Math.max(2,smooth[i]*canvas.height*.9);
+let x=i*(bw+gap);
+let y=canvas.height-h;
+
+let grad=ctx.createLinearGradient(0,y,0,canvas.height);
+grad.addColorStop(0,"#00ff88");
+grad.addColorStop(.55,"#00d9a0");
+grad.addColorStop(1,"#087bff");
+
+ctx.fillStyle=grad;
+ctx.globalAlpha=.88;
+ctx.fillRect(x,y,bw,h);
+}
+
+ctx.globalAlpha=1;
+raf=requestAnimationFrame(draw);
+}
+
+draw();
+}
+
+players.forEach(player=>{
+player.addEventListener("play",function(){
+pauseOthers(player);
+});
+
+player.addEventListener("pause",function(){
+if(player===currentAudio){
+player.closest(".song").classList.remove("playing");
+if(raf)cancelAnimationFrame(raf);
+let canvas=player.closest(".song").querySelector(".fft");
+canvas.getContext("2d").clearRect(0,0,canvas.width,canvas.height);
+}
+});
+
+player.addEventListener("ended",function(){
+if(player===currentAudio){
+player.closest(".song").classList.remove("playing");
+if(raf)cancelAnimationFrame(raf);
+let canvas=player.closest(".song").querySelector(".fft");
+canvas.getContext("2d").clearRect(0,0,canvas.width,canvas.height);
+}
+});
+});
 
 function copyLink(button,file){
+let link=BASE+file;
 
-    const link=
-        location.origin+
-        location.pathname.replace(/[^\/]*$/,"")+
-        file;
-
-    navigator.clipboard.writeText(link)
-    .then(()=>showCopied(button))
-    .catch(()=>{
-
-        const input=document.createElement("input");
-
-        input.value=link;
-        document.body.appendChild(input);
-        input.select();
-
-        document.execCommand("copy");
-
-        input.remove();
-
-        showCopied(button);
-    });
+navigator.clipboard.writeText(link).then(()=>{
+showCopied(button);
+}).catch(()=>{
+let input=document.createElement("input");
+input.value=link;
+document.body.appendChild(input);
+input.select();
+document.execCommand("copy");
+document.body.removeChild(input);
+showCopied(button);
+});
 }
 
 function showCopied(button){
+let old=button.innerHTML;
+button.innerHTML="✓ Ссылка скопирована!";
+button.classList.add("copied");
 
-    const oldText=button.innerHTML;
-
-    button.innerHTML="✓ Ссылка скопирована!";
-    button.classList.add("copied");
-
-    setTimeout(()=>{
-        button.innerHTML=oldText;
-        button.classList.remove("copied");
-    },1500);
+setTimeout(()=>{
+button.innerHTML=old;
+button.classList.remove("copied");
+},1500);
 }
 
-/* =========================
-   ОБЩАЯ ГРОМКОСТЬ
-   ========================= */
-
-let savedVolume=
-    localStorage.getItem("musicVolume");
-
-savedVolume=
-    savedVolume===null?
-    1:
-    parseFloat(savedVolume);
+/* ГРОМКОСТЬ */
+document.addEventListener("DOMContentLoaded",()=>{
+let saved=localStorage.getItem("musicVolume");
+let volume=saved===null?1:parseFloat(saved);
 
 players.forEach(player=>{
+player.volume=volume;
 
-    player.volume=savedVolume;
-
-    player.addEventListener(
-        "volumechange",
-        ()=>{
-
-            localStorage.setItem(
-                "musicVolume",
-                player.volume
-            );
-
-            players.forEach(other=>{
-
-                if(other!==player)
-                    other.volume=player.volume;
-
-            });
-        }
-    );
+player.addEventListener("volumechange",()=>{
+localStorage.setItem("musicVolume",player.volume);
+players.forEach(other=>{
+if(other!==player)other.volume=player.volume;
+});
+});
+});
 });
 
+/* ПОИСК */
+const searchInput=document.getElementById("searchInput");
+const noResults=document.getElementById("noResults");
+
+searchInput.addEventListener("input",function(){
+let query=this.value.toLowerCase().trim();
+let found=0;
+
+songs.forEach(song=>{
+let text=song.dataset.search.toLowerCase();
+let visible=!query||text.includes(query);
+
+song.classList.toggle("hidden",!visible);
+if(visible)found++;
+});
+
+noResults.style.display=found?"none":"block";
+});
 </script>
 
 </body>
