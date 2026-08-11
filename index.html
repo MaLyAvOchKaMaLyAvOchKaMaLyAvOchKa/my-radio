@@ -1,406 +1,806 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1.0"
+>
+
 <title>МаЛяВоЧка - Music</title>
 
+
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+
+*{
+box-sizing:border-box
+}
+
+html{
+scroll-behavior:smooth
+}
 
 body{
+
 margin:0;
+
 background:
-radial-gradient(circle at 70% 10%,rgba(0,255,136,.07),transparent 30%),
-radial-gradient(circle at 90% 80%,rgba(0,180,255,.05),transparent 30%),
+radial-gradient(
+circle at 70% 10%,
+rgba(0,255,136,.07),
+transparent 30%
+),
+
+radial-gradient(
+circle at 90% 80%,
+rgba(0,180,255,.05),
+transparent 30%
+),
+
 #0d0d0f;
+
 color:#fff;
-font-family:Arial,Helvetica,sans-serif;
+
+font-family:
+Arial,
+Helvetica,
+sans-serif;
+
 min-height:100vh
 }
 
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
 .sidebar{
+
 position:fixed;
+
 left:0;
 top:0;
+
 width:190px;
 height:100vh;
-background:linear-gradient(180deg,#18181b,#111113);
-border-right:1px solid rgba(255,255,255,.06);
-box-shadow:5px 0 25px rgba(0,0,0,.45);
+
+background:
+linear-gradient(
+180deg,
+#18181b,
+#111113
+);
+
+border-right:
+1px solid rgba(255,255,255,.06);
+
+box-shadow:
+5px 0 25px rgba(0,0,0,.45);
+
 padding-top:110px;
+
 z-index:100
 }
 
+
 .menu{
+
 display:flex;
+
 align-items:center;
+
 gap:12px;
+
 color:#ddd;
+
 text-decoration:none;
+
 font-size:20px;
+
 padding:17px 20px;
+
 margin:5px 10px;
+
 border-radius:12px;
+
 transition:.2s
 }
 
+
 .menu:hover{
-background:rgba(0,255,136,.08);
+
+background:
+rgba(0,255,136,.08);
+
 color:#00ff88;
-transform:translateX(4px);
-box-shadow:inset 3px 0 0 #00ff88
+
+transform:
+translateX(4px);
+
+box-shadow:
+inset 3px 0 0 #00ff88
 }
 
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
 header{
+
 margin-left:190px;
+
 padding:30px 20px;
+
 text-align:center;
-background:linear-gradient(180deg,#18181a,#151517);
-border-bottom:1px solid rgba(255,255,255,.06);
-box-shadow:0 8px 30px rgba(0,0,0,.35);
+
+background:
+linear-gradient(
+180deg,
+#18181a,
+#151517
+);
+
+border-bottom:
+1px solid rgba(255,255,255,.06);
+
+box-shadow:
+0 8px 30px rgba(0,0,0,.35);
+
 font-size:42px;
+
 font-weight:bold;
+
 color:#00ff88;
+
 letter-spacing:1px;
-text-shadow:0 0 15px rgba(0,255,136,.25);
+
+text-shadow:
+0 0 15px rgba(0,255,136,.25);
+
 position:relative
 }
 
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
 .search{
+
 position:absolute;
+
 right:25px;
+
 top:50%;
-transform:translateY(-50%);
+
+transform:
+translateY(-50%);
+
 width:260px;
+
 height:43px;
+
 display:flex;
+
 align-items:center;
-background:rgba(20,20,22,.85);
-border:1px solid rgba(255,255,255,.1);
+
+background:
+rgba(20,20,22,.85);
+
+border:
+1px solid rgba(255,255,255,.1);
+
 border-radius:22px;
+
 overflow:hidden;
+
 transition:.2s;
-box-shadow:inset 0 0 15px rgba(0,0,0,.25)
+
+box-shadow:
+inset 0 0 15px rgba(0,0,0,.25)
 }
+
 
 .search:focus-within{
+
 border-color:#00ff88;
-box-shadow:0 0 12px rgba(0,255,136,.18),inset 0 0 15px rgba(0,0,0,.25)
+
+box-shadow:
+0 0 12px rgba(0,255,136,.18),
+inset 0 0 15px rgba(0,0,0,.25)
 }
 
+
 .search-icon{
+
 position:relative;
+
 width:45px;
+
 height:100%;
+
 flex-shrink:0
 }
 
+
 .search-icon:before{
+
 content:"";
+
 position:absolute;
+
 width:11px;
+
 height:11px;
-border:2px solid #aaa;
+
+border:
+2px solid #aaa;
+
 border-radius:50%;
+
 left:14px;
+
 top:12px;
+
 transition:.2s
 }
+
 
 .search-icon:after{
+
 content:"";
+
 position:absolute;
+
 width:7px;
+
 height:2px;
+
 background:#aaa;
-transform:rotate(45deg);
+
+transform:
+rotate(45deg);
+
 left:25px;
+
 top:25px;
+
 border-radius:2px;
+
 transition:.2s
 }
 
-.search:focus-within .search-icon:before{
+
+.search:focus-within
+.search-icon:before{
+
 border-color:#00ff88
 }
 
-.search:focus-within .search-icon:after{
+
+.search:focus-within
+.search-icon:after{
+
 background:#00ff88
 }
 
+
 .search input{
+
 width:100%;
+
 height:100%;
+
 border:0;
+
 outline:0;
+
 background:transparent;
+
 color:#fff;
+
 font-size:15px;
-padding:0 15px 0 0
+
+padding:
+0 15px 0 0
 }
 
+
 .search input::placeholder{
+
 color:#888
 }
 
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
 .content{
+
 margin-left:190px;
-width:calc(100% - 190px);
-padding:35px 30px 80px
+
+width:
+calc(100% - 190px);
+
+padding:
+35px 30px 80px
 }
 
-.loading,.no-results,.error{
+
+.loading,
+.no-results,
+.error{
+
 width:min(760px,90%);
+
 margin:30px auto;
+
 text-align:center
 }
 
+
 .loading{
+
 color:#777;
+
 font-size:17px
 }
 
+
 .loading span{
+
 color:#00ff88
 }
 
+
 .no-results{
+
 display:none;
+
 color:#777;
+
 font-size:18px
 }
 
+
 .error{
+
 display:none;
+
 padding:20px;
+
 border-radius:12px;
-background:rgba(255,50,50,.06);
-border:1px solid rgba(255,50,50,.15);
+
+background:
+rgba(255,50,50,.06);
+
+border:
+1px solid rgba(255,50,50,.15);
+
 color:#aaa;
+
 line-height:1.6
 }
 
+
 .error b{
+
 color:#ff6666
 }
 
+
+/* =========================================================
+   SONG
+   ========================================================= */
+
 .song{
-background:linear-gradient(145deg,rgba(27,31,31,.97),rgba(22,25,26,.97));
+
+background:
+linear-gradient(
+145deg,
+rgba(27,31,31,.97),
+rgba(22,25,26,.97)
+);
+
 width:min(760px,90%);
-margin:0 auto 12px;
+
+margin:
+0 auto 12px;
+
 border-radius:14px;
-padding:13px 18px 10px;
-border:1px solid rgba(255,255,255,.055);
-box-shadow:0 8px 25px rgba(0,0,0,.28),inset 0 0 20px rgba(0,255,136,.015);
+
+padding:
+13px 18px 10px;
+
+border:
+1px solid rgba(255,255,255,.055);
+
+box-shadow:
+0 8px 25px rgba(0,0,0,.28),
+inset 0 0 20px rgba(0,255,136,.015);
+
 transition:.2s
 }
 
+
 .song:hover{
-transform:translateY(-2px);
-border-color:rgba(0,255,136,.18);
-box-shadow:0 12px 30px rgba(0,0,0,.4),0 0 20px rgba(0,255,136,.035)
+
+transform:
+translateY(-2px);
+
+border-color:
+rgba(0,255,136,.18);
+
+box-shadow:
+0 12px 30px rgba(0,0,0,.4),
+0 0 20px rgba(0,255,136,.035)
 }
 
+
 .song.hidden{
+
 display:none
 }
 
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
 .title{
+
 height:37px;
+
 font-size:20px;
+
 display:flex;
+
 align-items:center;
+
 gap:10px;
+
 color:#f2f2f2;
+
 white-space:nowrap;
+
 overflow:hidden
 }
 
+
 .title .music-icon{
+
 font-size:24px;
+
 color:#9b62ff;
-filter:drop-shadow(0 0 5px rgba(140,70,255,.45));
+
+filter:
+drop-shadow(
+0 0 5px rgba(140,70,255,.45)
+);
+
 flex-shrink:0
 }
 
+
 .title>span:nth-child(2){
+
 overflow:hidden;
+
 text-overflow:ellipsis
 }
 
-.fft{
-display:none;
-width:220px;
-height:48px;
-margin-left:auto;
-flex-shrink:0
-}
 
-.song.playing .fft{
-display:block
-}
+/* =========================================================
+   AUDIO
+   ========================================================= */
 
 audio{
+
 display:block;
+
 width:100%;
+
 height:48px;
+
 border-radius:12px;
-margin:0 0 9px
+
+margin:
+0 0 9px
 }
 
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
 .buttons{
+
 display:flex;
+
 gap:10px;
+
 width:100%
 }
 
+
 .btn{
+
 flex:1;
+
 border:0;
+
 border-radius:7px;
-padding:8px 15px;
+
+padding:
+8px 15px;
+
 font-size:14px;
+
 font-weight:bold;
+
 text-align:center;
+
 text-decoration:none;
+
 cursor:pointer;
+
 transition:.15s
 }
 
+
 .btn:hover{
-transform:translateY(-1px);
-filter:brightness(1.08)
+
+transform:
+translateY(-1px);
+
+filter:
+brightness(1.08)
 }
+
 
 .btn:active{
-transform:translateY(0)
+
+transform:
+translateY(0)
 }
+
 
 .download{
+
 background:#00c878;
+
 color:#fff;
-box-shadow:0 4px 12px rgba(0,200,120,.1)
+
+box-shadow:
+0 4px 12px rgba(0,200,120,.1)
 }
 
+
 .copy{
+
 background:#087fd0;
+
 color:#fff
 }
 
+
 .copy.copied{
+
 background:#00b86b
 }
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status{
+
+width:min(760px,90%);
+
+margin:
+0 auto 20px;
+
+text-align:center;
+
+font-size:13px;
+
+color:#555;
+
+min-height:18px
+}
+
+
+.status.ok{
+
+color:#00a96b
+}
+
+
+.status.offline{
+
+color:#ff7777
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media(max-width:800px){
 
 .sidebar{
+
 width:70px;
+
 padding-top:90px
 }
 
+
 .menu{
+
 justify-content:center;
+
 font-size:0;
+
 padding:15px;
+
 margin:6px
 }
 
+
 .menu:first-letter{
+
 font-size:25px
 }
 
+
 header{
+
 margin-left:70px;
+
 font-size:30px;
-padding:25px 10px
+
+padding:
+25px 10px
 }
 
+
 .search{
+
 position:relative;
+
 right:auto;
+
 top:auto;
+
 transform:none;
-margin:18px auto 0;
+
+margin:
+18px auto 0;
+
 width:min(400px,90%);
+
 height:40px
 }
 
+
 .content{
+
 margin-left:70px;
-width:calc(100% - 70px);
-padding:25px 10px 60px
+
+width:
+calc(100% - 70px);
+
+padding:
+25px 10px 60px
 }
 
+
 .song{
+
 width:100%;
+
 padding:12px
 }
 
+
 .buttons{
+
 flex-direction:column
 }
 
+
 .btn{
+
 width:100%
 }
 
+
 .title{
+
 font-size:19px
 }
 
-.fft{
-width:150px;
-height:40px
 }
 
-}
 
 @media(max-width:500px){
 
 .title{
+
 gap:6px
 }
 
+
 .title .music-icon{
+
 font-size:21px
 }
 
-.fft{
-width:120px;
-height:34px
 }
 
-}
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =======================================================
+     SIDEBAR
+     ======================================================= -->
+
 <div class="sidebar">
 
-<a href="index.html" class="menu">
+<a
+href="index.html"
+class="menu"
+>
 🎧 <span>Music</span>
 </a>
 
-<a href="Roflan.html" class="menu">
+
+<a
+href="Roflan.html"
+class="menu"
+>
 😂 <span>Рофл звуки</span>
 </a>
 
-<a href="Gachi.html" class="menu">
+
+<a
+href="Gachi.html"
+class="menu"
+>
 🎤 <span>Gachi</span>
 </a>
 
-<a href="Skrimer.html" class="menu">
+
+<a
+href="Skrimer.html"
+class="menu"
+>
 😱 <span>Скримеры</span>
 </a>
 
 </div>
 
+
+<!-- =======================================================
+     HEADER
+     ======================================================= -->
+
 <header>
 
 🎧 МаЛяВоЧка - Music 🎧
+
 
 <div class="search">
 
@@ -416,42 +816,60 @@ placeholder="Найти трек..."
 
 </header>
 
+
+<!-- =======================================================
+     CONTENT
+     ======================================================= -->
+
 <div class="content">
 
-<div class="loading" id="loading">
-Загрузка музыки... <span>♪</span>
+
+<div
+class="loading"
+id="loading"
+>
+
+Загрузка музыки...
+<span>♪</span>
+
 </div>
 
-<div class="error" id="error"></div>
 
-<div id="songsContainer"></div>
+<div
+class="status"
+id="status"
+></div>
 
-<div class="no-results" id="noResults">
+
+<div
+class="error"
+id="error"
+></div>
+
+
+<div
+id="songsContainer"
+></div>
+
+
+<div
+class="no-results"
+id="noResults"
+>
+
 Ничего не найдено 😔
-</div>
 
 </div>
+
+
+</div>
+
 
 <script>
 
+
 /* =========================================================
    MaLyAvOchKa Music
-   =========================================================
-
-   Worker работает со всем репозиторием.
-
-   Главная страница показывает ТОЛЬКО:
-
-   Music/*.mp3
-
-   Все остальные папки игнорируются.
-
-   Воспроизведение:
-   Worker /music/ID
-
-   ВАЖНО:
-   Аудио НЕ подключается к Web Audio API.
-   Поэтому звук не пропадает из-за CORS.
    ========================================================= */
 
 
@@ -459,24 +877,38 @@ placeholder="Найти трек..."
    WORKER
    ========================================================= */
 
-const WORKER=
+const WORKER =
 "https://malyavochka-music.rxmlopdt.workers.dev";
 
-const LIST_URL=
-WORKER+"/list";
+
+const LIST_URL =
+WORKER + "/list";
+
+
+/*
+   Кэш списка.
+
+   Если Worker временно не ответил,
+   сайт не останется пустым.
+*/
+
+const CACHE_KEY =
+"malyavochka_music_list_v1";
 
 
 /* =========================================================
-   СОСТОЯНИЕ
+   VARIABLES
    ========================================================= */
 
 let songs=[];
+
 let players=[];
+
 let currentAudio=null;
 
 
 /* =========================================================
-   ТРАНСЛИТ
+   TRANSLIT
    ========================================================= */
 
 const translit={
@@ -519,17 +951,25 @@ const translit={
 
 
 /* =========================================================
-   ЗАГРУЗКА
+   FETCH WITH RETRIES
    ========================================================= */
 
-async function loadMusic(){
+async function fetchList(){
 
-const loading=
-document.getElementById("loading");
+let lastError=null;
 
-const error=
-document.getElementById("error");
 
+/*
+   Пробуем Worker несколько раз.
+
+   Это защищает от временного сбоя.
+*/
+
+for(
+let attempt=1;
+attempt<=3;
+attempt++
+){
 
 try{
 
@@ -537,7 +977,9 @@ const response=
 await fetch(
 LIST_URL+
 "?t="+
-Date.now(),
+Date.now()+
+"&attempt="+
+attempt,
 {
 cache:"no-store"
 }
@@ -547,8 +989,7 @@ cache:"no-store"
 if(!response.ok){
 
 throw new Error(
-"Worker: "+
-response.status
+"HTTP "+response.status
 );
 
 }
@@ -558,31 +999,91 @@ const text=
 await response.text();
 
 
+if(!text.trim()){
+
+throw new Error(
+"Worker вернул пустой список"
+);
+
+}
+
+
+return text;
+
+
+}catch(error){
+
+lastError=error;
+
+console.warn(
+"Попытка загрузки списка:",
+attempt,
+error
+);
+
+
+/*
+   Небольшая задержка
+   между попытками.
+*/
+
+if(attempt<3){
+
+await new Promise(
+resolve=>
+setTimeout(
+resolve,
+700
+)
+);
+
+}
+
+}
+
+}
+
+
+throw lastError ||
+new Error("Не удалось получить список");
+
+}
+
+
 /* =========================================================
-   РАЗБИРАЕМ /list
+   PARSE LIST
    ========================================================= */
+
+function parseList(text){
 
 const lines=
 text
 .split(/\r?\n/)
-.map(line=>line.trim())
+.map(
+line=>line.trim()
+)
 .filter(Boolean);
 
 
 const musicFiles=[];
 
 
-for(const line of lines){
-
 /*
-   Ищем:
+   Поддерживаем формат:
 
-   ID → путь.mp3
+   3454af22 → Music/Миа.mp3
+
+   а также возможные варианты
+   с пробелами.
 */
 
-const match=
+for(
+const line of lines
+){
+
+let match=
 line.match(
-/^([a-f0-9]{8}|\d{8})\s+→\s+(.+\.mp3)$/i
+/^\s*([a-fA-F0-9]{8}|\d{8})\s+→\s+(.+?)\s*$/
 );
 
 
@@ -596,25 +1097,33 @@ continue;
 const id=
 match[1];
 
-const filePath=
-match[2];
+
+let filePath=
+match[2].trim();
 
 
-/* =========================================================
-   ТОЛЬКО ПАПКА MUSIC
-   ========================================================= */
+/*
+   Иногда путь может быть URL-encoded.
+*/
+
+try{
+
+filePath=
+decodeURIComponent(
+filePath
+);
+
+}catch(e){}
+
+
+/*
+   Берём только Music/.
+*/
 
 if(
-!filePath.startsWith("Music/")
-){
-
-continue;
-
-}
-
-
-if(
-!filePath.toLowerCase().endsWith(".mp3")
+!filePath
+.toLowerCase()
+.startsWith("music/")
 ){
 
 continue;
@@ -623,16 +1132,23 @@ continue;
 
 
 /*
-   Берём только имя файла.
-
-   Music/Test.mp3
-   ↓
-   Test.mp3
+   Только MP3.
 */
+
+if(
+!filePath
+.toLowerCase()
+.endsWith(".mp3")
+){
+
+continue;
+
+}
+
 
 const fileName=
 filePath.substring(
-"Music/".length
+6
 );
 
 
@@ -649,11 +1165,33 @@ path:filePath
 }
 
 
-/* =========================================================
-   СОРТИРОВКА
-   ========================================================= */
+/*
+   Убираем дубликаты.
+*/
 
-musicFiles.sort(
+const unique=
+new Map();
+
+
+for(
+const file of musicFiles
+){
+
+unique.set(
+file.id,
+file
+);
+
+}
+
+
+/*
+   Сортировка.
+*/
+
+return [
+...unique.values()
+].sort(
 (a,b)=>
 a.name.localeCompare(
 b.name,
@@ -667,18 +1205,240 @@ sensitivity:"base"
 
 
 /* =========================================================
-   СОЗДАЁМ СТРАНИЦУ
+   LOAD MUSIC
    ========================================================= */
+
+async function loadMusic(){
+
+const loading=
+document.getElementById(
+"loading"
+);
+
+const error=
+document.getElementById(
+"error"
+);
+
+const status=
+document.getElementById(
+"status"
+);
+
+
+loading.style.display="block";
+
+error.style.display="none";
+
+
+/*
+   СНАЧАЛА пытаемся показать
+   сохранённый список.
+
+   Поэтому обновление страницы
+   больше не должно давать пустой экран.
+*/
+
+let cached=null;
+
+
+try{
+
+const saved=
+localStorage.getItem(
+CACHE_KEY
+);
+
+
+if(saved){
+
+cached=
+JSON.parse(saved);
+
+}
+
+}catch(e){
+
+console.warn(
+"Ошибка чтения кэша:",
+e
+);
+
+}
+
+
+/*
+   Если кэш есть —
+   показываем его сразу.
+*/
+
+if(
+Array.isArray(cached)&&
+cached.length
+){
+
+renderMusic(cached);
+
+loading.style.display="none";
+
+status.textContent=
+"";
+
+}
+
+
+/*
+   Теперь обновляем список
+   с Worker.
+*/
+
+try{
+
+const text=
+await fetchList();
+
+
+const musicFiles=
+parseList(text);
+
+
+/*
+   Если Worker ответил,
+   но список пустой,
+   не уничтожаем старый кэш.
+*/
+
+if(!musicFiles.length){
+
+if(
+cached&&
+cached.length
+){
+
+status.textContent=
+"";
+
+return;
+
+}
+
+throw new Error(
+"Worker не вернул файлы Music"
+);
+
+}
+
+
+/*
+   Сохраняем список.
+
+   В localStorage сохраняются
+   только ID + имя файла.
+*/
+
+try{
+
+localStorage.setItem(
+CACHE_KEY,
+JSON.stringify(
+musicFiles
+)
+);
+
+}catch(e){
+
+console.warn(
+"Не удалось сохранить кэш:",
+e
+);
+
+}
+
+
+/*
+   Показываем свежий список.
+*/
+
+renderMusic(
+musicFiles
+);
+
+
+loading.style.display="none";
+
+status.textContent="";
+
+
+}catch(e){
+
+console.error(
+"Ошибка Worker:",
+e
+);
+
+
+/*
+   Если уже есть песни
+   из кэша —
+   НЕ показываем красную ошибку.
+*/
+
+if(
+cached&&
+cached.length
+){
+
+loading.style.display="none";
+
+status.textContent="";
+
+
+return;
+
+}
+
+
+/*
+   Если вообще ничего нет —
+   показываем ошибку.
+*/
+
+loading.style.display="none";
+
+error.style.display="block";
+
+error.innerHTML=
+
+"<b>🎧 Музыка куда-то сбежала...</b><br><br>"+
+
+"Не удалось получить список музыки с Worker.<br>"+
+
+"Попробуй обновить страницу чуть позже.";
+
+}
+
+}
+
+
+/* =========================================================
+   RENDER MUSIC
+   ========================================================= */
+
+function renderMusic(
+musicFiles
+){
 
 const container=
 document.getElementById(
 "songsContainer"
 );
 
+
 container.innerHTML="";
 
 
-musicFiles.forEach(file=>{
+musicFiles.forEach(
+file=>{
 
 createSong(
 file.name,
@@ -689,15 +1449,12 @@ container
 });
 
 
-/* =========================================================
-   PLAYERS
-   ========================================================= */
-
 songs=[
 ...document.querySelectorAll(
 ".song"
 )
 ];
+
 
 players=[
 ...document.querySelectorAll(
@@ -706,60 +1463,17 @@ players=[
 ];
 
 
-/* =========================================================
-   LOADING
-   ========================================================= */
-
-if(musicFiles.length){
-
-loading.style.display=
-"none";
-
-}else{
-
-loading.innerHTML=
-'В папке <span>Music</span> пока нет MP3 🎵';
-
-}
-
-
-/* =========================================================
-   НАСТРОЙКИ
-   ========================================================= */
-
 setupPlayers();
 
 setupVolume();
 
 setupSearch();
 
-
-}catch(e){
-
-console.error(
-"Ошибка загрузки:",
-e
-);
-
-
-loading.style.display=
-"none";
-
-error.style.display=
-"block";
-
-error.innerHTML=
-"<b>🎧 Музыка куда-то сбежала...</b><br><br>"+
-"МаЛяВоЧка не смогла открыть музыкальную коллекцию 😔<br>"+
-"Попробуй обновить страницу чуть позже.";
-
-}
-
 }
 
 
 /* =========================================================
-   СОЗДАНИЕ ПЕСНИ
+   CREATE SONG
    ========================================================= */
 
 function createSong(
@@ -778,14 +1492,33 @@ fileName.replace(
 try{
 
 title=
-decodeURIComponent(title);
+decodeURIComponent(
+title
+);
 
 }catch(e){}
 
 
-/* =========================================================
-   ПОИСК
-   ========================================================= */
+/*
+   URL MP3.
+
+   ВАЖНО:
+
+   Ничего не меняем.
+
+   Это тот же самый Worker URL,
+   который у тебя напрямую открывал MP3.
+*/
+
+const fullURL=
+WORKER+
+"/music/"+
+id;
+
+
+/*
+   Поиск.
+*/
 
 const searchText=
 title
@@ -800,32 +1533,13 @@ title
 .trim();
 
 
-/* =========================================================
-   WORKER URL
-   =========================================================
-
-   Например:
-
-   /music/ad53d31a
-
-   Никакого GitHub URL здесь нет.
-*/
-
-const fullURL=
-WORKER+
-"/music/"+
-id;
-
-
-/* =========================================================
-   SONG
-   ========================================================= */
-
 const song=
-document.createElement("div");
+document.createElement(
+"div"
+);
 
-song.className=
-"song";
+
+song.className="song";
 
 
 song.dataset.search=
@@ -846,48 +1560,50 @@ song.innerHTML=`
 🎵
 </span>
 
-<span title="${escapeHTML(title)}">
+<span
+title="${escapeHTML(title)}"
+>
 ${escapeHTML(title)}
 </span>
-
-<canvas
-class="fft"
-width="440"
-height="96">
-</canvas>
 
 </div>
 
 
 <audio
 controls
-preload="metadata">
+preload="metadata"
+>
 
 <source
 src="${fullURL}"
-type="audio/mpeg">
+type="audio/mpeg"
+>
+
+Ваш браузер не поддерживает
+воспроизведение MP3.
 
 </audio>
 
 
 <div class="buttons">
 
+
 <a
 class="btn download"
 href="${fullURL}"
-download>
-
+download
+>
 ↓ Скачать MP3
-
 </a>
 
 
 <button
-class="btn copy">
-
+class="btn copy"
+type="button"
+>
 🔗 Копировать ссылку
-
 </button>
+
 
 </div>
 
@@ -898,14 +1614,18 @@ class="btn copy">
    COPY
    ========================================================= */
 
-song
-.querySelector(".copy")
-.addEventListener(
+const copyButton=
+song.querySelector(
+".copy"
+);
+
+
+copyButton.addEventListener(
 "click",
 ()=>{
 
 copyLink(
-song.querySelector(".copy"),
+copyButton,
 fullURL
 );
 
@@ -924,10 +1644,14 @@ song
    SEARCH VARIANTS
    ========================================================= */
 
-function makeSearchVariants(text){
+function makeSearchVariants(
+text
+){
 
 const base=
-normalizeSearch(text);
+normalizeSearch(
+text
+);
 
 
 let transliterated="";
@@ -938,45 +1662,28 @@ const char of base
 ){
 
 transliterated+=
+
 translit[char]!==undefined
+
 ?
+
 translit[char]
+
 :
+
 char;
 
 }
 
 
-const words=
-base
-.split(" ")
-.filter(Boolean);
+return (
 
-
-const extraWords=[];
-
-
-words.forEach(word=>{
-
-if(word.length>=2){
-
-extraWords.push(word);
-
-}
-
-});
-
-
-return(
 base+
 " "+
 normalizeSearch(
 transliterated
-)+
-" "+
-normalizeSearch(
-extraWords.join(" ")
 )
+
 ).trim();
 
 }
@@ -986,7 +1693,9 @@ extraWords.join(" ")
    ESCAPE HTML
    ========================================================= */
 
-function escapeHTML(text){
+function escapeHTML(
+text
+){
 
 return text
 
@@ -1022,7 +1731,9 @@ return text
    NORMALIZE
    ========================================================= */
 
-function normalizeSearch(text){
+function normalizeSearch(
+text
+){
 
 return text
 
@@ -1069,14 +1780,14 @@ document.getElementById(
 "searchInput"
 );
 
+
 const noResults=
 document.getElementById(
 "noResults"
 );
 
 
-input.addEventListener(
-"input",
+input.oninput=
 function(){
 
 const query=
@@ -1094,7 +1805,8 @@ query
 let found=0;
 
 
-songs.forEach(song=>{
+songs.forEach(
+song=>{
 
 const text=
 song.dataset.search;
@@ -1102,6 +1814,7 @@ song.dataset.search;
 
 const visible=
 !words.length||
+
 words.every(
 word=>
 text.includes(word)
@@ -1124,167 +1837,19 @@ found++;
 
 
 noResults.style.display=
-found===0&&words.length
+
+found===0&&
+words.length
+
 ?
+
 "block"
+
 :
+
 "none";
 
-});
-
-}
-
-
-/* =========================================================
-   ПАУЗА ДРУГИХ ПЛЕЕРОВ
-   ========================================================= */
-
-function pauseOthers(current){
-
-players.forEach(
-player=>{
-
-if(
-player!==current
-){
-
-player.pause();
-
-player.currentTime=0;
-
-
-const oldSong=
-player.closest(
-".song"
-);
-
-
-if(oldSong){
-
-oldSong.classList.remove(
-"playing"
-);
-
-clearFFT(
-oldSong
-);
-
-}
-
-}
-
-}
-);
-
-
-currentAudio=
-current;
-
-
-const currentSong=
-current.closest(
-".song"
-);
-
-
-if(currentSong){
-
-currentSong.classList.add(
-"playing"
-);
-
-}
-
-
-/* =========================================================
-   ГРОМКОСТЬ
-   ========================================================= */
-
-const saved=
-localStorage.getItem(
-"musicVolume"
-);
-
-
-if(saved!==null){
-
-current.volume=
-parseFloat(saved);
-
-}
-
-}
-
-
-/* =========================================================
-   FFT
-   =========================================================
-
-   ОТКЛЮЧЕН.
-
-   Причина:
-   Worker находится на workers.dev,
-   а Web Audio API требует CORS для
-   createMediaElementSource().
-
-   Если подключить аудио к AudioContext
-   без правильного CORS, браузер может
-   полностью убрать звук.
-
-   Сам обычный HTML audio работает нормально.
-   ========================================================= */
-
-function clearFFT(song){
-
-if(!song){
-
-return;
-
-}
-
-
-const canvas=
-song.querySelector(
-".fft"
-);
-
-
-if(!canvas){
-
-return;
-
-}
-
-
-const ctx=
-canvas.getContext("2d");
-
-
-ctx.clearRect(
-0,
-0,
-canvas.width,
-canvas.height
-);
-
-}
-
-
-function startFFT(audio){
-
-/*
-   Ничего не делаем.
-
-   Звук остаётся напрямую:
-
-   <audio>
-       ↓
-   Worker
-       ↓
-   динамики
-*/
-
-return;
+};
 
 }
 
@@ -1299,92 +1864,91 @@ players.forEach(
 player=>{
 
 
-player.addEventListener(
-"play",
-()=>{
+/*
+   Когда запускаем песню —
+   останавливаем остальные.
+*/
+
+player.onplay=
+function(){
 
 pauseOthers(
 player
 );
 
-startFFT(
-player
-);
-
-}
-);
+};
 
 
-player.addEventListener(
-"pause",
-()=>{
+/*
+   Если песня остановилась.
+*/
+
+player.onpause=
+function(){
 
 if(
-player===
-currentAudio
+player===currentAudio
 ){
 
-const song=
-player.closest(
-".song"
-);
+/*
+   Ничего сложного
+   не делаем.
 
-
-if(song){
-
-song.classList.remove(
-"playing"
-);
-
-clearFFT(
-song
-);
+   Главное — не трогаем
+   AudioContext.
+*/
 
 }
 
-}
-
-}
-);
+};
 
 
-player.addEventListener(
-"ended",
-()=>{
+/*
+   Конец песни.
+*/
+
+player.onended=
+function(){
 
 if(
-player===
-currentAudio
+player===currentAudio
 ){
 
-const song=
-player.closest(
-".song"
-);
-
-
-if(song){
-
-song.classList.remove(
-"playing"
-);
-
-clearFFT(
-song
-);
+currentAudio=null;
 
 }
+
+};
+
+});
+
+}
+
+
+/* =========================================================
+   PAUSE OTHERS
+   ========================================================= */
+
+function pauseOthers(
+current
+){
+
+players.forEach(
+player=>{
+
+if(
+player!==current
+){
+
+player.pause();
+
+}
+
+});
 
 
 currentAudio=
-null;
-
-}
-
-}
-);
-
-});
+current;
 
 }
 
@@ -1393,59 +1957,32 @@ null;
    COPY LINK
    ========================================================= */
 
-function copyLink(
+async function copyLink(
 button,
 link
 ){
 
-if(
-navigator.clipboard
-){
+try{
 
-navigator.clipboard
-.writeText(
+await navigator.clipboard.writeText(
 link
-)
-.then(
-()=>{
+);
 
 showCopied(
 button
 );
 
-}
-)
-.catch(
-()=>{
 
-fallbackCopy(
-button,
-link
-);
+}catch(e){
 
-}
-);
+/*
+   Старый способ
+   для браузеров,
+   где Clipboard API
+   недоступен.
+*/
 
-}else{
-
-fallbackCopy(
-button,
-link
-);
-
-}
-
-}
-
-
-/* =========================================================
-   FALLBACK COPY
-   ========================================================= */
-
-function fallbackCopy(
-button,
-link
-){
+try{
 
 const input=
 document.createElement(
@@ -1457,10 +1994,20 @@ input.value=
 link;
 
 
+input.style.position=
+"fixed";
+
+
+input.style.opacity=
+"0";
+
+
 document.body.appendChild(
 input
 );
 
+
+input.focus();
 
 input.select();
 
@@ -1478,6 +2025,18 @@ input
 showCopied(
 button
 );
+
+
+}catch(error){
+
+alert(
+"Не удалось скопировать ссылку.\n\n"+
+link
+);
+
+}
+
+}
 
 }
 
@@ -1558,9 +2117,8 @@ player.volume=
 volume;
 
 
-player.addEventListener(
-"volumechange",
-()=>{
+player.onvolumechange=
+function(){
 
 localStorage.setItem(
 "musicVolume",
@@ -1580,11 +2138,9 @@ player.volume;
 
 }
 
-}
-);
+});
 
-}
-);
+};
 
 });
 
@@ -1600,4 +2156,5 @@ loadMusic();
 </script>
 
 </body>
+
 </html>
