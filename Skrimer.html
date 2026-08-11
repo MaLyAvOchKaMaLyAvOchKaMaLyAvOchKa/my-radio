@@ -2,346 +2,474 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>МаЛяВоЧка - Скримеры</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>МаЛяВоЧка — Скримеры</title>
 <style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-    margin:0;
-    background:#111;
-    color:white;
-    font-family:Arial;
+margin:0;
+background:radial-gradient(circle at 70% 10%,rgba(255,50,50,0.07),transparent 30%),radial-gradient(circle at 90% 80%,rgba(0,180,255,0.05),transparent 30%),#0d0d0f;
+color:white;
+font-family:Arial,Helvetica,sans-serif;
+min-height:100vh;
 }
-
 .sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    width:170px;
-    height:100%;
-    background:#181818;
-    box-shadow:3px 0 10px #000;
-    padding-top:120px;
+position:fixed;
+left:0;
+top:0;
+width:190px;
+height:100vh;
+background:linear-gradient(180deg,#18181b,#111113);
+border-right:1px solid rgba(255,255,255,0.06);
+box-shadow:5px 0 25px rgba(0,0,0,0.45);
+padding-top:110px;
+z-index:100;
 }
-
 .menu{
-    display:block;
-    color:white;
-    text-decoration:none;
-    font-size:22px;
-    padding:18px;
-    transition:.2s;
+display:flex;
+align-items:center;
+gap:12px;
+color:#ddd;
+text-decoration:none;
+font-size:20px;
+padding:17px 20px;
+margin:5px 10px;
+border-radius:12px;
+transition:background .2s,color .2s,transform .2s,box-shadow .2s;
 }
-
 .menu:hover{
-    background:#333;
-    color:#00ff88;
+background:rgba(255,60,60,0.08);
+color:#ff5555;
+transform:translateX(4px);
+box-shadow:inset 3px 0 0 #ff5555;
 }
-
 header{
-    margin-left:170px;
-    background:#181818;
-    padding:25px;
-    text-align:center;
-    font-size:42px;
-    font-weight:bold;
-    color:#00ff88;
-    box-shadow:0 0 20px #000;
+margin-left:190px;
+padding:30px 20px;
+text-align:center;
+background:linear-gradient(180deg,#18181a,#151517);
+border-bottom:1px solid rgba(255,255,255,0.06);
+box-shadow:0 8px 30px rgba(0,0,0,0.35);
+font-size:42px;
+font-weight:bold;
+color:#ff5555;
+letter-spacing:1px;
+text-shadow:0 0 15px rgba(255,50,50,0.25);
 }
-
+.content{
+margin-left:190px;
+width:calc(100% - 190px);
+padding:35px 30px 80px;
+}
 .song{
-    background:#222;
-    width:700px;
-    margin:20px auto;
-    margin-left:250px;
-    border-radius:12px;
-    padding:15px;
-    transition:.2s;
+background:linear-gradient(145deg,rgba(38,38,41,0.96),rgba(29,29,32,0.96));
+width:min(760px,90%);
+margin:0 auto 22px;
+border-radius:17px;
+padding:20px;
+border:1px solid rgba(255,255,255,0.05);
+box-shadow:0 10px 30px rgba(0,0,0,0.25);
+transition:transform .2s,border .2s,box-shadow .2s;
 }
-
 .song:hover{
-    background:#333;
-    transform:scale(1.02);
+transform:translateY(-3px);
+border:1px solid rgba(255,60,60,0.18);
+box-shadow:0 14px 35px rgba(0,0,0,0.4),0 0 25px rgba(255,50,50,0.04);
 }
-
 .title{
-    font-size:24px;
-    margin-bottom:10px;
+font-size:24px;
+margin-bottom:13px;
+display:flex;
+align-items:center;
+gap:9px;
+color:#f2f2f2;
 }
-
+.music-icon{
+font-size:27px;
+filter:drop-shadow(0 0 6px rgba(255,50,50,0.4));
+}
 audio{
-    width:100%;
+width:100%;
+height:48px;
+border-radius:12px;
+margin-bottom:14px;
 }
-
+.buttons{
+display:flex;
+gap:10px;
+width:100%;
+}
 .btn{
-    display:inline-block;
-    background:#00aa66;
-    color:white;
-    text-decoration:none;
-    padding:10px 18px;
-    border-radius:8px;
-    margin-top:10px;
-    margin-right:10px;
-    transition:.2s;
-    cursor:pointer;
-    border:none;
-    font-size:16px;
+flex:1;
+border:0;
+border-radius:10px;
+padding:12px 15px;
+font-size:16px;
+font-weight:bold;
+text-align:center;
+text-decoration:none;
+cursor:pointer;
+transition:transform .15s,filter .15s,box-shadow .15s;
 }
-
 .btn:hover{
-    background:#00dd88;
+transform:translateY(-2px);
+filter:brightness(1.08);
+}
+.btn:active{transform:translateY(0)}
+.download{
+background:#00c878;
+color:white;
+box-shadow:0 5px 15px rgba(0,200,120,0.12);
+}
+.download:hover{box-shadow:0 7px 20px rgba(0,200,120,0.2)}
+.copy{
+background:#0796d1;
+color:white;
+border:0;
+}
+.copy:hover{box-shadow:0 7px 20px rgba(0,150,210,0.18)}
+.copy.copied{background:#00b86b}
+@media(max-width:800px){
+.sidebar{
+width:70px;
+padding-top:90px;
+}
+.menu{
+justify-content:center;
+font-size:0;
+padding:15px;
+margin:6px;
+}
+.menu span{display:none}
+.menu::first-letter{font-size:25px}
+header{
+margin-left:70px;
+font-size:30px;
+padding:25px 10px;
+}
+.content{
+margin-left:70px;
+width:calc(100% - 70px);
+padding:25px 10px 60px;
+}
+.song{
+width:100%;
+padding:15px;
+}
+.buttons{flex-direction:column}
+.btn{width:100%}
 }
 </style>
 </head>
-
 <body>
 
 <div class="sidebar">
-    <a href="index.html" class="menu">🎧 Радио</a>
-    <a href="Roflan.html" class="menu">😂 Рофл звуки</a>
-    <a href="Gachi.html" class="menu">🎤 Gachi</a>
-    <a href="Skrimer.html" class="menu">😱 Скримеры</a>
+<a href="index.html" class="menu">🎧 <span>Music</span></a>
+<a href="Roflan.html" class="menu">😂 <span>Рофл звуки</span></a>
+<a href="Gachi.html" class="menu">🎤 <span>Gachi</span></a>
+<a href="Skrimer.html" class="menu">😱 <span>Скримеры</span></a>
 </div>
 
 <header>
-😱 МаЛяВоЧка - Скримеры / Артес
+😱 МаЛяВоЧка — Скримеры
 </header>
 
-<!-- 1-13 -->
+<div class="content">
 
 <div class="song">
-<div class="title">😱 Скример 1</div>
+<div class="title"><span class="music-icon">😱</span>Скример 1</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer1.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer1.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer1.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer1.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer1.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 2</div>
+<div class="title"><span class="music-icon">😱</span>Скример 2</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer2.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer2.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer2.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer2.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer2.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 3</div>
+<div class="title"><span class="music-icon">😱</span>Скример 3</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer3.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer3.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer3.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer3.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer3.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 4</div>
+<div class="title"><span class="music-icon">😱</span>Скример 4</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer4.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer4.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer4.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer4.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer4.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 5</div>
+<div class="title"><span class="music-icon">😱</span>Скример 5</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer5.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer5.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer5.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer5.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer5.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 6</div>
+<div class="title"><span class="music-icon">😱</span>Скример 6</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer6.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer6.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer6.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer6.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer6.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 7</div>
+<div class="title"><span class="music-icon">😱</span>Скример 7</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer7.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer7.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer7.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer7.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer7.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 8</div>
+<div class="title"><span class="music-icon">😱</span>Скример 8</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer8.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer8.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer8.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer8.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer8.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 9</div>
+<div class="title"><span class="music-icon">😱</span>Скример 9</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer9.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer9.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer9.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer9.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer9.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 10</div>
+<div class="title"><span class="music-icon">😱</span>Скример 10</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer10.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer10.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer10.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer10.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer10.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 11</div>
+<div class="title"><span class="music-icon">😱</span>Скример 11</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer11.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer11.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer11.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer11.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer11.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 12</div>
+<div class="title"><span class="music-icon">😱</span>Скример 12</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer12.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer12.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer12.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer12.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer12.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 13</div>
+<div class="title"><span class="music-icon">😱</span>Скример 13</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer13.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer13.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer13.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer13.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer13.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
-<!-- 14-26 -->
-
 <div class="song">
-<div class="title">😱 Скример 14</div>
+<div class="title"><span class="music-icon">😱</span>Скример 14</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer14.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer14.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer14.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer14.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer14.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 15</div>
+<div class="title"><span class="music-icon">😱</span>Скример 15</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer15.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer15.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer15.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer15.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer15.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 16</div>
+<div class="title"><span class="music-icon">😱</span>Скример 16</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer16.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer16.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer16.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer16.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer16.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 17</div>
+<div class="title"><span class="music-icon">😱</span>Скример 17</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer17.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer17.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer17.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer17.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer17.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 18</div>
+<div class="title"><span class="music-icon">😱</span>Скример 18</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer18.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer18.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer18.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer18.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer18.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 19</div>
+<div class="title"><span class="music-icon">😱</span>Скример 19</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer19.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer19.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer19.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer19.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer19.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 20</div>
+<div class="title"><span class="music-icon">😱</span>Скример 20</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer20.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer20.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer20.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer20.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer20.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 21</div>
+<div class="title"><span class="music-icon">😱</span>Скример 21</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer21.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer21.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer21.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer21.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer21.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 22</div>
+<div class="title"><span class="music-icon">😱</span>Скример 22</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer22.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer22.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer22.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer22.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer22.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 23</div>
+<div class="title"><span class="music-icon">😱</span>Скример 23</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer23.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer23.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer23.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer23.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer23.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 24</div>
+<div class="title"><span class="music-icon">😱</span>Скример 24</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer24.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer24.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer24.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer24.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer24.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 25</div>
+<div class="title"><span class="music-icon">😱</span>Скример 25</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer25.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer25.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer25.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer25.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer25.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
 <div class="song">
-<div class="title">😱 Скример 26</div>
+<div class="title"><span class="music-icon">😱</span>Скример 26</div>
 <audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer26.mp3" type="audio/mpeg"></audio>
-<br><br>
-<a class="btn" href="Skrimers/Skrimer26.mp3" download>⬇️ Скачать звук</a>
-<button class="btn" onclick="copyLink('Skrimers/Skrimer26.mp3')">🔗 Копировать ссылку</button>
+<div class="buttons">
+<a class="btn download" href="Skrimers/Skrimer26.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer26.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
+
 </div>
 
 <script>
-function pauseOthers(current)
-{
-    let players = document.querySelectorAll("audio");
+let savedVolume=localStorage.getItem("skrimerVolume");
+if(savedVolume===null)savedVolume=1;
+else savedVolume=parseFloat(savedVolume);
 
-    players.forEach(function(player)
-    {
-        if(player !== current)
-        {
-            player.pause();
-            player.currentTime = 0;
-        }
-    });
+let players=document.querySelectorAll("audio");
+
+players.forEach(function(player){
+player.volume=savedVolume;
+player.addEventListener("volumechange",function(){
+savedVolume=player.volume;
+localStorage.setItem("skrimerVolume",savedVolume);
+players.forEach(function(other){
+other.volume=savedVolume;
+});
+});
+});
+
+function pauseOthers(current){
+players.forEach(function(player){
+if(player!==current){
+player.pause();
+player.currentTime=0;
+}
+player.volume=savedVolume;
+});
 }
 
-function copyLink(file)
-{
-    const url = window.location.origin +
-                window.location.pathname.replace(/[^/]*$/, "") +
-                file;
+function copyLink(button,file){
+let link="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/"+file;
 
-    navigator.clipboard.writeText(url);
+navigator.clipboard.writeText(link).then(function(){
+let oldText=button.innerHTML;
+button.innerHTML="✓ Ссылка скопирована!";
+button.classList.add("copied");
 
-    alert("Ссылка скопирована!\n\n" + url);
+setTimeout(function(){
+button.innerHTML=oldText;
+button.classList.remove("copied");
+},1500);
+}).catch(function(){
+const area=document.createElement("textarea");
+area.value=link;
+document.body.appendChild(area);
+area.select();
+document.execCommand("copy");
+document.body.removeChild(area);
+
+let oldText=button.innerHTML;
+button.innerHTML="✓ Ссылка скопирована!";
+button.classList.add("copied");
+
+setTimeout(function(){
+button.innerHTML=oldText;
+button.classList.remove("copied");
+},1500);
+});
 }
 </script>
 
