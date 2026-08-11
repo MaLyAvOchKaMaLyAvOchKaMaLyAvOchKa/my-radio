@@ -15,25 +15,36 @@ background:
 radial-gradient(circle at 70% 10%,rgba(0,255,136,.07),transparent 30%),
 radial-gradient(circle at 90% 80%,rgba(0,180,255,.05),transparent 30%),
 #0d0d0f;
-color:white;
+color:#fff;
 font-family:Arial,Helvetica,sans-serif;
 min-height:100vh
 }
 
 /* SIDEBAR */
 .sidebar{
-position:fixed;left:0;top:0;width:190px;height:100vh;
+position:fixed;
+left:0;
+top:0;
+width:190px;
+height:100vh;
 background:linear-gradient(180deg,#18181b,#111113);
 border-right:1px solid rgba(255,255,255,.06);
 box-shadow:5px 0 25px rgba(0,0,0,.45);
-padding-top:110px;z-index:100
+padding-top:110px;
+z-index:100
 }
 
 .menu{
-display:flex;align-items:center;gap:12px;color:#ddd;
-text-decoration:none;font-size:20px;padding:17px 20px;
-margin:5px 10px;border-radius:12px;
-transition:background .2s,color .2s,transform .2s,box-shadow .2s
+display:flex;
+align-items:center;
+gap:12px;
+color:#ddd;
+text-decoration:none;
+font-size:20px;
+padding:17px 20px;
+margin:5px 10px;
+border-radius:12px;
+transition:.2s
 }
 
 .menu:hover{
@@ -45,11 +56,15 @@ box-shadow:inset 3px 0 0 #00ff88
 
 /* HEADER */
 header{
-margin-left:190px;padding:30px 20px;text-align:center;
+margin-left:190px;
+padding:30px 20px;
+text-align:center;
 background:linear-gradient(180deg,#18181a,#151517);
 border-bottom:1px solid rgba(255,255,255,.06);
 box-shadow:0 8px 30px rgba(0,0,0,.35);
-font-size:42px;font-weight:bold;color:#00ff88;
+font-size:42px;
+font-weight:bold;
+color:#00ff88;
 letter-spacing:1px;
 text-shadow:0 0 15px rgba(0,255,136,.25);
 position:relative
@@ -61,27 +76,63 @@ position:absolute;
 right:25px;
 top:50%;
 transform:translateY(-50%);
+width:260px;
+height:43px;
 display:flex;
 align-items:center;
-width:260px;
-height:42px;
-background:rgba(255,255,255,.055);
+background:rgba(20,20,22,.85);
 border:1px solid rgba(255,255,255,.1);
 border-radius:22px;
-transition:.25s;
-overflow:hidden
+overflow:hidden;
+transition:.2s;
+box-shadow:inset 0 0 15px rgba(0,0,0,.25)
 }
 
 .search:focus-within{
-border-color:rgba(0,255,136,.45);
-box-shadow:0 0 18px rgba(0,255,136,.08)
+border-color:#00ff88;
+box-shadow:
+0 0 12px rgba(0,255,136,.18),
+inset 0 0 15px rgba(0,0,0,.25)
 }
 
 .search-icon{
+position:relative;
 width:45px;
-text-align:center;
-font-size:20px;
-color:#aaa
+height:100%;
+flex-shrink:0
+}
+
+.search-icon:before{
+content:"";
+position:absolute;
+width:11px;
+height:11px;
+border:2px solid #aaa;
+border-radius:50%;
+left:14px;
+top:12px;
+transition:.2s
+}
+
+.search-icon:after{
+content:"";
+position:absolute;
+width:7px;
+height:2px;
+background:#aaa;
+transform:rotate(45deg);
+left:25px;
+top:25px;
+border-radius:2px;
+transition:.2s
+}
+
+.search:focus-within .search-icon:before{
+border-color:#00ff88
+}
+
+.search:focus-within .search-icon:after{
+background:#00ff88
 }
 
 .search input{
@@ -90,12 +141,14 @@ height:100%;
 border:0;
 outline:0;
 background:transparent;
-color:white;
+color:#fff;
 font-size:15px;
-padding-right:14px
+padding:0 15px 0 0
 }
 
-.search input::placeholder{color:#888}
+.search input::placeholder{
+color:#888
+}
 
 /* CONTENT */
 .content{
@@ -106,64 +159,76 @@ padding:35px 30px 80px
 
 /* SONG */
 .song{
-background:linear-gradient(145deg,rgba(38,38,41,.96),rgba(29,29,32,.96));
+background:
+linear-gradient(145deg,rgba(27,31,31,.97),rgba(22,25,26,.97));
 width:min(760px,90%);
-margin:0 auto 22px;
-border-radius:17px;
-padding:20px;
-border:1px solid rgba(255,255,255,.05);
-box-shadow:0 10px 30px rgba(0,0,0,.25);
-transition:transform .2s,border .2s,box-shadow .2s
+margin:0 auto 12px;
+border-radius:14px;
+padding:13px 18px 10px;
+border:1px solid rgba(255,255,255,.055);
+box-shadow:
+0 8px 25px rgba(0,0,0,.28),
+inset 0 0 20px rgba(0,255,136,.015);
+transition:.2s
 }
 
 .song:hover{
-transform:translateY(-3px);
-border-color:rgba(0,255,136,.16);
-box-shadow:0 14px 35px rgba(0,0,0,.4),0 0 25px rgba(0,255,136,.04)
+transform:translateY(-2px);
+border-color:rgba(0,255,136,.18);
+box-shadow:
+0 12px 30px rgba(0,0,0,.4),
+0 0 20px rgba(0,255,136,.035)
 }
 
-.song.hidden{display:none}
+.song.hidden{
+display:none
+}
 
 /* TITLE */
 .title{
-font-size:24px;
-margin-bottom:13px;
+height:37px;
+font-size:20px;
 display:flex;
 align-items:center;
-gap:9px;
+gap:10px;
 color:#f2f2f2;
 white-space:nowrap;
 overflow:hidden;
-text-overflow:ellipsis;
-padding-right:5px
+padding-right:0
 }
 
 .title .music-icon{
-font-size:27px;
-filter:drop-shadow(0 0 6px rgba(150,80,255,.4));
+font-size:24px;
+color:#9b62ff;
+filter:drop-shadow(0 0 5px rgba(140,70,255,.45));
 flex-shrink:0
+}
+
+.title>span:nth-child(2){
+overflow:hidden;
+text-overflow:ellipsis
 }
 
 /* FFT */
 .fft{
-display:block;
-width:120px;
-height:30px;
+display:none;
+width:220px;
+height:48px;
 margin-left:auto;
-flex-shrink:0;
-opacity:0;
-transition:opacity .25s;
-filter:drop-shadow(0 0 5px rgba(0,255,136,.2))
+flex-shrink:0
 }
 
-.song.playing .fft{opacity:1}
+.song.playing .fft{
+display:block
+}
 
 /* AUDIO */
 audio{
+display:block;
 width:100%;
 height:48px;
 border-radius:12px;
-margin-bottom:14px
+margin:0 0 9px
 }
 
 /* BUTTONS */
@@ -174,25 +239,41 @@ width:100%
 }
 
 .btn{
-flex:1;border:0;border-radius:10px;padding:12px 15px;
-font-size:16px;font-weight:bold;text-align:center;
-text-decoration:none;cursor:pointer;
-transition:transform .15s,filter .15s,box-shadow .15s
+flex:1;
+border:0;
+border-radius:7px;
+padding:8px 15px;
+font-size:14px;
+font-weight:bold;
+text-align:center;
+text-decoration:none;
+cursor:pointer;
+transition:.15s
 }
 
-.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
-.btn:active{transform:translateY(0)}
+.btn:hover{
+transform:translateY(-1px);
+filter:brightness(1.08)
+}
+
+.btn:active{
+transform:translateY(0)
+}
 
 .download{
-background:#00c878;color:white;
-box-shadow:0 5px 15px rgba(0,200,120,.12)
+background:#00c878;
+color:#fff;
+box-shadow:0 4px 12px rgba(0,200,120,.1)
 }
 
-.download:hover{box-shadow:0 7px 20px rgba(0,200,120,.2)}
+.copy{
+background:#087fd0;
+color:#fff
+}
 
-.copy{background:#0796d1;color:white;border:0}
-.copy:hover{box-shadow:0 7px 20px rgba(0,150,210,.18)}
-.copy.copied{background:#00b86b}
+.copy.copied{
+background:#00b86b
+}
 
 /* NO RESULTS */
 .no-results{
@@ -206,11 +287,21 @@ font-size:18px
 
 /* MOBILE */
 @media(max-width:800px){
-.sidebar{width:70px;padding-top:90px}
-.menu{
-justify-content:center;font-size:0;padding:15px;margin:6px
+.sidebar{
+width:70px;
+padding-top:90px
 }
-.menu:first-letter{font-size:25px}
+
+.menu{
+justify-content:center;
+font-size:0;
+padding:15px;
+margin:6px
+}
+
+.menu:first-letter{
+font-size:25px
+}
 
 header{
 margin-left:70px;
@@ -234,12 +325,27 @@ width:calc(100% - 70px);
 padding:25px 10px 60px
 }
 
-.song{width:100%;padding:15px}
-.buttons{flex-direction:column}
-.btn{width:100%}
+.song{
+width:100%;
+padding:12px
+}
 
-.title{font-size:21px}
-.fft{width:95px;height:27px}
+.buttons{
+flex-direction:column
+}
+
+.btn{
+width:100%
+}
+
+.title{
+font-size:19px
+}
+
+.fft{
+width:150px;
+height:40px
+}
 }
 </style>
 </head>
@@ -257,7 +363,7 @@ padding:25px 10px 60px
 🎧 МаЛяВоЧка - Music 🎧
 
 <div class="search">
-<span class="search-icon">⌕</span>
+<span class="search-icon"></span>
 <input id="searchInput" type="text" placeholder="Найти трек...">
 </div>
 </header>
@@ -268,7 +374,7 @@ padding:25px 10px 60px
 <div class="title">
 <span class="music-icon">🎵</span>
 <span>MIA BOYKA - Экспонат</span>
-<canvas class="fft" width="240" height="60"></canvas>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 <audio controls>
 <source src="Exponat.mp3" type="audio/mpeg">
@@ -283,7 +389,7 @@ padding:25px 10px 60px
 <div class="title">
 <span class="music-icon">🎵</span>
 <span>Ella Dance</span>
-<canvas class="fft" width="240" height="60"></canvas>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 <audio controls>
 <source src="elladance.mp3" type="audio/mpeg">
@@ -298,7 +404,7 @@ padding:25px 10px 60px
 <div class="title">
 <span class="music-icon">🎵</span>
 <span>Music</span>
-<canvas class="fft" width="240" height="60"></canvas>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 <audio controls>
 <source src="music.mp3" type="audio/mpeg">
@@ -313,7 +419,7 @@ padding:25px 10px 60px
 <div class="title">
 <span class="music-icon">🎵</span>
 <span>Wanpis</span>
-<canvas class="fft" width="240" height="60"></canvas>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 <audio controls>
 <source src="wanpis.mp3" type="audio/mpeg">
@@ -328,7 +434,7 @@ padding:25px 10px 60px
 <div class="title">
 <span class="music-icon">🎵</span>
 <span>Kesha</span>
-<canvas class="fft" width="240" height="60"></canvas>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 <audio controls>
 <source src="Kesha.mp3" type="audio/mpeg">
@@ -343,7 +449,7 @@ padding:25px 10px 60px
 <div class="title">
 <span class="music-icon">🎵</span>
 <span>Mount Noize - Generation Around The World</span>
-<canvas class="fft" width="240" height="60"></canvas>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 <audio controls>
 <source src="Mount_Noize_Generation-AroundTheWorld.mp3" type="audio/mpeg">
@@ -354,11 +460,11 @@ padding:25px 10px 60px
 </div>
 </div>
 
-<div class="song" data-search="r3hab all around the world рэаб рэхаб раунд зе ворлд">
+<div class="song" data-search="r3hab all around the world рэаб рехаб раунд зе ворлд">
 <div class="title">
 <span class="music-icon">🎵</span>
 <span>R3hab - All Around The World</span>
-<canvas class="fft" width="240" height="60"></canvas>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 <audio controls>
 <source src="R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3" type="audio/mpeg">
@@ -373,7 +479,7 @@ padding:25px 10px 60px
 <div class="title">
 <span class="music-icon">🎵</span>
 <span>Daryana - Juice</span>
-<canvas class="fft" width="240" height="60"></canvas>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 <audio controls>
 <source src="Daryana-Juice.mp3" type="audio/mpeg">
@@ -384,11 +490,11 @@ padding:25px 10px 60px
 </div>
 </div>
 
-<div class="song" data-search="dora vturilas дoра втурилась втурилас">
+<div class="song" data-search="dora vturilas дора втурилась втурилас">
 <div class="title">
 <span class="music-icon">🎵</span>
 <span>Dora - Vturilas</span>
-<canvas class="fft" width="240" height="60"></canvas>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 <audio controls>
 <source src="Dora-Vturilas.mp3" type="audio/mpeg">
@@ -403,7 +509,7 @@ padding:25px 10px 60px
 <div class="title">
 <span class="music-icon">🎵</span>
 <span>PSY - Gangnam Style</span>
-<canvas class="fft" width="240" height="60"></canvas>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 <audio controls>
 <source src="PSY-Gangnam_Style.mp3" type="audio/mpeg">
@@ -418,7 +524,7 @@ padding:25px 10px 60px
 <div class="title">
 <span class="music-icon">🎵</span>
 <span>Skriptonit - Baby Mama</span>
-<canvas class="fft" width="240" height="60"></canvas>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 <audio controls>
 <source src="Skriptonit-Baby_Mama.mp3" type="audio/mpeg">
@@ -433,7 +539,7 @@ padding:25px 10px 60px
 <div class="title">
 <span class="music-icon">🎵</span>
 <span>Deti Rave - Abonnement</span>
-<canvas class="fft" width="240" height="60"></canvas>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 <audio controls>
 <source src="Deti_Rave-Abonnement.mp3" type="audio/mpeg">
@@ -444,11 +550,11 @@ padding:25px 10px 60px
 </div>
 </div>
 
-<div class="song" data-search="dead blonde мальчик на девятке дед блонд мaльчик девятке">
+<div class="song" data-search="dead blonde мальчик на девятке дед блонд мальчик девятке">
 <div class="title">
 <span class="music-icon">🎵</span>
 <span>Dead Blonde - Мальчик на девятке</span>
-<canvas class="fft" width="240" height="60"></canvas>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 <audio controls>
 <source src="Dead_Blonde-Malchik_Na_Devyatke.mp3" type="audio/mpeg">
@@ -463,7 +569,7 @@ padding:25px 10px 60px
 <div class="title">
 <span class="music-icon">🎵</span>
 <span>Poshlaya Molly - Non Stop</span>
-<canvas class="fft" width="240" height="60"></canvas>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 <audio controls>
 <source src="Poshlaya_Molli-Non_Stop.mp3" type="audio/mpeg">
@@ -478,7 +584,7 @@ padding:25px 10px 60px
 <div class="title">
 <span class="music-icon">🎵</span>
 <span>Gachi</span>
-<canvas class="fft" width="240" height="60"></canvas>
+<canvas class="fft" width="440" height="96"></canvas>
 </div>
 <audio controls>
 <source src="Gachi.mp3" type="audio/mpeg">
@@ -494,119 +600,196 @@ padding:25px 10px 60px
 </div>
 
 <script>
-const BASE="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/";
+const BASE="https://malyavochkamalyavochka.github.io/my-radio/";
 const songs=[...document.querySelectorAll(".song")];
 const players=[...document.querySelectorAll("audio")];
+
 let currentAudio=null;
 let audioCtx=null;
-let analyser=null;
-let sourceMap=new WeakMap();
 let raf=null;
+const sourceMap=new WeakMap();
 
 function pauseOthers(current){
-players.forEach(p=>{
-if(p!==current){
-p.pause();
-p.currentTime=0;
-p.closest(".song").classList.remove("playing");
+players.forEach(player=>{
+if(player!==current){
+player.pause();
+player.currentTime=0;
+player.closest(".song").classList.remove("playing");
+clearFFT(player.closest(".song"));
 }
 });
+
 currentAudio=current;
 current.closest(".song").classList.add("playing");
 startFFT(current);
-let v=localStorage.getItem("musicVolume");
-if(v!==null)current.volume=parseFloat(v);
+
+const saved=localStorage.getItem("musicVolume");
+if(saved!==null)current.volume=parseFloat(saved);
+}
+
+function getAudioContext(){
+if(!audioCtx){
+audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+}
+return audioCtx;
 }
 
 function setupAudio(audio){
 if(sourceMap.has(audio))return sourceMap.get(audio);
-if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-let source=audioCtx.createMediaElementSource(audio);
-let a=audioCtx.createAnalyser();
-a.fftSize=512;
-a.smoothingTimeConstant=.72;
-a.minDecibels=-90;
-a.maxDecibels=-10;
-source.connect(a);
-a.connect(audioCtx.destination);
-sourceMap.set(audio,{source:source,analyser:a});
-return sourceMap.get(audio);
+
+const ctx=getAudioContext();
+const source=ctx.createMediaElementSource(audio);
+const analyser=ctx.createAnalyser();
+
+analyser.fftSize=1024;
+analyser.smoothingTimeConstant=.28;
+analyser.minDecibels=-95;
+analyser.maxDecibels=-8;
+
+source.connect(analyser);
+analyser.connect(ctx.destination);
+
+const data={
+source:source,
+analyser:analyser
+};
+
+sourceMap.set(audio,data);
+return data;
+}
+
+function clearFFT(song){
+const canvas=song.querySelector(".fft");
+if(!canvas)return;
+
+const ctx=canvas.getContext("2d");
+ctx.clearRect(0,0,canvas.width,canvas.height);
 }
 
 function startFFT(audio){
-if(raf)cancelAnimationFrame(raf);
-document.querySelectorAll(".song").forEach(s=>{
-if(s!==audio.closest(".song"))s.classList.remove("playing");
+if(raf){
+cancelAnimationFrame(raf);
+raf=null;
+}
+
+songs.forEach(song=>{
+if(song!==audio.closest(".song")){
+song.classList.remove("playing");
+clearFFT(song);
+}
 });
 
-try{
-if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-if(audioCtx.state==="suspended")audioCtx.resume();
-analyser=setupAudio(audio).analyser;
-}catch(e){return}
+let analyser;
 
-let canvas=audio.closest(".song").querySelector(".fft");
-let ctx=canvas.getContext("2d");
-let data=new Uint8Array(analyser.frequencyBinCount);
-let smooth=new Float32Array(28);
+try{
+const ctx=getAudioContext();
+
+if(ctx.state==="suspended"){
+ctx.resume();
+}
+
+analyser=setupAudio(audio).analyser;
+}catch(e){
+return;
+}
+
+const song=audio.closest(".song");
+const canvas=song.querySelector(".fft");
+const ctx=canvas.getContext("2d");
+
+const data=new Uint8Array(analyser.frequencyBinCount);
+const bars=38;
+const values=new Float32Array(bars);
 
 function draw(){
-if(audio!==currentAudio||audio.paused||audio.ended){
+if(
+audio!==currentAudio||
+audio.paused||
+audio.ended||
+!song.classList.contains("playing")
+){
 ctx.clearRect(0,0,canvas.width,canvas.height);
-audio.closest(".song").classList.remove("playing");
 return;
 }
 
 analyser.getByteFrequencyData(data);
+
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
-let bars=28;
-let gap=3;
-let bw=(canvas.width-gap*(bars-1))/bars;
+const gap=3;
+const bw=(canvas.width-gap*(bars-1))/bars;
+const time=performance.now();
 
 for(let i=0;i<bars;i++){
-let t=i/(bars-1);
+const t=i/(bars-1);
 
-let minF=1;
-let maxF=data.length-1;
-let index=Math.floor(minF*Math.pow(maxF/minF,t));
+let minBin=Math.floor(
+2*Math.pow((data.length-2)/2,t)
+);
 
-let spread=Math.max(1,Math.floor(index*.12));
-let sum=0,count=0;
+let maxBin=Math.floor(
+3*Math.pow((data.length-2)/3,t)
+);
 
-for(let j=Math.max(0,index-spread);j<=Math.min(data.length-1,index+spread);j++){
-sum+=data[j];
-count++;
+if(maxBin<=minBin)maxBin=minBin+1;
+
+let sum=0;
+let count=0;
+
+for(let j=minBin;j<=maxBin&&j<data.length;j++){
+const weight=1-Math.abs(j-(minBin+maxBin)/2)/(maxBin-minBin+1);
+sum+=data[j]*(.65+weight);
+count+=.65+weight;
 }
 
-let value=sum/count/255;
+let value=count?sum/count/255:0;
 
-/* усиливаем тихие частоты */
-value=Math.pow(value,.62);
+/* Сильнее поднимаем тихие частоты */
+value=Math.pow(value,.48);
 
-/* высокие частоты слегка поднимаем */
-let highBoost=.92+t*.48;
-value*=highBoost;
+/* Высокие частоты */
+value*=.9+t*.8;
 
-/* немного живого движения даже на тихих частотах */
-let floor=.025+Math.sin(performance.now()*.004+i*.8)*.006;
-value=Math.max(value,floor);
+/* Небольшая разница между полосами */
+value+=Math.sin(time*.012+i*1.7)*.012;
 
-/* плавность */
-smooth[i]+=((value)-smooth[i])*.28;
+/* Резкая реакция вверх */
+if(value>values[i]){
+values[i]+=(value-values[i])*.72;
+}else{
+values[i]+=(value-values[i])*.34;
+}
 
-let h=Math.max(2,smooth[i]*canvas.height*.9);
-let x=i*(bw+gap);
-let y=canvas.height-h;
+/* Минимальная жизнь у тихих полос */
+const floor=.025+Math.sin(time*.006+i*.9)*.008;
+const finalValue=Math.max(values[i],floor);
 
-let grad=ctx.createLinearGradient(0,y,0,canvas.height);
+const h=Math.max(
+2,
+finalValue*canvas.height*.94
+);
+
+const x=i*(bw+gap);
+const y=canvas.height-h;
+
+const grad=ctx.createLinearGradient(
+0,y,
+0,canvas.height
+);
+
 grad.addColorStop(0,"#00ff88");
-grad.addColorStop(.55,"#00d9a0");
-grad.addColorStop(1,"#087bff");
+grad.addColorStop(.45,"#00ed91");
+grad.addColorStop(1,"#00a96b");
 
 ctx.fillStyle=grad;
-ctx.globalAlpha=.88;
-ctx.fillRect(x,y,bw,h);
+ctx.globalAlpha=.95;
+
+ctx.fillRect(
+Math.round(x),
+Math.round(y),
+Math.max(1,Math.round(bw)),
+Math.round(h)
+);
 }
 
 ctx.globalAlpha=1;
@@ -616,7 +799,9 @@ raf=requestAnimationFrame(draw);
 draw();
 }
 
+/* AUDIO EVENTS */
 players.forEach(player=>{
+
 player.addEventListener("play",function(){
 pauseOthers(player);
 });
@@ -624,40 +809,55 @@ pauseOthers(player);
 player.addEventListener("pause",function(){
 if(player===currentAudio){
 player.closest(".song").classList.remove("playing");
-if(raf)cancelAnimationFrame(raf);
-let canvas=player.closest(".song").querySelector(".fft");
-canvas.getContext("2d").clearRect(0,0,canvas.width,canvas.height);
+
+if(raf){
+cancelAnimationFrame(raf);
+raf=null;
+}
+
+clearFFT(player.closest(".song"));
 }
 });
 
 player.addEventListener("ended",function(){
 if(player===currentAudio){
 player.closest(".song").classList.remove("playing");
-if(raf)cancelAnimationFrame(raf);
-let canvas=player.closest(".song").querySelector(".fft");
-canvas.getContext("2d").clearRect(0,0,canvas.width,canvas.height);
+
+if(raf){
+cancelAnimationFrame(raf);
+raf=null;
+}
+
+clearFFT(player.closest(".song"));
+currentAudio=null;
 }
 });
 });
 
+/* COPY LINK */
 function copyLink(button,file){
-let link=BASE+file;
+const link=BASE+file;
 
-navigator.clipboard.writeText(link).then(()=>{
+navigator.clipboard.writeText(link)
+.then(()=>{
 showCopied(button);
-}).catch(()=>{
-let input=document.createElement("input");
+})
+.catch(()=>{
+const input=document.createElement("input");
 input.value=link;
+
 document.body.appendChild(input);
 input.select();
 document.execCommand("copy");
 document.body.removeChild(input);
+
 showCopied(button);
 });
 }
 
 function showCopied(button){
-let old=button.innerHTML;
+const old=button.innerHTML;
+
 button.innerHTML="✓ Ссылка скопирована!";
 button.classList.add("copied");
 
@@ -667,36 +867,46 @@ button.classList.remove("copied");
 },1500);
 }
 
-/* ГРОМКОСТЬ */
+/* VOLUME */
 document.addEventListener("DOMContentLoaded",()=>{
-let saved=localStorage.getItem("musicVolume");
-let volume=saved===null?1:parseFloat(saved);
+const saved=localStorage.getItem("musicVolume");
+const volume=saved===null?1:parseFloat(saved);
 
 players.forEach(player=>{
 player.volume=volume;
 
 player.addEventListener("volumechange",()=>{
 localStorage.setItem("musicVolume",player.volume);
+
 players.forEach(other=>{
-if(other!==player)other.volume=player.volume;
+if(other!==player){
+other.volume=player.volume;
+}
 });
 });
 });
 });
 
-/* ПОИСК */
+/* SEARCH */
 const searchInput=document.getElementById("searchInput");
 const noResults=document.getElementById("noResults");
 
 searchInput.addEventListener("input",function(){
-let query=this.value.toLowerCase().trim();
+const query=this.value
+.toLowerCase()
+.trim();
+
 let found=0;
 
 songs.forEach(song=>{
-let text=song.dataset.search.toLowerCase();
-let visible=!query||text.includes(query);
+const text=song.dataset.search.toLowerCase();
+
+const visible=
+!query||
+text.includes(query);
 
 song.classList.toggle("hidden",!visible);
+
 if(visible)found++;
 });
 
