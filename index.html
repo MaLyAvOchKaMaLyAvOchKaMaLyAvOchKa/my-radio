@@ -20,7 +20,6 @@ font-family:Arial,Helvetica,sans-serif;
 min-height:100vh
 }
 
-/* SIDEBAR */
 .sidebar{
 position:fixed;
 left:0;
@@ -54,7 +53,6 @@ transform:translateX(4px);
 box-shadow:inset 3px 0 0 #00ff88
 }
 
-/* HEADER */
 header{
 margin-left:190px;
 padding:30px 20px;
@@ -70,7 +68,6 @@ text-shadow:0 0 15px rgba(0,255,136,.25);
 position:relative
 }
 
-/* SEARCH */
 .search{
 position:absolute;
 right:25px;
@@ -141,7 +138,6 @@ padding:0 15px 0 0
 
 .search input::placeholder{color:#888}
 
-/* CONTENT */
 .content{
 margin-left:190px;
 width:calc(100% - 190px);
@@ -179,7 +175,6 @@ line-height:1.6
 
 .error b{color:#ff6666}
 
-/* SONG */
 .song{
 background:linear-gradient(145deg,rgba(27,31,31,.97),rgba(22,25,26,.97));
 width:min(760px,90%);
@@ -199,7 +194,6 @@ box-shadow:0 12px 30px rgba(0,0,0,.4),0 0 20px rgba(0,255,136,.035)
 
 .song.hidden{display:none}
 
-/* TITLE */
 .title{
 height:37px;
 font-size:20px;
@@ -223,7 +217,6 @@ overflow:hidden;
 text-overflow:ellipsis
 }
 
-/* FFT */
 .fft{
 display:none;
 width:220px;
@@ -234,7 +227,6 @@ flex-shrink:0
 
 .song.playing .fft{display:block}
 
-/* AUDIO */
 audio{
 display:block;
 width:100%;
@@ -243,7 +235,6 @@ border-radius:12px;
 margin:0 0 9px
 }
 
-/* BUTTONS */
 .buttons{
 display:flex;
 gap:10px;
@@ -283,7 +274,6 @@ color:#fff
 
 .copy.copied{background:#00b86b}
 
-/* MOBILE */
 @media(max-width:800px){
 .sidebar{
 width:70px;
@@ -326,16 +316,29 @@ width:100%;
 padding:12px
 }
 
-.buttons{flex-direction:column}
+.buttons{
+flex-direction:column
+}
+
 .btn{width:100%}
+
 .title{font-size:19px}
-.fft{width:150px;height:40px}
+
+.fft{
+width:150px;
+height:40px
+}
 }
 
 @media(max-width:500px){
 .title{gap:6px}
+
 .title .music-icon{font-size:21px}
-.fft{width:120px;height:34px}
+
+.fft{
+width:120px;
+height:34px
+}
 }
 </style>
 </head>
@@ -359,16 +362,25 @@ padding:12px
 </header>
 
 <div class="content">
-<div class="loading" id="loading">Загрузка каталога... <span>♪</span></div>
+
+<div class="loading" id="loading">
+Загрузка музыки... <span>♪</span>
+</div>
+
 <div class="error" id="error"></div>
+
 <div id="songsContainer"></div>
-<div class="no-results" id="noResults">Ничего не найдено 😔</div>
+
+<div class="no-results" id="noResults">
+Ничего не найдено 😔
+</div>
+
 </div>
 
 <script>
-const REPO_API="https://api.github.com/repos/malyavochkamalyavochkamalyavochka/my-radio/contents/Music";
+const REPO_API="https://api.github.com/repos/malyavochkamalyavochka/my-radio/contents/Music";
 const MUSIC_FOLDER="Music/";
-const BASE="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Music/";
+const BASE="https://malyavochkamalyavochka.github.io/my-radio/Music/";
 
 let songs=[];
 let players=[];
@@ -378,7 +390,6 @@ let raf=null;
 
 const sourceMap=new WeakMap();
 
-/* РУССКИЙ -> АНГЛИЙСКИЙ */
 const translit={
 "а":"a","б":"b","в":"v","г":"g","д":"d","е":"e","ё":"yo",
 "ж":"zh","з":"z","и":"i","й":"y","к":"k","л":"l","м":"m",
@@ -387,164 +398,14 @@ const translit={
 "ъ":"","ы":"y","ь":"","э":"e","ю":"yu","я":"ya"
 };
 
-/* ЧАСТЫЕ АНГЛИЙСКИЕ СЛОВА В РУССКОМ ПРОИЗНОШЕНИИ */
-const aliases={
-"зе":"the",
-"зэ":"the",
-"тхе":"the",
-"да":"the",
-"викенд":"weeknd",
-"уикенд":"weeknd",
-"викэнд":"weeknd",
-"уикэнд":"weeknd",
-"стайл":"style",
-"стайл":"style",
-"гангнам":"gangnam",
-"лайтс":"lights",
-"бэби":"baby",
-"бейби":"baby",
-"мама":"mama",
-"блэкинг":"blacking",
-"блидинг":"bleeding",
-"блиндинг":"blinding",
-"дэнс":"dance",
-"данс":"dance",
-"джус":"juice",
-"джусе":"juice",
-"бойка":"boyka",
-"бойки":"boyka",
-"скриптонит":"skriptonit",
-"пси":"psy",
-"псай":"psy",
-"дора":"dora",
-"дарьяна":"daryana",
-"мия":"mia",
-"миябойка":"miaboyka"
+const reverseTranslit={
+"yo":"ё","zh":"ж","sch":"щ","sh":"ш","ch":"ч",
+"yu":"ю","ya":"я","ts":"ц"
 };
 
-/* РУССКАЯ ПРИМЕРНАЯ ТРАНСКРИПЦИЯ АНГЛИЙСКОГО */
-const latinToRu=[
-["sch","щ"],
-["sh","ш"],
-["ch","ч"],
-["zh","ж"],
-["th","з"],
-["ph","ф"],
-["ck","к"],
-["qu","кв"],
-["ee","и"],
-["ea","и"],
-["oo","у"],
-["ou","ау"],
-["ow","ау"],
-["ai","эй"],
-["ay","эй"],
-["ei","эй"],
-["ey","эй"],
-["tion","шн"],
-["sion","жн"],
-["ing","инг"],
-["a","а"],
-["b","б"],
-["c","к"],
-["d","д"],
-["e","е"],
-["f","ф"],
-["g","г"],
-["h","х"],
-["i","и"],
-["j","дж"],
-["k","к"],
-["l","л"],
-["m","м"],
-["n","н"],
-["o","о"],
-["p","п"],
-["q","к"],
-["r","р"],
-["s","с"],
-["t","т"],
-["u","у"],
-["v","в"],
-["w","в"],
-["x","кс"],
-["y","й"],
-["z","з"]
-];
-
-/* НОРМАЛИЗАЦИЯ */
-function normalizeSearch(text){
-return text
-.toLowerCase()
-.replace(/ё/g,"е")
-.replace(/й/g,"и")
-.replace(/[^a-zа-я0-9\s]/gi," ")
-.replace(/\s+/g," ")
-.trim();
-}
-
-/* ТРАНСЛИТ */
-function transliterate(text){
-return text
-.toLowerCase()
-.split("")
-.map(char=>translit[char]!==undefined?translit[char]:char)
-.join("");
-}
-
-/* ПРЕОБРАЗОВАНИЕ АНГЛИЙСКОГО В РУССКОЕ ПРОИЗНОШЕНИЕ */
-function latinToRussian(text){
-let result=text.toLowerCase();
-
-for(const pair of latinToRu){
-result=result.split(pair[0]).join(pair[1]);
-}
-
-return result;
-}
-
-/* СОЗДАНИЕ ВСЕХ ВАРИАНТОВ НАЗВАНИЯ */
-function makeSearchVariants(text){
-const original=normalizeSearch(text);
-const variants=new Set();
-
-variants.add(original);
-variants.add(normalizeSearch(transliterate(original)));
-variants.add(normalizeSearch(latinToRussian(original)));
-
-/* Варианты с частыми словами */
-let aliasText=original;
-
-for(const word in aliases){
-const value=aliases[word];
-aliasText=aliasText.replace(
-new RegExp("(^|\\s)"+word+"(?=\\s|$)","gi"),
-"$1"+value
-);
-}
-
-variants.add(normalizeSearch(aliasText));
-variants.add(normalizeSearch(transliterate(aliasText)));
-variants.add(normalizeSearch(latinToRussian(aliasText)));
-
-return [...variants].filter(Boolean);
-}
-
-/* ЭКРАНИРОВАНИЕ HTML */
-function escapeHTML(text){
-return text
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-}
-
-/* ЗАГРУЗКА СПИСКА МУЗЫКИ */
 async function loadMusic(){
 const loading=document.getElementById("loading");
 const error=document.getElementById("error");
-const container=document.getElementById("songsContainer");
 
 try{
 const response=await fetch(REPO_API+"?t="+Date.now());
@@ -571,6 +432,8 @@ sensitivity:"base"
 )
 );
 
+const container=document.getElementById("songsContainer");
+
 container.innerHTML="";
 
 musicFiles.forEach(file=>{
@@ -580,11 +443,10 @@ createSong(file.name,container);
 songs=[...document.querySelectorAll(".song")];
 players=[...document.querySelectorAll("audio")];
 
-loading.style.display="none";
+loading.style.display=musicFiles.length?"none":"block";
 
 if(!musicFiles.length){
-loading.style.display="block";
-loading.innerHTML="В каталоге пока тихо... 🎵";
+loading.innerHTML='В папке <span>Music</span> пока нет MP3 🎵';
 }
 
 setupPlayers();
@@ -598,39 +460,36 @@ loading.style.display="none";
 error.style.display="block";
 
 error.innerHTML=
-"<b>🎧 Музыка куда-то сбежала...</b>"+
-"<br><br>"+
-"МаЛяВоЧка не смогла открыть музыкальный каталог 😔"+
-"<br>"+
-"Попробуй обновить страницу чуть позже!";
+"<b>🎧 Музыка куда-то сбежала...</b><br><br>"+
+"МаЛяВоЧка не смогла открыть музыкальную коллекцию 😔<br>"+
+"Попробуй обновить страницу чуть позже.";
 }
 }
 
-/* СОЗДАНИЕ ПЕСНИ */
 function createSong(fileName,container){
+
 let title=fileName.replace(/\.mp3$/i,"");
 
 try{
 title=decodeURIComponent(title);
 }catch(e){}
 
-const fileURL=
-MUSIC_FOLDER+
-encodeURIComponent(fileName);
+const searchText=
+title
+.replace(/[_\-]+/g," ")
+.replace(/\s+/g," ")
+.trim();
 
-const fullURL=
-BASE+
-encodeURIComponent(fileName);
+const encodedFileName=encodeURI(fileName);
 
-const searchVariants=
-makeSearchVariants(title);
+const fileURL=MUSIC_FOLDER+encodedFileName;
+const fullURL=BASE+encodedFileName;
 
 const song=document.createElement("div");
 
 song.className="song";
 
-song.dataset.search=
-searchVariants.join(" ");
+song.dataset.search=makeSearchVariants(searchText);
 
 song.innerHTML=`
 <div class="title">
@@ -639,7 +498,7 @@ song.innerHTML=`
 <canvas class="fft" width="440" height="96"></canvas>
 </div>
 
-<audio controls preload="none">
+<audio controls preload="metadata">
 <source src="${fileURL}" type="audio/mpeg">
 </audio>
 
@@ -654,9 +513,7 @@ song.innerHTML=`
 </div>
 `;
 
-song
-.querySelector(".copy")
-.addEventListener("click",()=>{
+song.querySelector(".copy").addEventListener("click",()=>{
 copyLink(
 song.querySelector(".copy"),
 fullURL
@@ -666,10 +523,102 @@ fullURL
 container.appendChild(song);
 }
 
-/* ОСТАНОВКА ДРУГИХ ТРЕКОВ */
+function makeSearchVariants(text){
+
+let base=normalizeSearch(text);
+
+let transliterated="";
+
+for(const char of base){
+transliterated+=translit[char]!==undefined?
+translit[char]:
+char;
+}
+
+let words=base.split(" ").filter(Boolean);
+
+let extraWords=[];
+
+words.forEach(word=>{
+if(word.length>=2){
+extraWords.push(word);
+}
+});
+
+return(
+base+" "+
+normalizeSearch(transliterated)+" "+
+normalizeSearch(extraWords.join(" "))
+).trim();
+}
+
+function escapeHTML(text){
+return text
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+}
+
+function normalizeSearch(text){
+
+return text
+.toLowerCase()
+.replace(/ё/g,"е")
+.replace(/й/g,"и")
+.replace(/[_\-–—]+/g," ")
+.replace(/[^a-zа-я0-9\s]/gi," ")
+.replace(/\s+/g," ")
+.trim();
+}
+
+function setupSearch(){
+
+const input=document.getElementById("searchInput");
+const noResults=document.getElementById("noResults");
+
+input.addEventListener("input",function(){
+
+const query=normalizeSearch(this.value);
+
+const words=query
+.split(" ")
+.filter(Boolean);
+
+let found=0;
+
+songs.forEach(song=>{
+
+const text=song.dataset.search;
+
+const visible=
+!words.length||
+words.every(word=>{
+return text.includes(word);
+});
+
+song.classList.toggle(
+"hidden",
+!visible
+);
+
+if(visible)found++;
+});
+
+noResults.style.display=
+found===0&&words.length?
+"block":
+"none";
+});
+}
+
 function pauseOthers(current){
+
 players.forEach(player=>{
+
 if(player!==current){
+
 player.pause();
 player.currentTime=0;
 
@@ -690,29 +639,29 @@ if(currentSong){
 currentSong.classList.add("playing");
 }
 
-const saved=
-localStorage.getItem("musicVolume");
+const saved=localStorage.getItem("musicVolume");
 
 if(saved!==null){
 current.volume=parseFloat(saved);
 }
 }
 
-/* AUDIO CONTEXT */
 function getAudioContext(){
+
 if(!audioCtx){
-audioCtx=
-new(
+
+audioCtx=new(
 window.AudioContext||
 window.webkitAudioContext
 )();
+
 }
 
 return audioCtx;
 }
 
-/* ANALYSER */
 function setupAudio(audio){
+
 if(sourceMap.has(audio)){
 return sourceMap.get(audio);
 }
@@ -743,12 +692,11 @@ sourceMap.set(audio,result);
 return result;
 }
 
-/* ОЧИСТКА FFT */
 function clearFFT(song){
+
 if(!song)return;
 
-const canvas=
-song.querySelector(".fft");
+const canvas=song.querySelector(".fft");
 
 if(!canvas)return;
 
@@ -762,44 +710,46 @@ canvas.height
 );
 }
 
-/* FFT */
 function startFFT(audio){
+
 if(raf){
 cancelAnimationFrame(raf);
 raf=null;
 }
 
 songs.forEach(song=>{
+
 if(song!==audio.closest(".song")){
+
 song.classList.remove("playing");
 clearFFT(song);
+
 }
+
 });
 
 let analyser;
 
 try{
+
 const ctx=getAudioContext();
 
 if(ctx.state==="suspended"){
 ctx.resume();
 }
 
-analyser=
-setupAudio(audio).analyser;
+analyser=setupAudio(audio).analyser;
 
 }catch(e){
+console.error(e);
 return;
 }
 
-const song=
-audio.closest(".song");
+const song=audio.closest(".song");
 
-const canvas=
-song.querySelector(".fft");
+const canvas=song.querySelector(".fft");
 
-const ctx=
-canvas.getContext("2d");
+const ctx=canvas.getContext("2d");
 
 const data=
 new Uint8Array(
@@ -807,6 +757,7 @@ analyser.frequencyBinCount
 );
 
 const bars=38;
+
 const values=
 new Float32Array(bars);
 
@@ -818,12 +769,14 @@ audio.paused||
 audio.ended||
 !song.classList.contains("playing")
 ){
+
 ctx.clearRect(
 0,
 0,
 canvas.width,
 canvas.height
 );
+
 return;
 }
 
@@ -839,32 +792,23 @@ canvas.height
 const gap=3;
 
 const bw=
-(
-canvas.width-
-gap*(bars-1)
-)/bars;
+(canvas.width-gap*(bars-1))/bars;
 
-const time=
-performance.now();
+const time=performance.now();
 
 for(let i=0;i<bars;i++){
 
-const t=
-i/(bars-1);
+const t=i/(bars-1);
 
-let minBin=
-Math.floor(
-2*
-Math.pow(
+let minBin=Math.floor(
+2*Math.pow(
 (data.length-2)/2,
 t
 )
 );
 
-let maxBin=
-Math.floor(
-3*
-Math.pow(
+let maxBin=Math.floor(
+3*Math.pow(
 (data.length-2)/3,
 t
 )
@@ -890,12 +834,9 @@ j-(minBin+maxBin)/2
 )/
 (maxBin-minBin+1);
 
-sum+=
-data[j]*
-(.65+weight);
+sum+=data[j]*(.65+weight);
 
-count+=
-.65+weight;
+count+=.65+weight;
 }
 
 let value=
@@ -903,11 +844,9 @@ count?
 sum/count/255:
 0;
 
-value=
-Math.pow(value,.48);
+value=Math.pow(value,.48);
 
-value*=
-.9+t*.8;
+value*=.9+t*.8;
 
 value+=
 Math.sin(
@@ -915,11 +854,15 @@ time*.012+i*1.7
 )*.012;
 
 if(value>values[i]){
+
 values[i]+=
 (value-values[i])*.72;
+
 }else{
+
 values[i]+=
 (value-values[i])*.34;
+
 }
 
 const floor=
@@ -942,11 +885,9 @@ canvas.height*
 .94
 );
 
-const x=
-i*(bw+gap);
+const x=i*(bw+gap);
 
-const y=
-canvas.height-h;
+const y=canvas.height-h;
 
 const grad=
 ctx.createLinearGradient(
@@ -972,6 +913,7 @@ grad.addColorStop(
 );
 
 ctx.fillStyle=grad;
+
 ctx.globalAlpha=.95;
 
 ctx.fillRect(
@@ -987,79 +929,95 @@ Math.round(h)
 
 ctx.globalAlpha=1;
 
-raf=
-requestAnimationFrame(draw);
+raf=requestAnimationFrame(draw);
 }
 
 draw();
 }
 
-/* PLAYERS */
 function setupPlayers(){
+
 players.forEach(player=>{
 
 player.addEventListener(
 "play",
 ()=>{
+
 pauseOthers(player);
 startFFT(player);
+
 }
 );
 
 player.addEventListener(
 "pause",
 ()=>{
+
 if(player===currentAudio){
 
 const song=
 player.closest(".song");
 
 if(song){
+
 song.classList.remove("playing");
 clearFFT(song);
+
 }
 
 if(raf){
+
 cancelAnimationFrame(raf);
 raf=null;
+
 }
+
 }
+
 }
 );
 
 player.addEventListener(
 "ended",
 ()=>{
+
 if(player===currentAudio){
 
 const song=
 player.closest(".song");
 
 if(song){
+
 song.classList.remove("playing");
 clearFFT(song);
+
 }
 
 if(raf){
+
 cancelAnimationFrame(raf);
 raf=null;
+
 }
 
 currentAudio=null;
+
 }
+
 }
 );
 
 });
 }
 
-/* КОПИРОВАНИЕ */
 function copyLink(button,link){
 
 navigator.clipboard
 .writeText(link)
 .then(()=>{
+
 showCopied(button);
+
 })
 .catch(()=>{
 
@@ -1077,14 +1035,13 @@ document.execCommand("copy");
 document.body.removeChild(input);
 
 showCopied(button);
+
 });
 }
 
-/* СКОПИРОВАНО */
 function showCopied(button){
 
-const old=
-button.innerHTML;
+const old=button.innerHTML;
 
 button.innerHTML=
 "✓ Ссылка скопирована!";
@@ -1092,12 +1049,14 @@ button.innerHTML=
 button.classList.add("copied");
 
 setTimeout(()=>{
+
 button.innerHTML=old;
+
 button.classList.remove("copied");
+
 },1500);
 }
 
-/* ГРОМКОСТЬ */
 function setupVolume(){
 
 const saved=
@@ -1122,112 +1081,19 @@ player.volume
 );
 
 players.forEach(other=>{
+
 if(other!==player){
-other.volume=
-player.volume;
-}
-});
-}
-);
-});
+other.volume=player.volume;
 }
 
-/* УМНЫЙ ПОИСК */
-function setupSearch(){
-
-const input=
-document.getElementById(
-"searchInput"
-);
-
-const noResults=
-document.getElementById(
-"noResults"
-);
-
-input.addEventListener(
-"input",
-function(){
-
-const raw=
-this.value.trim();
-
-const queryVariants=
-makeSearchVariants(raw);
-
-const words=
-normalizeSearch(raw)
-.split(" ")
-.filter(Boolean);
-
-let found=0;
-
-songs.forEach(song=>{
-
-const text=
-song.dataset.search;
-
-let visible=false;
-
-/* Полный вариант */
-if(!raw){
-visible=true;
-}else{
-
-/* Проверяем все варианты запроса */
-for(const variant of queryVariants){
-
-if(
-variant&&
-text.includes(variant)
-){
-visible=true;
-break;
-}
-}
-
-/* Если целиком не совпало,
-   проверяем отдельные слова */
-if(!visible&&words.length){
-
-visible=words.every(word=>{
-
-const translated=
-normalizeSearch(
-transliterate(word)
-);
-
-const alias=
-aliases[word]||
-"";
-
-return(
-text.includes(word)||
-text.includes(translated)||
-(alias&&text.includes(alias))
-);
-});
-}
-}
-
-song.classList.toggle(
-"hidden",
-!visible
-);
-
-if(visible){
-found++;
-}
 });
 
-noResults.style.display=
-found===0&&raw?
-"block":
-"none";
+}
+);
+
 });
 }
 
-/* ЗАПУСК */
 loadMusic();
 </script>
 
