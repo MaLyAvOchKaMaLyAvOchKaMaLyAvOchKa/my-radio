@@ -2,419 +2,217 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>МаЛяВоЧка — Рофл звуки</title>
-
 <style>
-
-body{
-    margin:0;
-    background:#111;
-    color:white;
-    font-family:Arial, sans-serif;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 70% 10%,rgba(0,255,136,0.07),transparent 30%),radial-gradient(circle at 90% 80%,rgba(0,180,255,0.05),transparent 30%),#0d0d0f;color:white;font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+.sidebar{position:fixed;left:0;top:0;width:190px;height:100vh;background:linear-gradient(180deg,#18181b,#111113);border-right:1px solid rgba(255,255,255,0.06);box-shadow:5px 0 25px rgba(0,0,0,0.45);padding-top:110px;z-index:100}
+.menu{display:flex;align-items:center;gap:12px;color:#ddd;text-decoration:none;font-size:20px;padding:17px 20px;margin:5px 10px;border-radius:12px;transition:background .2s,color .2s,transform .2s,box-shadow .2s}
+.menu:hover{background:rgba(0,255,136,0.08);color:#00ff88;transform:translateX(4px);box-shadow:inset 3px 0 0 #00ff88}
+header{margin-left:190px;padding:30px 20px;text-align:center;background:linear-gradient(180deg,#18181a,#151517);border-bottom:1px solid rgba(255,255,255,0.06);box-shadow:0 8px 30px rgba(0,0,0,0.35);font-size:42px;font-weight:bold;color:#00ff88;letter-spacing:1px;text-shadow:0 0 15px rgba(0,255,136,0.25)}
+.content{margin-left:190px;width:calc(100% - 190px);padding:35px 30px 80px}
+.song{background:linear-gradient(145deg,rgba(38,38,41,0.96),rgba(29,29,32,0.96));width:min(760px,90%);margin:0 auto 22px;border-radius:17px;padding:20px;border:1px solid rgba(255,255,255,0.05);box-shadow:0 10px 30px rgba(0,0,0,0.25);transition:transform .2s,border .2s,box-shadow .2s}
+.song:hover{transform:translateY(-3px);border:1px solid rgba(0,255,136,0.16);box-shadow:0 14px 35px rgba(0,0,0,0.4),0 0 25px rgba(0,255,136,0.04)}
+.title{font-size:24px;margin-bottom:13px;display:flex;align-items:center;gap:9px;color:#f2f2f2}
+.music-icon{font-size:27px;filter:drop-shadow(0 0 6px rgba(150,80,255,0.4))}
+audio{width:100%;height:48px;border-radius:12px;margin-bottom:14px}
+.buttons{display:flex;gap:10px;width:100%}
+.btn{flex:1;border:0;border-radius:10px;padding:12px 15px;font-size:16px;font-weight:bold;text-align:center;text-decoration:none;cursor:pointer;transition:transform .15s,filter .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn:active{transform:translateY(0)}
+.download{background:#00c878;color:white;box-shadow:0 5px 15px rgba(0,200,120,0.12)}
+.download:hover{box-shadow:0 7px 20px rgba(0,200,120,0.2)}
+.copy{background:#0796d1;color:white;border:0}
+.copy:hover{box-shadow:0 7px 20px rgba(0,150,210,0.18)}
+.copy.copied{background:#00b86b}
+@media(max-width:800px){
+.sidebar{width:70px;padding-top:90px}
+.menu{justify-content:center;font-size:0;padding:15px;margin:6px}
+.menu span{display:none}
+.menu::first-letter{font-size:25px}
+header{margin-left:70px;font-size:30px;padding:25px 10px}
+.content{margin-left:70px;width:calc(100% - 70px);padding:25px 10px 60px}
+.song{width:100%;padding:15px}
+.buttons{flex-direction:column}
+.btn{width:100%}
 }
-
-.sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    width:180px;
-    height:100%;
-    background:#181818;
-    box-shadow:3px 0 15px #000;
-    padding-top:120px;
-}
-
-.menu{
-    display:block;
-    color:white;
-    text-decoration:none;
-    font-size:22px;
-    padding:18px;
-    transition:.2s;
-}
-
-.menu:hover{
-    background:#333;
-    color:#00ff88;
-}
-
-header{
-    margin-left:180px;
-    background:#181818;
-    padding:25px;
-    text-align:center;
-    font-size:42px;
-    font-weight:bold;
-    color:#00ff88;
-    box-shadow:0 0 20px #000;
-}
-
-.song{
-    width:700px;
-    background:#222;
-    margin:20px auto;
-    margin-left:260px;
-    border-radius:12px;
-    padding:18px;
-    transition:.2s;
-}
-
-.song:hover{
-    background:#333;
-    transform:scale(1.02);
-}
-
-.title{
-    font-size:24px;
-    margin-bottom:10px;
-    color:#fff;
-}
-
-audio{
-    width:100%;
-}
-
-.btn{
-    display:inline-block;
-    margin-top:12px;
-    margin-right:10px;
-    padding:10px 18px;
-    border-radius:8px;
-    background:#00aa66;
-    color:white;
-    border:none;
-    text-decoration:none;
-    cursor:pointer;
-    transition:.2s;
-    font-size:18px;
-}
-
-.btn:hover{
-    background:#00dd88;
-}
-
 </style>
-
 </head>
-
 <body>
 
 <div class="sidebar">
-    <a href="index.html" class="menu">🎧 Радио</a>
-    <a href="Roflan.html" class="menu">😂 Рофл звуки</a>
-    <a href="Gachi.html" class="menu">🎤 Gachi</a>
-    <a href="Skrimer.html" class="menu">😱 Скримеры</a>
+<a href="index.html" class="menu">🎧 <span>Music</span></a>
+<a href="Roflan.html" class="menu">😂 <span>Рофл звуки</span></a>
+<a href="Gachi.html" class="menu">🎤 <span>Gachi</span></a>
+<a href="Skrimer.html" class="menu">😱 <span>Скримеры</span></a>
 </div>
 
-<header>
-😂 МаЛяВоЧка — Рофл звуки
-</header>
+<header>😂 МаЛяВоЧка — Рофл звуки</header>
 
-<!-- ===== ЗВУК 1 ===== -->
+<div class="content">
 
 <div class="song">
-<div class="title">😂 Лунтик — Я родился</div>
-
-<audio controls onplay="pauseOthers(this)">
-<source src="Roflan/Ya_Rodilsya.mp3" type="audio/mpeg">
-</audio>
-
-<br><br>
-
-<a class="btn" href="Roflan/Ya_Rodilsya.mp3" download>
-⬇️ Скачать
-</a>
-
-<button class="btn"
-onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Roflan/Ya_Rodilsya.mp3')">
-🔗 Скопировать ссылку
-</button>
+<div class="title"><span class="music-icon">😂</span>Лунтик — Я родился</div>
+<audio controls onplay="pauseOthers(this)"><source src="Roflan/Ya_Rodilsya.mp3" type="audio/mpeg"></audio>
+<div class="buttons">
+<a class="btn download" href="Roflan/Ya_Rodilsya.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Roflan/Ya_Rodilsya.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
-<!-- ===== ЗВУК 2 ===== -->
-
 <div class="song">
-<div class="title">😂 Пердеж</div>
-
-<audio controls onplay="pauseOthers(this)">
-<source src="Roflan/perdezh1.mp3" type="audio/mpeg">
-</audio>
-
-<br><br>
-
-<a class="btn" href="Roflan/perdezh1.mp3" download>
-⬇️ Скачать
-</a>
-
-<button class="btn"
-onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Roflan/perdezh1.mp3')">
-🔗 Скопировать ссылку
-</button>
+<div class="title"><span class="music-icon">💨</span>Пердеж</div>
+<audio controls onplay="pauseOthers(this)"><source src="Roflan/perdezh1.mp3" type="audio/mpeg"></audio>
+<div class="buttons">
+<a class="btn download" href="Roflan/perdezh1.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Roflan/perdezh1.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
-<!-- ===== ЗВУК 3 ===== -->
-
 <div class="song">
-<div class="title">😂 Музыкальный пердеж</div>
-
-<audio controls onplay="pauseOthers(this)">
-<source src="Roflan/perdezh2.mp3" type="audio/mpeg">
-</audio>
-
-<br><br>
-
-<a class="btn" href="Roflan/perdezh2.mp3" download>
-⬇️ Скачать
-</a>
-
-<button class="btn"
-onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Roflan/perdezh2.mp3')">
-🔗 Скопировать ссылку
-</button>
+<div class="title"><span class="music-icon">💨</span>Музыкальный пердеж</div>
+<audio controls onplay="pauseOthers(this)"><source src="Roflan/perdezh2.mp3" type="audio/mpeg"></audio>
+<div class="buttons">
+<a class="btn download" href="Roflan/perdezh2.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Roflan/perdezh2.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
-<!-- ===== ЗВУК 4 ===== -->
-
 <div class="song">
-<div class="title">😂 Пьяный пердеж</div>
-
-<audio controls onplay="pauseOthers(this)">
-<source src="Roflan/perdezh3.mp3" type="audio/mpeg">
-</audio>
-
-<br><br>
-
-<a class="btn" href="Roflan/perdezh3.mp3" download>
-⬇️ Скачать
-</a>
-
-<button class="btn"
-onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Roflan/perdezh3.mp3')">
-🔗 Скопировать ссылку
-</button>
+<div class="title"><span class="music-icon">💨</span>Пьяный пердеж</div>
+<audio controls onplay="pauseOthers(this)"><source src="Roflan/perdezh3.mp3" type="audio/mpeg"></audio>
+<div class="buttons">
+<a class="btn download" href="Roflan/perdezh3.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Roflan/perdezh3.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
-<!-- ===== ЗВУК 5 ===== -->
-
 <div class="song">
-<div class="title">😂 Сильный пердеж</div>
-
-<audio controls onplay="pauseOthers(this)">
-<source src="Roflan/perdezh4.mp3" type="audio/mpeg">
-</audio>
-
-<br><br>
-
-<a class="btn" href="Roflan/perdezh4.mp3" download>
-⬇️ Скачать
-</a>
-
-<button class="btn"
-onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Roflan/perdezh4.mp3')">
-🔗 Скопировать ссылку
-</button>
+<div class="title"><span class="music-icon">💨</span>Сильный пердеж</div>
+<audio controls onplay="pauseOthers(this)"><source src="Roflan/perdezh4.mp3" type="audio/mpeg"></audio>
+<div class="buttons">
+<a class="btn download" href="Roflan/perdezh4.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Roflan/perdezh4.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
-<!-- ===== ЗВУК 6 ===== -->
-
 <div class="song">
-<div class="title">😂 Просто пердеж</div>
-
-<audio controls onplay="pauseOthers(this)">
-<source src="Roflan/perdezh5.mp3" type="audio/mpeg">
-</audio>
-
-<br><br>
-
-<a class="btn" href="Roflan/perdezh5.mp3" download>
-⬇️ Скачать
-</a>
-
-<button class="btn"
-onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Roflan/perdezh5.mp3')">
-🔗 Скопировать ссылку
-</button>
+<div class="title"><span class="music-icon">💨</span>Просто пердеж</div>
+<audio controls onplay="pauseOthers(this)"><source src="Roflan/perdezh5.mp3" type="audio/mpeg"></audio>
+<div class="buttons">
+<a class="btn download" href="Roflan/perdezh5.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Roflan/perdezh5.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
-<!-- ===== ЗВУК 7 ===== -->
-
 <div class="song">
-<div class="title">😂 Пердеж со свистом</div>
-
-<audio controls onplay="pauseOthers(this)">
-<source src="Roflan/perdezh6.mp3" type="audio/mpeg">
-</audio>
-
-<br><br>
-
-<a class="btn" href="Roflan/perdezh6.mp3" download>
-⬇️ Скачать
-</a>
-
-<button class="btn"
-onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Roflan/perdezh6.mp3')">
-🔗 Скопировать ссылку
-</button>
+<div class="title"><span class="music-icon">💨</span>Пердеж со свистом</div>
+<audio controls onplay="pauseOthers(this)"><source src="Roflan/perdezh6.mp3" type="audio/mpeg"></audio>
+<div class="buttons">
+<a class="btn download" href="Roflan/perdezh6.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Roflan/perdezh6.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
-<!-- ===== ЗВУК 8 ===== -->
-
 <div class="song">
-<div class="title">😂 Сильный понос</div>
-
-<audio controls onplay="pauseOthers(this)">
-<source src="Roflan/perdezh7.mp3" type="audio/mpeg">
-</audio>
-
-<br><br>
-
-<a class="btn" href="Roflan/perdezh7.mp3" download>
-⬇️ Скачать
-</a>
-
-<button class="btn"
-onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Roflan/perdezh7.mp3')">
-🔗 Скопировать ссылку
-</button>
+<div class="title"><span class="music-icon">💨</span>Сильный понос</div>
+<audio controls onplay="pauseOthers(this)"><source src="Roflan/perdezh7.mp3" type="audio/mpeg"></audio>
+<div class="buttons">
+<a class="btn download" href="Roflan/perdezh7.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Roflan/perdezh7.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
-<!-- ===== ЗВУК 9 ===== -->
-
 <div class="song">
-<div class="title">😂 Взрывной пердеж</div>
-
-<audio controls onplay="pauseOthers(this)">
-<source src="Roflan/perdezh8.mp3" type="audio/mpeg">
-</audio>
-
-<br><br>
-
-<a class="btn" href="Roflan/perdezh8.mp3" download>
-⬇️ Скачать
-</a>
-
-<button class="btn"
-onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Roflan/perdezh8.mp3')">
-🔗 Скопировать ссылку
-</button>
+<div class="title"><span class="music-icon">💨</span>Взрывной пердеж</div>
+<audio controls onplay="pauseOthers(this)"><source src="Roflan/perdezh8.mp3" type="audio/mpeg"></audio>
+<div class="buttons">
+<a class="btn download" href="Roflan/perdezh8.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Roflan/perdezh8.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
-<!-- ===== ЗВУК 10 ===== -->
-
 <div class="song">
-<div class="title">😂 Песня — 8 800 555 35 35</div>
-
-<audio controls onplay="pauseOthers(this)">
-<source src="Roflan/perdezh10.mp3" type="audio/mpeg">
-</audio>
-
-<br><br>
-
-<a class="btn" href="Roflan/perdezh10.mp3" download>
-⬇️ Скачать
-</a>
-
-<button class="btn"
-onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Roflan/perdezh10.mp3')">
-🔗 Скопировать ссылку
-</button>
+<div class="title"><span class="music-icon">🎶</span>Песня — 8 800 555 35 35</div>
+<audio controls onplay="pauseOthers(this)"><source src="Roflan/perdezh10.mp3" type="audio/mpeg"></audio>
+<div class="buttons">
+<a class="btn download" href="Roflan/perdezh10.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Roflan/perdezh10.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
-
-<!--==== Звук 11 ====-->
-
 <div class="song">
-<div class="title">😂 Отрыжка симпсона</div>
-
-<audio controls onplay="pauseOthers(this)">
-<source src="Roflan/otryzhka1.mp3" type="audio/mpeg">
-</audio>
-
-<br><br>
-
-<a class="btn" href="Roflan/otryzhka1.mp3" download>
-⬇️ Скачать
-</a>
-
-<button class="btn"
-onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Roflan/otryzhka1.mp3')">
-🔗 Скопировать ссылку
-</button>
+<div class="title"><span class="music-icon">😮</span>Отрыжка Симпсона</div>
+<audio controls onplay="pauseOthers(this)"><source src="Roflan/otryzhka1.mp3" type="audio/mpeg"></audio>
+<div class="buttons">
+<a class="btn download" href="Roflan/otryzhka1.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Roflan/otryzhka1.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
-<!--==== Звук 12 ====-->
-
 <div class="song">
-<div class="title">😂 Утки</div>
-
-<audio controls onplay="pauseOthers(this)">
-<source src="Roflan/utka.mp3" type="audio/mpeg">
-</audio>
-
-<br><br>
-
-<a class="btn" href="Roflan/utka.mp3" download>
-⬇️ Скачать
-</a>
-
-<button class="btn"
-onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Roflan/utka.mp3')">
-🔗 Скопировать ссылку
-</button>
+<div class="title"><span class="music-icon">🦆</span>Утки</div>
+<audio controls onplay="pauseOthers(this)"><source src="Roflan/utka.mp3" type="audio/mpeg"></audio>
+<div class="buttons">
+<a class="btn download" href="Roflan/utka.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Roflan/utka.mp3')">🔗 Копировать ссылку</button>
+</div>
 </div>
 
-
-<!--==== Звук 13 ====-->
-
 <div class="song">
-<div class="title">😂 Кря</div>
+<div class="title"><span class="music-icon">🦆</span>Кря</div>
+<audio controls onplay="pauseOthers(this)"><source src="Roflan/utka2.mp3" type="audio/mpeg"></audio>
+<div class="buttons">
+<a class="btn download" href="Roflan/utka2.mp3" download>↓ Скачать MP3</a>
+<button class="btn copy" onclick="copyLink(this,'Roflan/utka2.mp3')">🔗 Копировать ссылку</button>
+</div>
+</div>
 
-<audio controls onplay="pauseOthers(this)">
-<source src="Roflan/utka2.mp3" type="audio/mpeg">
-</audio>
-
-<br><br>
-
-<a class="btn" href="Roflan/utka2.mp3" download>
-⬇️ Скачать
-</a>
-
-<button class="btn"
-onclick="copyLink('https://malyavochkamalyavochkamalyavochka.github.io/my-radio/Roflan/utka2.mp3')">
-🔗 Скопировать ссылку
-</button>
 </div>
 
 <script>
-function pauseOthers(current)
-{
-    let players = document.querySelectorAll("audio");
+let savedVolume=localStorage.getItem("roflVolume");
+if(savedVolume===null){savedVolume=1}else{savedVolume=parseFloat(savedVolume)}
+let players=document.querySelectorAll("audio");
 
-    players.forEach(function(player)
-    {
-        if(player !== current)
-        {
-            player.pause();
-            player.currentTime = 0;
-        }
-    });
+players.forEach(function(player){
+player.volume=savedVolume;
+player.addEventListener("volumechange",function(){
+savedVolume=player.volume;
+localStorage.setItem("roflVolume",savedVolume);
+players.forEach(function(other){other.volume=savedVolume});
+});
+});
+
+function pauseOthers(current){
+players.forEach(function(player){
+if(player!==current){player.pause();player.currentTime=0}
+player.volume=savedVolume;
+});
 }
 
-function copyLink(link)
-{
-    navigator.clipboard.writeText(link)
-    .then(() => alert("✅ Ссылка скопирована!"))
-    .catch(() => {
-        const area = document.createElement("textarea");
-        area.value = link;
-        document.body.appendChild(area);
-        area.select();
-        document.execCommand("copy");
-        document.body.removeChild(area);
-        alert("✅ Ссылка скопирована!");
-    });
+function copyLink(button,file){
+let link="https://malyavochkamalyavochka.github.io/my-radio/"+file;
+navigator.clipboard.writeText(link).then(function(){
+let oldText=button.innerHTML;
+button.innerHTML="✓ Ссылка скопирована!";
+button.classList.add("copied");
+setTimeout(function(){button.innerHTML=oldText;button.classList.remove("copied")},1500);
+}).catch(function(){
+const area=document.createElement("textarea");
+area.value=link;
+document.body.appendChild(area);
+area.select();
+document.execCommand("copy");
+document.body.removeChild(area);
+let oldText=button.innerHTML;
+button.innerHTML="✓ Ссылка скопирована!";
+button.classList.add("copied");
+setTimeout(function(){button.innerHTML=oldText;button.classList.remove("copied")},1500);
+});
 }
 </script>
-
 </body>
 </html>
