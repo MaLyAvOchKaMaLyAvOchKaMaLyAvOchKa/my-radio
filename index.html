@@ -287,6 +287,7 @@ font-size:18px
 
 /* MOBILE */
 @media(max-width:800px){
+
 .sidebar{
 width:70px;
 padding-top:90px
@@ -346,6 +347,26 @@ font-size:19px
 width:150px;
 height:40px
 }
+
+}
+
+
+/* FFT НЕ ПЕРЕНОСИТСЯ НА НОВУЮ СТРОКУ */
+@media(max-width:500px){
+
+.title{
+gap:6px
+}
+
+.title .music-icon{
+font-size:21px
+}
+
+.fft{
+width:120px;
+height:34px
+}
+
 }
 </style>
 </head>
@@ -353,565 +374,1583 @@ height:40px
 <body>
 
 <div class="sidebar">
-<a href="index.html" class="menu">🎧 <span>Music</span></a>
-<a href="Roflan.html" class="menu">😂 <span>Рофл звуки</span></a>
-<a href="Gachi.html" class="menu">🎤 <span>Gachi</span></a>
-<a href="Skrimer.html" class="menu">😱 <span>Скримеры</span></a>
+
+<a href="index.html" class="menu">
+🎧 <span>Music</span>
+</a>
+
+<a href="Roflan.html" class="menu">
+😂 <span>Рофл звуки</span>
+</a>
+
+<a href="Gachi.html" class="menu">
+🎤 <span>Gachi</span>
+</a>
+
+<a href="Skrimer.html" class="menu">
+😱 <span>Скримеры</span>
+</a>
+
 </div>
 
+
 <header>
+
 🎧 МаЛяВоЧка - Music 🎧
 
 <div class="search">
+
 <span class="search-icon"></span>
-<input id="searchInput" type="text" placeholder="Найти трек...">
+
+<input
+id="searchInput"
+type="text"
+placeholder="Найти трек..."
+>
+
 </div>
+
 </header>
+
 
 <div class="content">
 
+
 <div class="song" data-search="exponat экспонат мия бойка мия">
+
 <div class="title">
+
 <span class="music-icon">🎵</span>
+
 <span>MIA BOYKA - Экспонат</span>
-<canvas class="fft" width="440" height="96"></canvas>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
 </div>
+
 <audio controls>
-<source src="Exponat.mp3" type="audio/mpeg">
+
+<source
+src="Exponat.mp3"
+type="audio/mpeg"
+>
+
 </audio>
+
 <div class="buttons">
-<a class="btn download" href="Exponat.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Exponat.mp3')">🔗 Копировать ссылку</button>
+
+<a
+class="btn download"
+href="Exponat.mp3"
+download
+>
+↓ Скачать MP3
+</a>
+
+<button
+class="btn copy"
+onclick="copyLink(this,'Exponat.mp3')"
+>
+🔗 Копировать ссылку
+</button>
+
 </div>
+
 </div>
+
 
 <div class="song" data-search="ella dance элла элла данс">
+
 <div class="title">
+
 <span class="music-icon">🎵</span>
+
 <span>Ella Dance</span>
-<canvas class="fft" width="440" height="96"></canvas>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
 </div>
+
 <audio controls>
-<source src="elladance.mp3" type="audio/mpeg">
+
+<source
+src="elladance.mp3"
+type="audio/mpeg"
+>
+
 </audio>
+
 <div class="buttons">
-<a class="btn download" href="elladance.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'elladance.mp3')">🔗 Копировать ссылку</button>
+
+<a
+class="btn download"
+href="elladance.mp3"
+download
+>
+↓ Скачать MP3
+</a>
+
+<button
+class="btn copy"
+onclick="copyLink(this,'elladance.mp3')"
+>
+🔗 Копировать ссылку
+</button>
+
 </div>
+
 </div>
+
 
 <div class="song" data-search="music музыка">
+
 <div class="title">
+
 <span class="music-icon">🎵</span>
+
 <span>Music</span>
-<canvas class="fft" width="440" height="96"></canvas>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
 </div>
+
 <audio controls>
-<source src="music.mp3" type="audio/mpeg">
+
+<source
+src="music.mp3"
+type="audio/mpeg"
+>
+
 </audio>
+
 <div class="buttons">
-<a class="btn download" href="music.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'music.mp3')">🔗 Копировать ссылку</button>
+
+<a
+class="btn download"
+href="music.mp3"
+download
+>
+↓ Скачать MP3
+</a>
+
+<button
+class="btn copy"
+onclick="copyLink(this,'music.mp3')"
+>
+🔗 Копировать ссылку
+</button>
+
 </div>
+
 </div>
+
 
 <div class="song" data-search="wanpis ванпис">
+
 <div class="title">
+
 <span class="music-icon">🎵</span>
+
 <span>Wanpis</span>
-<canvas class="fft" width="440" height="96"></canvas>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
 </div>
+
 <audio controls>
-<source src="wanpis.mp3" type="audio/mpeg">
+
+<source
+src="wanpis.mp3"
+type="audio/mpeg"
+>
+
 </audio>
+
 <div class="buttons">
-<a class="btn download" href="wanpis.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'wanpis.mp3')">🔗 Копировать ссылку</button>
+
+<a
+class="btn download"
+href="wanpis.mp3"
+download
+>
+↓ Скачать MP3
+</a>
+
+<button
+class="btn copy"
+onclick="copyLink(this,'wanpis.mp3')"
+>
+🔗 Копировать ссылку
+</button>
+
 </div>
+
 </div>
+
 
 <div class="song" data-search="kesha кеша">
+
 <div class="title">
+
 <span class="music-icon">🎵</span>
+
 <span>Kesha</span>
-<canvas class="fft" width="440" height="96"></canvas>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
 </div>
+
 <audio controls>
-<source src="Kesha.mp3" type="audio/mpeg">
+
+<source
+src="Kesha.mp3"
+type="audio/mpeg"
+>
+
 </audio>
+
 <div class="buttons">
-<a class="btn download" href="Kesha.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Kesha.mp3')">🔗 Копировать ссылку</button>
+
+<a
+class="btn download"
+href="Kesha.mp3"
+download
+>
+↓ Скачать MP3
+</a>
+
+<button
+class="btn copy"
+onclick="copyLink(this,'Kesha.mp3')"
+>
+🔗 Копировать ссылку
+</button>
+
 </div>
+
 </div>
+
 
 <div class="song" data-search="mount noize generation around the world маунт нойз генератион араунд зе ворлд">
+
 <div class="title">
+
 <span class="music-icon">🎵</span>
+
 <span>Mount Noize - Generation Around The World</span>
-<canvas class="fft" width="440" height="96"></canvas>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
 </div>
+
 <audio controls>
-<source src="Mount_Noize_Generation-AroundTheWorld.mp3" type="audio/mpeg">
+
+<source
+src="Mount_Noize_Generation-AroundTheWorld.mp3"
+type="audio/mpeg"
+>
+
 </audio>
+
 <div class="buttons">
-<a class="btn download" href="Mount_Noize_Generation-AroundTheWorld.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Mount_Noize_Generation-AroundTheWorld.mp3')">🔗 Копировать ссылку</button>
+
+<a
+class="btn download"
+href="Mount_Noize_Generation-AroundTheWorld.mp3"
+download
+>
+↓ Скачать MP3
+</a>
+
+<button
+class="btn copy"
+onclick="copyLink(this,'Mount_Noize_Generation-AroundTheWorld.mp3')"
+>
+🔗 Копировать ссылку
+</button>
+
 </div>
+
 </div>
+
 
 <div class="song" data-search="r3hab all around the world рэаб рехаб раунд зе ворлд">
+
 <div class="title">
+
 <span class="music-icon">🎵</span>
+
 <span>R3hab - All Around The World</span>
-<canvas class="fft" width="440" height="96"></canvas>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
 </div>
+
 <audio controls>
-<source src="R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3" type="audio/mpeg">
+
+<source
+src="R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3"
+type="audio/mpeg"
+>
+
 </audio>
+
 <div class="buttons">
-<a class="btn download" href="R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3')">🔗 Копировать ссылку</button>
+
+<a
+class="btn download"
+href="R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3"
+download
+>
+↓ Скачать MP3
+</a>
+
+<button
+class="btn copy"
+onclick="copyLink(this,'R3hab_A_Touch_Of_Class-All_Around_The_World(La_La_La).mp3')"
+>
+🔗 Копировать ссылку
+</button>
+
 </div>
+
 </div>
+
 
 <div class="song" data-search="daryana juice дарьяна дарь даша джус">
+
 <div class="title">
+
 <span class="music-icon">🎵</span>
+
 <span>Daryana - Juice</span>
-<canvas class="fft" width="440" height="96"></canvas>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
 </div>
+
 <audio controls>
-<source src="Daryana-Juice.mp3" type="audio/mpeg">
+
+<source
+src="Daryana-Juice.mp3"
+type="audio/mpeg"
+>
+
 </audio>
+
 <div class="buttons">
-<a class="btn download" href="Daryana-Juice.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Daryana-Juice.mp3')">🔗 Копировать ссылку</button>
+
+<a
+class="btn download"
+href="Daryana-Juice.mp3"
+download
+>
+↓ Скачать MP3
+</a>
+
+<button
+class="btn copy"
+onclick="copyLink(this,'Daryana-Juice.mp3')"
+>
+🔗 Копировать ссылку
+</button>
+
 </div>
+
 </div>
+
 
 <div class="song" data-search="dora vturilas дора втурилась втурилас">
+
 <div class="title">
+
 <span class="music-icon">🎵</span>
+
 <span>Dora - Vturilas</span>
-<canvas class="fft" width="440" height="96"></canvas>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
 </div>
+
 <audio controls>
-<source src="Dora-Vturilas.mp3" type="audio/mpeg">
+
+<source
+src="Dora-Vturilas.mp3"
+type="audio/mpeg"
+>
+
 </audio>
+
 <div class="buttons">
-<a class="btn download" href="Dora-Vturilas.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Dora-Vturilas.mp3')">🔗 Копировать ссылку</button>
+
+<a
+class="btn download"
+href="Dora-Vturilas.mp3"
+download
+>
+↓ Скачать MP3
+</a>
+
+<button
+class="btn copy"
+onclick="copyLink(this,'Dora-Vturilas.mp3')"
+>
+🔗 Копировать ссылку
+</button>
+
 </div>
+
 </div>
+
 
 <div class="song" data-search="psy gangnam style ганнам стайл псай гангнам">
+
 <div class="title">
+
 <span class="music-icon">🎵</span>
+
 <span>PSY - Gangnam Style</span>
-<canvas class="fft" width="440" height="96"></canvas>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
 </div>
+
 <audio controls>
-<source src="PSY-Gangnam_Style.mp3" type="audio/mpeg">
+
+<source
+src="PSY-Gangnam_Style.mp3"
+type="audio/mpeg"
+>
+
 </audio>
+
 <div class="buttons">
-<a class="btn download" href="PSY-Gangnam_Style.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'PSY-Gangnam_Style.mp3')">🔗 Копировать ссылку</button>
+
+<a
+class="btn download"
+href="PSY-Gangnam_Style.mp3"
+download
+>
+↓ Скачать MP3
+</a>
+
+<button
+class="btn copy"
+onclick="copyLink(this,'PSY-Gangnam_Style.mp3')"
+>
+🔗 Копировать ссылку
+</button>
+
 </div>
+
 </div>
+
 
 <div class="song" data-search="skriptonit baby mama скриптонит бэйби мама">
+
 <div class="title">
+
 <span class="music-icon">🎵</span>
+
 <span>Skriptonit - Baby Mama</span>
-<canvas class="fft" width="440" height="96"></canvas>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
 </div>
+
 <audio controls>
-<source src="Skriptonit-Baby_Mama.mp3" type="audio/mpeg">
+
+<source
+src="Skriptonit-Baby_Mama.mp3"
+type="audio/mpeg"
+>
+
 </audio>
+
 <div class="buttons">
-<a class="btn download" href="Skriptonit-Baby_Mama.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skriptonit-Baby_Mama.mp3')">🔗 Копировать ссылку</button>
+
+<a
+class="btn download"
+href="Skriptonit-Baby_Mama.mp3"
+download
+>
+↓ Скачать MP3
+</a>
+
+<button
+class="btn copy"
+onclick="copyLink(this,'Skriptonit-Baby_Mama.mp3')"
+>
+🔗 Копировать ссылку
+</button>
+
 </div>
+
 </div>
+
 
 <div class="song" data-search="deti rave abonnement дети рейв абонемент">
+
 <div class="title">
+
 <span class="music-icon">🎵</span>
+
 <span>Deti Rave - Abonnement</span>
-<canvas class="fft" width="440" height="96"></canvas>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
 </div>
+
 <audio controls>
-<source src="Deti_Rave-Abonnement.mp3" type="audio/mpeg">
+
+<source
+src="Deti_Rave-Abonnement.mp3"
+type="audio/mpeg"
+>
+
 </audio>
+
 <div class="buttons">
-<a class="btn download" href="Deti_Rave-Abonnement.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Deti_Rave-Abonnement.mp3')">🔗 Копировать ссылку</button>
+
+<a
+class="btn download"
+href="Deti_Rave-Abonnement.mp3"
+download
+>
+↓ Скачать MP3
+</a>
+
+<button
+class="btn copy"
+onclick="copyLink(this,'Deti_Rave-Abonnement.mp3')"
+>
+🔗 Копировать ссылку
+</button>
+
 </div>
+
 </div>
+
 
 <div class="song" data-search="dead blonde мальчик на девятке дед блонд мальчик девятке">
+
 <div class="title">
+
 <span class="music-icon">🎵</span>
+
 <span>Dead Blonde - Мальчик на девятке</span>
-<canvas class="fft" width="440" height="96"></canvas>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
 </div>
+
 <audio controls>
-<source src="Dead_Blonde-Malchik_Na_Devyatke.mp3" type="audio/mpeg">
+
+<source
+src="Dead_Blonde-Malchik_Na_Devyatke.mp3"
+type="audio/mpeg"
+>
+
 </audio>
+
 <div class="buttons">
-<a class="btn download" href="Dead_Blonde-Malchik_Na_Devyatke.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Dead_Blonde-Malchik_Na_Devyatke.mp3')">🔗 Копировать ссылку</button>
+
+<a
+class="btn download"
+href="Dead_Blonde-Malchik_Na_Devyatke.mp3"
+download
+>
+↓ Скачать MP3
+</a>
+
+<button
+class="btn copy"
+onclick="copyLink(this,'Dead_Blonde-Malchik_Na_Devyatke.mp3')"
+>
+🔗 Копировать ссылку
+</button>
+
 </div>
+
 </div>
+
 
 <div class="song" data-search="poshlaya molly non stop пошлая молли нон стоп">
+
 <div class="title">
+
 <span class="music-icon">🎵</span>
+
 <span>Poshlaya Molly - Non Stop</span>
-<canvas class="fft" width="440" height="96"></canvas>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
 </div>
+
 <audio controls>
-<source src="Poshlaya_Molli-Non_Stop.mp3" type="audio/mpeg">
+
+<source
+src="Poshlaya_Molli-Non_Stop.mp3"
+type="audio/mpeg"
+>
+
 </audio>
+
 <div class="buttons">
-<a class="btn download" href="Poshlaya_Molli-Non_Stop.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Poshlaya_Molli-Non_Stop.mp3')">🔗 Копировать ссылку</button>
+
+<a
+class="btn download"
+href="Poshlaya_Molli-Non_Stop.mp3"
+download
+>
+↓ Скачать MP3
+</a>
+
+<button
+class="btn copy"
+onclick="copyLink(this,'Poshlaya_Molli-Non_Stop.mp3')"
+>
+🔗 Копировать ссылку
+</button>
+
 </div>
+
 </div>
+
 
 <div class="song" data-search="gachi гачи">
+
 <div class="title">
+
 <span class="music-icon">🎵</span>
+
 <span>Gachi</span>
-<canvas class="fft" width="440" height="96"></canvas>
+
+<canvas
+class="fft"
+width="440"
+height="96"
+></canvas>
+
 </div>
+
 <audio controls>
-<source src="Gachi.mp3" type="audio/mpeg">
+
+<source
+src="Gachi.mp3"
+type="audio/mpeg"
+>
+
 </audio>
+
 <div class="buttons">
-<a class="btn download" href="Gachi.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Gachi.mp3')">🔗 Копировать ссылку</button>
-</div>
+
+<a
+class="btn download"
+href="Gachi.mp3"
+download
+>
+↓ Скачать MP3
+</a>
+
+<button
+class="btn copy"
+onclick="copyLink(this,'Gachi.mp3')"
+>
+🔗 Копировать ссылку
+</button>
+
 </div>
 
-<div class="no-results" id="noResults">Ничего не найдено 😔</div>
+</div>
+
+
+<div
+class="no-results"
+id="noResults"
+>
+Ничего не найдено 😔
+</div>
+
 
 </div>
+
 
 <script>
+
 const BASE="https://malyavochkamalyavochka.github.io/my-radio/";
-const songs=[...document.querySelectorAll(".song")];
-const players=[...document.querySelectorAll("audio")];
+
+const songs=[
+...document.querySelectorAll(".song")
+];
+
+const players=[
+...document.querySelectorAll("audio")
+];
 
 let currentAudio=null;
+
 let audioCtx=null;
+
 let raf=null;
+
 const sourceMap=new WeakMap();
 
+
+/* ОСТАНОВКА ДРУГИХ ТРЕКОВ */
+
 function pauseOthers(current){
+
 players.forEach(player=>{
+
 if(player!==current){
+
 player.pause();
+
 player.currentTime=0;
-player.closest(".song").classList.remove("playing");
-clearFFT(player.closest(".song"));
+
+const oldSong=
+player.closest(".song");
+
+oldSong.classList.remove("playing");
+
+clearFFT(oldSong);
+
 }
+
 });
 
+
 currentAudio=current;
-current.closest(".song").classList.add("playing");
+
+const currentSong=
+current.closest(".song");
+
+currentSong.classList.add("playing");
+
 startFFT(current);
 
-const saved=localStorage.getItem("musicVolume");
-if(saved!==null)current.volume=parseFloat(saved);
+
+/* СОХРАНЁННАЯ ГРОМКОСТЬ */
+
+const saved=
+localStorage.getItem("musicVolume");
+
+if(saved!==null){
+
+current.volume=
+parseFloat(saved);
+
 }
+
+}
+
+
+/* AUDIO CONTEXT */
 
 function getAudioContext(){
+
 if(!audioCtx){
-audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+
+audioCtx=
+new(
+window.AudioContext||
+window.webkitAudioContext
+)();
+
 }
+
 return audioCtx;
+
 }
+
+
+/* СОЗДАНИЕ ANALYSER */
 
 function setupAudio(audio){
-if(sourceMap.has(audio))return sourceMap.get(audio);
 
-const ctx=getAudioContext();
-const source=ctx.createMediaElementSource(audio);
-const analyser=ctx.createAnalyser();
+if(sourceMap.has(audio)){
+
+return sourceMap.get(audio);
+
+}
+
+
+const ctx=
+getAudioContext();
+
+
+const source=
+ctx.createMediaElementSource(audio);
+
+
+const analyser=
+ctx.createAnalyser();
+
 
 analyser.fftSize=1024;
+
 analyser.smoothingTimeConstant=.28;
+
 analyser.minDecibels=-95;
+
 analyser.maxDecibels=-8;
 
-source.connect(analyser);
-analyser.connect(ctx.destination);
 
-const data={
+source.connect(analyser);
+
+analyser.connect(
+ctx.destination
+);
+
+
+const result={
 source:source,
 analyser:analyser
 };
 
-sourceMap.set(audio,data);
-return data;
+
+sourceMap.set(
+audio,
+result
+);
+
+
+return result;
+
 }
+
+
+/* ОЧИСТКА FFT */
 
 function clearFFT(song){
-const canvas=song.querySelector(".fft");
+
+if(!song)return;
+
+
+const canvas=
+song.querySelector(".fft");
+
 if(!canvas)return;
 
-const ctx=canvas.getContext("2d");
-ctx.clearRect(0,0,canvas.width,canvas.height);
+
+const ctx=
+canvas.getContext("2d");
+
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
 }
+
+
+/* FFT */
 
 function startFFT(audio){
+
 if(raf){
+
 cancelAnimationFrame(raf);
+
 raf=null;
+
 }
 
+
+/* УБИРАЕМ FFT СО ВСЕХ ОСТАЛЬНЫХ */
+
 songs.forEach(song=>{
-if(song!==audio.closest(".song")){
+
+if(
+song!==audio.closest(".song")
+){
+
 song.classList.remove("playing");
+
 clearFFT(song);
+
 }
+
 });
+
 
 let analyser;
 
+
 try{
-const ctx=getAudioContext();
 
-if(ctx.state==="suspended"){
+const ctx=
+getAudioContext();
+
+
+if(
+ctx.state==="suspended"
+){
+
 ctx.resume();
+
 }
 
-analyser=setupAudio(audio).analyser;
+
+analyser=
+setupAudio(audio).analyser;
+
+
 }catch(e){
+
 return;
+
 }
 
-const song=audio.closest(".song");
-const canvas=song.querySelector(".fft");
-const ctx=canvas.getContext("2d");
 
-const data=new Uint8Array(analyser.frequencyBinCount);
+const song=
+audio.closest(".song");
+
+
+const canvas=
+song.querySelector(".fft");
+
+
+const ctx=
+canvas.getContext("2d");
+
+
+const data=
+new Uint8Array(
+analyser.frequencyBinCount
+);
+
+
+/* 38 РЕЗКИХ ПОЛОС */
+
 const bars=38;
-const values=new Float32Array(bars);
+
+const values=
+new Float32Array(bars);
+
 
 function draw(){
+
+/* ЕСЛИ ТРЕК УЖЕ НЕ ТЕКУЩИЙ */
+
 if(
 audio!==currentAudio||
 audio.paused||
 audio.ended||
 !song.classList.contains("playing")
 ){
-ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
 return;
+
 }
+
 
 analyser.getByteFrequencyData(data);
 
-ctx.clearRect(0,0,canvas.width,canvas.height);
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
 
 const gap=3;
-const bw=(canvas.width-gap*(bars-1))/bars;
-const time=performance.now();
 
-for(let i=0;i<bars;i++){
-const t=i/(bars-1);
+const bw=
+(
+canvas.width-
+gap*(bars-1)
+)/
+bars;
 
-let minBin=Math.floor(
-2*Math.pow((data.length-2)/2,t)
+
+const time=
+performance.now();
+
+
+for(
+let i=0;
+i<bars;
+i++
+){
+
+const t=
+i/(bars-1);
+
+
+/* РАСПРЕДЕЛЕНИЕ ЧАСТОТ */
+
+let minBin=
+Math.floor(
+2*
+Math.pow(
+(data.length-2)/2,
+t
+)
 );
 
-let maxBin=Math.floor(
-3*Math.pow((data.length-2)/3,t)
+
+let maxBin=
+Math.floor(
+3*
+Math.pow(
+(data.length-2)/3,
+t
+)
 );
 
-if(maxBin<=minBin)maxBin=minBin+1;
+
+if(
+maxBin<=minBin
+){
+
+maxBin=
+minBin+1;
+
+}
+
 
 let sum=0;
+
 let count=0;
 
-for(let j=minBin;j<=maxBin&&j<data.length;j++){
-const weight=1-Math.abs(j-(minBin+maxBin)/2)/(maxBin-minBin+1);
-sum+=data[j]*(.65+weight);
-count+=.65+weight;
+
+for(
+let j=minBin;
+j<=maxBin&&j<data.length;
+j++
+){
+
+const weight=
+1-
+Math.abs(
+j-(minBin+maxBin)/2
+)/
+(maxBin-minBin+1);
+
+
+sum+=
+data[j]*
+(.65+weight);
+
+
+count+=
+.65+weight;
+
 }
 
-let value=count?sum/count/255:0;
 
-/* Сильнее поднимаем тихие частоты */
-value=Math.pow(value,.48);
+let value=
+count?
+sum/count/255:
+0;
 
-/* Высокие частоты */
-value*=.9+t*.8;
 
-/* Небольшая разница между полосами */
-value+=Math.sin(time*.012+i*1.7)*.012;
+/* ПОДТЯГИВАЕМ ТИХИЕ ЗВУКИ */
 
-/* Резкая реакция вверх */
-if(value>values[i]){
-values[i]+=(value-values[i])*.72;
+value=
+Math.pow(
+value,
+.48
+);
+
+
+/* ВЫСОКИЕ ЧАСТОТЫ */
+
+value*=
+.9+t*.8;
+
+
+/* ЖИВОЕ ДВИЖЕНИЕ */
+
+value+=
+Math.sin(
+time*.012+i*1.7
+)*.012;
+
+
+/* БЫСТРЫЙ ПОДЪЁМ */
+
+if(
+value>values[i]
+){
+
+values[i]+=
+(value-values[i])*.72;
+
 }else{
-values[i]+=(value-values[i])*.34;
+
+values[i]+=
+(value-values[i])*.34;
+
 }
 
-/* Минимальная жизнь у тихих полос */
-const floor=.025+Math.sin(time*.006+i*.9)*.008;
-const finalValue=Math.max(values[i],floor);
 
-const h=Math.max(
+/* МИНИМАЛЬНАЯ АКТИВНОСТЬ */
+
+const floor=
+.025+
+Math.sin(
+time*.006+i*.9
+)*.008;
+
+
+const finalValue=
+Math.max(
+values[i],
+floor
+);
+
+
+/* ВЫСОТА */
+
+const h=
+Math.max(
 2,
-finalValue*canvas.height*.94
+finalValue*
+canvas.height*
+.94
 );
 
-const x=i*(bw+gap);
-const y=canvas.height-h;
 
-const grad=ctx.createLinearGradient(
-0,y,
-0,canvas.height
+const x=
+i*(bw+gap);
+
+
+const y=
+canvas.height-h;
+
+
+/* ГРАДИЕНТ */
+
+const grad=
+ctx.createLinearGradient(
+0,
+y,
+0,
+canvas.height
 );
 
-grad.addColorStop(0,"#00ff88");
-grad.addColorStop(.45,"#00ed91");
-grad.addColorStop(1,"#00a96b");
 
-ctx.fillStyle=grad;
+grad.addColorStop(
+0,
+"#00ff88"
+);
+
+grad.addColorStop(
+.45,
+"#00ed91"
+);
+
+grad.addColorStop(
+1,
+"#00a96b"
+);
+
+
+ctx.fillStyle=
+grad;
+
 ctx.globalAlpha=.95;
+
+
+/* РЕЗКИЕ БАРЫ */
 
 ctx.fillRect(
 Math.round(x),
 Math.round(y),
-Math.max(1,Math.round(bw)),
+Math.max(
+1,
+Math.round(bw)
+),
 Math.round(h)
 );
+
 }
+
 
 ctx.globalAlpha=1;
-raf=requestAnimationFrame(draw);
+
+
+raf=
+requestAnimationFrame(draw);
+
 }
+
 
 draw();
+
 }
+
 
 /* AUDIO EVENTS */
+
 players.forEach(player=>{
 
-player.addEventListener("play",function(){
+
+/* PLAY */
+
+player.addEventListener(
+"play",
+function(){
+
 pauseOthers(player);
-});
 
-player.addEventListener("pause",function(){
-if(player===currentAudio){
-player.closest(".song").classList.remove("playing");
+}
+);
+
+
+/* PAUSE */
+
+player.addEventListener(
+"pause",
+function(){
+
+if(
+player===currentAudio
+){
+
+const song=
+player.closest(".song");
+
+
+song.classList.remove(
+"playing"
+);
+
 
 if(raf){
+
 cancelAnimationFrame(raf);
+
 raf=null;
+
 }
 
-clearFFT(player.closest(".song"));
-}
-});
 
-player.addEventListener("ended",function(){
-if(player===currentAudio){
-player.closest(".song").classList.remove("playing");
+clearFFT(song);
+
+}
+
+}
+);
+
+
+/* END */
+
+player.addEventListener(
+"ended",
+function(){
+
+if(
+player===currentAudio
+){
+
+const song=
+player.closest(".song");
+
+
+song.classList.remove(
+"playing"
+);
+
 
 if(raf){
+
 cancelAnimationFrame(raf);
+
 raf=null;
+
 }
 
-clearFFT(player.closest(".song"));
+
+clearFFT(song);
+
+
 currentAudio=null;
+
 }
-});
+
+}
+);
+
 });
 
-/* COPY LINK */
+
+/* КОПИРОВАНИЕ ССЫЛКИ */
+
 function copyLink(button,file){
-const link=BASE+file;
 
-navigator.clipboard.writeText(link)
+/*
+ВАЖНО:
+BASE — обычная строка URL.
+Markdown здесь НЕ используется.
+*/
+
+const link=
+BASE+file;
+
+
+navigator.clipboard
+.writeText(link)
+
 .then(()=>{
+
 showCopied(button);
+
 })
+
 .catch(()=>{
-const input=document.createElement("input");
+
+const input=
+document.createElement("input");
+
+
 input.value=link;
 
-document.body.appendChild(input);
+
+document.body.appendChild(
+input
+);
+
+
 input.select();
-document.execCommand("copy");
-document.body.removeChild(input);
+
+
+document.execCommand(
+"copy"
+);
+
+
+document.body.removeChild(
+input
+);
+
 
 showCopied(button);
+
 });
+
 }
+
+
+/* КНОПКА СКОПИРОВАНА */
 
 function showCopied(button){
-const old=button.innerHTML;
 
-button.innerHTML="✓ Ссылка скопирована!";
-button.classList.add("copied");
+const old=
+button.innerHTML;
+
+
+button.innerHTML=
+"✓ Ссылка скопирована!";
+
+
+button.classList.add(
+"copied"
+);
+
 
 setTimeout(()=>{
-button.innerHTML=old;
-button.classList.remove("copied");
+
+button.innerHTML=
+old;
+
+button.classList.remove(
+"copied"
+);
+
 },1500);
+
 }
 
-/* VOLUME */
-document.addEventListener("DOMContentLoaded",()=>{
-const saved=localStorage.getItem("musicVolume");
-const volume=saved===null?1:parseFloat(saved);
+
+/* ГРОМКОСТЬ */
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+const saved=
+localStorage.getItem(
+"musicVolume"
+);
+
+
+const volume=
+saved===null?
+1:
+parseFloat(saved);
+
 
 players.forEach(player=>{
-player.volume=volume;
 
-player.addEventListener("volumechange",()=>{
-localStorage.setItem("musicVolume",player.volume);
+player.volume=
+volume;
+
+
+player.addEventListener(
+"volumechange",
+()=>{
+
+localStorage.setItem(
+"musicVolume",
+player.volume
+);
+
 
 players.forEach(other=>{
+
 if(other!==player){
-other.volume=player.volume;
+
+other.volume=
+player.volume;
+
 }
-});
-});
-});
+
 });
 
-/* SEARCH */
-const searchInput=document.getElementById("searchInput");
-const noResults=document.getElementById("noResults");
+}
 
-searchInput.addEventListener("input",function(){
-const query=this.value
+);
+
+});
+
+}
+);
+
+
+/* ПОИСК */
+
+const searchInput=
+document.getElementById(
+"searchInput"
+);
+
+
+const noResults=
+document.getElementById(
+"noResults"
+);
+
+
+searchInput.addEventListener(
+"input",
+function(){
+
+const query=
+this.value
 .toLowerCase()
 .trim();
 
+
 let found=0;
 
+
 songs.forEach(song=>{
-const text=song.dataset.search.toLowerCase();
+
+const text=
+song.dataset.search
+.toLowerCase();
+
 
 const visible=
 !query||
 text.includes(query);
 
-song.classList.toggle("hidden",!visible);
 
-if(visible)found++;
+song.classList.toggle(
+"hidden",
+!visible
+);
+
+
+if(visible){
+
+found++;
+
+}
+
 });
 
-noResults.style.display=found?"none":"block";
-});
+
+noResults.style.display=
+found?
+"none":
+"block";
+
+}
+);
+
 </script>
 
 </body>
