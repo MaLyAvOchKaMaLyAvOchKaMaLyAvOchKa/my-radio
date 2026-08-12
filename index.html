@@ -906,12 +906,982 @@ let tracks = [];
    ТЕКУЩИЙ ИГРАЮЩИЙ ТРЕК
    ========================================================= */
 
-/*
- * Здесь хранится единственный audio,
- * которому разрешено играть.
- */
-
 let currentAudio = null;
+
+
+
+/* =========================================================
+   УМНЫЙ ПОИСК
+   =========================================================
+   
+   Поиск работает сразу по нескольким вариантам:
+   
+   1. Оригинальное название
+   2. Транслитерация русского -> английский
+   3. Обратная транслитерация английского -> русский
+   4. Нормализованный текст
+   5. Небольшие ошибки в написании
+   6. Частичное совпадение слов
+   
+   Например:
+   
+   "Miyagi"
+   "Мияги"
+   "миаги"
+   
+   будут считаться похожими.
+   
+   ========================================================= */
+
+
+/* =========================================================
+   ТРАНСЛИТЕРАЦИЯ
+   ========================================================= */
+
+const RU_TO_LAT = {
+
+    "а":"a",
+    "б":"b",
+    "в":"v",
+    "г":"g",
+    "д":"d",
+    "е":"e",
+    "ё":"yo",
+    "ж":"zh",
+    "з":"z",
+    "и":"i",
+    "й":"y",
+    "к":"k",
+    "л":"l",
+    "м":"m",
+    "н":"n",
+    "о":"o",
+    "п":"p",
+    "р":"r",
+    "с":"s",
+    "т":"t",
+    "у":"u",
+    "ф":"f",
+    "х":"kh",
+    "ц":"ts",
+    "ч":"ch",
+    "ш":"sh",
+    "щ":"shch",
+    "ъ":"",
+    "ы":"y",
+    "ь":"",
+    "э":"e",
+    "ю":"yu",
+    "я":"ya"
+
+};
+
+
+/* =========================================================
+   ВАРИАНТЫ ТРАНСЛИТЕРАЦИИ
+   ========================================================= */
+
+const RU_TO_LAT_VARIANTS = {
+
+    "а":["a"],
+    "б":["b"],
+    "в":["v","w"],
+    "г":["g"],
+    "д":["d"],
+    "е":["e","ye"],
+    "ё":["yo","e"],
+    "ж":["zh","j"],
+    "з":["z"],
+    "и":["i"],
+    "й":["y","j"],
+    "к":["k","c"],
+    "л":["l"],
+    "м":["m"],
+    "н":["n"],
+    "о":["o"],
+    "п":["p"],
+    "р":["r"],
+    "с":["s","c"],
+    "т":["t"],
+    "у":["u"],
+    "ф":["f","ph"],
+    "х":["kh","h","x"],
+    "ц":["ts","c"],
+    "ч":["ch"],
+    "ш":["sh"],
+    "щ":["shch","sch"],
+    "ъ":[""],
+    "ы":["y","i"],
+    "ь":[""],
+    "э":["e"],
+    "ю":["yu","u"],
+    "я":["ya","ia"]
+
+};
+
+
+/* =========================================================
+   АНГЛ -> РУС
+   ========================================================= */
+
+const LAT_TO_RU = {
+
+    "shch":"щ",
+    "sch":"щ",
+    "yo":"ё",
+    "zh":"ж",
+    "kh":"х",
+    "ch":"ч",
+    "sh":"ш",
+    "ts":"ц",
+    "yu":"ю",
+    "ya":"я",
+
+    "a":"а",
+    "b":"б",
+    "c":"к",
+    "d":"д",
+    "e":"е",
+    "f":"ф",
+    "g":"г",
+    "h":"х",
+    "i":"и",
+    "j":"й",
+    "k":"к",
+    "l":"л",
+    "m":"м",
+    "n":"н",
+    "o":"о",
+    "p":"п",
+    "q":"к",
+    "r":"р",
+    "s":"с",
+    "t":"т",
+    "u":"у",
+    "v":"в",
+    "w":"в",
+    "x":"кс",
+    "y":"й",
+    "z":"з"
+
+};
+
+
+/* =========================================================
+   НОРМАЛИЗАЦИЯ
+   ========================================================= */
+
+function normalizeSearch(
+    text
+){
+
+    return String(text || "")
+
+        .toLowerCase()
+
+        .replace(
+            /ё/g,
+            "е"
+        )
+
+        .replace(
+            /[^a-zа-я0-9]+/gi,
+            ""
+        );
+
+}
+
+
+
+/* =========================================================
+   РУССКИЙ -> ЛАТИНИЦА
+   ========================================================= */
+
+function transliterateRuToLat(
+    text
+){
+
+    text =
+        String(text || "")
+            .toLowerCase();
+
+
+    let result = "";
+
+
+    for(
+        const char of text
+    ){
+
+        if(
+            RU_TO_LAT[char]
+        ){
+
+            result +=
+                RU_TO_LAT[char];
+
+        }
+        else{
+
+            result +=
+                char;
+
+        }
+
+    }
+
+
+    return result;
+
+}
+
+
+
+/* =========================================================
+   АНГЛИЙСКИЙ -> ПРИМЕРНАЯ РУССКАЯ ТРАНСКРИПЦИЯ
+   ========================================================= */
+
+function transliterateLatToRu(
+    text
+){
+
+    text =
+        String(text || "")
+            .toLowerCase();
+
+
+    let result = "";
+
+    let i = 0;
+
+
+    while(
+        i < text.length
+    ){
+
+        let found = false;
+
+
+        /*
+         * Сначала проверяем длинные
+         * комбинации.
+         */
+
+        const combinations = [
+            "shch",
+            "sch",
+            "tch",
+            "th",
+            "ph",
+            "yo",
+            "zh",
+            "kh",
+            "ch",
+            "sh",
+            "ts",
+            "yu",
+            "ya"
+        ];
+
+
+        for(
+            const combo of combinations
+        ){
+
+            if(
+                text.startsWith(
+                    combo,
+                    i
+                )
+            ){
+
+                if(
+                    combo === "th"
+                ){
+
+                    result += "т";
+
+                }
+                else if(
+                    combo === "tch"
+                ){
+
+                    result += "ч";
+
+                }
+                else if(
+                    combo === "ph"
+                ){
+
+                    result += "ф";
+
+                }
+                else{
+
+                    result +=
+                        LAT_TO_RU[combo] ||
+                        combo;
+
+                }
+
+
+                i +=
+                    combo.length;
+
+                found = true;
+
+                break;
+
+            }
+
+        }
+
+
+        if(found){
+
+            continue;
+
+        }
+
+
+        const char =
+            text[i];
+
+
+        if(
+            LAT_TO_RU[char]
+        ){
+
+            result +=
+                LAT_TO_RU[char];
+
+        }
+        else{
+
+            result +=
+                char;
+
+        }
+
+
+        i++;
+
+    }
+
+
+    return result;
+
+}
+
+
+
+/* =========================================================
+   УБРАТЬ СЛОВА-ШУМЫ
+   ========================================================= */
+
+function removeSearchNoise(
+    text
+){
+
+    return String(text || "")
+
+        .toLowerCase()
+
+        .replace(
+            /\b(feat|ft|featuring|official|music|audio|remix|edit|version)\b/gi,
+            " "
+        )
+
+        .replace(
+            /[^a-zа-я0-9]+/gi,
+            " "
+        )
+
+        .trim();
+
+}
+
+
+
+/* =========================================================
+   ПОЛУЧИТЬ ВАРИАНТЫ ТЕКСТА
+   ========================================================= */
+
+function getSearchVariants(
+    text
+){
+
+    const original =
+        String(text || "")
+            .toLowerCase();
+
+
+    const normalized =
+        normalizeSearch(
+            original
+        );
+
+
+    const ruToLat =
+        transliterateRuToLat(
+            original
+        );
+
+
+    const latToRu =
+        transliterateLatToRu(
+            original
+        );
+
+
+    const variants = [
+
+        original,
+
+        normalized,
+
+        ruToLat,
+
+        normalizeSearch(
+            ruToLat
+        ),
+
+        latToRu,
+
+        normalizeSearch(
+            latToRu
+        ),
+
+        removeSearchNoise(
+            original
+        ),
+
+        normalizeSearch(
+            removeSearchNoise(
+                original
+            )
+        )
+
+    ];
+
+
+    /*
+     * Удаляем дубликаты.
+     */
+
+    return [
+        ...new Set(
+            variants.filter(
+                value =>
+                    value &&
+                    value.length > 0
+            )
+        )
+    ];
+
+}
+
+
+
+/* =========================================================
+   РАССТОЯНИЕ ЛЕВЕНШТЕЙНА
+   ========================================================= */
+
+function levenshtein(
+    a,
+    b
+){
+
+    a =
+        String(a || "");
+
+    b =
+        String(b || "");
+
+
+    if(
+        a === b
+    ){
+
+        return 0;
+
+    }
+
+
+    if(
+        !a.length
+    ){
+
+        return b.length;
+
+    }
+
+
+    if(
+        !b.length
+    ){
+
+        return a.length;
+
+    }
+
+
+    /*
+     * Чтобы не создавать огромные массивы,
+     * ограничиваем очень длинные строки.
+     */
+
+    a =
+        a.substring(
+            0,
+            80
+        );
+
+    b =
+        b.substring(
+            0,
+            80
+        );
+
+
+    let previous =
+        new Array(
+            b.length + 1
+        );
+
+
+    let current =
+        new Array(
+            b.length + 1
+        );
+
+
+    for(
+        let j = 0;
+        j <= b.length;
+        j++
+    ){
+
+        previous[j] =
+            j;
+
+    }
+
+
+    for(
+        let i = 1;
+        i <= a.length;
+        i++
+    ){
+
+        current[0] =
+            i;
+
+
+        for(
+            let j = 1;
+            j <= b.length;
+            j++
+        ){
+
+            const cost =
+                a[i - 1] ===
+                b[j - 1]
+                    ? 0
+                    : 1;
+
+
+            current[j] =
+                Math.min(
+
+                    current[j - 1] + 1,
+
+                    previous[j] + 1,
+
+                    previous[j - 1] + cost
+
+                );
+
+        }
+
+
+        const temp =
+            previous;
+
+        previous =
+            current;
+
+        current =
+            temp;
+
+    }
+
+
+    return previous[b.length];
+
+}
+
+
+
+/* =========================================================
+   ПОХОЖЕСТЬ
+   ========================================================= */
+
+function similarity(
+    a,
+    b
+){
+
+    a =
+        normalizeSearch(
+            a
+        );
+
+    b =
+        normalizeSearch(
+            b
+        );
+
+
+    if(
+        !a ||
+        !b
+    ){
+
+        return 0;
+
+    }
+
+
+    if(
+        a === b
+    ){
+
+        return 1;
+
+    }
+
+
+    if(
+        a.includes(b) ||
+        b.includes(a)
+    ){
+
+        const shortLength =
+            Math.min(
+                a.length,
+                b.length
+            );
+
+
+        return 0.85 +
+            Math.min(
+                0.14,
+                shortLength / 100
+            );
+
+    }
+
+
+    const distance =
+        levenshtein(
+            a,
+            b
+        );
+
+
+    const maxLength =
+        Math.max(
+            a.length,
+            b.length
+        );
+
+
+    if(
+        !maxLength
+    ){
+
+        return 0;
+
+    }
+
+
+    return (
+        1 -
+        distance /
+        maxLength
+    );
+
+}
+
+
+
+/* =========================================================
+   ПОИСК ПО ОДНОМУ СЛОВУ
+   ========================================================= */
+
+function wordSearchScore(
+    query,
+    name
+){
+
+    const queryWords =
+        removeSearchNoise(
+            query
+        )
+        .split(
+            /\s+/
+        )
+        .filter(
+            Boolean
+        );
+
+
+    const nameWords =
+        removeSearchNoise(
+            name
+        )
+        .split(
+            /\s+/
+        )
+        .filter(
+            Boolean
+        );
+
+
+    if(
+        !queryWords.length ||
+        !nameWords.length
+    ){
+
+        return 0;
+
+    }
+
+
+    let total = 0;
+
+
+    let foundCount = 0;
+
+
+    for(
+        const queryWord of queryWords
+    ){
+
+        let best = 0;
+
+
+        const queryVariants =
+            getSearchVariants(
+                queryWord
+            );
+
+
+        for(
+            const qVariant of queryVariants
+        ){
+
+            for(
+                const nameWord of nameWords
+            ){
+
+                const nameVariants =
+                    getSearchVariants(
+                        nameWord
+                    );
+
+
+                for(
+                    const nVariant of nameVariants
+                ){
+
+                    const score =
+                        similarity(
+                            qVariant,
+                            nVariant
+                        );
+
+
+                    if(
+                        score > best
+                    ){
+
+                        best =
+                            score;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+
+        /*
+         * Разрешаем небольшие ошибки.
+         *
+         * Короткие слова требуют
+         * более точного совпадения.
+         */
+
+        const minScore =
+            queryWord.length <= 3
+                ? 0.90
+                : queryWord.length <= 5
+                    ? 0.72
+                    : 0.60;
+
+
+        if(
+            best >= minScore
+        ){
+
+            foundCount++;
+
+            total +=
+                best;
+
+        }
+
+    }
+
+
+    if(
+        !foundCount
+    ){
+
+        return 0;
+
+    }
+
+
+    /*
+     * Чем больше слов совпало,
+     * тем выше результат.
+     */
+
+    return (
+        total /
+        queryWords.length
+    ) *
+    (
+        foundCount /
+        queryWords.length
+    );
+
+}
+
+
+
+/* =========================================================
+   ОСНОВНОЙ SCORE ТРЕКА
+   ========================================================= */
+
+function getTrackSearchScore(
+    track,
+    query
+){
+
+    if(
+        !track ||
+        !track.name ||
+        !query
+    ){
+
+        return 0;
+
+    }
+
+
+    const name =
+        removeExtension(
+            String(
+                track.name
+            )
+        );
+
+
+    /*
+     * Варианты всего названия.
+     */
+
+    const queryVariants =
+        getSearchVariants(
+            query
+        );
+
+
+    const nameVariants =
+        getSearchVariants(
+            name
+        );
+
+
+    let best =
+        0;
+
+
+    /*
+     * Сравниваем каждую форму
+     * запроса с каждой формой
+     * названия.
+     */
+
+    for(
+        const q of queryVariants
+    ){
+
+        for(
+            const n of nameVariants
+        ){
+
+            const score =
+                similarity(
+                    q,
+                    n
+                );
+
+
+            if(
+                score > best
+            ){
+
+                best =
+                    score;
+
+            }
+
+        }
+
+    }
+
+
+    /*
+     * Отдельно проверяем слова.
+     */
+
+    const wordsScore =
+        wordSearchScore(
+            query,
+            name
+        );
+
+
+    if(
+        wordsScore > best
+    ){
+
+        best =
+            wordsScore;
+
+    }
+
+
+    return best;
+
+}
 
 
 
@@ -1134,20 +2104,9 @@ function setupAudio(
     }
 
 
-    /*
-     * play НЕ всплывает нормально,
-     * поэтому обработчик ставим
-     * непосредственно на audio.
-     */
-
     audio.addEventListener(
         "play",
         function(){
-
-            /*
-             * Если уже играет другой трек —
-             * немедленно останавливаем его.
-             */
 
             if(
                 currentAudio &&
@@ -1172,12 +2131,6 @@ function setupAudio(
 
             }
 
-
-            /*
-             * Дополнительная защита:
-             * проверяем вообще все audio
-             * на странице.
-             */
 
             const allAudio =
                 document.querySelectorAll(
@@ -1215,21 +2168,12 @@ function setupAudio(
             );
 
 
-            /*
-             * Запоминаем новый активный трек.
-             */
-
             currentAudio =
                 audio;
 
         }
     );
 
-
-    /*
-     * Когда трек закончился,
-     * очищаем currentAudio.
-     */
 
     audio.addEventListener(
         "ended",
@@ -1258,36 +2202,101 @@ function renderTracks(){
 
     const query =
         searchInput.value
-            .trim()
-            .toLowerCase();
+            .trim();
 
-
-    const filtered =
-        tracks.filter(
-            track =>
-                String(
-                    track.name || ""
-                )
-                .toLowerCase()
-                .includes(query)
-        );
-
-
-    /*
-     * Перед удалением старых карточек
-     * останавливаем их.
-     */
 
     stopAllAudio();
 
 
-    if(!filtered.length){
+    /*
+     * Если поиск пустой —
+     * показываем весь каталог.
+     */
+
+    if(
+        !query
+    ){
+
+        musicList.innerHTML =
+            tracks
+                .map(
+                    track =>
+                        createTrackHTML(
+                            track
+                        )
+                )
+                .join("");
+
+
+        setupRenderedAudio(
+            tracks
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Считаем score для каждого трека.
+     */
+
+    const scored =
+        tracks.map(
+            track => ({
+
+                track:
+                    track,
+
+                score:
+                    getTrackSearchScore(
+                        track,
+                        query
+                    )
+
+            })
+        );
+
+
+    /*
+     * Оставляем только достаточно
+     * похожие результаты.
+     */
+
+    const filtered =
+        scored
+
+            .filter(
+                item =>
+                    item.score >=
+                    0.42
+            )
+
+            .sort(
+                (a,b) =>
+                    b.score -
+                    a.score
+            );
+
+
+    if(
+        !filtered.length
+    ){
 
         musicList.innerHTML = `
 
             <div class="empty">
 
                 🎵 Ничего не найдено
+
+                <br><br>
+
+                <small style="color:#555">
+
+                    Попробуй написать название
+                    по-русски или по-английски
+
+                </small>
 
             </div>
 
@@ -1300,8 +2309,15 @@ function renderTracks(){
     }
 
 
+    const filteredTracks =
+        filtered.map(
+            item =>
+                item.track
+        );
+
+
     musicList.innerHTML =
-        filtered
+        filteredTracks
             .map(
                 track =>
                     createTrackHTML(
@@ -1311,12 +2327,23 @@ function renderTracks(){
             .join("");
 
 
-    /*
-     * После вставки HTML
-     * назначаем источники и обработчики.
-     */
+    setupRenderedAudio(
+        filteredTracks
+    );
 
-    filtered.forEach(
+}
+
+
+
+/* =========================================================
+   НАСТРОИТЬ AUDIO ПОСЛЕ РЕНДЕРА
+   ========================================================= */
+
+function setupRenderedAudio(
+    list
+){
+
+    list.forEach(
         track => {
 
             const audio =
@@ -1407,10 +2434,6 @@ function createTrackHTML(track){
             <div class="buttons">
 
 
-                <!-- =====================================
-                     DOWNLOAD
-                     ===================================== -->
-
                 <a
                     class="btn download-btn"
                     href="${escapeAttribute(
@@ -1422,10 +2445,6 @@ function createTrackHTML(track){
                     ↓ Скачать MP3
                 </a>
 
-
-                <!-- =====================================
-                     COPY
-                     ===================================== -->
 
                 <button
                     class="btn copy-btn"
@@ -1456,12 +2475,6 @@ async function copyMusicLink(
     button,
     url
 ){
-
-    /*
-     * Только копируем.
-     *
-     * Ничего не открываем.
-     */
 
     const oldText =
         button.textContent;
@@ -1500,10 +2513,6 @@ async function copyMusicLink(
 
     }
     catch(error){
-
-        /*
-         * Запасной вариант.
-         */
 
         const textarea =
             document.createElement(
