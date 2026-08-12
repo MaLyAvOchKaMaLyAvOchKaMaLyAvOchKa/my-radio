@@ -868,20 +868,9 @@ body{
    НАСТРОЙКИ
    ========================================================= */
 
-
-/*
- * Твой Cloudflare Worker.
- *
- * Здесь НЕ ставим /music/.
- */
-
 const WORKER_URL =
     "https://malyavochka-music.rxmlopdt.workers.dev";
 
-
-/*
- * Список музыки.
- */
 
 const LIST_URL =
     WORKER_URL + "/list.json";
@@ -914,18 +903,25 @@ let tracks = [];
 
 
 /* =========================================================
+   ТЕКУЩИЙ ИГРАЮЩИЙ ТРЕК
+   ========================================================= */
+
+/*
+ * Здесь хранится единственный audio,
+ * которому разрешено играть.
+ */
+
+let currentAudio = null;
+
+
+
+/* =========================================================
    ЗАГРУЗКА СПИСКА
    ========================================================= */
 
 async function loadMusic(){
 
     try{
-
-        /*
-         * Добавляем timestamp,
-         * чтобы браузер не использовал
-         * старый list.json.
-         */
 
         const url =
             LIST_URL +
@@ -1032,20 +1028,10 @@ async function loadMusic(){
 
 
 /* =========================================================
-   URL ДЛЯ ВОСПРОИЗВЕДЕНИЯ
+   PLAY URL
    ========================================================= */
 
 function getPlayURL(track){
-
-    /*
-     * Главная ссылка:
-     *
-     * - audio
-     * - E2
-     * - копирование
-     *
-     * Никакого download=1.
-     */
 
     return (
         WORKER_URL +
@@ -1060,7 +1046,7 @@ function getPlayURL(track){
 
 
 /* =========================================================
-   URL ДЛЯ СКАЧИВАНИЯ
+   DOWNLOAD URL
    ========================================================= */
 
 function getDownloadURL(track){
@@ -1068,6 +1054,196 @@ function getDownloadURL(track){
     return (
         getPlayURL(track) +
         "?download=1"
+    );
+
+}
+
+
+
+/* =========================================================
+   ОСТАНОВИТЬ ВСЕ ТРЕКИ
+   ========================================================= */
+
+function stopAllAudio(
+    exceptAudio = null
+){
+
+    const allAudio =
+        document.querySelectorAll(
+            "audio"
+        );
+
+
+    allAudio.forEach(
+        audio => {
+
+            if(
+                audio === exceptAudio
+            ){
+
+                return;
+
+            }
+
+
+            try{
+
+                audio.pause();
+
+                audio.currentTime = 0;
+
+            }
+            catch(error){
+
+                console.warn(
+                    "Ошибка остановки audio:",
+                    error
+                );
+
+            }
+
+        }
+    );
+
+
+    if(
+        currentAudio &&
+        currentAudio !== exceptAudio
+    ){
+
+        currentAudio = null;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   НАСТРОИТЬ AUDIO
+   ========================================================= */
+
+function setupAudio(
+    audio
+){
+
+    if(!audio){
+
+        return;
+
+    }
+
+
+    /*
+     * play НЕ всплывает нормально,
+     * поэтому обработчик ставим
+     * непосредственно на audio.
+     */
+
+    audio.addEventListener(
+        "play",
+        function(){
+
+            /*
+             * Если уже играет другой трек —
+             * немедленно останавливаем его.
+             */
+
+            if(
+                currentAudio &&
+                currentAudio !== audio
+            ){
+
+                try{
+
+                    currentAudio.pause();
+
+                    currentAudio.currentTime = 0;
+
+                }
+                catch(error){
+
+                    console.warn(
+                        "Ошибка остановки предыдущего трека:",
+                        error
+                    );
+
+                }
+
+            }
+
+
+            /*
+             * Дополнительная защита:
+             * проверяем вообще все audio
+             * на странице.
+             */
+
+            const allAudio =
+                document.querySelectorAll(
+                    "audio"
+                );
+
+
+            allAudio.forEach(
+                otherAudio => {
+
+                    if(
+                        otherAudio !== audio &&
+                        !otherAudio.paused
+                    ){
+
+                        try{
+
+                            otherAudio.pause();
+
+                            otherAudio.currentTime = 0;
+
+                        }
+                        catch(error){
+
+                            console.warn(
+                                "Ошибка остановки audio:",
+                                error
+                            );
+
+                        }
+
+                    }
+
+                }
+            );
+
+
+            /*
+             * Запоминаем новый активный трек.
+             */
+
+            currentAudio =
+                audio;
+
+        }
+    );
+
+
+    /*
+     * Когда трек закончился,
+     * очищаем currentAudio.
+     */
+
+    audio.addEventListener(
+        "ended",
+        function(){
+
+            if(
+                currentAudio === audio
+            ){
+
+                currentAudio = null;
+
+            }
+
+        }
     );
 
 }
@@ -1097,6 +1273,14 @@ function renderTracks(){
         );
 
 
+    /*
+     * Перед удалением старых карточек
+     * останавливаем их.
+     */
+
+    stopAllAudio();
+
+
     if(!filtered.length){
 
         musicList.innerHTML = `
@@ -1109,21 +1293,11 @@ function renderTracks(){
 
         `;
 
+        currentAudio = null;
+
         return;
 
     }
-
-
-    /*
-     * Если пользователь выполняет поиск
-     * во время воспроизведения, старые
-     * audio удаляются вместе с карточками.
-     *
-     * Поэтому перед перерисовкой
-     * останавливаем все текущие аудио.
-     */
-
-    stopAllAudio();
 
 
     musicList.innerHTML =
@@ -1139,7 +1313,7 @@ function renderTracks(){
 
     /*
      * После вставки HTML
-     * назначаем источники audio.
+     * назначаем источники и обработчики.
      */
 
     filtered.forEach(
@@ -1158,6 +1332,11 @@ function renderTracks(){
                     getPlayURL(
                         track
                     );
+
+
+                setupAudio(
+                    audio
+                );
 
             }
 
@@ -1270,133 +1449,6 @@ function createTrackHTML(track){
 
 
 /* =========================================================
-   ОСТАНОВИТЬ ВСЕ AUDIO
-   ========================================================= */
-
-function stopAllAudio(){
-
-    const allAudio =
-        musicList.querySelectorAll(
-            "audio"
-        );
-
-
-    allAudio.forEach(
-        audio => {
-
-            try{
-
-                audio.pause();
-
-                audio.currentTime = 0;
-
-            }
-            catch(error){
-
-                console.warn(
-                    "Не удалось остановить audio:",
-                    error
-                );
-
-            }
-
-        }
-    );
-
-}
-
-
-
-/* =========================================================
-   ТОЛЬКО ОДИН ТРЕК ИГРАЕТ ОДНОВРЕМЕННО
-   ========================================================= */
-
-/*
- * Вешаем один обработчик на musicList.
- *
- * Он работает через всплытие события play.
- *
- * Поэтому НЕ нужно отдельно назначать
- * обработчик каждому audio.
- *
- * Это также продолжает работать после
- * поиска и перерисовки списка.
- */
-
-musicList.addEventListener(
-    "play",
-    function(event){
-
-        const current =
-            event.target;
-
-
-        /*
-         * Нас интересуют только audio.
-         */
-
-        if(
-            !current ||
-            current.tagName !== "AUDIO"
-        ){
-
-            return;
-
-        }
-
-
-        /*
-         * Получаем все audio,
-         * которые сейчас находятся
-         * в списке.
-         */
-
-        const allAudio =
-            musicList.querySelectorAll(
-                "audio"
-            );
-
-
-        /*
-         * Останавливаем всё,
-         * кроме того, который
-         * пользователь только что запустил.
-         */
-
-        allAudio.forEach(
-            audio => {
-
-                if(
-                    audio !== current
-                ){
-
-                    try{
-
-                        audio.pause();
-
-                        audio.currentTime = 0;
-
-                    }
-                    catch(error){
-
-                        console.warn(
-                            "Ошибка остановки audio:",
-                            error
-                        );
-
-                    }
-
-                }
-
-            }
-        );
-
-    }
-);
-
-
-
-/* =========================================================
    КОПИРОВАНИЕ ССЫЛКИ
    ========================================================= */
 
@@ -1406,9 +1458,9 @@ async function copyMusicLink(
 ){
 
     /*
-     * Эта кнопка ТОЛЬКО копирует URL.
+     * Только копируем.
      *
-     * Она ничего не открывает.
+     * Ничего не открываем.
      */
 
     const oldText =
@@ -1450,7 +1502,7 @@ async function copyMusicLink(
     catch(error){
 
         /*
-         * Запасной способ.
+         * Запасной вариант.
          */
 
         const textarea =
@@ -1534,11 +1586,6 @@ async function copyMusicLink(
         }
         else{
 
-            /*
-             * Если браузер не разрешил
-             * автоматическое копирование.
-             */
-
             window.prompt(
                 "Скопируй эту ссылку:",
                 url
@@ -1568,7 +1615,7 @@ searchInput.addEventListener(
 
 
 /* =========================================================
-   УДАЛИТЬ .MP3 ИЗ НАЗВАНИЯ
+   УДАЛИТЬ .MP3
    ========================================================= */
 
 function removeExtension(name){
