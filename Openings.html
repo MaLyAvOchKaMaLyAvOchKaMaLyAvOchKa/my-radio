@@ -3,13 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
 <title>МаЛяВоЧка - Openings</title>
 
 <style>
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 html{
     scroll-behavior:smooth;
@@ -17,67 +14,273 @@ html{
 
 body{
     margin:0;
+
     background:
-        radial-gradient(circle at 20% 0%,rgba(130,70,255,.16),transparent 35%),
-        radial-gradient(circle at 80% 0%,rgba(0,200,255,.12),transparent 35%),
-        #09090c;
-    color:#fff;
-    font-family:Arial,Helvetica,sans-serif;
+        radial-gradient(
+            circle at 70% 20%,
+            rgba(190,80,255,.055),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(255,50,180,.035),
+            transparent 40%
+        ),
+        #090b0c;
+
+    color:#eee;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     min-height:100vh;
-}
-
-button,
-input{
-    font:inherit;
-}
-
-button{
-    cursor:pointer;
 }
 
 
 /* =========================================================
-   TOP
+   SIDEBAR
    ========================================================= */
 
-.top{
-    position:sticky;
+.sidebar{
+    position:fixed;
+
+    left:0;
     top:0;
-    z-index:1000;
+    bottom:0;
 
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
+    width:205px;
 
-    background:rgba(9,9,12,.82);
-    border-bottom:1px solid rgba(255,255,255,.08);
+    background:
+        linear-gradient(
+            180deg,
+            #151719 0%,
+            #101214 55%,
+            #0d0f10 100%
+        );
 
-    padding:14px 18px;
+    border-right:
+        1px solid
+        rgba(255,255,255,.075);
+
+    z-index:100;
+
+    padding:
+        220px
+        12px
+        20px;
+
+    box-shadow:
+        8px 0 35px
+        rgba(0,0,0,.16);
 }
 
-.top-inner{
-    max-width:1200px;
-    margin:auto;
+.sidebar-menu{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.sidebar-item{
+    position:relative;
 
     display:flex;
+
     align-items:center;
-    gap:14px;
+
+    gap:13px;
+
+    min-height:56px;
+
+    padding:
+        10px
+        14px;
+
+    border-radius:13px;
+
+    color:#aeb2b4;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:
+        background .2s,
+        color .2s,
+        transform .18s,
+        box-shadow .2s;
 }
 
-.logo{
-    font-size:22px;
-    font-weight:900;
-    white-space:nowrap;
+.sidebar-item:hover{
+    background:
+        rgba(190,80,255,.045);
 
-    background:linear-gradient(
-        90deg,
-        #fff,
-        #a879ff,
-        #53d9ff
-    );
+    color:#fff;
 
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
+    transform:
+        translateX(2px);
+}
+
+.sidebar-item.active{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(190,80,255,.15),
+            rgba(255,70,190,.055)
+        );
+
+    color:#d36cff;
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(190,80,255,.12),
+
+        0 5px 20px
+        rgba(0,0,0,.14);
+}
+
+.sidebar-item.active::before{
+    content:"";
+
+    position:absolute;
+
+    left:-12px;
+
+    top:11px;
+    bottom:11px;
+
+    width:3px;
+
+    border-radius:
+        0 5px 5px 0;
+
+    background:#d36cff;
+
+    box-shadow:
+        0 0 10px
+        rgba(190,80,255,.5);
+}
+
+.sidebar-icon{
+    width:30px;
+    height:30px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:9px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    font-size:19px;
+
+    flex:none;
+
+    transition:.2s;
+}
+
+.sidebar-item:hover
+.sidebar-icon{
+    background:
+        rgba(190,80,255,.07);
+}
+
+.sidebar-item.active
+.sidebar-icon{
+    background:
+        rgba(190,80,255,.10);
+}
+
+.sidebar-text{
+    line-height:1.15;
+}
+
+.sidebar-small{
+    display:block;
+
+    margin-top:3px;
+
+    font-size:11px;
+
+    font-weight:400;
+
+    color:#666;
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main{
+    margin-left:205px;
+
+    min-height:100vh;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header{
+    position:sticky;
+
+    top:0;
+
+    z-index:50;
+
+    min-height:114px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:
+        18px
+        30px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(24,25,28,.97),
+            rgba(20,21,23,.94)
+        );
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+}
+
+.header-title{
+    margin:0;
+
+    color:#d36cff;
+
+    font-size:39px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+    text-align:center;
+
+    text-shadow:
+        0 0 10px
+        rgba(190,80,255,.5),
+
+        0 0 25px
+        rgba(255,70,190,.2);
 }
 
 
@@ -86,180 +289,295 @@ button{
    ========================================================= */
 
 .search-wrap{
-    flex:1;
-    position:relative;
+    position:absolute;
+
+    right:24px;
+
+    top:34px;
 }
 
 .search{
-    width:100%;
+    width:252px;
+    height:45px;
 
-    padding:13px 46px 13px 17px;
+    border-radius:25px;
 
-    border-radius:14px;
+    border:
+        1px solid
+        rgba(255,255,255,.12);
 
-    border:1px solid rgba(255,255,255,.1);
+    background:
+        rgba(0,0,0,.24);
+
+    color:#fff;
 
     outline:none;
 
-    color:#fff;
+    padding:
+        0
+        18px
+        0
+        43px;
 
-    background:rgba(255,255,255,.06);
+    font-size:15px;
 
-    transition:.2s;
-}
-
-.search::placeholder{
-    color:#888;
+    transition:
+        border-color .2s,
+        box-shadow .2s;
 }
 
 .search:focus{
-    border-color:rgba(130,90,255,.65);
-
-    background:rgba(255,255,255,.08);
+    border-color:
+        rgba(190,80,255,.6);
 
     box-shadow:
-        0 0 0 3px rgba(120,80,255,.08);
+        0 0 15px
+        rgba(190,80,255,.1);
 }
 
-.search-clear{
+.search::placeholder{
+    color:#777;
+}
+
+.search-icon{
     position:absolute;
 
-    right:10px;
-    top:50%;
+    left:16px;
+    top:12px;
 
-    transform:translateY(-50%);
+    color:#aaa;
 
-    width:32px;
-    height:32px;
+    font-size:19px;
 
-    border:0;
-    border-radius:10px;
-
-    background:transparent;
-
-    color:#999;
-
-    display:none;
-}
-
-.search-clear:hover{
-    background:rgba(255,255,255,.08);
-    color:#fff;
+    pointer-events:none;
 }
 
 
 /* =========================================================
-   NAV
+   CONTENT
    ========================================================= */
 
-.nav{
-    max-width:1200px;
-    margin:16px auto 0;
+.content{
+    max-width:850px;
 
-    display:flex;
-    gap:8px;
+    margin:
+        0
+        auto;
 
-    overflow-x:auto;
-    padding-bottom:3px;
+    padding:
+        34px
+        30px
+        80px;
 }
 
-.nav a{
-    text-decoration:none;
-    color:#aaa;
 
-    padding:9px 13px;
+/* =========================================================
+   STATUS
+   ========================================================= */
 
-    border-radius:10px;
+.status{
+    text-align:center;
 
-    background:rgba(255,255,255,.04);
+    padding:
+        60px
+        20px;
 
-    white-space:nowrap;
+    color:#777;
 
-    transition:.2s;
+    font-size:17px;
 }
 
-.nav a:hover{
-    color:#fff;
-    background:rgba(255,255,255,.09);
+.status.loading{
+    color:#888;
 }
 
-.nav a.active{
-    color:#fff;
+.status.error{
+    max-width:700px;
 
+    margin:
+        40px
+        auto;
+
+    padding:30px;
+
+    border:
+        1px solid
+        rgba(255,60,60,.25);
+
+    background:
+        rgba(80,10,10,.16);
+
+    border-radius:14px;
+
+    color:#ff7777;
+}
+
+.status.error strong{
+    display:block;
+
+    color:#ff4f4f;
+
+    margin-bottom:15px;
+
+    font-size:18px;
+}
+
+
+/* =========================================================
+   TRACK
+   ========================================================= */
+
+.track{
     background:
         linear-gradient(
             135deg,
-            rgba(130,80,255,.35),
-            rgba(40,180,255,.2)
+            rgba(31,33,34,.92),
+            rgba(21,22,23,.92)
         );
 
-    border:1px solid rgba(140,100,255,.3);
+    border:
+        1px solid
+        rgba(255,255,255,.075);
+
+    border-radius:16px;
+
+    padding:17px;
+
+    margin-bottom:13px;
+
+    box-shadow:
+        0 8px 30px
+        rgba(0,0,0,.18);
+
+    transition:
+        transform .18s,
+        border-color .18s,
+        box-shadow .18s;
 }
 
+.track:hover{
+    transform:
+        translateY(-1px);
 
-/* =========================================================
-   MAIN
-   ========================================================= */
+    border-color:
+        rgba(190,80,255,.22);
 
-.container{
-    max-width:1200px;
-    margin:auto;
-    padding:25px 18px 60px;
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.26);
 }
 
-.title-row{
+.track-title{
     display:flex;
+
     align-items:center;
-    justify-content:space-between;
 
-    gap:15px;
+    gap:10px;
 
-    margin-bottom:20px;
+    color:#f0f0f0;
+
+    font-size:19px;
+
+    font-weight:600;
+
+    margin-bottom:10px;
+
+    overflow:hidden;
 }
 
-.title{
-    font-size:30px;
-    font-weight:900;
+.track-icon{
+    font-size:25px;
+
+    flex:none;
 }
 
-.count{
-    color:#888;
-    font-size:14px;
+.track-name{
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
 }
 
 
 /* =========================================================
-   LOADING
+   AUDIO
    ========================================================= */
 
-.loading{
-    text-align:center;
+.audio{
+    width:100%;
 
-    padding:70px 20px;
+    height:42px;
 
-    color:#888;
+    display:block;
 
-    font-size:16px;
+    margin-bottom:10px;
 }
 
-.spinner{
-    width:34px;
-    height:34px;
 
-    margin:0 auto 15px;
+/* =========================================================
+   BUTTONS
+   ========================================================= */
 
-    border-radius:50%;
+.buttons{
+    display:flex;
 
-    border:3px solid rgba(255,255,255,.08);
-    border-top-color:#9a70ff;
-
-    animation:spin .8s linear infinite;
+    gap:9px;
 }
 
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
+.btn{
+    flex:1;
+
+    min-height:34px;
+
+    border:0;
+
+    border-radius:7px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:white;
+
+    transition:
+        filter .15s,
+        transform .1s,
+        opacity .15s;
+}
+
+.btn:hover{
+    filter:
+        brightness(1.08);
+}
+
+.btn:active{
+    transform:
+        scale(.985);
+}
+
+.download-btn{
+    background:#b64cff;
+}
+
+.copy-btn{
+    background:#e34bb7;
+}
+
+.copy-btn.copied{
+    background:#a83fda;
+}
+
+.download-btn{
+    text-decoration:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
 }
 
 
@@ -268,201 +586,15 @@ button{
    ========================================================= */
 
 .empty{
-    display:none;
-
     text-align:center;
 
-    padding:70px 20px;
-
     color:#777;
-}
 
-.empty-title{
-    font-size:20px;
-    color:#aaa;
-    margin-bottom:8px;
-}
+    padding:
+        80px
+        20px;
 
-.empty-text{
-    font-size:14px;
-}
-
-
-/* =========================================================
-   LIST
-   ========================================================= */
-
-.list{
-    display:grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fill,
-            minmax(300px,1fr)
-        );
-
-    gap:12px;
-}
-
-
-/* =========================================================
-   CARD
-   ========================================================= */
-
-.card{
-    position:relative;
-
-    display:flex;
-    align-items:center;
-
-    gap:13px;
-
-    min-width:0;
-
-    padding:14px;
-
-    border-radius:17px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.055),
-            rgba(255,255,255,.025)
-        );
-
-    border:1px solid rgba(255,255,255,.07);
-
-    transition:
-        transform .18s,
-        border-color .18s,
-        background .18s;
-
-    overflow:hidden;
-}
-
-.card:hover{
-    transform:translateY(-2px);
-
-    border-color:
-        rgba(150,110,255,.32);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(130,90,255,.09),
-            rgba(255,255,255,.035)
-        );
-}
-
-
-/* =========================================================
-   PLAY BUTTON
-   ========================================================= */
-
-.play{
-    flex-shrink:0;
-
-    width:48px;
-    height:48px;
-
-    border-radius:14px;
-
-    border:1px solid rgba(255,255,255,.08);
-
-    color:#fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7650e8,
-            #3c8cff
-        );
-
-    box-shadow:
-        0 8px 25px rgba(90,70,255,.22);
-
-    font-size:18px;
-
-    transition:.18s;
-}
-
-.play:hover{
-    transform:scale(1.05);
-}
-
-.play.playing{
-    background:
-        linear-gradient(
-            135deg,
-            #e85b8b,
-            #9b55ff
-        );
-}
-
-
-/* =========================================================
-   INFO
-   ========================================================= */
-
-.info{
-    min-width:0;
-    flex:1;
-}
-
-.name{
-    font-size:15px;
-    font-weight:700;
-
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-
-    margin-bottom:5px;
-}
-
-.alias{
-    color:#7f72a8;
-    font-size:11px;
-
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-.meta{
-    color:#666;
-    font-size:11px;
-}
-
-
-/* =========================================================
-   ACTIONS
-   ========================================================= */
-
-.actions{
-    display:flex;
-    gap:6px;
-    flex-shrink:0;
-}
-
-.action{
-    width:35px;
-    height:35px;
-
-    border:1px solid rgba(255,255,255,.07);
-
-    border-radius:10px;
-
-    background:rgba(255,255,255,.045);
-
-    color:#999;
-
-    transition:.18s;
-}
-
-.action:hover{
-    color:#fff;
-    background:rgba(255,255,255,.1);
+    font-size:17px;
 }
 
 
@@ -473,222 +605,172 @@ button{
 .pagination{
     display:flex;
 
-    justify-content:center;
     align-items:center;
+
+    justify-content:center;
 
     gap:7px;
 
-    margin-top:30px;
-
     flex-wrap:wrap;
+
+    margin-top:30px;
 }
 
-.page{
-    min-width:38px;
-    height:38px;
+.page-btn{
+    min-width:40px;
 
-    padding:0 10px;
+    height:40px;
 
-    border-radius:11px;
+    padding:
+        0
+        12px;
 
-    border:1px solid rgba(255,255,255,.08);
+    border:
+        1px solid
+        rgba(255,255,255,.1);
 
-    color:#aaa;
+    border-radius:8px;
 
-    background:rgba(255,255,255,.04);
+    background:#17191b;
 
-    transition:.18s;
+    color:#bbb;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    transition:.15s;
 }
 
-.page:hover{
+.page-btn:hover{
+    background:#202427;
+
+    color:#d36cff;
+
+    border-color:
+        rgba(190,80,255,.3);
+}
+
+.page-btn.active{
+    background:#b64cff;
+
     color:#fff;
-    background:rgba(255,255,255,.08);
+
+    border-color:#b64cff;
 }
 
-.page.active{
-    color:#fff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7751eb,
-            #438fff
-        );
-
-    border-color:transparent;
-}
-
-.page:disabled{
+.page-btn:disabled{
     opacity:.35;
+
     cursor:default;
 }
 
+.page-info{
+    width:100%;
 
-/* =========================================================
-   PLAYER
-   ========================================================= */
+    text-align:center;
 
-.player{
-    position:fixed;
+    color:#666;
 
-    left:18px;
-    right:18px;
-    bottom:18px;
-
-    z-index:2000;
-
-    max-width:900px;
-    margin:auto;
-
-    padding:13px 15px;
-
-    display:flex;
-    align-items:center;
-
-    gap:13px;
-
-    background:
-        rgba(17,17,23,.91);
-
-    border:
-        1px solid rgba(255,255,255,.1);
-
-    border-radius:18px;
-
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-
-    box-shadow:
-        0 15px 60px rgba(0,0,0,.45);
-}
-
-.player-info{
-    min-width:0;
-    flex:1;
-}
-
-.player-title{
     font-size:13px;
-    font-weight:700;
 
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    margin-bottom:7px;
 }
 
-.player-sub{
-    font-size:11px;
-    color:#777;
+.page-dots{
+    color:#666;
 
-    margin-top:3px;
-}
-
-audio{
-    width:320px;
-    max-width:45vw;
+    padding:
+        0
+        3px;
 }
 
 
 /* =========================================================
-   TOAST
+   MOBILE
    ========================================================= */
 
-.toast{
-    position:fixed;
+@media(max-width:900px){
 
-    left:50%;
-    bottom:95px;
+    .sidebar{
+        width:70px;
 
-    transform:
-        translateX(-50%)
-        translateY(20px);
+        padding-top:170px;
 
-    z-index:3000;
-
-    padding:11px 16px;
-
-    border-radius:12px;
-
-    color:#fff;
-
-    background:rgba(25,25,32,.95);
-
-    border:1px solid rgba(255,255,255,.1);
-
-    box-shadow:
-        0 10px 40px rgba(0,0,0,.35);
-
-    opacity:0;
-    pointer-events:none;
-
-    transition:.25s;
-}
-
-.toast.show{
-    opacity:1;
-    transform:
-        translateX(-50%)
-        translateY(0);
-}
-
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media(max-width:750px){
-
-    .top-inner{
-        flex-wrap:wrap;
+        padding-left:7px;
+        padding-right:7px;
     }
 
-    .logo{
-        width:100%;
+    .sidebar-item{
+        justify-content:center;
+
+        padding:
+            17px
+            5px;
     }
 
-    .title{
-        font-size:24px;
-    }
-
-    .list{
-        grid-template-columns:1fr;
-    }
-
-    .player{
-        left:10px;
-        right:10px;
-        bottom:10px;
-
-        flex-wrap:wrap;
-    }
-
-    .player-info{
-        width:100%;
-        flex-basis:100%;
-    }
-
-    audio{
-        width:100%;
-        max-width:none;
-    }
-
-}
-
-@media(max-width:480px){
-
-    .card{
-        padding:11px;
-    }
-
-    .actions{
+    .sidebar-text{
         display:none;
     }
 
-    .play{
-        width:44px;
-        height:44px;
+    .sidebar-item.active::before{
+        left:-7px;
     }
 
+    .main{
+        margin-left:70px;
+    }
+
+    .header{
+        min-height:135px;
+
+        padding-top:15px;
+
+        align-items:flex-start;
+    }
+
+    .header-title{
+        font-size:27px;
+
+        padding-top:3px;
+    }
+
+    .search-wrap{
+        position:absolute;
+
+        top:77px;
+
+        left:20px;
+        right:20px;
+    }
+
+    .search{
+        width:100%;
+    }
+
+    .content{
+        padding:
+            25px
+            15px
+            60px;
+    }
+}
+
+@media(max-width:600px){
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .btn{
+        min-height:42px;
+    }
+
+    .track-title{
+        font-size:17px;
+    }
 }
 
 
@@ -697,2206 +779,2428 @@ audio{
    ========================================================= */
 
 ::-webkit-scrollbar{
-    width:8px;
-    height:8px;
+    width:9px;
 }
 
 ::-webkit-scrollbar-track{
-    background:#09090c;
+    background:#090a0b;
 }
 
 ::-webkit-scrollbar-thumb{
-    background:#27232f;
-    border-radius:20px;
+    background:#292c2e;
+
+    border-radius:10px;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-    background:#393145;
+    background:#363a3d;
 }
-
 </style>
 </head>
-
 
 <body>
 
 
 <!-- =======================================================
-     TOP
-======================================================== -->
+     SIDEBAR
+     ======================================================= -->
 
-<header class="top">
+<div class="sidebar">
 
-    <div class="top-inner">
+    <div class="sidebar-menu">
 
-        <div class="logo">
-            МаЛяВоЧка
+
+        <!-- MUSIC -->
+
+        <div
+            class="sidebar-item"
+            onclick="goMusic()"
+        >
+
+            <div class="sidebar-icon">
+                🎧
+            </div>
+
+            <div class="sidebar-text">
+                Music
+
+                <span class="sidebar-small">
+                    Музыка
+                </span>
+            </div>
+
         </div>
 
+
+        <!-- OPENINGS -->
+
+        <div
+            class="sidebar-item active"
+            onclick="goOpenings()"
+        >
+
+            <div class="sidebar-icon">
+                🎬
+            </div>
+
+            <div class="sidebar-text">
+                Openings
+
+                <span class="sidebar-small">
+                    Аниме
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- ROFLAN -->
+
+        <div
+            class="sidebar-item"
+            onclick="goRoflan()"
+        >
+
+            <div class="sidebar-icon">
+                😂
+            </div>
+
+            <div class="sidebar-text">
+                Roflan
+
+                <span class="sidebar-small">
+                    Звуки
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- GACHI -->
+
+        <div
+            class="sidebar-item"
+            onclick="goGachi()"
+        >
+
+            <div class="sidebar-icon">
+                🎤
+            </div>
+
+            <div class="sidebar-text">
+                Gachi
+
+                <span class="sidebar-small">
+                    Скоро
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- SCREAMERS -->
+
+        <div
+            class="sidebar-item"
+            onclick="goScreamer()"
+        >
+
+            <div class="sidebar-icon">
+                😱
+            </div>
+
+            <div class="sidebar-text">
+                Скримеры
+
+                <span class="sidebar-small">
+                    Скоро
+                </span>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     MAIN
+     ======================================================= -->
+
+<div class="main">
+
+    <header class="header">
+
+        <h1 class="header-title">
+            🎬 МаЛяВоЧка - Openings 🎬
+        </h1>
+
+
         <div class="search-wrap">
+
+            <span class="search-icon">
+                🔍
+            </span>
 
             <input
                 id="search"
                 class="search"
                 type="text"
+                placeholder="Найти аниме..."
                 autocomplete="off"
-                placeholder="Поиск открытия... Например: Атака титанов, Токийский гуль"
             >
 
-            <button
-                id="searchClear"
-                class="search-clear"
-                title="Очистить"
-            >
-                ×
-            </button>
-
         </div>
 
-    </div>
+    </header>
 
 
-    <!-- ===================================================
-         NAV
-    =================================================== -->
-
-    <nav class="nav">
-
-        <a href="/">
-            Музыка
-        </a>
-
-        <a href="/roflan/">
-            Рофланы
-        </a>
-
-        <a href="/skrimers/">
-            Скримеры
-        </a>
-
-        <a href="/gachi/">
-            Gachi
-        </a>
-
-        <a
-            href="/openings/"
-            class="active"
-        >
-            Openings
-        </a>
-
-    </nav>
-
-</header>
-
-
-
-<!-- =======================================================
-     MAIN
-======================================================== -->
-
-<main class="container">
-
-    <div class="title-row">
-
-        <div class="title">
-            🎵 Anime Openings
-        </div>
-
-        <div
-            id="count"
-            class="count"
-        >
-            Загрузка...
-        </div>
-
-    </div>
-
-
-    <!-- ===================================================
-         LOADING
-    =================================================== -->
-
-    <div
-        id="loading"
-        class="loading"
+    <main
+        id="musicList"
+        class="content"
     >
 
-        <div class="spinner"></div>
-
-        Загружаем openings...
-
-    </div>
-
-
-    <!-- ===================================================
-         EMPTY
-    =================================================== -->
-
-    <div
-        id="empty"
-        class="empty"
-    >
-
-        <div class="empty-title">
-            Ничего не найдено
+        <div class="status loading">
+            Загрузка опенингов... 🎬
         </div>
 
-        <div class="empty-text">
-            Попробуй написать название аниме по-русски или по-английски.
-        </div>
-
-    </div>
-
-
-    <!-- ===================================================
-         LIST
-    =================================================== -->
-
-    <div
-        id="list"
-        class="list"
-    ></div>
-
-
-    <!-- ===================================================
-         PAGINATION
-    =================================================== -->
-
-    <div
-        id="pagination"
-        class="pagination"
-    ></div>
-
-</main>
-
-
-
-<!-- =======================================================
-     PLAYER
-======================================================== -->
-
-<div
-    id="player"
-    class="player"
-    style="display:none;"
->
-
-    <div class="player-info">
-
-        <div
-            id="playerTitle"
-            class="player-title"
-        >
-            -
-        </div>
-
-        <div class="player-sub">
-            Сейчас играет
-        </div>
-
-    </div>
-
-    <audio
-        id="audio"
-        controls
-        preload="metadata"
-    ></audio>
+    </main>
 
 </div>
-
-
-
-<!-- =======================================================
-     TOAST
-======================================================== -->
-
-<div
-    id="toast"
-    class="toast"
-></div>
-
 
 
 <script>
 
 /* =========================================================
    НАСТРОЙКИ
-========================================================= */
+   ========================================================= */
 
-const API_BASE =
+const WORKER_URL=
     "https://malyavochka-music.rxmlopdt.workers.dev";
 
-const LIST_URL =
-    API_BASE + "/openings/list.json";
+
+/*
+ * Если твой Worker для Openings использует другой JSON,
+ * меняется только эта строка.
+ *
+ * Сейчас предполагается:
+ *
+ * /openings.json
+ */
+
+const LIST_URL=
+    WORKER_URL+
+    "/openings.json";
 
 
-/* =========================================================
-   НАСТРОЙКИ ПАГИНАЦИИ
-========================================================= */
-
-const PER_PAGE = 30;
+const TRACKS_PER_PAGE=50;
 
 
-/* =========================================================
-   DOM
-========================================================= */
+const musicList=
+    document.getElementById(
+        "musicList"
+    );
 
-const search =
+const searchInput=
     document.getElementById(
         "search"
     );
 
-const searchClear =
-    document.getElementById(
-        "searchClear"
-    );
 
-const listElement =
-    document.getElementById(
-        "list"
-    );
+let tracks=[];
 
-const paginationElement =
-    document.getElementById(
-        "pagination"
-    );
+let filteredTracks=[];
 
-const loadingElement =
-    document.getElementById(
-        "loading"
-    );
+let currentPage=1;
 
-const emptyElement =
-    document.getElementById(
-        "empty"
-    );
-
-const countElement =
-    document.getElementById(
-        "count"
-    );
-
-const playerElement =
-    document.getElementById(
-        "player"
-    );
-
-const audio =
-    document.getElementById(
-        "audio"
-    );
-
-const playerTitle =
-    document.getElementById(
-        "playerTitle"
-    );
-
-const toast =
-    document.getElementById(
-        "toast"
-    );
+let currentAudio=null;
 
 
 /* =========================================================
-   ДАННЫЕ
-========================================================= */
-
-let allTracks = [];
-
-let filteredTracks = [];
-
-let currentPage = 1;
-
-let currentTrack = null;
-
-
-/* =========================================================
-   УМНЫЕ НАЗВАНИЯ АНИМЕ
-=========================================================
-
-   Здесь русские названия связываются
-   с английскими названиями файлов.
+   АЛИАСЫ АНИМЕ
+   =========================================================
+   
+   Здесь находится база русских названий.
 
    Например:
 
-   "Атака титанов"
+   файл:
+   Attack on Titan Opening 1.mp3
 
-   найдёт:
+   пользователь вводит:
 
-   Attack on Titan Opening.mp3
+   атака титанов
 
-========================================================= */
+   → найдётся.
 
-const ANIME_ALIASES = {
+   Также:
 
-    "атака титанов":[
-        "attack on titan",
+   shingeki no kyojin
+   титан
+   атака титанов
+
+   → тоже найдётся.
+   ========================================================= */
+
+const ANIME_ALIASES={
+
+
+    /* =====================================================
+       ТОКИЙСКИЙ ГУЛЬ
+       ===================================================== */
+
+    "tokyo ghoul":[
+        "токийский гуль",
+        "токийский гуль",
+        "токио гуль",
+        "токийский гуль аниме",
+        "tokyoghoul",
+        "tg"
+    ],
+
+
+    /* =====================================================
+       АТАКА ТИТАНОВ
+       ===================================================== */
+
+    "attack on titan":[
+        "атака титанов",
+        "атака титана",
+        "атакa титанов",
+        "атакa титана",
+        "шингэки но кёдзин",
+        "шингеки но кёджин",
+        "шингеки но кёжин",
+        "аттaка титанов",
+        "титаны",
+        "атака титанов аниме",
         "shingeki no kyojin",
-        "aot",
-        "snk"
+        "shingekinokyojin",
+        "aot"
     ],
 
-    "токийский гуль":[
-        "tokyo ghoul",
-        "tokyo ghoul re"
-    ],
 
-    "наруто":[
-        "naruto"
-    ],
+    /* =====================================================
+       НАРУТО
+       ===================================================== */
 
-    "наруто шиппуден":[
+    "naruto":[
+        "наруто",
+        "наруто ураганные хроники",
+        "наруто шипуден",
+        "наруто шиппуден",
+        "наруто сёнэн",
         "naruto shippuden",
-        "naruto shippuuden"
+        "narutoshippuden"
     ],
 
-    "блич":[
-        "bleach"
+
+    /* =====================================================
+       БОРУТО
+       ===================================================== */
+
+    "boruto":[
+        "боруто",
+        "боруто новое поколение",
+        "боруто наруто новое поколение",
+        "boruto naruto next generations"
     ],
 
-    "ван пис":[
-        "one piece"
+
+    /* =====================================================
+       ONE PIECE
+       ===================================================== */
+
+    "one piece":[
+        "ван пис",
+        "ванпич",
+        "ван пис аниме",
+        "большой куш",
+        "onepiece"
     ],
 
-    "боец баки":[
-        "baki"
+
+    /* =====================================================
+       BLEACH
+       ===================================================== */
+
+    "bleach":[
+        "блич",
+        "блич аниме",
+        "блич тысяча лет кровавой войны",
+        "bleach thousand year blood war",
+        "tybw"
     ],
 
-    "клинок рассекающий демонов":[
-        "demon slayer",
-        "kimetsu no yaiba"
+
+    /* =====================================================
+       DEATH NOTE
+       ===================================================== */
+
+    "death note":[
+        "тетрадь смерти",
+        "тетрадь смерти аниме",
+        "смертельная записка",
+        "deathnote"
     ],
 
-    "магическая битва":[
-        "jujutsu kaisen",
-        "jujutsu"
+
+    /* =====================================================
+       DEMON SLAYER
+       ===================================================== */
+
+    "demon slayer":[
+        "клинок рассекающий демонов",
+        "клинок рассекающий демонов",
+        "клинок демонов",
+        "убийца демонов",
+        "клинок рассекающий",
+        "кимэцу но яиба",
+        "кимецу но яиба",
+        "kimetsu no yaiba",
+        "kimetsunoyaiba"
     ],
 
-    "моя геройская академия":[
-        "my hero academia",
+
+    /* =====================================================
+       JUJUTSU KAISEN
+       ===================================================== */
+
+    "jujutsu kaisen":[
+        "магическая битва",
+        "магическая битва аниме",
+        "дзюдзюцу кайсен",
+        "джуджутсу кайсен",
+        "дзюдзюцу",
+        "jujutsukaisen"
+    ],
+
+
+    /* =====================================================
+       MY HERO ACADEMIA
+       ===================================================== */
+
+    "my hero academia":[
+        "моя геройская академия",
+        "моя геройская академия",
+        "моя геройская",
+        "академия героев",
         "boku no hero academia",
-        "bnha"
+        "boku no hero",
+        "bnha",
+        "mha"
     ],
 
-    "человек бензопила":[
-        "chainsaw man"
-    ],
 
-    "берсерк":[
-        "berserk"
-    ],
+    /* =====================================================
+       FULLMETAL ALCHEMIST
+       ===================================================== */
 
-    "тетрадь смерти":[
-        "death note"
-    ],
-
-    "стальной алхимик":[
-        "fullmetal alchemist",
-        "fullmetal alchemist brotherhood",
+    "fullmetal alchemist":[
+        "стальной алхимик",
+        "стальной алхимик братство",
+        "алхимик братство",
         "fma",
-        "fmab"
+        "fmab",
+        "fullmetal alchemist brotherhood"
     ],
 
-    "евангелион":[
-        "neon genesis evangelion",
-        "evangelion",
-        "nge"
+
+    /* =====================================================
+       HUNTER X HUNTER
+       ===================================================== */
+
+    "hunter x hunter":[
+        "хантер х хантер",
+        "хантер хантер",
+        "охотник х охотник",
+        "охотник охотник",
+        "hxh",
+        "hunterxhunter"
     ],
 
-    "ковбой бибоп":[
-        "cowboy bebop"
+
+    /* =====================================================
+       FAIRY TAIL
+       ===================================================== */
+
+    "fairy tail":[
+        "хвост феи",
+        "сказочный хвост",
+        "хвост феи аниме",
+        "fairytail"
     ],
 
-    "хантер хантер":[
-        "hunter x hunter"
+
+    /* =====================================================
+       BLACK CLOVER
+       ===================================================== */
+
+    "black clover":[
+        "черный клевер",
+        "чёрный клевер",
+        "черный клевер аниме",
+        "blackclover"
     ],
 
-    "хвост феи":[
-        "fairy tail"
+
+    /* =====================================================
+       SWORD ART ONLINE
+       ===================================================== */
+
+    "sword art online":[
+        "мастер меча онлайн",
+        "искусство меча онлайн",
+        "сао",
+        "меч онлайн",
+        "sao",
+        "swordartonline"
     ],
 
-    "сказание о хвосте феи":[
-        "fairy tail"
+
+    /* =====================================================
+       RE:ZERO
+       ===================================================== */
+
+    "re zero":[
+        "резеро",
+        "ре зеро",
+        "жизнь с нуля в альтернативном мире",
+        "жизнь с нуля",
+        "re zero kara hajimeru isekai seikatsu",
+        "rezero"
     ],
 
-    "синий экзорцист":[
-        "blue exorcist",
-        "ao no exorcist"
+
+    /* =====================================================
+       KONOSUBA
+       ===================================================== */
+
+    "konosuba":[
+        "коносуба",
+        "божество благословило этот прекрасный мир",
+        "этот прекрасный мир",
+        "коно суба",
+        "kono subarashii sekai ni shukufuku wo",
+        "konosuba"
     ],
 
-    "ре зеро":[
-        "re zero",
-        "re:zero",
-        "re zero starting life"
+
+    /* =====================================================
+       NO GAME NO LIFE
+       ===================================================== */
+
+    "no game no life":[
+        "нет игры нет жизни",
+        "нет игры нет жизни",
+        "ноу гейм ноу лайф",
+        "нгнл",
+        "ngnl",
+        "nogamenolife"
     ],
 
-    "клинок ведьм":[
-        "witchblade"
+
+    /* =====================================================
+       STEINS GATE
+       ===================================================== */
+
+    "steins gate":[
+        "врата штейна",
+        "врата штайнера",
+        "штейны врата",
+        "стейнс гейт",
+        "steinsgate"
     ],
 
-    "токийские мстители":[
-        "tokyo revengers"
+
+    /* =====================================================
+       EVANGELION
+       ===================================================== */
+
+    "neon genesis evangelion":[
+        "евангелион",
+        "неон генезис евангелион",
+        "евангелион новое поколение",
+        "нге",
+        "nge",
+        "neon genesis evangelion"
     ],
 
-    "паразит":[
+
+    /* =====================================================
+       COWBOY BEBOP
+       ===================================================== */
+
+    "cowboy bebop":[
+        "ковбой бибоп",
+        "ковбой бибоп аниме",
+        "cowboybebop"
+    ],
+
+
+    /* =====================================================
+       SAMURAI CHAMPLOO
+       ===================================================== */
+
+    "samurai champloo":[
+        "самурай чамплу",
+        "самурай шамплу",
+        "самурай чамплу аниме",
+        "samuraichamploo"
+    ],
+
+
+    /* =====================================================
+       VINLAND SAGA
+       ===================================================== */
+
+    "vinland saga":[
+        "сага о винланде",
+        "сага винланд",
+        "винланд сага",
+        "винланд",
+        "vinlandsaga"
+    ],
+
+
+    /* =====================================================
+       CHAINSAW MAN
+       ===================================================== */
+
+    "chainsaw man":[
+        "человек бензопила",
+        "человек бензопила аниме",
+        "бензопила",
+        "человек бензопила",
+        "chainsawman"
+    ],
+
+
+    /* =====================================================
+       ONE PUNCH MAN
+       ===================================================== */
+
+    "one punch man":[
+        "ванпанчмен",
+        "ванпанч мен",
+        "один удар человек",
+        "человек одного удара",
+        "опм",
+        "onepunchman"
+    ],
+
+
+    /* =====================================================
+       MOB PSYCHO 100
+       ===================================================== */
+
+    "mob psycho 100":[
+        "моб психо 100",
+        "моб психо",
+        "моб психо сто",
+        "mobpsycho100"
+    ],
+
+
+    /* =====================================================
+       DRAGON BALL
+       ===================================================== */
+
+    "dragon ball":[
+        "драконий жемчуг",
+        "драгон болл",
+        "драгонболл",
+        "драгон бол",
+        "dragonball"
+    ],
+
+
+    /* =====================================================
+       FAIRY TAIL
+       ===================================================== */
+
+    "fairy tail":[
+        "хвост феи",
+        "хвост феи",
+        "fairytail"
+    ],
+
+
+    /* =====================================================
+       SAILOR MOON
+       ===================================================== */
+
+    "sailor moon":[
+        "сейлор мун",
+        "сейлор мун",
+        "луна моряк",
+        "кристалл луны",
+        "sailormoon"
+    ],
+
+
+    /* =====================================================
+       INUYASHA
+       ===================================================== */
+
+    "inuyasha":[
+        "инуяша",
+        "инуюша",
+        "инуяша аниме"
+    ],
+
+
+    /* =====================================================
+       CODE GEASS
+       ===================================================== */
+
+    "code geass":[
+        "код гиас",
+        "код гиасс",
+        "код геасс",
+        "код гиас рикушия",
+        "codegeass"
+    ],
+
+
+    /* =====================================================
+       GURREN LAGANN
+       ===================================================== */
+
+    "gurren lagann":[
+        "гуррен лаганн",
+        "гуррен лаган",
+        "тэнгэн топпа гуррен лаганн",
+        "гуррен",
+        "gurrenlagann"
+    ],
+
+
+    /* =====================================================
+       AKAME GA KILL
+       ===================================================== */
+
+    "akame ga kill":[
+        "убийца акаме",
+        "акаме га килл",
+        "акаме",
+        "akamegakill"
+    ],
+
+
+    /* =====================================================
+       PARASYTE":[
+        "паразит",
+        "паразит учение о жизни",
+        "паразит максим",
+        "кисэйдзю",
         "parasyte",
-        "kiseijuu",
-        "parasyte the maxim"
+        "parasyte maxim"
     ],
 
-    "доктор стоун":[
-        "dr stone",
-        "dr. stone"
+
+    /* =====================================================
+       ERASED
+       ===================================================== */
+
+    "erased":[
+        "город в котором меня нет",
+        "город где меня нет",
+        "стерто",
+        "стертый",
+        "убийство в другом мире",
+        "boku dake ga inai machi",
+        "erased anime"
     ],
 
-    "монолог фармацевта":[
-        "the apothecary diaries",
-        "kusuriya no hitorigoto"
+
+    /* =====================================================
+       YOUR NAME
+       ===================================================== */
+
+    "your name":[
+        "твое имя",
+        "твоё имя",
+        "твоё имя аниме",
+        "kimi no na wa",
+        "kimi no na wa"
     ],
 
-    "врата штейна":[
-        "steins gate",
-        "steins;gate"
+
+    /* =====================================================
+       A SILENT VOICE
+       ===================================================== */
+
+    "a silent voice":[
+        "форма голоса",
+        "безмолвный голос",
+        "тихий голос",
+        "коэ но катачи",
+        "koe no katachi"
     ],
 
-    "ангельские ритмы":[
-        "angel beats"
+
+    /* =====================================================
+       WEATHERING WITH YOU
+       ===================================================== */
+
+    "weathering with you":[
+        "дитя погоды",
+        "дитя погоды аниме",
+        "дитя погоды",
+        "tenki no ko",
+        "tenkinoko"
     ],
 
-    "класс убийц":[
-        "assassination classroom"
+
+    /* =====================================================
+       SPIRITED AWAY
+       ===================================================== */
+
+    "spirited away":[
+        "унесенные призраками",
+        "унесённые призраками",
+        "унесенные духами",
+        "унесённые духами",
+        "сен и тихиро",
+        "сен и тихаиро"
     ],
 
-    "обещанный неверленд":[
-        "the promised neverland",
-        "yakusoku no neverland"
+
+    /* =====================================================
+       HOWL'S MOVING CASTLE
+       ===================================================== */
+
+    "howl's moving castle":[
+        "ходячий замок",
+        "ходячий замок хаула",
+        "замок хаула",
+        "howl moving castle"
     ],
 
-    "врата штейна":[
-        "steins gate",
-        "steins;gate"
+
+    /* =====================================================
+       PRINCESS MONONOKE
+       ===================================================== */
+
+    "princess mononoke":[
+        "принцесса мононоке",
+        "мононоке",
+        "принцесса мононокэ"
     ],
 
-    "черный клевер":[
-        "black clover"
+
+    /* =====================================================
+       TOKYO REVENGERS
+       ===================================================== */
+
+    "tokyo revengers":[
+        "токийские мстители",
+        "токийские мстители аниме",
+        "токийские мстители",
+        "токио ревенджерс",
+        "tokyorevengers"
     ],
 
-    "синий замок":[
-        "blue lock"
+
+    /* =====================================================
+       BLUE LOCK
+       ===================================================== */
+
+    "blue lock":[
+        "синяя тюрьма",
+        "блю лок",
+        "синий замок",
+        "blue lock",
+        "bluelock"
     ],
 
-    "волейбол хаikyу":[
-        "haikyuu",
+
+    /* =====================================================
+       HAIKYUU
+       ===================================================== */
+
+    "haikyuu":[
+        "волейбол",
+        "волейбол аниме",
+        "хаикью",
+        "хайкью",
         "haikyu",
-        "haikyuu!!"
+        "haikyuu"
     ],
 
-    "хайкью":[
-        "haikyuu",
-        "haikyu",
-        "haikyuu!!"
+
+    /* =====================================================
+       KAGUYA SAMA
+       ===================================================== */
+
+    "kaguya sama":[
+        "госпожа кагуя",
+        "любовь война",
+        "любовь как на войне",
+        "кагуя сама",
+        "kaguya sama love is war"
     ],
 
-    "баскетбол куроко":[
-        "kuroko no basket",
-        "kuroko's basketball"
+
+    /* =====================================================
+       HORIMIYA
+       ===================================================== */
+
+    "horimiya":[
+        "хоримия",
+        "хори и миямура",
+        "хоримия аниме"
     ],
 
-    "шаман кинг":[
-        "shaman king"
+
+    /* =====================================================
+       TORADORA
+       ===================================================== */
+
+    "toradora":[
+        "торадора",
+        "тородора",
+        "торадора аниме"
     ],
 
-    "семь смертных грехов":[
-        "seven deadly sins",
-        "nanatsu no taizai"
+
+    /* =====================================================
+       ANGEL BEATS
+       ===================================================== */
+
+    "angel beats":[
+        "ангельские ритмы",
+        "ангельские ритмы аниме",
+        "angelbeats"
     ],
 
-    "семь смертных греха":[
-        "seven deadly sins",
-        "nanatsu no taizai"
+
+    /* =====================================================
+       CLANNAD
+       ===================================================== */
+
+    "clannad":[
+        "кланнад",
+        "кланнад аниме",
+        "clannad after story",
+        "кланнад после истории"
     ],
 
-    "моб психо":[
-        "mob psycho",
-        "mob psycho 100"
+
+    /* =====================================================
+       THE PROMISED NEVERLAND
+       ===================================================== */
+
+    "the promised neverland":[
+        "обещанный неверленд",
+        "обещанный никогдаленд",
+        "обещанный неверланд",
+        "yakusoku no neverland",
+        "promisedneverland"
     ],
 
-    "сага о винланде":[
-        "vinland saga"
+
+    /* =====================================================
+       MADE IN ABYSS
+       ===================================================== */
+
+    "made in abyss":[
+        "созданный в бездне",
+        "сделано в бездне",
+        "бездна",
+        "madeinabyss"
     ],
 
-    "дороро":[
-        "dororo"
+
+    /* =====================================================
+       OVERLORD
+       ===================================================== */
+
+    "overlord":[
+        "повелитель",
+        "оверлорд",
+        "overlord аниме"
     ],
 
-    "крутой учитель онидзука":[
-        "great teacher onizuka",
-        "gto"
+
+    /* =====================================================
+       THAT TIME I GOT REINCARNATED AS A SLIME
+       ===================================================== */
+
+    "that time i got reincarnated as a slime":[
+        "о моем перерождении в слизь",
+        "перерождение в слизь",
+        "слизь",
+        "тенсура",
+        "tensura",
+        "reincarnated as a slime"
     ],
 
-    "дюрарара":[
-        "durarara"
+
+    /* =====================================================
+       JOBLESS REINCARNATION
+       ===================================================== */
+
+    "mushoku tensei":[
+        "реинкарнация безработного",
+        "реинкарнация безработного",
+        "безработный",
+        "мусоку тенсей",
+        "mushoku tensei"
     ],
 
-    "тетрадь дружбы нацумэ":[
-        "natsume's book of friends",
-        "natsume yuujinchou"
+
+    /* =====================================================
+       SAGA OF TANYA THE EVIL
+       ===================================================== */
+
+    "the saga of tanya the evil":[
+        "сага о злой тани",
+        "сага о тани во зло",
+        "военная хроника маленькой девочки",
+        "таня злая",
+        "youjo senki"
     ],
 
-    "повелитель":[
-        "overlord"
+
+    /* =====================================================
+       DR STONE
+       ===================================================== */
+
+    "dr stone":[
+        "доктор стоун",
+        "доктор стоун аниме",
+        "drstone"
     ],
 
-    "магификация":[
-        "magi"
+
+    /* =====================================================
+       FIRE FORCE
+       ===================================================== */
+
+    "fire force":[
+        "пламенная бригада пожарных",
+        "пожарная бригада",
+        "огненная сила",
+        "fireforce"
     ],
 
-    "мастер меча онлайн":[
-        "sword art online",
-        "sao"
+
+    /* =====================================================
+       SOUL EATER
+       ===================================================== */
+
+    "soul eater":[
+        "пожиратель душ",
+        "пожиратель душ аниме",
+        "souleater"
     ],
 
-    "сао":[
-        "sword art online",
-        "sao"
+
+    /* =====================================================
+       NORAGAMI
+       ===================================================== */
+
+    "noragami":[
+        "бездарный бог",
+        "бездомный бог",
+        "норагами",
+        "noragami"
     ],
 
-    "черный дворецкий":[
-        "black butler",
-        "kuroshitsuji"
+
+    /* =====================================================
+       BUNGOU STRAY DOGS
+       ===================================================== */
+
+    "bungou stray dogs":[
+        "великие из бродячих псов",
+        "бунго странные псы",
+        "бродячие псы",
+        "банго страй догс",
+        "bungou stray dogs"
     ],
 
-    "адский рай":[
-        "hell's paradise",
-        "hells paradise",
+
+    /* =====================================================
+       MONSTER
+       ===================================================== */
+
+    "monster":[
+        "монстр",
+        "монстр аниме",
+        "monster anime"
+    ],
+
+
+    /* =====================================================
+       PSYCHO PASS
+       ===================================================== */
+
+    "psycho pass":[
+        "психопаспорт",
+        "психо пасс",
+        "психо паспорт",
+        "psycho pass"
+    ],
+
+
+    /* =====================================================
+       ELITE CLASSROOM
+       ===================================================== */
+
+    "classroom of the elite":[
+        "класс превосходства",
+        "класс элиты",
+        "добро пожаловать в класс превосходства",
+        "youkoso jitsuryoku shijou shugi no kyoushitsu e"
+    ],
+
+
+    /* =====================================================
+       OREGAIRU
+       ===================================================== */
+
+    "oregairu":[
+        "как и ожидалось моя школьная романтическая жизнь",
+        "моя подростковая романтическая комедия",
+        "орегайру",
+        "яхаари",
+        "yahari ore no seishun love comedy"
+    ],
+
+
+    /* =====================================================
+       SAO
+       ===================================================== */
+
+    "sword art online":[
+        "меч искусство онлайн",
+        "мастер меча онлайн",
+        "сао"
+    ],
+
+
+    /* =====================================================
+       FATE
+       ===================================================== */
+
+    "fate stay night":[
+        "судьба начало",
+        "судьба ночь схватки",
+        "судьба",
+        "fate",
+        "fate stay night",
+        "fate zero"
+    ],
+
+
+    /* =====================================================
+       FATE ZERO
+       ===================================================== */
+
+    "fate zero":[
+        "судьба ноль",
+        "судьба зеро",
+        "fate zero",
+        "fatezero"
+    ],
+
+
+    /* =====================================================
+       RECORD OF RAGNAROK
+       ===================================================== */
+
+    "record of ragnarok":[
+        "повесть о конце света",
+        "рекорд рагнарёка",
+        "рекорд рагнарок",
+        "рагнарек",
+        "shuumatsu no valkyrie"
+    ],
+
+
+    /* =====================================================
+       HELL'S PARADISE
+       ===================================================== */
+
+    "hell's paradise":[
+        "адский рай",
+        "рай ада",
+        "дзигокураку",
         "jigokuraku"
     ],
 
-    "рай и ад":[
-        "heaven and hell"
+
+    /* =====================================================
+       SOLO LEVELING
+       ===================================================== */
+
+    "solo leveling":[
+        "поднятие уровня в одиночку",
+        "поднятие уровня в одиночку",
+        "сололевелинг",
+        "сололейвелинг",
+        "соло левелинг",
+        "solo leveling"
     ],
 
-    "удар крови":[
-        "strike the blood"
+
+    /* =====================================================
+       MASHLE
+       ===================================================== */
+
+    "mashle":[
+        "мэшл",
+        "машле",
+        "магия и мускулы",
+        "mashle magic and muscles"
     ],
 
-    "другая":[
-        "another"
+
+    /* =====================================================
+       ODD TAXI
+       ===================================================== */
+
+    "odd taxi":[
+        "необычное такси",
+        "странное такси",
+        "одд такси",
+        "oddtaxi"
     ],
 
-    "эрго прокси":[
-        "ergo proxy"
+
+    /* =====================================================
+       ZOM 100
+       ===================================================== */
+
+    "zom 100":[
+        "зом 100",
+        "зомби 100",
+        "100 дел до того как стать зомби",
+        "zom100"
     ],
 
-    "триган":[
-        "trigun"
+
+    /* =====================================================
+       BOCCHI THE ROCK
+       ===================================================== */
+
+    "bocchi the rock":[
+        "одинокий рокер",
+        "боччи",
+        "боччи зе рок",
+        "bocchi"
     ],
 
-    "самурай чамплу":[
-        "samurai champloo"
+
+    /* =====================================================
+       OSHI NO KO
+       ===================================================== */
+
+    "oshi no ko":[
+        "звездное дитя",
+        "звёздное дитя",
+        "дитя айдола",
+        "оши но ко",
+        "oshi no ko"
     ],
 
-    "код гиас":[
-        "code geass"
+
+    /* =====================================================
+       SPY X FAMILY
+       ===================================================== */
+
+    "spy x family":[
+        "семья шпионов",
+        "шпионская семья",
+        "спай х фэмили",
+        "spy family",
+        "spyxfamily"
     ],
 
-    "психопаспорт":[
-        "psycho pass",
-        "psycho-pass"
+
+    /* =====================================================
+       FRUITS BASKET
+       ===================================================== */
+
+    "fruits basket":[
+        "корзинка фруктов",
+        "фруктовая корзина",
+        "фрутс баскет",
+        "fruitsbasket"
     ],
 
-    "пинг понг анимация":[
-        "ping pong the animation"
+
+    /* =====================================================
+       YOUR LIE IN APRIL
+       ===================================================== */
+
+    "your lie in april":[
+        "твоя апрельская ложь",
+        "ложь в апреле",
+        "твоя ложь в апреле",
+        "shigatsu wa kimi no uso",
+        "shigatsu"
     ],
 
-    "уютный лагерь":[
-        "laid back camp",
-        "yuru camp"
+
+    /* =====================================================
+       ANOHANA
+       ===================================================== */
+
+    "anohana":[
+        "цветок который мы увидели в тот день",
+        "анохана",
+        "мы видели цветок",
+        "anohana"
     ],
 
-    "невероятные приключения джоджо":[
-        "jojo",
-        "jojo's bizarre adventure",
-        "jojo bizarre adventure"
+
+    /* =====================================================
+       ANGEL BEATS
+       ===================================================== */
+
+    "angel beats":[
+        "ангельские ритмы",
+        "ангел битс",
+        "angel beats"
     ],
 
-    "джоджо":[
-        "jojo",
-        "jojo's bizarre adventure"
+
+    /* =====================================================
+       KILL LA KILL
+       ===================================================== */
+
+    "kill la kill":[
+        "убей или умри",
+        "килл ла килл",
+        "killlakill"
     ],
 
-    "фрирен":[
-        "frieren",
-        "frieren beyond journey's end"
+
+    /* =====================================================
+       DARLING IN THE FRANXX
+       ===================================================== */
+
+    "darling in the franxx":[
+        "милый во франксе",
+        "милый во франксе",
+        "дарлинг ин зе франкс",
+        "дарлинг",
+        "darlinginthefranxx"
     ],
 
-    "подземелье вкусностей":[
-        "delicious in dungeon",
-        "dungeon meshi"
+
+    /* =====================================================
+       AKUDAMA DRIVE
+       ===================================================== */
+
+    "akudama drive":[
+        "акудама драйв",
+        "акудама",
+        "akudama"
     ],
 
-    "дандадан":[
-        "dandadan"
+
+    /* =====================================================
+       CYBERPUNK EDGERUNNERS
+       ===================================================== */
+
+    "cyberpunk edgerunners":[
+        "киберпанк бегущие по краю",
+        "киберпанк",
+        "эджраннеры",
+        "эджраннерс",
+        "cyberpunk",
+        "edgerunners"
     ],
 
-    "солдаты будущего":[
-        "future soldiers"
+
+    /* =====================================================
+       ARCANE
+       ===================================================== */
+
+    "arcane":[
+        "аркан",
+        "аркайн",
+        "аркане",
+        "arcane"
     ],
 
-    "монстр":[
-        "monster"
+
+    /* =====================================================
+       CASTLEVANIA
+       ===================================================== */
+
+    "castlevania":[
+        "кастлвания",
+        "кастельвания",
+        "castlevania"
     ],
 
-    "пожиратель душ":[
-        "soul eater"
+
+    /* =====================================================
+       DORORO
+       ===================================================== */
+
+    "dororo":[
+        "дороро",
+        "дороро аниме"
     ],
 
-    "кровь плюс":[
-        "blood+",
-        "blood plus"
+
+    /* =====================================================
+       TO YOUR ETERNITY
+       ===================================================== */
+
+    "to your eternity":[
+        "к твоей вечности",
+        "твоя вечность",
+        "фумэцу но аната э",
+        "fumetsu no anata e"
     ],
 
-    "виви":[
-        "vivy",
-        "vivy fluorite eye's song"
+
+    /* =====================================================
+       TOWER OF GOD
+       ===================================================== */
+
+    "tower of god":[
+        "башня бога",
+        "башня бога аниме",
+        "kami no tou"
     ],
 
-    "86":[
-        "eighty six",
-        "86 eighty six"
+
+    /* =====================================================
+       THE GOD OF HIGH SCHOOL
+       ===================================================== */
+
+    "the god of high school":[
+        "бог старшей школы",
+        "бог школы",
+        "god of high school"
     ],
 
-    "лучшая жизнь":[
-        "life"
+
+    /* =====================================================
+       LOOKISM
+       ===================================================== */
+
+    "lookism":[
+        "лукизм",
+        "лукизм аниме",
+        "lookism"
+    ],
+
+
+    /* =====================================================
+       LINK CLICK
+       ===================================================== */
+
+    "link click":[
+        "агент времени",
+        "связь во времени",
+        "линк клик",
+        "shiguang daili ren"
+    ],
+
+
+    /* =====================================================
+       SCUM'S WISH
+       ===================================================== */
+
+    "scum's wish":[
+        "желание отбросов",
+        "желание подонков",
+        "кузу но хонкай",
+        "kuzu no honkai"
+    ],
+
+
+    /* =====================================================
+       DOMESTIC GIRLFRIEND
+       ===================================================== */
+
+    "domestic girlfriend":[
+        "домашняя девушка",
+        "домашняя подружка",
+        "домашняя девушка аниме",
+        "domestic na kanojo"
+    ],
+
+
+    /* =====================================================
+       RENT A GIRLFRIEND
+       ===================================================== */
+
+    "rent a girlfriend":[
+        "девушка напрокат",
+        "девушка в аренду",
+        "ренд а гирлфренд",
+        "kanokari"
+    ],
+
+
+    /* =====================================================
+       KANOJO OKARISHIMASU
+       ===================================================== */
+
+    "rent a girlfriend":[
+        "девушка напрокат",
+        "девушка напрокат аниме",
+        "девушка напрокат"
     ]
+
 
 };
 
 
 /* =========================================================
-   НОРМАЛИЗАЦИЯ ТЕКСТА
-========================================================= */
+   НОРМАЛИЗАЦИЯ
+   ========================================================= */
 
-function normalizeText(
-    text
-){
+function normalizeSearchText(value){
 
-    return String(
-        text || ""
-    )
-    .toLowerCase()
+    return String(value||"")
 
-    .normalize(
-        "NFD"
-    )
+        .toLowerCase()
 
-    .replace(
-        /[\u0300-\u036f]/g,
-        ""
-    )
+        .replace(
+            /ё/g,
+            "е"
+        )
 
-    .replace(
-        /ё/g,
-        "е"
-    )
-
-    .replace(
-        /[’'`]/g,
-        ""
-    )
-
-    .replace(
-        /[^a-zа-я0-9]+/gi,
-        " "
-    )
-
-    .replace(
-        /\s+/g,
-        " "
-    )
-
-    .trim();
+        .replace(
+            /[^a-zа-я0-9]+/gi,
+            ""
+        );
 
 }
 
 
 /* =========================================================
-   СОЗДАНИЕ ПОИСКОВЫХ ВАРИАНТОВ
-========================================================= */
+   УНИКАЛЬНЫЕ ВАРИАНТЫ
+   ========================================================= */
 
-function getSearchVariants(
-    query
-){
-
-    const normalized =
-        normalizeText(
-            query
-        );
-
-    const variants =
-        new Set();
-
-    if(
-        normalized
-    ){
-
-        variants.add(
-            normalized
-        );
-
-    }
-
-
-    /*
-     * Проверяем русские алиасы.
-     */
-
-    for(
-        const ruName in ANIME_ALIASES
-    ){
-
-        const ruNormalized =
-            normalizeText(
-                ruName
-            );
-
-        if(
-            normalized === ruNormalized ||
-            normalized.includes(
-                ruNormalized
-            ) ||
-            ruNormalized.includes(
-                normalized
-            )
-        ){
-
-            for(
-                const alias of
-                ANIME_ALIASES[ruName]
-            ){
-
-                variants.add(
-                    normalizeText(
-                        alias
-                    )
-                );
-
-            }
-
-        }
-
-    }
-
+function uniqueVariants(values){
 
     return [
-        ...variants
+        ...new Set(
+
+            values
+
+                .filter(Boolean)
+
+                .map(
+                    v=>
+                        normalizeSearchText(v)
+                )
+
+                .filter(Boolean)
+
+        )
     ];
 
 }
 
 
 /* =========================================================
-   УДАЛЕНИЕ ТЕХНИЧЕСКИХ СЛОВ ИЗ ИМЕНИ
-========================================================= */
+   RU -> EN
+   ========================================================= */
 
-function cleanAnimeName(
-    filename
-){
+const RU_TO_EN={
 
-    let name =
-        String(
-            filename || ""
-        );
+    "а":"a",
+    "б":"b",
+    "в":"v",
+    "г":"g",
+    "д":"d",
+    "е":"e",
+    "ё":"yo",
+    "ж":"zh",
+    "з":"z",
+    "и":"i",
+    "й":"y",
+    "к":"k",
+    "л":"l",
+    "м":"m",
+    "н":"n",
+    "о":"o",
+    "п":"p",
+    "р":"r",
+    "с":"s",
+    "т":"t",
+    "у":"u",
+    "ф":"f",
+    "х":"h",
+    "ц":"c",
+    "ч":"ch",
+    "ш":"sh",
+    "щ":"sch",
+    "ъ":"",
+    "ы":"y",
+    "ь":"",
+    "э":"e",
+    "ю":"yu",
+    "я":"ya"
 
-    name =
-        name.replace(
-            /\.mp3$/i,
-            ""
-        );
+};
 
 
-    name =
-        name.replace(
-            /\b(opening|op|theme|song|official|full|tv|version|ver|audio|music)\b/gi,
-            " "
-        );
+function transliterateRuToEn(text){
 
+    let result="";
 
-    name =
-        name.replace(
-            /[\[\]\(\)\{\}_\-]+/g,
-            " "
-        );
+    for(
+        const char
+        of String(text||"").toLowerCase()
+    ){
 
+        result+=
+            RU_TO_EN[char]!==undefined
+                ?RU_TO_EN[char]
+                :char;
 
-    name =
-        name.replace(
-            /\s+/g,
-            " "
-        )
-        .trim();
+    }
 
-
-    return name;
+    return result;
 
 }
 
 
 /* =========================================================
-   ПОИСКОВОЙ SCORE
-========================================================= */
+   EN -> RU
+   ========================================================= */
 
-function getSearchScore(
+const EN_TO_RU=[
+
+    ["shch","щ"],
+    ["sch","щ"],
+    ["tch","ч"],
+    ["sh","ш"],
+    ["ch","ч"],
+    ["zh","ж"],
+    ["yo","ё"],
+    ["yu","ю"],
+    ["ya","я"],
+    ["ye","е"],
+    ["ts","ц"],
+
+    ["a","а"],
+    ["b","б"],
+    ["c","к"],
+    ["d","д"],
+    ["e","е"],
+    ["f","ф"],
+    ["g","г"],
+    ["h","х"],
+    ["i","и"],
+    ["j","дж"],
+    ["k","к"],
+    ["l","л"],
+    ["m","м"],
+    ["n","н"],
+    ["o","о"],
+    ["p","п"],
+    ["q","к"],
+    ["r","р"],
+    ["s","с"],
+    ["t","т"],
+    ["u","у"],
+    ["v","в"],
+    ["w","в"],
+    ["x","кс"],
+    ["y","й"],
+    ["z","з"]
+
+];
+
+
+function transliterateEnToRu(text){
+
+    let result=
+        String(text||"")
+            .toLowerCase();
+
+    for(
+        const pair
+        of EN_TO_RU
+    ){
+
+        result=
+            result
+                .split(pair[0])
+                .join(pair[1]);
+
+    }
+
+    return result;
+
+}
+
+
+/* =========================================================
+   ОБЩИЕ ВАРИАНТЫ
+   ========================================================= */
+
+const COMMON_TRANSLITERATIONS=[
+
+    ["opening","опенинг"],
+    ["op","оп"],
+    ["ending","эндинг"],
+    ["ed","эд"],
+    ["season","сезон"],
+    ["movie","фильм"],
+    ["episode","серия"],
+    ["ep","серия"],
+
+    ["one","уан"],
+    ["two","ту"],
+    ["three","три"],
+    ["four","фор"],
+    ["five","файв"],
+    ["six","сикс"],
+    ["seven","севен"],
+    ["eight","эйт"],
+    ["nine","найн"],
+    ["ten","тэн"],
+
+    ["night","найт"],
+    ["love","лав"],
+    ["baby","бейби"],
+    ["girl","герл"],
+    ["boy","бой"],
+    ["world","ворлд"],
+    ["life","лайф"],
+    ["death","дэс"],
+    ["dark","дарк"],
+    ["black","блэк"],
+    ["white","вайт"],
+    ["red","рэд"],
+    ["blue","блу"],
+    ["green","грин"],
+    ["fire","файр"],
+    ["heart","харт"],
+    ["dream","дрим"],
+    ["angel","энджел"],
+    ["devil","дэвил"],
+    ["king","кинг"],
+    ["queen","квин"],
+    ["hero","хиро"],
+    ["heroes","хироу"],
+    ["man","мэн"],
+    ["men","мэн"],
+    ["woman","вумен"],
+    ["women","вимен"],
+    ["moon","мун"],
+    ["star","стар"],
+    ["stars","старз"],
+    ["sky","скай"],
+    ["rain","рэйн"],
+    ["snow","сноу"],
+    ["summer","саммер"],
+    ["winter","винтер"],
+    ["spring","спринг"],
+    ["fall","фол"],
+
+    ["tokyo","токио"],
+    ["japan","джапан"],
+    ["japanese","джапаниз"],
+
+    ["and","энд"],
+    ["the","зе"],
+    ["of","оф"],
+    ["on","он"],
+    ["in","ин"],
+    ["no","но"],
+    ["to","ту"],
+    ["your","йор"],
+    ["you","ю"],
+    ["my","май"],
+    ["me","ми"]
+
+];
+
+
+/* =========================================================
+   СОЗДАНИЕ ВАРИАНТОВ
+   ========================================================= */
+
+function makeSearchVariants(text){
+
+    const original=
+        String(text||"")
+            .toLowerCase();
+
+
+    const variants=[
+        original
+    ];
+
+
+    variants.push(
+        transliterateRuToEn(
+            original
+        )
+    );
+
+
+    variants.push(
+        transliterateEnToRu(
+            original
+        )
+    );
+
+
+    const normalized=
+        normalizeSearchText(
+            original
+        );
+
+
+    for(
+        const pair
+        of COMMON_TRANSLITERATIONS
+    ){
+
+        const en=
+            normalizeSearchText(
+                pair[0]
+            );
+
+
+        if(
+            normalized.includes(en)
+        ){
+
+            variants.push(
+                pair[1]
+            );
+
+        }
+
+    }
+
+
+    return uniqueVariants(
+        variants
+    );
+
+}
+
+
+/* =========================================================
+   ПОЛУЧЕНИЕ АЛИАСОВ АНИМЕ
+   ========================================================= */
+
+function getAnimeAliasesForTrack(name){
+
+    const normalizedName=
+        normalizeSearchText(
+            name
+        );
+
+
+    const result=[];
+
+
+    for(
+        const animeName
+        in ANIME_ALIASES
+    ){
+
+        const normalizedAnime=
+            normalizeSearchText(
+                animeName
+            );
+
+
+        /*
+         * Если английское название уже есть
+         * в имени файла — добавляем русские алиасы.
+         */
+
+        if(
+            normalizedName.includes(
+                normalizedAnime
+            )
+        ){
+
+            result.push(
+                ...ANIME_ALIASES[
+                    animeName
+                ]
+            );
+
+        }
+
+
+        /*
+         * Проверяем алиасы.
+         */
+
+        for(
+            const alias
+            of ANIME_ALIASES[
+                animeName
+            ]
+        ){
+
+            const normalizedAlias=
+                normalizeSearchText(
+                    alias
+                );
+
+
+            if(
+                normalizedAlias &&
+                normalizedName.includes(
+                    normalizedAlias
+                )
+            ){
+
+                result.push(
+                    ...ANIME_ALIASES[
+                        animeName
+                    ]
+                );
+
+                break;
+
+            }
+
+        }
+
+    }
+
+
+    return result;
+
+}
+
+
+/* =========================================================
+   ПОИСКОВЫЙ ТЕКСТ ТРЕКА
+   ========================================================= */
+
+function buildTrackSearchText(track){
+
+    const name=
+        removeExtension(
+            String(
+                track.name||""
+            )
+        );
+
+
+    const values=[
+        name
+    ];
+
+
+    /*
+     * Добавляем русские названия
+     * известных аниме.
+     */
+
+    values.push(
+        ...getAnimeAliasesForTrack(
+            name
+        )
+    );
+
+
+    /*
+     * Обычная транслитерация.
+     */
+
+    values.push(
+        ...makeSearchVariants(
+            name
+        )
+    );
+
+
+    return uniqueVariants(
+        values
+    );
+
+}
+
+
+/* =========================================================
+   LEVENSHTEIN
+   ========================================================= */
+
+function levenshtein(a,b){
+
+    a=String(a||"");
+
+    b=String(b||"");
+
+
+    if(a===b)
+        return 0;
+
+
+    if(!a.length)
+        return b.length;
+
+
+    if(!b.length)
+        return a.length;
+
+
+    let prev=
+        Array.from(
+            {
+                length:
+                    b.length+1
+            },
+            (_,i)=>i
+        );
+
+
+    for(
+        let i=1;
+        i<=a.length;
+        i++
+    ){
+
+        const cur=[
+            i
+        ];
+
+
+        for(
+            let j=1;
+            j<=b.length;
+            j++
+        ){
+
+            const cost=
+                a[i-1]===b[j-1]
+                    ?0
+                    :1;
+
+
+            cur[j]=
+                Math.min(
+
+                    cur[j-1]+1,
+
+                    prev[j]+1,
+
+                    prev[j-1]+cost
+
+                );
+
+        }
+
+
+        prev=cur;
+
+    }
+
+
+    return prev[
+        b.length
+    ];
+
+}
+
+
+/* =========================================================
+   FUZZY MATCH
+   ========================================================= */
+
+function fuzzyWordMatch(
+    query,
+    text
+){
+
+    if(
+        !query ||
+        !text
+    )
+        return false;
+
+
+    if(
+        text.includes(
+            query
+        )
+    )
+        return true;
+
+
+    if(
+        query.length<3
+    )
+        return false;
+
+
+    const words=
+        text
+            .split(
+                /[\s\-_.,!?()[\]{}]+/
+            )
+            .filter(Boolean);
+
+
+    const candidates=
+        words.length
+            ?words
+            :[text];
+
+
+    for(
+        const word
+        of candidates
+    ){
+
+        const distance=
+            levenshtein(
+                query,
+                word
+            );
+
+
+        if(
+            query.length<=4 &&
+            distance<=1
+        )
+            return true;
+
+
+        if(
+            query.length<=7 &&
+            distance<=2
+        )
+            return true;
+
+
+        if(
+            query.length>7 &&
+            distance<=
+                Math.max(
+                    2,
+                    Math.floor(
+                        query.length*.25
+                    )
+                )
+        ){
+
+            return true;
+
+        }
+
+    }
+
+
+    return false;
+
+}
+
+
+/* =========================================================
+   УМНЫЙ ПОИСК АНИМЕ
+   ========================================================= */
+
+function smartSearchMatch(
     track,
     query
 ){
 
-    const variants =
-        getSearchVariants(
+    const cleanQuery=
+        normalizeSearchText(
             query
         );
 
-    if(
-        !variants.length
+
+    if(!cleanQuery)
+        return true;
+
+
+    const variants=
+        buildTrackSearchText(
+            track
+        );
+
+
+    /*
+     * Обычное совпадение.
+     */
+
+    for(
+        const variant
+        of variants
     ){
 
-        return 0;
+        if(
+            variant.includes(
+                cleanQuery
+            )
+        ){
+
+            return true;
+
+        }
+
+
+        if(
+            cleanQuery.length>=3 &&
+            cleanQuery.includes(
+                variant
+            )
+        ){
+
+            return true;
+
+        }
 
     }
 
 
-    const filename =
-        normalizeText(
-            track.name
-        );
+    /*
+     * Варианты самого запроса.
+     */
 
-    const cleanName =
-        normalizeText(
-            cleanAnimeName(
-                track.name
-            )
+    const queryVariants=
+        makeSearchVariants(
+            query
         );
 
 
-    let bestScore = 0;
-
+    /*
+     * Проверяем русский алиас
+     * напрямую по базе аниме.
+     */
 
     for(
-        const variant of variants
+        const animeName
+        in ANIME_ALIASES
     ){
 
-        if(
-            !variant
+        const aliases=
+            ANIME_ALIASES[
+                animeName
+            ];
+
+
+        for(
+            const alias
+            of aliases
         ){
 
-            continue;
-
-        }
-
-
-        /*
-         * Полное совпадение.
-         */
-
-        if(
-            cleanName === variant
-        ){
-
-            bestScore =
-                Math.max(
-                    bestScore,
-                    1000
-                );
-
-            continue;
-
-        }
-
-
-        /*
-         * Название содержит запрос.
-         */
-
-        if(
-            cleanName.includes(
-                variant
-            )
-        ){
-
-            bestScore =
-                Math.max(
-                    bestScore,
-                    800
-                );
-
-        }
-
-
-        /*
-         * Имя файла содержит запрос.
-         */
-
-        if(
-            filename.includes(
-                variant
-            )
-        ){
-
-            bestScore =
-                Math.max(
-                    bestScore,
-                    700
-                );
-
-        }
-
-
-        /*
-         * Проверяем отдельные слова.
-         */
-
-        const words =
-            variant
-                .split(" ")
-                .filter(
-                    word =>
-                        word.length >= 2
+            const aliasNormalized=
+                normalizeSearchText(
+                    alias
                 );
 
 
-        if(
-            words.length
-        ){
-
-            let found = 0;
-
-            for(
-                const word of words
+            if(
+                aliasNormalized===
+                cleanQuery
             ){
 
-                if(
-                    cleanName.includes(
-                        word
-                    )
+                const allNames=[
+                    animeName,
+                    ...aliases
+                ];
+
+
+                for(
+                    const name
+                    of allNames
                 ){
 
-                    found++;
-
-                }
-
-            }
-
-
-            const ratio =
-                found /
-                words.length;
-
-
-            if(
-                ratio === 1
-            ){
-
-                bestScore =
-                    Math.max(
-                        bestScore,
-                        650
-                    );
-
-            }
-            else if(
-                ratio >= .7
-            ){
-
-                bestScore =
-                    Math.max(
-                        bestScore,
-                        500
-                    );
-
-            }
-            else if(
-                ratio >= .5
-            ){
-
-                bestScore =
-                    Math.max(
-                        bestScore,
-                        300
-                    );
-
-            }
-
-        }
-
-    }
-
-
-    return bestScore;
-
-}
-
-
-/* =========================================================
-   ФОРМАТ РАЗМЕРА
-========================================================= */
-
-function formatSize(
-    bytes
-){
-
-    if(
-        !bytes
-    ){
-
-        return "";
-
-    }
-
-
-    const units = [
-        "B",
-        "KB",
-        "MB",
-        "GB"
-    ];
-
-    let size =
-        Number(
-            bytes
-        );
-
-    let index = 0;
-
-
-    while(
-        size >= 1024 &&
-        index <
-        units.length - 1
-    ){
-
-        size /= 1024;
-        index++;
-
-    }
-
-
-    return (
-        size.toFixed(
-            index === 0
-                ? 0
-                : 1
-        ) +
-        " " +
-        units[index]
-    );
-
-}
-
-
-/* =========================================================
-   ПОКАЗ TOAST
-========================================================= */
-
-let toastTimer = null;
-
-function showToast(
-    text
-){
-
-    toast.textContent =
-        text;
-
-    toast.classList.add(
-        "show"
-    );
-
-
-    clearTimeout(
-        toastTimer
-    );
-
-
-    toastTimer =
-        setTimeout(
-            () => {
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            2200
-        );
-
-}
-
-
-/* =========================================================
-   URL
-========================================================= */
-
-function getTrackURL(
-    track
-){
-
-    return (
-        API_BASE +
-        "/openings/music/" +
-        encodeURIComponent(
-            track.id
-        )
-    );
-
-}
-
-
-/* =========================================================
-   PLAY
-========================================================= */
-
-function playTrack(
-    track,
-    button
-){
-
-    const url =
-        getTrackURL(
-            track
-        );
-
-
-    if(
-        currentTrack &&
-        currentTrack.id ===
-        track.id
-    ){
-
-        if(
-            audio.paused
-        ){
-
-            audio.play()
-                .catch(
-                    () => {}
-                );
-
-        }
-        else{
-
-            audio.pause();
-
-        }
-
-        return;
-
-    }
-
-
-    /*
-     * Убираем состояние
-     * со всех кнопок.
-     */
-
-    document
-        .querySelectorAll(
-            ".play.playing"
-        )
-        .forEach(
-            element => {
-
-                element.classList.remove(
-                    "playing"
-                );
-
-                element.textContent =
-                    "▶";
-
-            }
-        );
-
-
-    currentTrack =
-        track;
-
-
-    audio.src =
-        url;
-
-
-    audio.load();
-
-
-    playerTitle.textContent =
-        track.name;
-
-
-    playerElement.style.display =
-        "flex";
-
-
-    if(
-        button
-    ){
-
-        button.classList.add(
-            "playing"
-        );
-
-        button.textContent =
-            "❚❚";
-
-    }
-
-
-    audio.play()
-        .catch(
-            () => {
-
-                showToast(
-                    "Не удалось запустить воспроизведение"
-                );
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   AUDIO EVENTS
-========================================================= */
-
-audio.addEventListener(
-    "play",
-    () => {
-
-        if(
-            !currentTrack
-        ){
-
-            return;
-
-        }
-
-
-        document
-            .querySelectorAll(
-                ".play"
-            )
-            .forEach(
-                button => {
-
-                    button.classList.remove(
-                        "playing"
-                    );
-
-                    button.textContent =
-                        "▶";
-
-                }
-            );
-
-
-        const button =
-            document.querySelector(
-                '[data-id="' +
-                currentTrack.id +
-                '"]'
-            );
-
-
-        if(
-            button
-        ){
-
-            button.classList.add(
-                "playing"
-            );
-
-            button.textContent =
-                "❚❚";
-
-        }
-
-    }
-);
-
-
-audio.addEventListener(
-    "pause",
-    () => {
-
-        if(
-            !currentTrack
-        ){
-
-            return;
-
-        }
-
-
-        const button =
-            document.querySelector(
-                '[data-id="' +
-                currentTrack.id +
-                '"]'
-            );
-
-
-        if(
-            button
-        ){
-
-            button.classList.remove(
-                "playing"
-            );
-
-            button.textContent =
-                "▶";
-
-        }
-
-    }
-);
-
-
-audio.addEventListener(
-    "ended",
-    () => {
-
-        if(
-            !currentTrack
-        ){
-
-            return;
-
-        }
-
-
-        const button =
-            document.querySelector(
-                '[data-id="' +
-                currentTrack.id +
-                '"]'
-            );
-
-
-        if(
-            button
-        ){
-
-            button.classList.remove(
-                "playing"
-            );
-
-            button.textContent =
-                "▶";
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   COPY LINK
-========================================================= */
-
-async function copyLink(
-    track
-){
-
-    const url =
-        getTrackURL(
-            track
-        );
-
-
-    try{
-
-        await navigator.clipboard.writeText(
-            url
-        );
-
-        showToast(
-            "Ссылка скопирована"
-        );
-
-    }
-    catch{
-
-        /*
-         * Старый способ,
-         * если Clipboard API недоступен.
-         */
-
-        const textarea =
-            document.createElement(
-                "textarea"
-            );
-
-        textarea.value =
-            url;
-
-        document.body.appendChild(
-            textarea
-        );
-
-        textarea.select();
-
-        document.execCommand(
-            "copy"
-        );
-
-        textarea.remove();
-
-        showToast(
-            "Ссылка скопирована"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   DOWNLOAD
-========================================================= */
-
-function downloadTrack(
-    track
-){
-
-    const url =
-        getTrackURL(
-            track
-        ) +
-        "?download=1";
-
-
-    const link =
-        document.createElement(
-            "a"
-        );
-
-    link.href =
-        url;
-
-    link.target =
-        "_blank";
-
-    link.rel =
-        "noopener";
-
-    document.body.appendChild(
-        link
-    );
-
-    link.click();
-
-    link.remove();
-
-}
-
-
-/* =========================================================
-   СОЗДАНИЕ CARD
-========================================================= */
-
-function createCard(
-    track
-){
-
-    const card =
-        document.createElement(
-            "div"
-        );
-
-    card.className =
-        "card";
-
-
-    const play =
-        document.createElement(
-            "button"
-        );
-
-    play.className =
-        "play";
-
-    play.textContent =
-        "▶";
-
-    play.title =
-        "Воспроизвести";
-
-
-    play.dataset.id =
-        track.id;
-
-
-    play.addEventListener(
-        "click",
-        () => {
-
-            playTrack(
-                track,
-                play
-            );
-
-        }
-    );
-
-
-    const info =
-        document.createElement(
-            "div"
-        );
-
-    info.className =
-        "info";
-
-
-    const name =
-        document.createElement(
-            "div"
-        );
-
-    name.className =
-        "name";
-
-    name.textContent =
-        track.name;
-
-
-    const cleanName =
-        cleanAnimeName(
-            track.name
-        );
-
-
-    const alias =
-        document.createElement(
-            "div"
-        );
-
-    alias.className =
-        "alias";
-
-
-    /*
-     * Показываем очищенное имя,
-     * если оно отличается.
-     */
-
-    if(
-        cleanName &&
-        cleanName !==
-        track.name.replace(
-            /\.mp3$/i,
-            ""
-        )
-    ){
-
-        alias.textContent =
-            cleanName;
-
-    }
-    else{
-
-        alias.textContent =
-            "Anime Opening";
-
-    }
-
-
-    const meta =
-        document.createElement(
-            "div"
-        );
-
-    meta.className =
-        "meta";
-
-    meta.textContent =
-        formatSize(
-            track.size
-        );
-
-
-    info.appendChild(
-        name
-    );
-
-    info.appendChild(
-        alias
-    );
-
-    info.appendChild(
-        meta
-    );
-
-
-    const actions =
-        document.createElement(
-            "div"
-        );
-
-    actions.className =
-        "actions";
-
-
-    const copy =
-        document.createElement(
-            "button"
-        );
-
-    copy.className =
-        "action";
-
-    copy.textContent =
-        "🔗";
-
-    copy.title =
-        "Скопировать ссылку";
-
-
-    copy.addEventListener(
-        "click",
-        () => {
-
-            copyLink(
-                track
-            );
-
-        }
-    );
-
-
-    const download =
-        document.createElement(
-            "button"
-        );
-
-    download.className =
-        "action";
-
-    download.textContent =
-        "⬇";
-
-    download.title =
-        "Скачать";
-
-
-    download.addEventListener(
-        "click",
-        () => {
-
-            downloadTrack(
-                track
-            );
-
-        }
-    );
-
-
-    actions.appendChild(
-        copy
-    );
-
-    actions.appendChild(
-        download
-    );
-
-
-    card.appendChild(
-        play
-    );
-
-    card.appendChild(
-        info
-    );
-
-    card.appendChild(
-        actions
-    );
-
-
-    return card;
-
-}
-
-
-/* =========================================================
-   РЕНДЕР
-========================================================= */
-
-function render(){
-
-    listElement.innerHTML =
-        "";
-
-    paginationElement.innerHTML =
-        "";
-
-
-    const total =
-        filteredTracks.length;
-
-
-    countElement.textContent =
-        total +
-        (
-            total === 1
-                ? " opening"
-                : " openings"
-        );
-
-
-    if(
-        !total
-    ){
-
-        emptyElement.style.display =
-            "block";
-
-        return;
-
-    }
-
-
-    emptyElement.style.display =
-        "none";
-
-
-    const totalPages =
-        Math.ceil(
-            total /
-            PER_PAGE
-        );
-
-
-    if(
-        currentPage >
-        totalPages
-    ){
-
-        currentPage =
-            totalPages;
-
-    }
-
-
-    const start =
-        (
-            currentPage - 1
-        ) *
-        PER_PAGE;
-
-
-    const end =
-        start +
-        PER_PAGE;
-
-
-    const pageTracks =
-        filteredTracks.slice(
-            start,
-            end
-        );
-
-
-    for(
-        const track of pageTracks
-    ){
-
-        listElement.appendChild(
-            createCard(
-                track
-            )
-        );
-
-    }
-
-
-    renderPagination(
-        totalPages
-    );
-
-}
-
-
-/* =========================================================
-   PAGINATION
-========================================================= */
-
-function renderPagination(
-    totalPages
-){
-
-    if(
-        totalPages <= 1
-    ){
-
-        return;
-
-    }
-
-
-    const previous =
-        document.createElement(
-            "button"
-        );
-
-    previous.className =
-        "page";
-
-    previous.textContent =
-        "‹";
-
-    previous.disabled =
-        currentPage <= 1;
-
-
-    previous.addEventListener(
-        "click",
-        () => {
-
-            if(
-                currentPage > 1
-            ){
-
-                currentPage--;
-
-                render();
-
-                window.scrollTo({
-                    top:0,
-                    behavior:"smooth"
-                });
-
-            }
-
-        }
-    );
-
-
-    paginationElement.appendChild(
-        previous
-    );
-
-
-    const maxButtons =
-        7;
-
-
-    let startPage =
-        Math.max(
-            1,
-            currentPage -
-            Math.floor(
-                maxButtons / 2
-            )
-        );
-
-
-    let endPage =
-        Math.min(
-            totalPages,
-            startPage +
-            maxButtons -
-            1
-        );
-
-
-    if(
-        endPage -
-        startPage +
-        1 <
-        maxButtons
-    ){
-
-        startPage =
-            Math.max(
-                1,
-                endPage -
-                maxButtons +
-                1
-            );
-
-    }
-
-
-    for(
-        let page =
-            startPage;
-        page <= endPage;
-        page++
-    ){
-
-        const button =
-            document.createElement(
-                "button"
-            );
-
-        button.className =
-            "page";
-
-
-        if(
-            page ===
-            currentPage
-        ){
-
-            button.classList.add(
-                "active"
-            );
-
-        }
-
-
-        button.textContent =
-            page;
-
-
-        button.addEventListener(
-            "click",
-            () => {
-
-                currentPage =
-                    page;
-
-                render();
-
-                window.scrollTo({
-                    top:0,
-                    behavior:"smooth"
-                });
-
-            }
-        );
-
-
-        paginationElement.appendChild(
-            button
-        );
-
-    }
-
-
-    const next =
-        document.createElement(
-            "button"
-        );
-
-    next.className =
-        "page";
-
-    next.textContent =
-        "›";
-
-    next.disabled =
-        currentPage >=
-        totalPages;
-
-
-    next.addEventListener(
-        "click",
-        () => {
-
-            if(
-                currentPage <
-                totalPages
-            ){
-
-                currentPage++;
-
-                render();
-
-                window.scrollTo({
-                    top:0,
-                    behavior:"smooth"
-                });
-
-            }
-
-        }
-    );
-
-
-    paginationElement.appendChild(
-        next
-    );
-
-}
-
-
-/* =========================================================
-   ПОИСК
-========================================================= */
-
-function performSearch(){
-
-    const query =
-        search.value.trim();
-
-
-    searchClear.style.display =
-        query
-            ? "block"
-            : "none";
-
-
-    if(
-        !query
-    ){
-
-        filteredTracks =
-            [...allTracks];
-
-        currentPage =
-            1;
-
-        render();
-
-        return;
-
-    }
-
-
-    /*
-     * Score каждого трека.
-     *
-     * Благодаря этому сначала
-     * показываются самые точные
-     * совпадения.
-     */
-
-    const scored =
-        allTracks
-            .map(
-                track => ({
-
-                    track:
-                        track,
-
-                    score:
-                        getSearchScore(
-                            track,
-                            query
+                    const normalizedName=
+                        normalizeSearchText(
+                            name
+                        );
+
+
+                    if(
+                        variants.some(
+                            variant=>
+                                variant.includes(
+                                    normalizedName
+                                )
                         )
+                    ){
 
-                })
+                        return true;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+    /*
+     * Fuzzy поиск.
+     */
+
+    for(
+        const q
+        of queryVariants
+    ){
+
+        for(
+            const variant
+            of variants
+        ){
+
+            if(
+                variant.includes(q)
+            )
+                return true;
+
+
+            if(
+                fuzzyWordMatch(
+                    q,
+                    variant
+                )
+            )
+                return true;
+
+        }
+
+    }
+
+
+    /*
+     * Проверка частей запроса.
+     */
+
+    const queryParts=
+        String(query||"")
+            .toLowerCase()
+            .split(
+                /[\s\-_.,!?()[\]{}]+/
             )
             .filter(
-                item =>
-                    item.score > 0
+                value=>
+                    value.length>=2
             );
 
 
-    scored.sort(
-        (
-            a,
-            b
-        ) => {
+    if(
+        queryParts.length>1
+    ){
 
-            if(
-                b.score !==
-                a.score
+        let matched=0;
+
+
+        for(
+            const part
+            of queryParts
+        ){
+
+            const partVariants=
+                makeSearchVariants(
+                    part
+                );
+
+
+            let partFound=false;
+
+
+            for(
+                const q
+                of partVariants
             ){
 
-                return (
-                    b.score -
-                    a.score
-                );
+                for(
+                    const variant
+                    of variants
+                ){
+
+                    if(
+                        variant.includes(q) ||
+                        fuzzyWordMatch(
+                            q,
+                            variant
+                        )
+                    ){
+
+                        partFound=true;
+
+                        break;
+
+                    }
+
+                }
+
+
+                if(partFound)
+                    break;
 
             }
 
 
-            return a.track.name.localeCompare(
-                b.track.name,
-                "ru"
-            );
+            if(partFound)
+                matched++;
 
         }
-    );
 
 
-    filteredTracks =
-        scored.map(
-            item =>
-                item.track
-        );
+        if(
+            matched===
+            queryParts.length
+        ){
+
+            return true;
+
+        }
+
+    }
 
 
-    currentPage =
-        1;
-
-
-    render();
+    return false;
 
 }
-
-
-let searchTimer = null;
-
-search.addEventListener(
-    "input",
-    () => {
-
-        clearTimeout(
-            searchTimer
-        );
-
-
-        searchTimer =
-            setTimeout(
-                performSearch,
-                120
-            );
-
-    }
-);
-
-
-searchClear.addEventListener(
-    "click",
-    () => {
-
-        search.value =
-            "";
-
-        performSearch();
-
-        search.focus();
-
-    }
-);
 
 
 /* =========================================================
    ЗАГРУЗКА СПИСКА
-========================================================= */
+   ========================================================= */
 
-async function loadList(){
+async function loadMusic(){
 
     try{
 
-        loadingElement.style.display =
-            "block";
-
-        emptyElement.style.display =
-            "none";
-
-
-        const response =
+        const response=
             await fetch(
-                LIST_URL,
+
+                LIST_URL+
+                "?t="+
+                Date.now(),
+
                 {
-                    cache:
-                        "no-store"
+                    method:"GET",
+
+                    cache:"no-store",
+
+                    headers:{
+                        Accept:
+                            "application/json"
+                    }
+
                 }
+
             );
 
 
@@ -2905,86 +3209,87 @@ async function loadList(){
         ){
 
             throw new Error(
-                "HTTP " +
+                "Worker HTTP "+
                 response.status
             );
 
         }
 
 
-        const data =
+        const data=
             await response.json();
 
 
         if(
-            !Array.isArray(
-                data
-            )
+            !Array.isArray(data)
         ){
 
             throw new Error(
-                "Сервер вернул неправильный список"
+                "Worker вернул неправильный JSON"
             );
 
         }
 
 
-        allTracks =
+        tracks=
             data.filter(
-                track =>
+                track=>
                     track &&
                     track.id &&
                     track.name
             );
 
 
-        /*
-         * Первоначально показываем
-         * все openings.
-         */
-
-        filteredTracks =
-            [...allTracks];
+        currentPage=1;
 
 
-        loadingElement.style.display =
-            "none";
-
-
-        render();
+        renderTracks();
 
     }
     catch(error){
 
         console.error(
+            "Ошибка загрузки Openings:",
             error
         );
 
 
-        loadingElement.style.display =
-            "none";
+        musicList.innerHTML=`
 
+            <div class="status error">
 
-        emptyElement.style.display =
-            "block";
+                <strong>
+                    🎬 Не удалось загрузить опенинги
+                </strong>
 
+                <div>
+                    Worker HTTP ошибка
+                </div>
 
-        emptyElement.innerHTML = `
+                <br>
 
-            <div class="empty-title">
-                Не удалось загрузить Openings
-            </div>
+                <small>
+                    ${escapeHTML(
+                        error.message
+                    )}
+                </small>
 
-            <div class="empty-text">
-                ${escapeHTML(
-                    error.message
-                )}
+                <br><br>
+
+                <button
+                    class="btn download-btn"
+                    onclick="loadMusic()"
+                    style="
+                        max-width:220px;
+                        padding:10px 20px
+                    "
+                >
+                    ↻ Повторить
+                </button>
+
             </div>
 
         `;
-
-        countElement.textContent =
-            "Ошибка";
 
     }
 
@@ -2992,76 +3297,921 @@ async function loadList(){
 
 
 /* =========================================================
-   HTML ESCAPE
-========================================================= */
+   URL
+   ========================================================= */
 
-function escapeHTML(
-    text
-){
+function getPlayURL(track){
 
-    return String(
-        text || ""
-    )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /'/g,
-        "&#039;"
+    return (
+
+        WORKER_URL+
+        "/music/"+
+        encodeURIComponent(
+            track.id
+        )
+
+    );
+
+}
+
+
+function getDownloadURL(track){
+
+    return (
+
+        getPlayURL(track)+
+        "?download=1"
+
     );
 
 }
 
 
 /* =========================================================
-   КЛАВИША ESC
-========================================================= */
+   AUDIO
+   ========================================================= */
 
-document.addEventListener(
-    "keydown",
-    event => {
+function stopAllAudio(
+    exceptAudio=null
+){
 
-        if(
-            event.key ===
-            "Escape"
-        ){
+    document
+        .querySelectorAll("audio")
+        .forEach(
+            audio=>{
+
+                if(
+                    audio===
+                    exceptAudio
+                )
+                    return;
+
+
+                try{
+
+                    audio.pause();
+
+                    audio.currentTime=0;
+
+                }
+                catch(error){}
+
+            }
+        );
+
+
+    if(
+        currentAudio &&
+        currentAudio!==
+        exceptAudio
+    ){
+
+        currentAudio=null;
+
+    }
+
+}
+
+
+function setupAudio(audio){
+
+    if(!audio)
+        return;
+
+
+    audio.addEventListener(
+        "play",
+        ()=>{
 
             if(
-                document.activeElement ===
-                search
+                currentAudio &&
+                currentAudio!==audio
             ){
 
-                search.value =
-                    "";
+                try{
 
-                performSearch();
+                    currentAudio.pause();
+
+                    currentAudio.currentTime=0;
+
+                }
+                catch(error){}
+
+            }
+
+
+            document
+                .querySelectorAll(
+                    "audio"
+                )
+                .forEach(
+                    other=>{
+
+                        if(
+                            other!==audio &&
+                            !other.paused
+                        ){
+
+                            try{
+
+                                other.pause();
+
+                                other.currentTime=0;
+
+                            }
+                            catch(error){}
+
+                        }
+
+                    }
+                );
+
+
+            currentAudio=audio;
+
+        }
+    );
+
+
+    audio.addEventListener(
+        "ended",
+        ()=>{
+
+            if(
+                currentAudio===
+                audio
+            ){
+
+                currentAudio=null;
 
             }
 
         }
+    );
+
+}
+
+
+/* =========================================================
+   ОТРИСОВКА
+   ========================================================= */
+
+function renderTracks(){
+
+    const query=
+        searchInput.value.trim();
+
+
+    filteredTracks=
+        tracks.filter(
+            track=>
+                smartSearchMatch(
+                    track,
+                    query
+                )
+        );
+
+
+    const totalPages=
+        Math.max(
+
+            1,
+
+            Math.ceil(
+
+                filteredTracks.length/
+                TRACKS_PER_PAGE
+
+            )
+
+        );
+
+
+    if(
+        currentPage>
+        totalPages
+    ){
+
+        currentPage=
+            totalPages;
+
+    }
+
+
+    stopAllAudio();
+
+
+    if(
+        !filteredTracks.length
+    ){
+
+        musicList.innerHTML=`
+
+            <div class="empty">
+
+                🎬 Ничего не найдено
+
+                <br><br>
+
+                <span
+                    style="
+                        color:#555;
+                        font-size:14px
+                    "
+                >
+                    Попробуй:
+                    «Токийский гуль»,
+                    «Атака титанов»,
+                    «Наруто»,
+                    «Блич»,
+                    «Клинок демонов»
+                </span>
+
+            </div>
+
+        `;
+
+
+        currentAudio=null;
+
+        return;
+
+    }
+
+
+    const start=
+        (currentPage-1)*
+        TRACKS_PER_PAGE;
+
+
+    const pageTracks=
+        filteredTracks.slice(
+            start,
+            start+
+                TRACKS_PER_PAGE
+        );
+
+
+    musicList.innerHTML=
+        pageTracks
+            .map(
+                createTrackHTML
+            )
+            .join("")+
+        createPaginationHTML(
+            totalPages
+        );
+
+
+    pageTracks.forEach(
+        track=>{
+
+            const audio=
+                document.getElementById(
+                    "audio-"+
+                    track.id
+                );
+
+
+            if(audio){
+
+                audio.src=
+                    getPlayURL(
+                        track
+                    );
+
+
+                setupAudio(
+                    audio
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   КАРТОЧКА ТРЕКА
+   ========================================================= */
+
+function createTrackHTML(
+    track
+){
+
+    const id=
+        escapeHTML(
+            String(
+                track.id
+            )
+        );
+
+
+    const name=
+        escapeHTML(
+            removeExtension(
+                String(
+                    track.name||""
+                )
+            )
+        );
+
+
+    return `
+
+        <div
+            class="track"
+            data-track-id="${id}"
+        >
+
+            <div class="track-title">
+
+                <span
+                    class="track-icon"
+                >
+                    🎵
+                </span>
+
+                <span
+                    class="track-name"
+                >
+                    ${name}
+                </span>
+
+            </div>
+
+
+            <audio
+                id="audio-${id}"
+                class="audio"
+                controls
+                preload="metadata"
+            >
+                Ваш браузер не поддерживает
+                воспроизведение аудио.
+            </audio>
+
+
+            <div class="buttons">
+
+                <a
+                    class="btn download-btn"
+                    href="${escapeAttribute(
+                        getDownloadURL(
+                            track
+                        )
+                    )}"
+                    download
+                    target="_self"
+                >
+                    ↓ Скачать MP3
+                </a>
+
+
+                <button
+                    class="btn copy-btn"
+                    type="button"
+                    onclick="copyMusicLink(
+                        this,
+                        '${escapeJS(
+                            getPlayURL(
+                                track
+                            )
+                        )}'
+                    )"
+                >
+                    🔗 Копировать ссылку
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   ПАГИНАЦИЯ
+   ========================================================= */
+
+function createPaginationHTML(
+    totalPages
+){
+
+    if(
+        totalPages<=1
+    )
+        return "";
+
+
+    const start=
+        (currentPage-1)*
+        TRACKS_PER_PAGE+
+        1;
+
+
+    const end=
+        Math.min(
+
+            currentPage*
+            TRACKS_PER_PAGE,
+
+            filteredTracks.length
+
+        );
+
+
+    let html=`
+
+        <div class="pagination">
+
+            <div class="page-info">
+
+                Показано
+                ${start}–${end}
+                из
+                ${filteredTracks.length}
+
+            </div>
+
+
+            <button
+                class="page-btn"
+                onclick="changePage(
+                    ${currentPage-1}
+                )"
+                ${
+                    currentPage===1
+                        ?"disabled"
+                        :""
+                }
+            >
+                ←
+            </button>
+
+    `;
+
+
+    const pages=[];
+
+
+    for(
+        let i=1;
+        i<=totalPages;
+        i++
+    ){
+
+        if(
+
+            i===1 ||
+
+            i===totalPages ||
+
+            Math.abs(
+                i-currentPage
+            )<=2
+
+        ){
+
+            pages.push(i);
+
+        }
+
+    }
+
+
+    let previous=0;
+
+
+    for(
+        const page
+        of pages
+    ){
+
+        if(
+            previous &&
+            page-previous>1
+        ){
+
+            html+=`
+
+                <span
+                    class="page-dots"
+                >
+                    ...
+                </span>
+
+            `;
+
+        }
+
+
+        html+=`
+
+            <button
+                class="page-btn ${
+                    page===
+                    currentPage
+                        ?"active"
+                        :""
+                }"
+                onclick="changePage(
+                    ${page}
+                )"
+            >
+                ${page}
+            </button>
+
+        `;
+
+
+        previous=page;
+
+    }
+
+
+    html+=`
+
+            <button
+                class="page-btn"
+                onclick="changePage(
+                    ${currentPage+1}
+                )"
+                ${
+                    currentPage===
+                    totalPages
+                        ?"disabled"
+                        :""
+                }
+            >
+                →
+            </button>
+
+        </div>
+
+    `;
+
+
+    return html;
+
+}
+
+
+function changePage(
+    page
+){
+
+    const totalPages=
+        Math.max(
+
+            1,
+
+            Math.ceil(
+
+                filteredTracks.length/
+                TRACKS_PER_PAGE
+
+            )
+
+        );
+
+
+    if(
+        page<1 ||
+        page>totalPages
+    )
+        return;
+
+
+    currentPage=
+        page;
+
+
+    renderTracks();
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =========================================================
+   КОПИРОВАНИЕ
+   ========================================================= */
+
+async function copyMusicLink(
+    button,
+    url
+){
+
+    const oldText=
+        button.textContent;
+
+
+    try{
+
+        await navigator
+            .clipboard
+            .writeText(
+                url
+            );
+
+
+        button.textContent=
+            "✓ Ссылка скопирована";
+
+
+        button.classList.add(
+            "copied"
+        );
+
+
+        setTimeout(
+            ()=>{
+
+                button.textContent=
+                    oldText;
+
+
+                button.classList.remove(
+                    "copied"
+                );
+
+            },
+            1800
+        );
+
+    }
+    catch(error){
+
+        const textarea=
+            document.createElement(
+                "textarea"
+            );
+
+
+        textarea.value=
+            url;
+
+
+        textarea.style.position=
+            "fixed";
+
+
+        textarea.style.left=
+            "-9999px";
+
+
+        textarea.style.top=
+            "0";
+
+
+        document.body.appendChild(
+            textarea
+        );
+
+
+        textarea.focus();
+
+        textarea.select();
+
+
+        let success=false;
+
+
+        try{
+
+            success=
+                document.execCommand(
+                    "copy"
+                );
+
+        }
+        catch(e){
+
+            success=false;
+
+        }
+
+
+        textarea.remove();
+
+
+        if(success){
+
+            button.textContent=
+                "✓ Ссылка скопирована";
+
+
+            button.classList.add(
+                "copied"
+            );
+
+
+            setTimeout(
+                ()=>{
+
+                    button.textContent=
+                        oldText;
+
+
+                    button.classList.remove(
+                        "copied"
+                    );
+
+                },
+                1800
+            );
+
+        }
+        else{
+
+            window.prompt(
+                "Скопируй эту ссылку:",
+                url
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   ПОИСК
+   ========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    ()=>{
+
+        currentPage=1;
+
+        renderTracks();
 
     }
 );
 
 
 /* =========================================================
-   START
-========================================================= */
+   УДАЛЕНИЕ .MP3
+   ========================================================= */
 
-loadList();
+function removeExtension(
+    name
+){
+
+    return name.replace(
+        /\.mp3$/i,
+        ""
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE
+   ========================================================= */
+
+function escapeHTML(
+    value
+){
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+function escapeAttribute(
+    value
+){
+
+    return escapeHTML(
+        value
+    );
+
+}
+
+
+function escapeJS(
+    value
+){
+
+    return String(value)
+
+        .replace(
+            /\\/g,
+            "\\\\"
+        )
+
+        .replace(
+            /'/g,
+            "\\'"
+        )
+
+        .replace(
+            /"/g,
+            '\\"'
+        )
+
+        .replace(
+            /\r/g,
+            "\\r"
+        )
+
+        .replace(
+            /\n/g,
+            "\\n"
+        );
+
+}
+
+
+/* =========================================================
+   НАВИГАЦИЯ
+   ========================================================= */
+
+function goMusic(){
+
+    window.location.href=
+        "index.html";
+
+}
+
+
+function goOpenings(){
+
+    window.location.href=
+        "Openings.html";
+
+}
+
+
+function goRoflan(){
+
+    window.location.href=
+        "Roflan.html";
+
+}
+
+
+function goGachi(){
+
+    window.location.href=
+        "Gachi.html";
+
+}
+
+
+function goScreamer(){
+
+    window.location.href=
+        "Skrimer.html";
+
+}
+
+
+/* =========================================================
+   ЗАПУСК
+   ========================================================= */
+
+loadMusic();
 
 </script>
 
