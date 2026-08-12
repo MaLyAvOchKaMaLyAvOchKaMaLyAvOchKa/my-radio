@@ -669,7 +669,6 @@ body{
 
     }
 
-
 }
 
 
@@ -873,9 +872,7 @@ body{
 /*
  * Твой Cloudflare Worker.
  *
- * ВАЖНО:
  * Здесь НЕ ставим /music/.
- * Он добавляется автоматически.
  */
 
 const WORKER_URL =
@@ -925,11 +922,9 @@ async function loadMusic(){
     try{
 
         /*
-         * Добавляем timestamp.
-         *
-         * Это важно:
-         * браузер не будет использовать старый
-         * list.json после добавления новых песен.
+         * Добавляем timestamp,
+         * чтобы браузер не использовал
+         * старый list.json.
          */
 
         const url =
@@ -1043,15 +1038,13 @@ async function loadMusic(){
 function getPlayURL(track){
 
     /*
-     * Это ГЛАВНАЯ ссылка.
+     * Главная ссылка:
      *
-     * Именно её нужно:
+     * - audio
+     * - E2
+     * - копирование
      *
-     * - вставлять в E2
-     * - использовать в <audio>
-     * - копировать кнопкой
-     *
-     * Никакого ?download=1 здесь НЕТ.
+     * Никакого download=1.
      */
 
     return (
@@ -1071,16 +1064,6 @@ function getPlayURL(track){
    ========================================================= */
 
 function getDownloadURL(track){
-
-    /*
-     * Для скачивания добавляем:
-     *
-     * ?download=1
-     *
-     * Worker тогда ставит:
-     *
-     * Content-Disposition: attachment
-     */
 
     return (
         getPlayURL(track) +
@@ -1129,6 +1112,18 @@ function renderTracks(){
         return;
 
     }
+
+
+    /*
+     * Если пользователь выполняет поиск
+     * во время воспроизведения, старые
+     * audio удаляются вместе с карточками.
+     *
+     * Поэтому перед перерисовкой
+     * останавливаем все текущие аудио.
+     */
+
+    stopAllAudio();
 
 
     musicList.innerHTML =
@@ -1275,6 +1270,133 @@ function createTrackHTML(track){
 
 
 /* =========================================================
+   ОСТАНОВИТЬ ВСЕ AUDIO
+   ========================================================= */
+
+function stopAllAudio(){
+
+    const allAudio =
+        musicList.querySelectorAll(
+            "audio"
+        );
+
+
+    allAudio.forEach(
+        audio => {
+
+            try{
+
+                audio.pause();
+
+                audio.currentTime = 0;
+
+            }
+            catch(error){
+
+                console.warn(
+                    "Не удалось остановить audio:",
+                    error
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   ТОЛЬКО ОДИН ТРЕК ИГРАЕТ ОДНОВРЕМЕННО
+   ========================================================= */
+
+/*
+ * Вешаем один обработчик на musicList.
+ *
+ * Он работает через всплытие события play.
+ *
+ * Поэтому НЕ нужно отдельно назначать
+ * обработчик каждому audio.
+ *
+ * Это также продолжает работать после
+ * поиска и перерисовки списка.
+ */
+
+musicList.addEventListener(
+    "play",
+    function(event){
+
+        const current =
+            event.target;
+
+
+        /*
+         * Нас интересуют только audio.
+         */
+
+        if(
+            !current ||
+            current.tagName !== "AUDIO"
+        ){
+
+            return;
+
+        }
+
+
+        /*
+         * Получаем все audio,
+         * которые сейчас находятся
+         * в списке.
+         */
+
+        const allAudio =
+            musicList.querySelectorAll(
+                "audio"
+            );
+
+
+        /*
+         * Останавливаем всё,
+         * кроме того, который
+         * пользователь только что запустил.
+         */
+
+        allAudio.forEach(
+            audio => {
+
+                if(
+                    audio !== current
+                ){
+
+                    try{
+
+                        audio.pause();
+
+                        audio.currentTime = 0;
+
+                    }
+                    catch(error){
+
+                        console.warn(
+                            "Ошибка остановки audio:",
+                            error
+                        );
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+
+/* =========================================================
    КОПИРОВАНИЕ ССЫЛКИ
    ========================================================= */
 
@@ -1284,31 +1406,16 @@ async function copyMusicLink(
 ){
 
     /*
-     * ВАЖНО:
+     * Эта кнопка ТОЛЬКО копирует URL.
      *
-     * Здесь НЕТ:
-     *
-     * window.location
-     * window.open
-     * <a href>
-     *
-     * Поэтому кнопка НИКОГДА
-     * не должна открывать MP3.
-     *
-     * Она только кладёт URL
-     * в буфер обмена.
+     * Она ничего не открывает.
      */
-
 
     const oldText =
         button.textContent;
 
 
     try{
-
-        /*
-         * Современный способ.
-         */
 
         await navigator.clipboard.writeText(
             url
@@ -1343,8 +1450,7 @@ async function copyMusicLink(
     catch(error){
 
         /*
-         * Запасной способ для браузеров,
-         * где clipboard API запрещён.
+         * Запасной способ.
          */
 
         const textarea =
@@ -1429,9 +1535,8 @@ async function copyMusicLink(
         else{
 
             /*
-             * Если браузер вообще не разрешил
-             * автоматическое копирование,
-             * показываем URL пользователю.
+             * Если браузер не разрешил
+             * автоматическое копирование.
              */
 
             window.prompt(
