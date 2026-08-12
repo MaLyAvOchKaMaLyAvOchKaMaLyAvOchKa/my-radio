@@ -912,18 +912,8 @@ id="noResults"
 <script>
 
 /* =========================================================
-   CONFIG
+   WORKER
    ========================================================= */
-
-/*
-  ЭТО АДРЕС ТВОЕГО WORKER.
-
-  Worker должен иметь:
-
-  /list.json
-
-  /music/ID
-*/
 
 const WORKER =
 "https://malyavochka-music.rxmlopdt.workers.dev";
@@ -1000,20 +990,11 @@ return String(text)
 
 .toLowerCase()
 
-.replace(
-/ё/g,
-"е"
-)
+.replace(/ё/g,"е")
 
-.replace(
-/й/g,
-"и"
-)
+.replace(/й/g,"и")
 
-.replace(
-/[_\-–—]+/g,
-" "
-)
+.replace(/[_\-–—]+/g," ")
 
 .replace(
 /[^a-zа-я0-9\s]/gi,
@@ -1064,9 +1045,7 @@ char;
 return (
 
 base +
-
 " " +
-
 normalizeSearch(
 transliterated
 )
@@ -1084,79 +1063,15 @@ function escapeHTML(text){
 
 return String(text)
 
-.replace(
-/&/g,
-"&amp;"
-)
+.replace(/&/g,"&amp;")
 
-.replace(
-/</g,
-"&lt;"
-)
+.replace(/</g,"&lt;")
 
-.replace(
-/>/g,
-"&gt;"
-)
+.replace(/>/g,"&gt;")
 
-.replace(
-/"/g,
-"&quot;"
-)
+.replace(/"/g,"&quot;")
 
-.replace(
-/'/g,
-"&#039;"
-);
-
-}
-
-
-/* =========================================================
-   FETCH TIMEOUT
-   ========================================================= */
-
-async function fetchWithTimeout(
-url,
-timeout = 20000
-){
-
-const controller =
-new AbortController();
-
-
-const timer =
-setTimeout(
-() => controller.abort(),
-timeout
-);
-
-
-try{
-
-const response =
-await fetch(
-url,
-{
-cache:"no-store",
-signal:controller.signal
-}
-);
-
-
-clearTimeout(timer);
-
-
-return response;
-
-}
-catch(error){
-
-clearTimeout(timer);
-
-throw error;
-
-}
+.replace(/'/g,"&#039;");
 
 }
 
@@ -1167,16 +1082,27 @@ throw error;
 
 async function getMusicList(){
 
-const url =
-LIST_URL +
-"?t=" +
-Date.now();
+console.log(
+"Запрашиваем:",
+LIST_URL
+);
 
 
 const response =
-await fetchWithTimeout(
-url,
-20000
+await fetch(
+LIST_URL +
+"?t=" +
+Date.now(),
+{
+method:"GET",
+cache:"no-store"
+}
+);
+
+
+console.log(
+"HTTP:",
+response.status
 );
 
 
@@ -1194,6 +1120,12 @@ response.status
 
 const text =
 await response.text();
+
+
+console.log(
+"Ответ Worker:",
+text.substring(0,500)
+);
 
 
 if(
@@ -1218,11 +1150,6 @@ JSON.parse(text);
 }
 catch(error){
 
-console.error(
-"Ответ Worker:",
-text
-);
-
 throw new Error(
 "Worker вернул не JSON"
 );
@@ -1235,7 +1162,7 @@ if(
 ){
 
 throw new Error(
-"JSON должен содержать массив песен"
+"Worker вернул не массив"
 );
 
 }
@@ -1255,15 +1182,24 @@ file,
 container
 ){
 
-let fileName =
-String(
-file.name ||
-""
-);
+if(
+!file ||
+!file.id ||
+!file.name
+){
+
+return false;
+
+}
+
+
+const fileName =
+String(file.name);
 
 
 /*
-  Убираем .mp3
+   Русское название берём
+   прямо из GitHub.
 */
 
 let title =
@@ -1276,16 +1212,14 @@ fileName.replace(
 try{
 
 title =
-decodeURIComponent(
-title
-);
+decodeURIComponent(title);
 
 }
 catch(e){}
 
 
 /*
-  Текст для поиска
+   Поиск
 */
 
 const searchText =
@@ -1306,53 +1240,34 @@ title
 
 
 /*
-  ID приходит от Worker.
+   ID GitHub
 */
 
 const id =
-String(
-file.id ||
-""
-).toLowerCase();
-
-
-if(
-!id
-){
-
-return;
-
-}
+String(file.id);
 
 
 /*
 =========================================================
-  САМАЯ ВАЖНАЯ ССЫЛКА
+   ПРЯМАЯ ССЫЛКА НА MP3
 =========================================================
 
-  Например:
+Worker получает ID,
+находит соответствующий
+файл в GitHub Music
+и отдаёт сам MP3.
 
-  https://malyavochka-music.rxmlopdt.workers.dev/music/a81f32c4
-
-  Эта ссылка:
-
-  1. играет MP3
-  2. скачивает MP3
-  3. копируется кнопкой
-  4. может использоваться в E2
 */
 
 const fullURL =
 
 WORKER +
 "/music/" +
-encodeURIComponent(
-id
-);
+encodeURIComponent(id);
 
 
 /* =====================================================
-   SONG ELEMENT
+   ELEMENT
    ===================================================== */
 
 const song =
@@ -1438,7 +1353,7 @@ type="button"
 
 
 /* =====================================================
-   COPY BUTTON
+   COPY
    ===================================================== */
 
 const copyButton =
@@ -1449,7 +1364,7 @@ song.querySelector(
 
 copyButton.addEventListener(
 "click",
-() => {
+function(){
 
 copyLink(
 copyButton,
@@ -1467,6 +1382,9 @@ fullURL
 container.appendChild(
 song
 );
+
+
+return true;
 
 }
 
@@ -1518,71 +1436,59 @@ await getMusicList();
 
 
 console.log(
-"Получен JSON:",
-musicFiles
-);
-
-
-console.log(
-"Количество треков:",
+"Получено файлов:",
 musicFiles.length
 );
 
 
-let created = 0;
+let created =
+0;
 
 
 for(
-const file
-of musicFiles
+const file of musicFiles
 ){
 
 if(
-!file ||
-!file.id ||
-!file.name
-){
-
-continue;
-
-}
-
-
 createSong(
 file,
 container
-);
-
+)
+){
 
 created++;
 
 }
 
+}
 
-songs = [
 
-...document.querySelectorAll(
+console.log(
+"Создано треков:",
+created
+);
+
+
+songs = Array.from(
+document.querySelectorAll(
 ".song"
 )
+);
 
-];
 
-
-players = [
-
-...document.querySelectorAll(
+players = Array.from(
+document.querySelectorAll(
 "audio"
 )
-
-];
+);
 
 
 if(
-!created
+created === 0
 ){
 
 throw new Error(
-"JSON загрузился, но в нём нет корректных MP3."
+"В /list.json нет MP3-файлов."
 );
 
 }
@@ -1603,7 +1509,7 @@ setupSearch();
 catch(e){
 
 console.error(
-"LOAD ERROR:",
+"Ошибка загрузки:",
 e
 );
 
@@ -1623,21 +1529,26 @@ error.innerHTML = `
 <br><br>
 
 ${escapeHTML(
-e.message ||
-"Неизвестная ошибка"
+e.message
 )}
 
 <br><br>
 
 <small>
 
-Проверь адрес:
+Список:
 
 <br>
 
 ${escapeHTML(
 LIST_URL
 )}
+
+<br><br>
+
+Если открыть эту ссылку отдельно,
+должен появиться JSON со списком
+треков из папки Music.
 
 </small>
 
@@ -1677,7 +1588,7 @@ player => {
 
 player.addEventListener(
 "play",
-() => {
+function(){
 
 pauseOthers(
 player
@@ -1693,7 +1604,7 @@ player
 
 player.addEventListener(
 "pause",
-() => {
+function(){
 
 if(
 player === currentAudio
@@ -1710,7 +1621,6 @@ if(song){
 song.classList.remove(
 "playing"
 );
-
 
 clearFFT(
 song
@@ -1729,7 +1639,7 @@ stopFFT();
 
 player.addEventListener(
 "ended",
-() => {
+function(){
 
 if(
 player === currentAudio
@@ -1747,7 +1657,6 @@ song.classList.remove(
 "playing"
 );
 
-
 clearFFT(
 song
 );
@@ -1756,7 +1665,6 @@ song
 
 
 stopFFT();
-
 
 currentAudio =
 null;
@@ -1769,10 +1677,10 @@ null;
 
 player.addEventListener(
 "error",
-() => {
+function(){
 
 console.error(
-"Ошибка audio:",
+"Ошибка воспроизведения:",
 player.error,
 player.currentSrc
 );
@@ -1818,7 +1726,6 @@ oldSong.classList.remove(
 "playing"
 );
 
-
 clearFFT(
 oldSong
 );
@@ -1833,50 +1740,6 @@ oldSong
 currentAudio =
 current;
 
-
-/* =====================================================
-   VOLUME
-   ===================================================== */
-
-const saved =
-localStorage.getItem(
-"musicVolume"
-);
-
-
-if(
-saved !== null
-){
-
-const volume =
-parseFloat(
-saved
-);
-
-
-if(
-Number.isFinite(
-volume
-)
-){
-
-current.volume =
-Math.max(
-0,
-Math.min(
-1,
-volume
-)
-);
-
-}
-
-}
-
-
-/* =====================================================
-   PLAYING
-   ===================================================== */
 
 const currentSong =
 current.closest(
@@ -1896,7 +1759,7 @@ currentSong.classList.add(
 
 
 /* =========================================================
-   CLEAR FFT
+   FFT CLEAR
    ========================================================= */
 
 function clearFFT(song){
@@ -1942,7 +1805,7 @@ canvas.height
 
 
 /* =========================================================
-   STOP FFT
+   FFT STOP
    ========================================================= */
 
 function stopFFT(){
@@ -1955,7 +1818,6 @@ cancelAnimationFrame(
 fakeFFTAnimation
 );
 
-
 fakeFFTAnimation =
 null;
 
@@ -1965,7 +1827,7 @@ null;
 
 
 /* =========================================================
-   START FFT
+   FFT
    ========================================================= */
 
 function startFFT(audio){
@@ -2052,7 +1914,6 @@ canvas.width,
 canvas.height
 );
 
-
 return;
 
 }
@@ -2074,10 +1935,8 @@ const bw =
 
 (
 canvas.width -
-
 gap *
 (bars - 1)
-
 ) /
 bars;
 
@@ -2098,8 +1957,8 @@ duration;
 
 
 for(
-let i = 0;
-i < bars;
+let i=0;
+i<bars;
 i++
 ){
 
@@ -2135,13 +1994,9 @@ let value =
 
 center * .12 +
 
-Math.abs(
-wave
-) * .18 +
+Math.abs(wave) * .18 +
 
-Math.abs(
-wave2
-) * .08;
+Math.abs(wave2) * .08;
 
 
 value +=
@@ -2188,7 +2043,6 @@ canvas.height
 
 
 const x =
-
 i *
 (
 bw +
@@ -2197,13 +2051,11 @@ gap
 
 
 const y =
-
 canvas.height -
 h;
 
 
 const grad =
-
 ctx.createLinearGradient(
 0,
 y,
@@ -2217,12 +2069,10 @@ grad.addColorStop(
 "#00ff88"
 );
 
-
 grad.addColorStop(
 .45,
 "#00ed91"
 );
-
 
 grad.addColorStop(
 1,
@@ -2239,18 +2089,13 @@ ctx.globalAlpha =
 
 
 ctx.fillRect(
-
 Math.round(x),
-
 Math.round(y),
-
 Math.max(
 1,
 Math.round(bw)
 ),
-
 Math.round(h)
-
 );
 
 }
@@ -2261,7 +2106,6 @@ ctx.globalAlpha =
 
 
 fakeFFTAnimation =
-
 requestAnimationFrame(
 draw
 );
@@ -2318,7 +2162,6 @@ link;
 input.style.position =
 "fixed";
 
-
 input.style.opacity =
 "0";
 
@@ -2330,14 +2173,7 @@ input
 
 input.focus();
 
-
 input.select();
-
-
-input.setSelectionRange(
-0,
-input.value.length
-);
 
 
 const success =
@@ -2401,11 +2237,10 @@ button.classList.add(
 
 
 setTimeout(
-() => {
+function(){
 
 button.innerHTML =
 old;
-
 
 button.classList.remove(
 "copied"
@@ -2446,9 +2281,7 @@ saved
 
 
 if(
-!Number.isFinite(
-volume
-)
+!Number.isFinite(volume)
 ){
 
 volume =
@@ -2476,8 +2309,7 @@ volume;
 
 player.addEventListener(
 "volumechange",
-() => {
-
+function(){
 
 localStorage.setItem(
 "musicVolume",
@@ -2538,7 +2370,6 @@ this.value
 
 
 const words =
-
 query
 .split(" ")
 .filter(
