@@ -2,475 +2,2695 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>МаЛяВоЧка — Скримеры</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>МаЛяВоЧка - Скримеры</title>
+
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
+
 body{
-margin:0;
-background:radial-gradient(circle at 70% 10%,rgba(255,50,50,0.07),transparent 30%),radial-gradient(circle at 90% 80%,rgba(0,180,255,0.05),transparent 30%),#0d0d0f;
-color:white;
-font-family:Arial,Helvetica,sans-serif;
-min-height:100vh;
+    margin:0;
+    background:
+        radial-gradient(circle at 70% 20%,rgba(255,50,50,.045),transparent 35%),
+        radial-gradient(circle at 80% 80%,rgba(180,0,0,.035),transparent 40%),
+        #090b0c;
+    color:#eee;
+    font-family:Arial,Helvetica,sans-serif;
+    min-height:100vh;
 }
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
 .sidebar{
-position:fixed;
-left:0;
-top:0;
-width:190px;
-height:100vh;
-background:linear-gradient(180deg,#18181b,#111113);
-border-right:1px solid rgba(255,255,255,0.06);
-box-shadow:5px 0 25px rgba(0,0,0,0.45);
-padding-top:110px;
-z-index:100;
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:205px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #151719 0%,
+            #101214 55%,
+            #0d0f10 100%
+        );
+
+    border-right:1px solid rgba(255,255,255,.075);
+
+    z-index:100;
+
+    padding:220px 12px 20px;
+
+    box-shadow:
+        8px 0 35px rgba(0,0,0,.16);
 }
-.menu{
-display:flex;
-align-items:center;
-gap:12px;
-color:#ddd;
-text-decoration:none;
-font-size:20px;
-padding:17px 20px;
-margin:5px 10px;
-border-radius:12px;
-transition:background .2s,color .2s,transform .2s,box-shadow .2s;
+
+.sidebar-menu{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
 }
-.menu:hover{
-background:rgba(255,60,60,0.08);
-color:#ff5555;
-transform:translateX(4px);
-box-shadow:inset 3px 0 0 #ff5555;
+
+.sidebar-item{
+    position:relative;
+
+    display:flex;
+    align-items:center;
+
+    gap:13px;
+
+    min-height:56px;
+
+    padding:10px 14px;
+
+    border-radius:13px;
+
+    color:#aeb2b4;
+
+    font-size:17px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:
+        background .2s,
+        color .2s,
+        transform .18s,
+        box-shadow .2s;
 }
-header{
-margin-left:190px;
-padding:30px 20px;
-text-align:center;
-background:linear-gradient(180deg,#18181a,#151517);
-border-bottom:1px solid rgba(255,255,255,0.06);
-box-shadow:0 8px 30px rgba(0,0,0,0.35);
-font-size:42px;
-font-weight:bold;
-color:#ff5555;
-letter-spacing:1px;
-text-shadow:0 0 15px rgba(255,50,50,0.25);
+
+.sidebar-item:hover{
+    background:rgba(255,50,50,.045);
+
+    color:#fff;
+
+    transform:translateX(2px);
 }
+
+.sidebar-item.active{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,60,60,.14),
+            rgba(180,20,20,.055)
+        );
+
+    color:#ff5555;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,60,60,.12),
+        0 5px 20px rgba(0,0,0,.14);
+}
+
+.sidebar-item.active::before{
+    content:"";
+
+    position:absolute;
+
+    left:-12px;
+    top:11px;
+    bottom:11px;
+
+    width:3px;
+
+    border-radius:0 5px 5px 0;
+
+    background:#ff5555;
+
+    box-shadow:
+        0 0 10px rgba(255,60,60,.45);
+}
+
+.sidebar-icon{
+    width:30px;
+    height:30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:9px;
+
+    background:rgba(255,255,255,.035);
+
+    font-size:19px;
+
+    flex:none;
+
+    transition:.2s;
+}
+
+.sidebar-item:hover .sidebar-icon{
+    background:rgba(255,50,50,.07);
+}
+
+.sidebar-item.active .sidebar-icon{
+    background:rgba(255,50,50,.10);
+}
+
+.sidebar-text{
+    line-height:1.15;
+}
+
+.sidebar-small{
+    display:block;
+
+    margin-top:3px;
+
+    font-size:11px;
+    font-weight:400;
+
+    color:#666;
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main{
+    margin-left:205px;
+    min-height:100vh;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header{
+    position:sticky;
+    top:0;
+    z-index:50;
+
+    min-height:114px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:18px 30px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(24,25,28,.97),
+            rgba(20,21,23,.94)
+        );
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.header-title{
+    margin:0;
+
+    color:#ff5555;
+
+    font-size:39px;
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+    text-align:center;
+
+    text-shadow:
+        0 0 10px rgba(255,60,60,.45),
+        0 0 25px rgba(255,60,60,.18);
+}
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.search-wrap{
+    position:absolute;
+
+    right:24px;
+    top:34px;
+}
+
+.search{
+    width:252px;
+    height:45px;
+
+    border-radius:25px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    background:rgba(0,0,0,.24);
+
+    color:#fff;
+
+    outline:none;
+
+    padding:0 18px 0 43px;
+
+    font-size:15px;
+
+    transition:
+        border-color .2s,
+        box-shadow .2s;
+}
+
+.search:focus{
+    border-color:rgba(255,60,60,.55);
+
+    box-shadow:
+        0 0 15px rgba(255,60,60,.08);
+}
+
+.search::placeholder{
+    color:#777;
+}
+
+.search-icon{
+    position:absolute;
+
+    left:16px;
+    top:12px;
+
+    color:#aaa;
+
+    font-size:19px;
+
+    pointer-events:none;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
 .content{
-margin-left:190px;
-width:calc(100% - 190px);
-padding:35px 30px 80px;
+    max-width:850px;
+
+    margin:0 auto;
+
+    padding:34px 30px 80px;
 }
-.song{
-background:linear-gradient(145deg,rgba(38,38,41,0.96),rgba(29,29,32,0.96));
-width:min(760px,90%);
-margin:0 auto 22px;
-border-radius:17px;
-padding:20px;
-border:1px solid rgba(255,255,255,0.05);
-box-shadow:0 10px 30px rgba(0,0,0,0.25);
-transition:transform .2s,border .2s,box-shadow .2s;
+
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status{
+    text-align:center;
+
+    padding:60px 20px;
+
+    color:#777;
+
+    font-size:17px;
 }
-.song:hover{
-transform:translateY(-3px);
-border:1px solid rgba(255,60,60,0.18);
-box-shadow:0 14px 35px rgba(0,0,0,0.4),0 0 25px rgba(255,50,50,0.04);
+
+.status.loading{
+    color:#888;
 }
-.title{
-font-size:24px;
-margin-bottom:13px;
-display:flex;
-align-items:center;
-gap:9px;
-color:#f2f2f2;
+
+.status.error{
+    max-width:700px;
+
+    margin:40px auto;
+
+    padding:30px;
+
+    border:
+        1px solid rgba(255,60,60,.25);
+
+    background:
+        rgba(80,10,10,.16);
+
+    border-radius:14px;
+
+    color:#ff7777;
 }
-.music-icon{
-font-size:27px;
-filter:drop-shadow(0 0 6px rgba(255,50,50,0.4));
+
+.status.error strong{
+    display:block;
+
+    color:#ff4f4f;
+
+    margin-bottom:15px;
+
+    font-size:18px;
 }
-audio{
-width:100%;
-height:48px;
-border-radius:12px;
-margin-bottom:14px;
+
+
+/* =========================================================
+   TRACK
+   ========================================================= */
+
+.track{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(31,33,34,.92),
+            rgba(21,22,23,.92)
+        );
+
+    border:
+        1px solid rgba(255,255,255,.075);
+
+    border-radius:16px;
+
+    padding:17px;
+
+    margin-bottom:13px;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.18);
+
+    transition:
+        transform .18s,
+        border-color .18s,
+        box-shadow .18s;
 }
+
+.track:hover{
+    transform:translateY(-1px);
+
+    border-color:
+        rgba(255,60,60,.18);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.26);
+}
+
+.track-title{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:#f0f0f0;
+
+    font-size:19px;
+
+    font-weight:600;
+
+    margin-bottom:10px;
+
+    overflow:hidden;
+}
+
+.track-icon{
+    font-size:25px;
+
+    flex:none;
+
+    filter:
+        drop-shadow(
+            0 0 6px rgba(255,50,50,.35)
+        );
+}
+
+.track-name{
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+}
+
+
+/* =========================================================
+   AUDIO
+   ========================================================= */
+
+.audio{
+    width:100%;
+
+    height:42px;
+
+    display:block;
+
+    margin-bottom:10px;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
 .buttons{
-display:flex;
-gap:10px;
-width:100%;
+    display:flex;
+
+    gap:9px;
 }
+
 .btn{
-flex:1;
-border:0;
-border-radius:10px;
-padding:12px 15px;
-font-size:16px;
-font-weight:bold;
-text-align:center;
-text-decoration:none;
-cursor:pointer;
-transition:transform .15s,filter .15s,box-shadow .15s;
+    flex:1;
+
+    min-height:34px;
+
+    border:0;
+
+    border-radius:7px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:white;
+
+    transition:
+        filter .15s,
+        transform .1s,
+        opacity .15s;
 }
+
 .btn:hover{
-transform:translateY(-2px);
-filter:brightness(1.08);
+    filter:brightness(1.08);
 }
-.btn:active{transform:translateY(0)}
-.download{
-background:#00c878;
-color:white;
-box-shadow:0 5px 15px rgba(0,200,120,0.12);
+
+.btn:active{
+    transform:scale(.985);
 }
-.download:hover{box-shadow:0 7px 20px rgba(0,200,120,0.2)}
-.copy{
-background:#0796d1;
-color:white;
-border:0;
+
+.download-btn{
+    background:#00c985;
+
+    text-decoration:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
 }
-.copy:hover{box-shadow:0 7px 20px rgba(0,150,210,0.18)}
-.copy.copied{background:#00b86b}
-@media(max-width:800px){
-.sidebar{
-width:70px;
-padding-top:90px;
+
+.copy-btn{
+    background:#1389d7;
 }
-.menu{
-justify-content:center;
-font-size:0;
-padding:15px;
-margin:6px;
+
+.copy-btn.copied{
+    background:#00b878;
 }
-.menu span{display:none}
-.menu::first-letter{font-size:25px}
-header{
-margin-left:70px;
-font-size:30px;
-padding:25px 10px;
+
+
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.empty{
+    text-align:center;
+
+    color:#777;
+
+    padding:80px 20px;
+
+    font-size:17px;
 }
-.content{
-margin-left:70px;
-width:calc(100% - 70px);
-padding:25px 10px 60px;
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+.pagination{
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    flex-wrap:wrap;
+
+    margin-top:30px;
 }
-.song{
-width:100%;
-padding:15px;
+
+.page-btn{
+    min-width:40px;
+
+    height:40px;
+
+    padding:0 12px;
+
+    border:
+        1px solid rgba(255,255,255,.1);
+
+    border-radius:8px;
+
+    background:#17191b;
+
+    color:#bbb;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    transition:.15s;
 }
-.buttons{flex-direction:column}
-.btn{width:100%}
+
+.page-btn:hover{
+    background:#202427;
+
+    color:#ff5555;
+
+    border-color:
+        rgba(255,60,60,.25);
+}
+
+.page-btn.active{
+    background:#d83a3a;
+
+    color:#fff;
+
+    border-color:#d83a3a;
+}
+
+.page-btn:disabled{
+    opacity:.35;
+
+    cursor:default;
+}
+
+.page-info{
+    width:100%;
+
+    text-align:center;
+
+    color:#666;
+
+    font-size:13px;
+
+    margin-bottom:7px;
+}
+
+.page-dots{
+    color:#666;
+
+    padding:0 3px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:70px;
+
+        padding-top:170px;
+
+        padding-left:7px;
+        padding-right:7px;
+    }
+
+    .sidebar-item{
+        justify-content:center;
+
+        padding:17px 5px;
+    }
+
+    .sidebar-text{
+        display:none;
+    }
+
+    .sidebar-item.active::before{
+        left:-7px;
+    }
+
+    .main{
+        margin-left:70px;
+    }
+
+    .header{
+        min-height:135px;
+
+        padding-top:15px;
+
+        align-items:flex-start;
+    }
+
+    .header-title{
+        font-size:27px;
+
+        padding-top:3px;
+    }
+
+    .search-wrap{
+        position:absolute;
+
+        top:77px;
+
+        left:20px;
+        right:20px;
+    }
+
+    .search{
+        width:100%;
+    }
+
+    .content{
+        padding:25px 15px 60px;
+    }
+}
+
+@media(max-width:600px){
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .btn{
+        min-height:42px;
+    }
+
+    .track-title{
+        font-size:17px;
+    }
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar{
+    width:9px;
+}
+
+::-webkit-scrollbar-track{
+    background:#090a0b;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#292c2e;
+
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#363a3d;
 }
 </style>
 </head>
+
 <body>
 
+
+<!-- =======================================================
+     SIDEBAR
+     ======================================================= -->
+
 <div class="sidebar">
-<a href="index.html" class="menu">🎧 <span>Music</span></a>
-<a href="Roflan.html" class="menu">😂 <span>Рофл звуки</span></a>
-<a href="Gachi.html" class="menu">🎤 <span>Gachi</span></a>
-<a href="Skrimer.html" class="menu">😱 <span>Скримеры</span></a>
-</div>
 
-<header>
-😱 МаЛяВоЧка — Скримеры
-</header>
+    <div class="sidebar-menu">
 
-<div class="content">
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 1</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer1.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer1.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer1.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+        <!-- MUSIC -->
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 2</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer2.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer2.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer2.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+        <div
+            class="sidebar-item"
+            onclick="goMusic()"
+        >
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 3</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer3.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer3.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer3.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+            <div class="sidebar-icon">
+                🎧
+            </div>
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 4</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer4.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer4.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer4.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+            <div class="sidebar-text">
+                Music
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 5</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer5.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer5.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer5.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+                <span class="sidebar-small">
+                    Музыка
+                </span>
+            </div>
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 6</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer6.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer6.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer6.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+        </div>
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 7</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer7.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer7.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer7.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 8</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer8.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer8.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer8.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+        <!-- ROFLAN -->
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 9</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer9.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer9.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer9.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+        <div
+            class="sidebar-item"
+            onclick="goRoflan()"
+        >
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 10</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer10.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer10.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer10.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+            <div class="sidebar-icon">
+                😂
+            </div>
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 11</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer11.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer11.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer11.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+            <div class="sidebar-text">
+                Roflan
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 12</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer12.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer12.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer12.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+                <span class="sidebar-small">
+                    Звуки
+                </span>
+            </div>
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 13</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer13.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer13.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer13.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+        </div>
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 14</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer14.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer14.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer14.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 15</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer15.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer15.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer15.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+        <!-- GACHI -->
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 16</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer16.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer16.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer16.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+        <div
+            class="sidebar-item"
+            onclick="goGachi()"
+        >
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 17</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer17.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer17.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer17.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+            <div class="sidebar-icon">
+                🎤
+            </div>
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 18</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer18.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer18.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer18.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+            <div class="sidebar-text">
+                Gachi
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 19</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer19.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer19.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer19.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+                <span class="sidebar-small">
+                    Скоро
+                </span>
+            </div>
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 20</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer20.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer20.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer20.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+        </div>
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 21</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer21.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer21.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer21.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 22</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer22.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer22.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer22.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+        <!-- SCREAMERS -->
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 23</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer23.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer23.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer23.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+        <div
+            class="sidebar-item active"
+            onclick="goScreamer()"
+        >
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 24</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer24.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer24.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer24.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+            <div class="sidebar-icon">
+                😱
+            </div>
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 25</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer25.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer25.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer25.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+            <div class="sidebar-text">
+                Скримеры
 
-<div class="song">
-<div class="title"><span class="music-icon">😱</span>Скример 26</div>
-<audio controls onplay="pauseOthers(this)"><source src="Skrimers/Skrimer26.mp3" type="audio/mpeg"></audio>
-<div class="buttons">
-<a class="btn download" href="Skrimers/Skrimer26.mp3" download>↓ Скачать MP3</a>
-<button class="btn copy" onclick="copyLink(this,'Skrimers/Skrimer26.mp3')">🔗 Копировать ссылку</button>
-</div>
-</div>
+                <span class="sidebar-small">
+                    Звуки
+                </span>
+            </div>
+
+        </div>
+
+
+    </div>
 
 </div>
+
+
+<!-- =======================================================
+     MAIN
+     ======================================================= -->
+
+<div class="main">
+
+    <header class="header">
+
+        <h1 class="header-title">
+            😱 МаЛяВоЧка - Скримеры 😱
+        </h1>
+
+
+        <div class="search-wrap">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                id="search"
+                class="search"
+                type="text"
+                placeholder="Найти скример..."
+                autocomplete="off"
+            >
+
+        </div>
+
+    </header>
+
+
+    <main
+        id="musicList"
+        class="content"
+    >
+
+        <div class="status loading">
+            Загрузка скримеров... 😱
+        </div>
+
+    </main>
+
+</div>
+
 
 <script>
-let savedVolume=localStorage.getItem("skrimerVolume");
-if(savedVolume===null)savedVolume=1;
-else savedVolume=parseFloat(savedVolume);
 
-let players=document.querySelectorAll("audio");
+/* =========================================================
+   НАСТРОЙКИ
+   ========================================================= */
 
-players.forEach(function(player){
-player.volume=savedVolume;
-player.addEventListener("volumechange",function(){
-savedVolume=player.volume;
-localStorage.setItem("skrimerVolume",savedVolume);
-players.forEach(function(other){
-other.volume=savedVolume;
-});
-});
-});
+const WORKER_URL=
+    "https://malyavochka-music.rxmlopdt.workers.dev";
 
-function pauseOthers(current){
-players.forEach(function(player){
-if(player!==current){
-player.pause();
-player.currentTime=0;
+const LIST_URL=
+    WORKER_URL+
+    "/skrimer-list.json";
+
+const TRACKS_PER_PAGE=50;
+
+const musicList=
+    document.getElementById(
+        "musicList"
+    );
+
+const searchInput=
+    document.getElementById(
+        "search"
+    );
+
+let tracks=[];
+
+let filteredTracks=[];
+
+let currentPage=1;
+
+let currentAudio=null;
+
+
+/* =========================================================
+   УМНЫЙ ПОИСК
+   ========================================================= */
+
+const RU_TO_EN={
+
+    "а":"a",
+    "б":"b",
+    "в":"v",
+    "г":"g",
+    "д":"d",
+    "е":"e",
+    "ё":"yo",
+    "ж":"zh",
+    "з":"z",
+    "и":"i",
+    "й":"y",
+    "к":"k",
+    "л":"l",
+    "м":"m",
+    "н":"n",
+    "о":"o",
+    "п":"p",
+    "р":"r",
+    "с":"s",
+    "т":"t",
+    "у":"u",
+    "ф":"f",
+    "х":"h",
+    "ц":"c",
+    "ч":"ch",
+    "ш":"sh",
+    "щ":"sch",
+    "ъ":"",
+    "ы":"y",
+    "ь":"",
+    "э":"e",
+    "ю":"yu",
+    "я":"ya"
+
+};
+
+
+const EN_TO_RU=[
+
+    ["sch","щ"],
+    ["sh","ш"],
+    ["ch","ч"],
+    ["zh","ж"],
+    ["tch","ч"],
+    ["yo","ё"],
+    ["yu","ю"],
+    ["ya","я"],
+    ["ye","е"],
+    ["ts","ц"],
+    ["th","т"],
+    ["ph","ф"],
+    ["ck","к"],
+    ["ee","и"],
+    ["oo","у"],
+    ["ou","у"],
+    ["ow","ау"],
+    ["ai","эй"],
+    ["ay","эй"],
+    ["ei","эй"],
+    ["ey","эй"],
+
+    ["a","а"],
+    ["b","б"],
+    ["c","к"],
+    ["d","д"],
+    ["e","е"],
+    ["f","ф"],
+    ["g","г"],
+    ["h","х"],
+    ["i","и"],
+    ["j","дж"],
+    ["k","к"],
+    ["l","л"],
+    ["m","м"],
+    ["n","н"],
+    ["o","о"],
+    ["p","п"],
+    ["q","к"],
+    ["r","р"],
+    ["s","с"],
+    ["t","т"],
+    ["u","у"],
+    ["v","в"],
+    ["w","в"],
+    ["x","кс"],
+    ["y","й"],
+    ["z","з"]
+
+];
+
+
+/* =========================================================
+   РАСПРОСТРАНЁННЫЕ ВАРИАНТЫ
+   ========================================================= */
+
+const COMMON_TRANSLITERATIONS=[
+
+    ["screamer","скример"],
+    ["screamers","скримеры"],
+    ["screamer","скример"],
+    ["jump","джамп"],
+    ["scare","скэр"],
+    ["scary","скэри"],
+
+    ["sound","саунд"],
+    ["sounds","саундз"],
+
+    ["funny","фанни"],
+    ["fun","фан"],
+
+    ["laugh","лаф"],
+    ["laughing","лафинг"],
+
+    ["voice","войс"],
+    ["voices","войсиз"],
+
+    ["monster","монстер"],
+    ["horror","хоррор"],
+    ["horror","хорор"],
+
+    ["ghost","гоуст"],
+    ["ghosts","гоустс"],
+
+    ["dark","дарк"],
+    ["darkness","даркнесс"],
+
+    ["death","дэс"],
+    ["dead","дэд"],
+
+    ["devil","дэвил"],
+    ["demon","демон"],
+
+    ["hell","хэл"],
+    ["heaven","хэвен"],
+
+    ["night","найт"],
+    ["nightmare","найтмэр"],
+
+    ["evil","ивил"],
+    ["evil","эвил"],
+
+    ["blood","блад"],
+    ["bloody","блади"],
+
+    ["cry","край"],
+    ["crying","крайинг"],
+
+    ["scream","скрим"],
+    ["screaming","скриминг"],
+
+    ["noise","нойз"],
+    ["loud","лауд"],
+
+    ["music","мьюзик"],
+    ["song","сонг"],
+
+    ["one","уан"],
+    ["two","ту"],
+    ["three","три"],
+    ["four","фор"],
+    ["five","файв"],
+    ["six","сикс"],
+    ["seven","севен"],
+    ["eight","эйт"],
+    ["nine","найн"],
+    ["ten","тэн"],
+
+    ["black","блэк"],
+    ["white","вайт"],
+    ["red","рэд"],
+    ["blue","блу"],
+    ["green","грин"],
+
+    ["fire","файр"],
+    ["ice","айс"],
+    ["rain","рэйн"],
+    ["snow","сноу"],
+    ["storm","сторм"],
+    ["thunder","сандер"],
+
+    ["crazy","крейзи"],
+    ["insane","инсейн"],
+    ["mental","ментал"],
+
+    ["girl","герл"],
+    ["girls","герлз"],
+    ["boy","бой"],
+    ["boys","бойз"],
+
+    ["baby","бейби"],
+    ["love","лав"],
+    ["heart","харт"],
+    ["dream","дрим"],
+    ["dreams","дримс"],
+
+    ["one","уан"],
+    ["again","эгейн"],
+    ["tonight","тунайт"],
+    ["today","тудэй"],
+    ["tomorrow","тумороу"],
+
+    ["intro","интро"],
+    ["outro","аутро"],
+    ["remix","ремикс"],
+    ["version","версион"],
+    ["original","оригинал"],
+    ["edit","эдит"],
+    ["official","офишал"],
+    ["video","видео"],
+    ["audio","аудио"],
+    ["mix","микс"]
+
+];
+
+
+/* =========================================================
+   НОРМАЛИЗАЦИЯ
+   ========================================================= */
+
+function normalizeSearchText(value){
+
+    return String(value||"")
+
+        .toLowerCase()
+
+        .replace(
+            /ё/g,
+            "е"
+        )
+
+        .replace(
+            /[^a-zа-я0-9]+/gi,
+            ""
+        );
+
 }
-player.volume=savedVolume;
-});
+
+
+/* =========================================================
+   УНИКАЛЬНЫЕ ВАРИАНТЫ
+   ========================================================= */
+
+function uniqueVariants(values){
+
+    return [
+        ...new Set(
+
+            values
+
+                .filter(Boolean)
+
+                .map(
+                    v=>
+                        normalizeSearchText(v)
+                )
+
+                .filter(Boolean)
+
+        )
+    ];
+
 }
 
-function copyLink(button,file){
-let link="https://malyavochkamalyavochkamalyavochka.github.io/my-radio/"+file;
 
-navigator.clipboard.writeText(link).then(function(){
-let oldText=button.innerHTML;
-button.innerHTML="✓ Ссылка скопирована!";
-button.classList.add("copied");
+/* =========================================================
+   RU -> EN
+   ========================================================= */
 
-setTimeout(function(){
-button.innerHTML=oldText;
-button.classList.remove("copied");
-},1500);
-}).catch(function(){
-const area=document.createElement("textarea");
-area.value=link;
-document.body.appendChild(area);
-area.select();
-document.execCommand("copy");
-document.body.removeChild(area);
+function transliterateRuToEn(text){
 
-let oldText=button.innerHTML;
-button.innerHTML="✓ Ссылка скопирована!";
-button.classList.add("copied");
+    let result="";
 
-setTimeout(function(){
-button.innerHTML=oldText;
-button.classList.remove("copied");
-},1500);
-});
+    for(
+        const char of
+        String(text||"").toLowerCase()
+    ){
+
+        result+=
+            RU_TO_EN[char]!==undefined
+                ?RU_TO_EN[char]
+                :char;
+
+    }
+
+    return result;
+
 }
+
+
+/* =========================================================
+   EN -> RU
+   ========================================================= */
+
+function transliterateEnToRu(text){
+
+    let result=
+        String(text||"").toLowerCase();
+
+
+    for(
+        const pair of EN_TO_RU
+    ){
+
+        result=
+            result
+                .split(pair[0])
+                .join(pair[1]);
+
+    }
+
+    return result;
+
+}
+
+
+/* =========================================================
+   СОЗДАНИЕ ВАРИАНТОВ
+   ========================================================= */
+
+function makeSearchVariants(text){
+
+    const original=
+        String(text||"")
+            .toLowerCase();
+
+
+    const variants=[
+        original
+    ];
+
+
+    variants.push(
+        transliterateRuToEn(
+            original
+        )
+    );
+
+
+    variants.push(
+        transliterateEnToRu(
+            original
+        )
+    );
+
+
+    const normalized=
+        normalizeSearchText(
+            original
+        );
+
+
+    for(
+        const pair of
+        COMMON_TRANSLITERATIONS
+    ){
+
+        const en=
+            normalizeSearchText(
+                pair[0]
+            );
+
+
+        if(
+            normalized.includes(en)
+        ){
+
+            variants.push(
+                pair[1]
+            );
+
+        }
+
+    }
+
+
+    let commonVersion=
+        original;
+
+
+    for(
+        const pair of
+        COMMON_TRANSLITERATIONS
+    ){
+
+        commonVersion=
+            commonVersion
+                .split(pair[0])
+                .join(pair[1]);
+
+    }
+
+
+    variants.push(
+        commonVersion
+    );
+
+
+    let reverseVersion=
+        original;
+
+
+    for(
+        const pair of
+        COMMON_TRANSLITERATIONS
+    ){
+
+        reverseVersion=
+            reverseVersion
+                .split(pair[1])
+                .join(pair[0]);
+
+    }
+
+
+    variants.push(
+        reverseVersion
+    );
+
+
+    return uniqueVariants(
+        variants
+    );
+
+}
+
+
+/* =========================================================
+   ПОИСКОВЫЙ ТЕКСТ
+   ========================================================= */
+
+function buildTrackSearchText(track){
+
+    const name=
+        removeExtension(
+            String(
+                track.name||""
+            )
+        );
+
+
+    return makeSearchVariants(
+        name
+    );
+
+}
+
+
+/* =========================================================
+   ЛЕВЕНШТЕЙН
+   ========================================================= */
+
+function levenshtein(a,b){
+
+    a=String(a||"");
+
+    b=String(b||"");
+
+
+    if(a===b)
+        return 0;
+
+
+    if(!a.length)
+        return b.length;
+
+
+    if(!b.length)
+        return a.length;
+
+
+    let prev=
+        Array.from(
+            {
+                length:
+                    b.length+1
+            },
+            (_,i)=>i
+        );
+
+
+    for(
+        let i=1;
+        i<=a.length;
+        i++
+    ){
+
+        const cur=[i];
+
+
+        for(
+            let j=1;
+            j<=b.length;
+            j++
+        ){
+
+            const cost=
+                a[i-1]===b[j-1]
+                    ?0
+                    :1;
+
+
+            cur[j]=
+                Math.min(
+
+                    cur[j-1]+1,
+
+                    prev[j]+1,
+
+                    prev[j-1]+cost
+
+                );
+
+        }
+
+
+        prev=cur;
+
+    }
+
+
+    return prev[b.length];
+
+}
+
+
+/* =========================================================
+   FUZZY MATCH
+   ========================================================= */
+
+function fuzzyWordMatch(
+    query,
+    text
+){
+
+    if(
+        !query ||
+        !text
+    )
+        return false;
+
+
+    if(
+        text.includes(query)
+    )
+        return true;
+
+
+    if(
+        query.length<3
+    )
+        return false;
+
+
+    const words=
+        text
+            .split(
+                /[\s\-_.,!?()[\]{}]+/
+            )
+            .filter(Boolean);
+
+
+    const candidates=
+        words.length
+            ?words
+            :[text];
+
+
+    for(
+        const word of candidates
+    ){
+
+        const distance=
+            levenshtein(
+                query,
+                word
+            );
+
+
+        if(
+            query.length<=4 &&
+            distance<=1
+        )
+            return true;
+
+
+        if(
+            query.length<=7 &&
+            distance<=2
+        )
+            return true;
+
+
+        if(
+            query.length>7 &&
+            distance<=Math.max(
+                2,
+                Math.floor(
+                    query.length*.25
+                )
+            )
+        )
+            return true;
+
+    }
+
+
+    return false;
+
+}
+
+
+/* =========================================================
+   УЛУЧШЕННОЕ СРАВНЕНИЕ
+   ========================================================= */
+
+function smartSearchMatch(
+    track,
+    query
+){
+
+    const cleanQuery=
+        normalizeSearchText(
+            query
+        );
+
+
+    if(
+        !cleanQuery
+    )
+        return true;
+
+
+    const variants=
+        buildTrackSearchText(
+            track
+        );
+
+
+    /*
+     * Прямое совпадение
+     */
+
+    for(
+        const variant of variants
+    ){
+
+        if(
+            variant.includes(
+                cleanQuery
+            )
+        )
+            return true;
+
+
+        if(
+            cleanQuery.length>=3 &&
+            cleanQuery.includes(
+                variant
+            )
+        )
+            return true;
+
+    }
+
+
+    /*
+     * Варианты самого запроса
+     */
+
+    const queryVariants=
+        makeSearchVariants(
+            query
+        );
+
+
+    for(
+        const q of queryVariants
+    ){
+
+        for(
+            const variant of variants
+        ){
+
+            if(
+                variant.includes(q)
+            )
+                return true;
+
+
+            if(
+                fuzzyWordMatch(
+                    q,
+                    variant
+                )
+            )
+                return true;
+
+        }
+
+    }
+
+
+    /*
+     * Поиск отдельных слов
+     */
+
+    const queryParts=
+        String(query||"")
+            .toLowerCase()
+            .split(
+                /[\s\-_.,!?()[\]{}]+/
+            )
+            .filter(
+                v=>
+                    v.length>=2
+            );
+
+
+    if(
+        queryParts.length>1
+    ){
+
+        let matched=0;
+
+
+        for(
+            const part of queryParts
+        ){
+
+            const partVariants=
+                makeSearchVariants(
+                    part
+                );
+
+
+            let partFound=false;
+
+
+            for(
+                const q of partVariants
+            ){
+
+                for(
+                    const variant of variants
+                ){
+
+                    if(
+                        variant.includes(q) ||
+                        fuzzyWordMatch(
+                            q,
+                            variant
+                        )
+                    ){
+
+                        partFound=true;
+
+                        break;
+
+                    }
+
+                }
+
+
+                if(partFound)
+                    break;
+
+            }
+
+
+            if(partFound)
+                matched++;
+
+        }
+
+
+        if(
+            matched===
+            queryParts.length
+        )
+            return true;
+
+    }
+
+
+    return false;
+
+}
+
+
+/* =========================================================
+   ЗАГРУЗКА СПИСКА
+   ========================================================= */
+
+async function loadScreamers(){
+
+    try{
+
+        const response=
+            await fetch(
+
+                LIST_URL+
+                "?t="+
+                Date.now(),
+
+                {
+                    method:"GET",
+
+                    cache:"no-store",
+
+                    headers:{
+                        Accept:
+                            "application/json"
+                    }
+                }
+
+            );
+
+
+        if(
+            !response.ok
+        ){
+
+            throw new Error(
+                "Worker HTTP "+
+                response.status
+            );
+
+        }
+
+
+        const data=
+            await response.json();
+
+
+        if(
+            !Array.isArray(data)
+        ){
+
+            throw new Error(
+                "Worker вернул неправильный JSON"
+            );
+
+        }
+
+
+        tracks=
+            data.filter(
+                track=>
+                    track &&
+                    track.id &&
+                    track.name
+            );
+
+
+        currentPage=1;
+
+
+        renderTracks();
+
+    }
+    catch(error){
+
+        console.error(
+            "Ошибка загрузки скримеров:",
+            error
+        );
+
+
+        musicList.innerHTML=`
+
+            <div class="status error">
+
+                <strong>
+                    😱 Не удалось загрузить скримеры
+                </strong>
+
+                <div>
+                    Worker HTTP ошибка
+                </div>
+
+                <br>
+
+                <small>
+                    ${escapeHTML(
+                        error.message
+                    )}
+                </small>
+
+                <br><br>
+
+                <button
+                    class="btn download-btn"
+                    onclick="loadScreamers()"
+                    style="
+                        max-width:220px;
+                        padding:10px 20px
+                    "
+                >
+                    ↻ Повторить
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   URL ПРОИГРЫВАНИЯ
+   ========================================================= */
+
+function getPlayURL(track){
+
+    return (
+        WORKER_URL+
+        "/skrimer/"+
+        encodeURIComponent(
+            track.id
+        )
+    );
+
+}
+
+
+/* =========================================================
+   URL СКАЧИВАНИЯ
+   ========================================================= */
+
+function getDownloadURL(track){
+
+    return (
+        getPlayURL(track)+
+        "?download=1"
+    );
+
+}
+
+
+/* =========================================================
+   AUDIO
+   ========================================================= */
+
+function stopAllAudio(
+    exceptAudio=null
+){
+
+    document
+        .querySelectorAll(
+            "audio"
+        )
+        .forEach(
+            audio=>{
+
+                if(
+                    audio===
+                    exceptAudio
+                )
+                    return;
+
+
+                try{
+
+                    audio.pause();
+
+                    audio.currentTime=0;
+
+                }
+                catch(error){}
+
+            }
+        );
+
+
+    if(
+        currentAudio &&
+        currentAudio!==
+        exceptAudio
+    ){
+
+        currentAudio=null;
+
+    }
+
+}
+
+
+/* =========================================================
+   НАСТРОЙКА AUDIO
+   ========================================================= */
+
+function setupAudio(audio){
+
+    if(!audio)
+        return;
+
+
+    audio.addEventListener(
+        "play",
+        ()=>{
+
+            if(
+                currentAudio &&
+                currentAudio!==audio
+            ){
+
+                try{
+
+                    currentAudio.pause();
+
+                    currentAudio.currentTime=0;
+
+                }
+                catch(error){}
+
+            }
+
+
+            document
+                .querySelectorAll(
+                    "audio"
+                )
+                .forEach(
+                    other=>{
+
+                        if(
+                            other!==audio &&
+                            !other.paused
+                        ){
+
+                            try{
+
+                                other.pause();
+
+                                other.currentTime=0;
+
+                            }
+                            catch(error){}
+
+                        }
+
+                    }
+                );
+
+
+            currentAudio=audio;
+
+        }
+    );
+
+
+    audio.addEventListener(
+        "ended",
+        ()=>{
+
+            if(
+                currentAudio===
+                audio
+            ){
+
+                currentAudio=null;
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ОТРИСОВКА
+   ========================================================= */
+
+function renderTracks(){
+
+    const query=
+        searchInput.value.trim();
+
+
+    filteredTracks=
+        tracks.filter(
+            track=>
+                smartSearchMatch(
+                    track,
+                    query
+                )
+        );
+
+
+    const totalPages=
+        Math.max(
+            1,
+            Math.ceil(
+                filteredTracks.length/
+                TRACKS_PER_PAGE
+            )
+        );
+
+
+    if(
+        currentPage>
+        totalPages
+    ){
+
+        currentPage=
+            totalPages;
+
+    }
+
+
+    stopAllAudio();
+
+
+    if(
+        !filteredTracks.length
+    ){
+
+        musicList.innerHTML=`
+
+            <div class="empty">
+                😱 Ничего не найдено
+            </div>
+
+        `;
+
+
+        currentAudio=null;
+
+        return;
+
+    }
+
+
+    const start=
+        (currentPage-1)*
+        TRACKS_PER_PAGE;
+
+
+    const pageTracks=
+        filteredTracks.slice(
+            start,
+            start+
+            TRACKS_PER_PAGE
+        );
+
+
+    musicList.innerHTML=
+        pageTracks
+            .map(
+                createTrackHTML
+            )
+            .join("")+
+        createPaginationHTML(
+            totalPages
+        );
+
+
+    pageTracks.forEach(
+        track=>{
+
+            const audio=
+                document.getElementById(
+                    "audio-"+
+                    track.id
+                );
+
+
+            if(audio){
+
+                audio.src=
+                    getPlayURL(
+                        track
+                    );
+
+
+                setupAudio(
+                    audio
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   КАРТОЧКА
+   ========================================================= */
+
+function createTrackHTML(track){
+
+    const id=
+        escapeHTML(
+            String(
+                track.id
+            )
+        );
+
+
+    const name=
+        escapeHTML(
+            removeExtension(
+                String(
+                    track.name||""
+                )
+            )
+        );
+
+
+    return `
+
+        <div
+            class="track"
+            data-track-id="${id}"
+        >
+
+            <div class="track-title">
+
+                <span class="track-icon">
+                    😱
+                </span>
+
+                <span class="track-name">
+                    ${name}
+                </span>
+
+            </div>
+
+
+            <audio
+                id="audio-${id}"
+                class="audio"
+                controls
+                preload="metadata"
+            >
+                Ваш браузер не поддерживает
+                воспроизведение аудио.
+            </audio>
+
+
+            <div class="buttons">
+
+                <a
+                    class="btn download-btn"
+                    href="${escapeAttribute(
+                        getDownloadURL(
+                            track
+                        )
+                    )}"
+                    download
+                    target="_self"
+                >
+                    ↓ Скачать MP3
+                </a>
+
+
+                <button
+                    class="btn copy-btn"
+                    type="button"
+                    onclick="copyMusicLink(
+                        this,
+                        '${escapeJS(
+                            getPlayURL(
+                                track
+                            )
+                        )}'
+                    )"
+                >
+                    🔗 Копировать ссылку
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   ПАГИНАЦИЯ
+   ========================================================= */
+
+function createPaginationHTML(
+    totalPages
+){
+
+    if(
+        totalPages<=1
+    )
+        return "";
+
+
+    const start=
+        (currentPage-1)*
+        TRACKS_PER_PAGE+
+        1;
+
+
+    const end=
+        Math.min(
+            currentPage*
+            TRACKS_PER_PAGE,
+            filteredTracks.length
+        );
+
+
+    let html=`
+
+        <div class="pagination">
+
+            <div class="page-info">
+
+                Показано
+                ${start}–${end}
+                из
+                ${filteredTracks.length}
+
+            </div>
+
+
+            <button
+                class="page-btn"
+                onclick="changePage(
+                    ${currentPage-1}
+                )"
+                ${
+                    currentPage===1
+                        ?"disabled"
+                        :""
+                }
+            >
+                ←
+            </button>
+
+    `;
+
+
+    const pages=[];
+
+
+    for(
+        let i=1;
+        i<=totalPages;
+        i++
+    ){
+
+        if(
+            i===1 ||
+            i===totalPages ||
+            Math.abs(
+                i-currentPage
+            )<=2
+        ){
+
+            pages.push(i);
+
+        }
+
+    }
+
+
+    let previous=0;
+
+
+    for(
+        const page of pages
+    ){
+
+        if(
+            previous &&
+            page-previous>1
+        ){
+
+            html+=`
+
+                <span class="page-dots">
+                    ...
+                </span>
+
+            `;
+
+        }
+
+
+        html+=`
+
+            <button
+                class="page-btn ${
+                    page===
+                    currentPage
+                        ?"active"
+                        :""
+                }"
+                onclick="changePage(
+                    ${page}
+                )"
+            >
+                ${page}
+            </button>
+
+        `;
+
+
+        previous=page;
+
+    }
+
+
+    html+=`
+
+            <button
+                class="page-btn"
+                onclick="changePage(
+                    ${currentPage+1}
+                )"
+                ${
+                    currentPage===
+                    totalPages
+                        ?"disabled"
+                        :""
+                }
+            >
+                →
+            </button>
+
+        </div>
+
+    `;
+
+
+    return html;
+
+}
+
+
+/* =========================================================
+   СМЕНА СТРАНИЦЫ
+   ========================================================= */
+
+function changePage(page){
+
+    const totalPages=
+        Math.max(
+            1,
+            Math.ceil(
+                filteredTracks.length/
+                TRACKS_PER_PAGE
+            )
+        );
+
+
+    if(
+        page<1 ||
+        page>totalPages
+    )
+        return;
+
+
+    currentPage=page;
+
+
+    renderTracks();
+
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =========================================================
+   КОПИРОВАНИЕ ССЫЛКИ
+   ========================================================= */
+
+async function copyMusicLink(
+    button,
+    url
+){
+
+    const oldText=
+        button.textContent;
+
+
+    try{
+
+        await navigator.clipboard
+            .writeText(
+                url
+            );
+
+
+        button.textContent=
+            "✓ Ссылка скопирована";
+
+
+        button.classList.add(
+            "copied"
+        );
+
+
+        setTimeout(
+            ()=>{
+
+                button.textContent=
+                    oldText;
+
+
+                button.classList.remove(
+                    "copied"
+                );
+
+            },
+            1800
+        );
+
+    }
+    catch(error){
+
+        const textarea=
+            document.createElement(
+                "textarea"
+            );
+
+
+        textarea.value=url;
+
+
+        textarea.style.position=
+            "fixed";
+
+
+        textarea.style.left=
+            "-9999px";
+
+
+        textarea.style.top="0";
+
+
+        document.body.appendChild(
+            textarea
+        );
+
+
+        textarea.focus();
+
+
+        textarea.select();
+
+
+        let success=false;
+
+
+        try{
+
+            success=
+                document.execCommand(
+                    "copy"
+                );
+
+        }
+        catch(e){
+
+            success=false;
+
+        }
+
+
+        textarea.remove();
+
+
+        if(success){
+
+            button.textContent=
+                "✓ Ссылка скопирована";
+
+
+            button.classList.add(
+                "copied"
+            );
+
+
+            setTimeout(
+                ()=>{
+
+                    button.textContent=
+                        oldText;
+
+
+                    button.classList.remove(
+                        "copied"
+                    );
+
+                },
+                1800
+            );
+
+        }
+        else{
+
+            window.prompt(
+                "Скопируй эту ссылку:",
+                url
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   ПОИСК
+   ========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    ()=>{
+
+        currentPage=1;
+
+        renderTracks();
+
+    }
+);
+
+
+/* =========================================================
+   УДАЛЕНИЕ .MP3
+   ========================================================= */
+
+function removeExtension(name){
+
+    return name.replace(
+        /\.mp3$/i,
+        ""
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHTML(value){
+
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   ESCAPE ATTRIBUTE
+   ========================================================= */
+
+function escapeAttribute(value){
+
+    return escapeHTML(
+        value
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE JS
+   ========================================================= */
+
+function escapeJS(value){
+
+    return String(value)
+
+        .replace(
+            /\\/g,
+            "\\\\"
+        )
+
+        .replace(
+            /'/g,
+            "\\'"
+        )
+
+        .replace(
+            /"/g,
+            '\\"'
+        )
+
+        .replace(
+            /\r/g,
+            "\\r"
+        )
+
+        .replace(
+            /\n/g,
+            "\\n"
+        );
+
+}
+
+
+/* =========================================================
+   НАВЕРХ
+   ========================================================= */
+
+function scrollTopPage(){
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+}
+
+
+/* =========================================================
+   НАВИГАЦИЯ
+   ========================================================= */
+
+function goMusic(){
+
+    window.location.href=
+        "index.html";
+
+}
+
+
+function goRoflan(){
+
+    window.location.href=
+        "Roflan.html";
+
+}
+
+
+function goGachi(){
+
+    window.location.href=
+        "Gachi.html";
+
+}
+
+
+function goScreamer(){
+
+    window.location.href=
+        "Skrimer.html";
+
+}
+
+
+/* =========================================================
+   ЗАПУСК
+   ========================================================= */
+
+loadScreamers();
+
 </script>
 
 </body>
