@@ -300,7 +300,7 @@ body{
     padding:
         34px
         30px
-        30px;
+        80px;
 
 }
 
@@ -567,150 +567,6 @@ body{
 
 
 /* =========================================================
-   PAGINATION
-   ========================================================= */
-
-.pagination{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:7px;
-
-    flex-wrap:wrap;
-
-    margin-top:28px;
-
-    padding:
-        10px
-        0
-        35px;
-
-}
-
-
-.page-btn{
-
-    min-width:40px;
-
-    height:40px;
-
-    padding:
-        0
-        11px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.10);
-
-    border-radius:9px;
-
-    background:
-        rgba(255,255,255,.045);
-
-    color:#ddd;
-
-    cursor:pointer;
-
-    font-size:15px;
-
-    font-weight:700;
-
-    transition:
-        background .15s,
-        border-color .15s,
-        color .15s,
-        transform .1s;
-
-}
-
-
-.page-btn:hover{
-
-    background:
-        rgba(0,255,170,.10);
-
-    border-color:
-        rgba(0,255,170,.28);
-
-    color:#00ffae;
-
-}
-
-
-.page-btn:active{
-
-    transform:
-        scale(.95);
-
-}
-
-
-.page-btn.active{
-
-    background:
-        #00c985;
-
-    border-color:
-        #00c985;
-
-    color:#07100d;
-
-}
-
-
-.page-btn.arrow{
-
-    font-size:19px;
-
-}
-
-
-.page-btn:disabled{
-
-    opacity:.3;
-
-    cursor:not-allowed;
-
-}
-
-
-.page-dots{
-
-    color:#777;
-
-    padding:
-        0
-        3px;
-
-    font-weight:bold;
-
-}
-
-
-/* =========================================================
-   PAGE INFO
-   ========================================================= */
-
-.page-info{
-
-    text-align:center;
-
-    color:#666;
-
-    font-size:13px;
-
-    margin-top:-15px;
-
-    margin-bottom:10px;
-
-}
-
-
-/* =========================================================
    EMPTY
    ========================================================= */
 
@@ -809,7 +665,7 @@ body{
     .content{
 
         padding:
-            25px 15px 40px;
+            25px 15px 60px;
 
     }
 
@@ -835,26 +691,6 @@ body{
     .track-title{
 
         font-size:17px;
-
-    }
-
-
-    .pagination{
-
-        gap:5px;
-
-    }
-
-
-    .page-btn{
-
-        min-width:36px;
-
-        height:36px;
-
-        padding:
-            0
-            8px;
 
     }
 
@@ -903,8 +739,8 @@ body{
 
 
 <!-- =======================================================
-   SIDEBAR
-   ======================================================= -->
+     SIDEBAR
+     ======================================================= -->
 
 <div class="sidebar">
 
@@ -967,15 +803,15 @@ body{
 
 
 <!-- =======================================================
-   MAIN
-   ======================================================= -->
+     MAIN
+     ======================================================= -->
 
 <div class="main">
 
 
     <!-- ===================================================
-       HEADER
-       =================================================== -->
+         HEADER
+         =================================================== -->
 
     <header class="header">
 
@@ -1005,8 +841,8 @@ body{
 
 
     <!-- ===================================================
-       CONTENT
-       =================================================== -->
+         CONTENT
+         =================================================== -->
 
     <main
         id="musicList"
@@ -1040,14 +876,6 @@ const LIST_URL =
     WORKER_URL + "/list.json";
 
 
-/*
- * Сколько треков показывать
- * на одной странице.
- */
-
-const TRACKS_PER_PAGE = 50;
-
-
 /* =========================================================
    DOM
    ========================================================= */
@@ -1071,13 +899,6 @@ const searchInput =
 let tracks = [];
 
 
-/*
- * Текущая страница.
- */
-
-let currentPage = 1;
-
-
 /* =========================================================
    ТЕКУЩИЙ ИГРАЮЩИЙ ТРЕК
    ========================================================= */
@@ -1085,9 +906,1124 @@ let currentPage = 1;
 let currentAudio = null;
 
 
+/* =========================================================
+   =========================================================
+   УМНЫЙ ПОИСК
+   =========================================================
+   ========================================================= */
+
+
+/*
+ * Основная идея:
+ *
+ * Мы не просто ищем:
+ *
+ *     "пс" в "psy"
+ *
+ * А создаём несколько вариантов написания.
+ *
+ * Например:
+ *
+ * Daryana
+ *
+ * -> daryana
+ * -> дарьяна
+ *
+ * Поэтому запрос:
+ *
+ *     дарьяна
+ *
+ * сможет найти:
+ *
+ *     Daryana
+ *
+ *
+ * Аналогично:
+ *
+ * feat
+ *
+ * -> фит
+ *
+ * и:
+ *
+ * фит
+ *
+ * -> feat
+ *
+ */
+
 
 /* =========================================================
+   ТАБЛИЦА БАЗОВОЙ ТРАНСЛИТЕРАЦИИ
+   ========================================================= */
+
+const RU_TO_EN = {
+
+    "а":"a",
+    "б":"b",
+    "в":"v",
+    "г":"g",
+    "д":"d",
+    "е":"e",
+    "ё":"yo",
+    "ж":"zh",
+    "з":"z",
+    "и":"i",
+    "й":"y",
+    "к":"k",
+    "л":"l",
+    "м":"m",
+    "н":"n",
+    "о":"o",
+    "п":"p",
+    "р":"r",
+    "с":"s",
+    "т":"t",
+    "у":"u",
+    "ф":"f",
+    "х":"h",
+    "ц":"c",
+    "ч":"ch",
+    "ш":"sh",
+    "щ":"sch",
+    "ъ":"",
+    "ы":"y",
+    "ь":"",
+    "э":"e",
+    "ю":"yu",
+    "я":"ya"
+
+};
+
+
+/* =========================================================
+   АНГЛ -> РУ
+   ========================================================= */
+
+const EN_TO_RU = [
+
+    ["sch","щ"],
+
+    ["sh","ш"],
+    ["ch","ч"],
+    ["zh","ж"],
+
+    ["yo","ё"],
+    ["yu","ю"],
+    ["ya","я"],
+
+    ["ts","ц"],
+
+    ["th","т"],
+    ["ph","ф"],
+
+    ["ee","и"],
+    ["oo","у"],
+
+    ["ou","у"],
+    ["ow","ау"],
+    ["ai","эй"],
+    ["ay","эй"],
+    ["ei","эй"],
+    ["ey","эй"],
+
+    ["a","а"],
+    ["b","б"],
+    ["c","к"],
+    ["d","д"],
+    ["e","е"],
+    ["f","ф"],
+    ["g","г"],
+    ["h","х"],
+    ["i","и"],
+    ["j","дж"],
+    ["k","к"],
+    ["l","л"],
+    ["m","м"],
+    ["n","н"],
+    ["o","о"],
+    ["p","п"],
+    ["q","к"],
+    ["r","р"],
+    ["s","с"],
+    ["t","т"],
+    ["u","у"],
+    ["v","в"],
+    ["w","в"],
+    ["x","кс"],
+    ["y","й"],
+    ["z","з"]
+
+];
+
+
+/* =========================================================
+   ПОПУЛЯРНЫЕ АНГЛИЙСКИЕ СЛОВА
+   =========================================================
+ *
+ * Здесь специально оставлены разные варианты.
+ *
+ * Например:
+ *
+ * feat -> фит
+ * feat -> фич
+ *
+ * love -> лав
+ * love -> лов
+ *
+ * night -> найт
+ *
+ * Это сильно помогает при обычном человеческом
+ * написании "как слышится".
+ */
+
+const COMMON_TRANSLITERATIONS = [
+
+    ["feat","фит"],
+    ["feat","фит."],
+    ["feat","фич"],
+
+    ["ft","фит"],
+    ["ft.","фит"],
+
+    ["psy","пси"],
+    ["psy","пс"],
+
+    ["daryana","дарьяна"],
+    ["daryana","дарья"],
+
+    ["week","уик"],
+    ["week","вик"],
+
+    ["night","найт"],
+    ["night","найтт"],
+
+    ["love","лав"],
+    ["love","лов"],
+
+    ["lover","лавер"],
+    ["lovers","лаверс"],
+
+    ["baby","бейби"],
+    ["babies","бейбис"],
+
+    ["girl","герл"],
+    ["girls","герлз"],
+    ["girls","гёрлз"],
+
+    ["boy","бой"],
+    ["boys","бойз"],
+
+    ["dance","дэнс"],
+    ["dance","денс"],
+
+    ["dancing","дэнсинг"],
+    ["dancing","денсинг"],
+
+    ["fire","файр"],
+
+    ["heart","харт"],
+    ["heart","херт"],
+    ["heart","хёрт"],
+
+    ["dream","дрим"],
+    ["dreams","дримс"],
+
+    ["money","мани"],
+
+    ["time","тайм"],
+
+    ["music","мьюзик"],
+    ["music","музик"],
+
+    ["song","сонг"],
+
+    ["one","уан"],
+    ["one","ван"],
+
+    ["two","ту"],
+
+    ["three","три"],
+
+    ["four","фор"],
+
+    ["five","файв"],
+
+    ["six","сикс"],
+
+    ["seven","севен"],
+
+    ["eight","эйт"],
+    ["eight","ейт"],
+
+    ["nine","найн"],
+
+    ["ten","тэн"],
+    ["ten","тен"],
+
+    ["black","блэк"],
+    ["black","блек"],
+
+    ["white","вайт"],
+
+    ["blue","блу"],
+
+    ["red","рэд"],
+
+    ["green","грин"],
+
+    ["gold","голд"],
+
+    ["golden","голден"],
+
+    ["rain","рэйн"],
+    ["rain","рейн"],
+
+    ["sun","сан"],
+
+    ["summer","саммер"],
+
+    ["winter","винтер"],
+
+    ["spring","спринг"],
+
+    ["autumn","отэм"],
+
+    ["party","парти"],
+
+    ["baby","бэйби"],
+
+    ["beautiful","бьютифул"],
+
+    ["beautiful","бьюти"],
+
+    ["bad","бэд"],
+
+    ["good","гуд"],
+
+    ["girl","гёрл"],
+
+    ["boys","бойс"],
+
+    ["friend","френд"],
+
+    ["friends","френдз"],
+
+    ["forever","форевер"],
+
+    ["never","невер"],
+
+    ["always","олвейз"],
+
+    ["sorry","сори"],
+
+    ["please","плиз"],
+
+    ["kiss","кис"],
+
+    ["kisses","кисиз"],
+
+    ["feel","фил"],
+
+    ["feeling","филинг"],
+
+    ["feelings","филингз"],
+
+    ["alone","элоун"],
+
+    ["lonely","лоунли"],
+
+    ["crazy","крейзи"],
+
+    ["crazy","крази"],
+
+    ["beautiful","бьютифул"],
+
+    ["angel","энджел"],
+
+    ["devil","дэвил"],
+
+    ["heaven","хэвен"],
+
+    ["hell","хэл"],
+
+    ["world","ворлд"],
+
+    ["life","лайф"],
+
+    ["live","лайв"],
+
+    ["dead","дэд"],
+
+    ["death","дэс"],
+
+    ["dark","дарк"],
+
+    ["darkness","даркнесс"],
+
+    ["star","стар"],
+
+    ["stars","старз"],
+
+    ["sky","скай"],
+
+    ["moon","мун"],
+
+    ["sun","сан"],
+
+    ["rainbow","рэйнбоу"],
+
+    ["light","лайт"],
+
+    ["lights","лайтс"],
+
+    ["sound","саунд"],
+
+    ["sounds","саундз"],
+
+    ["radio","рэдио"],
+
+    ["rock","рок"],
+
+    ["rap","рэп"],
+
+    ["hip","хип"],
+
+    ["hop","хоп"],
+
+    ["hiphop","хипхоп"],
+
+    ["house","хаус"],
+
+    ["techno","техно"],
+
+    ["remix","ремикс"],
+
+    ["version","версион"],
+
+    ["original","оригинал"],
+
+    ["edit","эдит"],
+
+    ["extended","экстендед"],
+
+    ["official","офишал"],
+
+    ["video","видео"],
+
+    ["audio","аудио"]
+
+];
+
+
+/* =========================================================
+   НОРМАЛИЗАЦИЯ
+   ========================================================= */
+
+function normalizeSearchText(value){
+
+    return String(value || "")
+
+        .toLowerCase()
+
+        .replace(
+            /ё/g,
+            "е"
+        )
+
+        .replace(
+            /[^a-zа-я0-9]+/gi,
+            ""
+        );
+
+}
+
+
+/* =========================================================
+   УДАЛИТЬ ПОВТОРЫ
+   ========================================================= */
+
+function uniqueVariants(
+    variants
+){
+
+    return [
+        ...new Set(
+            variants
+                .filter(
+                    value =>
+                        value &&
+                        value.length > 0
+                )
+                .map(
+                    value =>
+                        normalizeSearchText(
+                            value
+                        )
+                )
+                .filter(
+                    Boolean
+                )
+        )
+    ];
+
+}
+
+
+/* =========================================================
+   РУ -> АНГЛ
+   ========================================================= */
+
+function transliterateRuToEn(
+    text
+){
+
+    let result = "";
+
+    const lower =
+        String(
+            text || ""
+        ).toLowerCase();
+
+
+    for(
+        const char of lower
+    ){
+
+        if(
+            RU_TO_EN[char] !== undefined
+        ){
+
+            result +=
+                RU_TO_EN[char];
+
+        }
+        else{
+
+            result +=
+                char;
+
+        }
+
+    }
+
+
+    return result;
+
+}
+
+
+/* =========================================================
+   АНГЛ -> РУ
+   ========================================================= */
+
+function transliterateEnToRu(
+    text
+){
+
+    let result =
+        String(
+            text || ""
+        ).toLowerCase();
+
+
+    /*
+     * Сначала длинные комбинации.
+     *
+     * Например:
+     *
+     * sh -> ш
+     *
+     * а не:
+     *
+     * s -> с
+     * h -> х
+     */
+
+    for(
+        const pair of EN_TO_RU
+    ){
+
+        result =
+            result.split(
+                pair[0]
+            ).join(
+                pair[1]
+            );
+
+    }
+
+
+    return result;
+
+}
+
+
+/* =========================================================
+   СОЗДАТЬ ВАРИАНТЫ ТЕКСТА
+   ========================================================= */
+
+function makeSearchVariants(
+    text
+){
+
+    const original =
+        String(
+            text || ""
+        )
+        .toLowerCase();
+
+
+    const variants = [];
+
+
+    /*
+     * Оригинал.
+     */
+
+    variants.push(
+        original
+    );
+
+
+    /*
+     * Русский -> английский.
+     *
+     * Например:
+     *
+     * дарьяна
+     *
+     * ->
+     *
+     * daryana
+     */
+
+    variants.push(
+        transliterateRuToEn(
+            original
+        )
+    );
+
+
+    /*
+     * Английский -> русский.
+     *
+     * Например:
+     *
+     * daryana
+     *
+     * ->
+     *
+     * дарьяна
+     */
+
+    variants.push(
+        transliterateEnToRu(
+            original
+        )
+    );
+
+
+    /*
+     * Популярные варианты.
+     */
+
+    const normalizedOriginal =
+        normalizeSearchText(
+            original
+        );
+
+
+    for(
+        const pair of COMMON_TRANSLITERATIONS
+    ){
+
+        const english =
+            normalizeSearchText(
+                pair[0]
+            );
+
+
+        if(
+            normalizedOriginal.includes(
+                english
+            )
+        ){
+
+            variants.push(
+                pair[1]
+            );
+
+        }
+
+    }
+
+
+    /*
+     * Также пробуем заменить отдельные слова.
+     */
+
+    let commonVersion =
+        original;
+
+
+    for(
+        const pair of COMMON_TRANSLITERATIONS
+    ){
+
+        commonVersion =
+            commonVersion
+                .split(
+                    pair[0]
+                )
+                .join(
+                    pair[1]
+                );
+
+    }
+
+
+    variants.push(
+        commonVersion
+    );
+
+
+    return uniqueVariants(
+        variants
+    );
+
+}
+
+
+/* =========================================================
+   ПОСТРОИТЬ ПОИСКОВЫЙ ИНДЕКС ТРЕКА
+   ========================================================= */
+
+function buildTrackSearchText(
+    track
+){
+
+    const name =
+        String(
+            track.name || ""
+        );
+
+
+    const withoutExtension =
+        removeExtension(
+            name
+        );
+
+
+    return makeSearchVariants(
+        withoutExtension
+    );
+
+}
+
+
+/* =========================================================
+   РАССТОЯНИЕ ЛЕВЕНШТЕЙНА
+   =========================================================
+ *
+ * Позволяет находить небольшие ошибки.
+ *
+ * Например:
+ *
+ * daryana
+ * dariana
+ *
+ * или:
+ *
+ * дарьяна
+ * дарьянаа
+ */
+
+function levenshtein(
+    a,
+    b
+){
+
+    a =
+        String(a || "");
+
+    b =
+        String(b || "");
+
+
+    if(
+        a === b
+    ){
+
+        return 0;
+
+    }
+
+
+    if(
+        !a.length
+    ){
+
+        return b.length;
+
+    }
+
+
+    if(
+        !b.length
+    ){
+
+        return a.length;
+
+    }
+
+
+    let previous =
+        new Array(
+            b.length + 1
+        );
+
+
+    let current =
+        new Array(
+            b.length + 1
+        );
+
+
+    for(
+        let j = 0;
+        j <= b.length;
+        j++
+    ){
+
+        previous[j] = j;
+
+    }
+
+
+    for(
+        let i = 1;
+        i <= a.length;
+        i++
+    ){
+
+        current[0] = i;
+
+
+        for(
+            let j = 1;
+            j <= b.length;
+            j++
+        ){
+
+            const cost =
+                a[i - 1] ===
+                b[j - 1]
+                    ? 0
+                    : 1;
+
+
+            current[j] =
+                Math.min(
+
+                    current[j - 1] + 1,
+
+                    previous[j] + 1,
+
+                    previous[j - 1] + cost
+
+                );
+
+        }
+
+
+        const temp =
+            previous;
+
+        previous =
+            current;
+
+        current =
+            temp;
+
+    }
+
+
+    return previous[b.length];
+
+}
+
+
+/* =========================================================
+   ПОХОЖЕ ЛИ СЛОВО
+   ========================================================= */
+
+function fuzzyWordMatch(
+    query,
+    text
+){
+
+    if(
+        !query ||
+        !text
+    ){
+
+        return false;
+
+    }
+
+
+    if(
+        text.includes(
+            query
+        )
+    ){
+
+        return true;
+
+    }
+
+
+    /*
+     * Для очень коротких запросов
+     * fuzzy поиск отключаем.
+     *
+     * Иначе "а" найдёт вообще всё.
+     */
+
+    if(
+        query.length < 3
+    ){
+
+        return false;
+
+    }
+
+
+    /*
+     * Разбиваем название на слова.
+     */
+
+    const words =
+        text
+            .split(
+                /[\s\-_.,!?()[\]{}]+/
+            )
+            .filter(
+                Boolean
+            );
+
+
+    /*
+     * Также проверяем само название.
+     */
+
+    const candidates =
+        words.length
+            ? words
+            : [text];
+
+
+    for(
+        const word of candidates
+    ){
+
+        /*
+         * Если слово почти такое же.
+         */
+
+        const distance =
+            levenshtein(
+                query,
+                word
+            );
+
+
+        /*
+         * Для коротких слов разрешаем
+         * максимум одну ошибку.
+         */
+
+        if(
+            query.length <= 4
+        ){
+
+            if(
+                distance <= 1
+            ){
+
+                return true;
+
+            }
+
+        }
+        else if(
+            query.length <= 7
+        ){
+
+            if(
+                distance <= 2
+            ){
+
+                return true;
+
+            }
+
+        }
+        else{
+
+            if(
+                distance <=
+                Math.max(
+                    2,
+                    Math.floor(
+                        query.length * 0.25
+                    )
+                )
+            ){
+
+                return true;
+
+            }
+
+        }
+
+    }
+
+
+    return false;
+
+}
+
+
+/* =========================================================
+   УМНОЕ СОВПАДЕНИЕ
+   ========================================================= */
+
+function smartSearchMatch(
+    track,
+    query
+){
+
+    const cleanQuery =
+        normalizeSearchText(
+            query
+        );
+
+
+    if(
+        !cleanQuery
+    ){
+
+        return true;
+
+    }
+
+
+    const variants =
+        buildTrackSearchText(
+            track
+        );
+
+
+    /*
+     * Проверяем каждую форму.
+     */
+
+    for(
+        const variant of variants
+    ){
+
+        /*
+         * Полное включение.
+         */
+
+        if(
+            variant.includes(
+                cleanQuery
+            )
+        ){
+
+            return true;
+
+        }
+
+
+        /*
+         * Обратное включение.
+         *
+         * Полезно для коротких русских
+         * вариантов.
+         */
+
+        if(
+            cleanQuery.includes(
+                variant
+            ) &&
+            cleanQuery.length >= 3
+        ){
+
+            return true;
+
+        }
+
+    }
+
+
+    /*
+     * Теперь пробуем перевести сам запрос
+     * и снова сравнить.
+     */
+
+    const queryVariants =
+        uniqueVariants([
+
+            cleanQuery,
+
+            transliterateRuToEn(
+                cleanQuery
+            ),
+
+            transliterateEnToRu(
+                cleanQuery
+            )
+
+        ]);
+
+
+    for(
+        const q of queryVariants
+    ){
+
+        for(
+            const variant of variants
+        ){
+
+            if(
+                fuzzyWordMatch(
+                    q,
+                    variant
+                )
+            ){
+
+                return true;
+
+            }
+
+        }
+
+    }
+
+
+    return false;
+
+}
+
+
+/* =========================================================
+   =========================================================
    ЗАГРУЗКА СПИСКА
+   =========================================================
    ========================================================= */
 
 async function loadMusic(){
@@ -1148,8 +2084,6 @@ async function loadMusic(){
             );
 
 
-        currentPage = 1;
-
         renderTracks();
 
 
@@ -1199,7 +2133,6 @@ async function loadMusic(){
 }
 
 
-
 /* =========================================================
    PLAY URL
    ========================================================= */
@@ -1217,7 +2150,6 @@ function getPlayURL(track){
 }
 
 
-
 /* =========================================================
    DOWNLOAD URL
    ========================================================= */
@@ -1230,7 +2162,6 @@ function getDownloadURL(track){
     );
 
 }
-
 
 
 /* =========================================================
@@ -1289,7 +2220,6 @@ function stopAllAudio(
     }
 
 }
-
 
 
 /* =========================================================
@@ -1396,83 +2326,26 @@ function setupAudio(
 }
 
 
-
-/* =========================================================
-   ПОЛУЧИТЬ ОТФИЛЬТРОВАННЫЕ ТРЕКИ
-   ========================================================= */
-
-function getFilteredTracks(){
-
-    const query =
-        searchInput.value
-            .trim()
-            .toLowerCase();
-
-
-    return tracks.filter(
-        track =>
-            String(
-                track.name || ""
-            )
-            .toLowerCase()
-            .includes(query)
-    );
-
-}
-
-
-
 /* =========================================================
    ОТРИСОВКА
    ========================================================= */
 
 function renderTracks(){
 
-    /*
-     * Сначала фильтруем ВЕСЬ каталог.
-     *
-     * Поэтому поиск работает по всем трекам,
-     * даже если сейчас открыта страница 4.
-     */
+    const query =
+        searchInput.value
+            .trim();
+
 
     const filtered =
-        getFilteredTracks();
-
-
-    /*
-     * Считаем количество страниц.
-     */
-
-    const totalPages =
-        Math.max(
-            1,
-            Math.ceil(
-                filtered.length /
-                TRACKS_PER_PAGE
-            )
+        tracks.filter(
+            track =>
+                smartSearchMatch(
+                    track,
+                    query
+                )
         );
 
-
-    /*
-     * Если после поиска текущая
-     * страница стала слишком большой —
-     * возвращаемся на последнюю.
-     */
-
-    if(
-        currentPage > totalPages
-    ){
-
-        currentPage =
-            totalPages;
-
-    }
-
-
-    /*
-     * Останавливаем музыку
-     * перед перерисовкой.
-     */
 
     stopAllAudio();
 
@@ -1496,35 +2369,8 @@ function renderTracks(){
     }
 
 
-    /*
-     * Индексы треков текущей страницы.
-     */
-
-    const start =
-        (
-            currentPage - 1
-        ) *
-        TRACKS_PER_PAGE;
-
-
-    const end =
-        start +
-        TRACKS_PER_PAGE;
-
-
-    const pageTracks =
-        filtered.slice(
-            start,
-            end
-        );
-
-
-    /*
-     * Карточки.
-     */
-
     musicList.innerHTML =
-        pageTracks
+        filtered
             .map(
                 track =>
                     createTrackHTML(
@@ -1534,11 +2380,7 @@ function renderTracks(){
             .join("");
 
 
-    /*
-     * Источники audio.
-     */
-
-    pageTracks.forEach(
+    filtered.forEach(
         track => {
 
             const audio =
@@ -1565,352 +2407,7 @@ function renderTracks(){
         }
     );
 
-
-    /*
-     * Пагинация.
-     */
-
-    musicList.innerHTML +=
-        createPaginationHTML(
-            totalPages,
-            filtered.length,
-            start,
-            end
-        );
-
 }
-
-
-
-/* =========================================================
-   ПАГИНАЦИЯ
-   ========================================================= */
-
-function createPaginationHTML(
-    totalPages,
-    totalTracks,
-    start,
-    end
-){
-
-    /*
-     * Если всего одна страница,
-     * кнопки страниц не нужны.
-     */
-
-    if(totalPages <= 1){
-
-        return "";
-
-    }
-
-
-    let html = `
-
-        <div class="pagination">
-
-            <button
-                class="page-btn arrow"
-                onclick="changePage(${currentPage - 1})"
-                ${currentPage === 1 ? "disabled" : ""}
-            >
-                ←
-            </button>
-
-    `;
-
-
-    /*
-     * Делаем компактную пагинацию.
-     *
-     * Например:
-     *
-     * 1 2 3 4 5 ... 20
-     *
-     * или:
-     *
-     * 1 ... 8 9 10 11 12 ... 20
-     */
-
-    const pages =
-        getPageNumbers(
-            currentPage,
-            totalPages
-        );
-
-
-    let previousPage =
-        null;
-
-
-    pages.forEach(
-        page => {
-
-            if(
-                previousPage !== null &&
-                page - previousPage > 1
-            ){
-
-                html += `
-
-                    <span class="page-dots">
-                        ...
-                    </span>
-
-                `;
-
-            }
-
-
-            html += `
-
-                <button
-                    class="page-btn ${
-                        page === currentPage
-                            ? "active"
-                            : ""
-                    }"
-                    onclick="changePage(${page})"
-                >
-                    ${page}
-                </button>
-
-            `;
-
-
-            previousPage =
-                page;
-
-        }
-    );
-
-
-    html += `
-
-            <button
-                class="page-btn arrow"
-                onclick="changePage(${currentPage + 1})"
-                ${currentPage === totalPages ? "disabled" : ""}
-            >
-                →
-            </button>
-
-        </div>
-
-
-        <div class="page-info">
-
-            Показано
-            ${start + 1}
-            –
-            ${Math.min(end, totalTracks)}
-            из
-            ${totalTracks}
-
-        </div>
-
-    `;
-
-
-    return html;
-
-}
-
-
-
-/* =========================================================
-   НОМЕРА СТРАНИЦ
-   ========================================================= */
-
-function getPageNumbers(
-    current,
-    total
-){
-
-    /*
-     * Если страниц мало —
-     * показываем все.
-     */
-
-    if(total <= 7){
-
-        return Array.from(
-            {
-                length: total
-            },
-            (_, index) =>
-                index + 1
-        );
-
-    }
-
-
-    const pages = [];
-
-
-    /*
-     * Всегда первая страница.
-     */
-
-    pages.push(1);
-
-
-    /*
-     * Начало.
-     */
-
-    if(current <= 4){
-
-        pages.push(2);
-        pages.push(3);
-        pages.push(4);
-        pages.push(5);
-
-    }
-
-
-    /*
-     * Середина.
-     */
-
-    else if(
-        current >= 5 &&
-        current <= total - 4
-    ){
-
-        pages.push(
-            current - 1
-        );
-
-        pages.push(
-            current
-        );
-
-        pages.push(
-            current + 1
-        );
-
-    }
-
-
-    /*
-     * Конец.
-     */
-
-    else{
-
-        pages.push(
-            total - 4
-        );
-
-        pages.push(
-            total - 3
-        );
-
-        pages.push(
-            total - 2
-        );
-
-        pages.push(
-            total - 1
-        );
-
-    }
-
-
-    /*
-     * Всегда последняя.
-     */
-
-    if(
-        !pages.includes(total)
-    ){
-
-        pages.push(total);
-
-    }
-
-
-    /*
-     * Убираем дубликаты
-     * и сортируем.
-     */
-
-    return [
-        ...new Set(pages)
-    ].sort(
-        (a,b) =>
-            a - b
-    );
-
-}
-
-
-
-/* =========================================================
-   ПЕРЕХОД НА СТРАНИЦУ
-   ========================================================= */
-
-function changePage(
-    page
-){
-
-    const filtered =
-        getFilteredTracks();
-
-
-    const totalPages =
-        Math.max(
-            1,
-            Math.ceil(
-                filtered.length /
-                TRACKS_PER_PAGE
-            )
-        );
-
-
-    if(
-        page < 1 ||
-        page > totalPages
-    ){
-
-        return;
-
-    }
-
-
-    /*
-     * Останавливаем текущую музыку.
-     */
-
-    stopAllAudio();
-
-
-    currentAudio = null;
-
-
-    currentPage =
-        page;
-
-
-    renderTracks();
-
-
-    /*
-     * Возвращаем пользователя
-     * наверх списка.
-     */
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
-}
-
 
 
 /* =========================================================
@@ -2003,7 +2500,6 @@ function createTrackHTML(track){
     `;
 
 }
-
 
 
 /* =========================================================
@@ -2146,7 +2642,6 @@ async function copyMusicLink(
 }
 
 
-
 /* =========================================================
    ПОИСК
    ========================================================= */
@@ -2155,19 +2650,10 @@ searchInput.addEventListener(
     "input",
     () => {
 
-        /*
-         * При новом поиске всегда
-         * начинаем с первой страницы.
-         */
-
-        currentPage = 1;
-
-
         renderTracks();
 
     }
 );
-
 
 
 /* =========================================================
@@ -2182,7 +2668,6 @@ function removeExtension(name){
     );
 
 }
-
 
 
 /* =========================================================
@@ -2221,7 +2706,6 @@ function escapeHTML(value){
 }
 
 
-
 /* =========================================================
    ATTRIBUTE ESCAPE
    ========================================================= */
@@ -2233,7 +2717,6 @@ function escapeAttribute(value){
     );
 
 }
-
 
 
 /* =========================================================
@@ -2272,7 +2755,6 @@ function escapeJS(value){
 }
 
 
-
 /* =========================================================
    НАВЕРХ
    ========================================================= */
@@ -2288,7 +2770,6 @@ function scrollTopPage(){
     });
 
 }
-
 
 
 /* =========================================================
