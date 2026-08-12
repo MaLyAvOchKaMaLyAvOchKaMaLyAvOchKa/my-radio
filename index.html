@@ -19,34 +19,168 @@ body{
     min-height:100vh;
 }
 
-/* SIDEBAR */
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
 .sidebar{
     position:fixed;
-    left:0;top:0;bottom:0;
-    width:184px;
-    background:linear-gradient(180deg,#16181b,#101113);
-    border-right:1px solid rgba(255,255,255,.08);
+    left:0;
+    top:0;
+    bottom:0;
+    width:205px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #151719 0%,
+            #101214 55%,
+            #0d0f10 100%
+        );
+
+    border-right:1px solid rgba(255,255,255,.075);
+
     z-index:100;
-    padding-top:240px;
+
+    padding:220px 12px 20px;
+
+    box-shadow:
+        8px 0 35px rgba(0,0,0,.16);
 }
+
+.sidebar-menu{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
 .sidebar-item{
+    position:relative;
+
     display:flex;
     align-items:center;
-    gap:14px;
-    padding:16px 30px;
-    color:#ddd;
-    font-size:19px;
+
+    gap:13px;
+
+    min-height:56px;
+
+    padding:10px 14px;
+
+    border-radius:13px;
+
+    color:#aeb2b4;
+
+    font-size:17px;
+    font-weight:600;
+
     cursor:pointer;
-    transition:background .2s,color .2s,transform .2s;
+
+    transition:
+        background .2s,
+        color .2s,
+        transform .18s,
+        box-shadow .2s;
 }
-.sidebar-item:hover{background:rgba(0,255,170,.06);color:#00ffae}
-.sidebar-icon{width:24px;text-align:center;font-size:20px}
-.sidebar-text{line-height:1.1}
 
-/* MAIN */
-.main{margin-left:184px;min-height:100vh}
+.sidebar-item:hover{
+    background:rgba(0,255,170,.045);
 
-/* HEADER */
+    color:#fff;
+
+    transform:translateX(2px);
+}
+
+.sidebar-item.active{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,255,170,.14),
+            rgba(0,180,130,.055)
+        );
+
+    color:#00ffae;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(0,255,170,.12),
+        0 5px 20px rgba(0,0,0,.14);
+}
+
+.sidebar-item.active::before{
+    content:"";
+
+    position:absolute;
+
+    left:-12px;
+    top:11px;
+    bottom:11px;
+
+    width:3px;
+
+    border-radius:0 5px 5px 0;
+
+    background:#00ffae;
+
+    box-shadow:
+        0 0 10px rgba(0,255,170,.45);
+}
+
+.sidebar-icon{
+    width:30px;
+    height:30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:9px;
+
+    background:rgba(255,255,255,.035);
+
+    font-size:19px;
+
+    flex:none;
+
+    transition:.2s;
+}
+
+.sidebar-item:hover .sidebar-icon{
+    background:rgba(0,255,170,.07);
+}
+
+.sidebar-item.active .sidebar-icon{
+    background:rgba(0,255,170,.10);
+}
+
+.sidebar-text{
+    line-height:1.15;
+}
+
+.sidebar-small{
+    display:block;
+
+    margin-top:3px;
+
+    font-size:11px;
+    font-weight:400;
+
+    color:#666;
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main{
+    margin-left:205px;
+    min-height:100vh;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
 .header{
     position:sticky;
     top:0;
@@ -59,6 +193,7 @@ body{
     background:linear-gradient(180deg,rgba(24,25,28,.97),rgba(20,21,23,.94));
     border-bottom:1px solid rgba(255,255,255,.08);
 }
+
 .header-title{
     margin:0;
     color:#00f7a5;
@@ -66,9 +201,22 @@ body{
     font-weight:800;
     letter-spacing:.5px;
     text-align:center;
-    text-shadow:0 0 10px rgba(0,255,170,.45),0 0 25px rgba(0,255,170,.18);
+    text-shadow:
+        0 0 10px rgba(0,255,170,.45),
+        0 0 25px rgba(0,255,170,.18);
 }
-.search-wrap{position:absolute;right:24px;top:34px}
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+.search-wrap{
+    position:absolute;
+    right:24px;
+    top:34px;
+}
+
 .search{
     width:252px;
     height:45px;
@@ -81,11 +229,16 @@ body{
     font-size:15px;
     transition:border-color .2s,box-shadow .2s;
 }
+
 .search:focus{
     border-color:rgba(0,255,170,.55);
     box-shadow:0 0 15px rgba(0,255,170,.08);
 }
-.search::placeholder{color:#777}
+
+.search::placeholder{
+    color:#777;
+}
+
 .search-icon{
     position:absolute;
     left:16px;
@@ -95,16 +248,33 @@ body{
     pointer-events:none;
 }
 
-/* CONTENT */
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
 .content{
     max-width:850px;
     margin:0 auto;
     padding:34px 30px 80px;
 }
 
-/* STATUS */
-.status{text-align:center;padding:60px 20px;color:#777;font-size:17px}
-.status.loading{color:#888}
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status{
+    text-align:center;
+    padding:60px 20px;
+    color:#777;
+    font-size:17px;
+}
+
+.status.loading{
+    color:#888;
+}
+
 .status.error{
     max-width:700px;
     margin:40px auto;
@@ -114,6 +284,7 @@ body{
     border-radius:14px;
     color:#ff7777;
 }
+
 .status.error strong{
     display:block;
     color:#ff4f4f;
@@ -121,173 +292,453 @@ body{
     font-size:18px;
 }
 
-/* TRACK */
+
+/* =========================================================
+   TRACK
+   ========================================================= */
+
 .track{
-    background:linear-gradient(135deg,rgba(31,33,34,.92),rgba(21,22,23,.92));
+    background:linear-gradient(
+        135deg,
+        rgba(31,33,34,.92),
+        rgba(21,22,23,.92)
+    );
+
     border:1px solid rgba(255,255,255,.075);
     border-radius:16px;
     padding:17px;
     margin-bottom:13px;
+
     box-shadow:0 8px 30px rgba(0,0,0,.18);
-    transition:transform .18s,border-color .18s,box-shadow .18s;
+
+    transition:
+        transform .18s,
+        border-color .18s,
+        box-shadow .18s;
 }
+
 .track:hover{
     transform:translateY(-1px);
+
     border-color:rgba(0,255,170,.18);
-    box-shadow:0 10px 35px rgba(0,0,0,.26);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.26);
 }
+
 .track-title{
     display:flex;
     align-items:center;
     gap:10px;
+
     color:#f0f0f0;
+
     font-size:19px;
     font-weight:600;
+
     margin-bottom:10px;
+
     overflow:hidden;
 }
-.track-icon{font-size:25px;flex:none}
-.track-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
-/* AUDIO */
-.audio{width:100%;height:42px;display:block;margin-bottom:10px}
+.track-icon{
+    font-size:25px;
+    flex:none;
+}
 
-/* BUTTONS */
-.buttons{display:flex;gap:9px}
+.track-name{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+
+/* =========================================================
+   AUDIO
+   ========================================================= */
+
+.audio{
+    width:100%;
+    height:42px;
+    display:block;
+    margin-bottom:10px;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.buttons{
+    display:flex;
+    gap:9px;
+}
+
 .btn{
     flex:1;
     min-height:34px;
+
     border:0;
     border-radius:7px;
+
     cursor:pointer;
+
     font-size:15px;
     font-weight:700;
+
     color:white;
-    transition:filter .15s,transform .1s,opacity .15s;
+
+    transition:
+        filter .15s,
+        transform .1s,
+        opacity .15s;
 }
-.btn:hover{filter:brightness(1.08)}
-.btn:active{transform:scale(.985)}
-.download-btn{background:#00c985}
-.copy-btn{background:#1389d7}
-.copy-btn.copied{background:#00b878}
+
+.btn:hover{
+    filter:brightness(1.08);
+}
+
+.btn:active{
+    transform:scale(.985);
+}
+
+.download-btn{
+    background:#00c985;
+}
+
+.copy-btn{
+    background:#1389d7;
+}
+
+.copy-btn.copied{
+    background:#00b878;
+}
+
 .download-btn{
     text-decoration:none;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
 }
 
-/* EMPTY */
-.empty{text-align:center;color:#777;padding:80px 20px;font-size:17px}
 
-/* PAGINATION */
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.empty{
+    text-align:center;
+    color:#777;
+    padding:80px 20px;
+    font-size:17px;
+}
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
 .pagination{
     display:flex;
     align-items:center;
     justify-content:center;
+
     gap:7px;
+
     flex-wrap:wrap;
+
     margin-top:30px;
 }
+
 .page-btn{
     min-width:40px;
     height:40px;
+
     padding:0 12px;
+
     border:1px solid rgba(255,255,255,.1);
+
     border-radius:8px;
+
     background:#17191b;
+
     color:#bbb;
+
     cursor:pointer;
+
     font-size:14px;
     font-weight:700;
+
     transition:.15s;
 }
+
 .page-btn:hover{
     background:#202427;
+
     color:#00ffae;
-    border-color:rgba(0,255,170,.25);
+
+    border-color:
+        rgba(0,255,170,.25);
 }
+
 .page-btn.active{
     background:#00c985;
+
     color:#fff;
+
     border-color:#00c985;
 }
+
 .page-btn:disabled{
     opacity:.35;
     cursor:default;
 }
+
 .page-info{
     width:100%;
+
     text-align:center;
+
     color:#666;
+
     font-size:13px;
+
     margin-bottom:7px;
 }
+
 .page-dots{
     color:#666;
     padding:0 3px;
 }
 
-/* MOBILE */
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media(max-width:900px){
-    .sidebar{width:70px;padding-top:170px}
-    .sidebar-item{justify-content:center;padding:17px 5px}
-    .sidebar-text{display:none}
-    .main{margin-left:70px}
+
+    .sidebar{
+        width:70px;
+        padding-top:170px;
+        padding-left:7px;
+        padding-right:7px;
+    }
+
+    .sidebar-item{
+        justify-content:center;
+        padding:17px 5px;
+    }
+
+    .sidebar-text{
+        display:none;
+    }
+
+    .sidebar-item.active::before{
+        left:-7px;
+    }
+
+    .main{
+        margin-left:70px;
+    }
+
     .header{
         min-height:135px;
+
         padding-top:15px;
+
         align-items:flex-start;
     }
-    .header-title{font-size:27px;padding-top:3px}
-    .search-wrap{position:absolute;top:77px;left:20px;right:20px}
-    .search{width:100%}
-    .content{padding:25px 15px 60px}
-}
-@media(max-width:600px){
-    .buttons{flex-direction:column}
-    .btn{min-height:42px}
-    .track-title{font-size:17px}
+
+    .header-title{
+        font-size:27px;
+        padding-top:3px;
+    }
+
+    .search-wrap{
+        position:absolute;
+
+        top:77px;
+
+        left:20px;
+        right:20px;
+    }
+
+    .search{
+        width:100%;
+    }
+
+    .content{
+        padding:25px 15px 60px;
+    }
 }
 
-/* SCROLLBAR */
-::-webkit-scrollbar{width:9px}
-::-webkit-scrollbar-track{background:#090a0b}
-::-webkit-scrollbar-thumb{background:#292c2e;border-radius:10px}
-::-webkit-scrollbar-thumb:hover{background:#363a3d}
+@media(max-width:600px){
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .btn{
+        min-height:42px;
+    }
+
+    .track-title{
+        font-size:17px;
+    }
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar{
+    width:9px;
+}
+
+::-webkit-scrollbar-track{
+    background:#090a0b;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#292c2e;
+
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#363a3d;
+}
 </style>
 </head>
 
 <body>
 
+
+<!-- =======================================================
+     SIDEBAR
+     ======================================================= -->
+
 <div class="sidebar">
-    <div class="sidebar-item" onclick="scrollTopPage()">
-        <div class="sidebar-icon">🎧</div>
-        <div class="sidebar-text">Music</div>
+
+    <div class="sidebar-menu">
+
+
+        <!-- MUSIC -->
+
+        <div
+            class="sidebar-item active"
+            onclick="goMusic()"
+        >
+
+            <div class="sidebar-icon">
+                🎧
+            </div>
+
+            <div class="sidebar-text">
+                Music
+
+                <span class="sidebar-small">
+                    Музыка
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- ROFLAN -->
+
+        <div
+            class="sidebar-item"
+            onclick="goRoflan()"
+        >
+
+            <div class="sidebar-icon">
+                😂
+            </div>
+
+            <div class="sidebar-text">
+                Рофлан
+
+                <span class="sidebar-small">
+                    Звуки
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- GACHI -->
+
+        <div
+            class="sidebar-item"
+            onclick="goGachi()"
+        >
+
+            <div class="sidebar-icon">
+                🎤
+            </div>
+
+            <div class="sidebar-text">
+                Gachi
+
+                <span class="sidebar-small">
+                    Скоро
+                </span>
+            </div>
+
+        </div>
+
+
+        <!-- SCREAMERS -->
+
+        <div
+            class="sidebar-item"
+            onclick="goScreamer()"
+        >
+
+            <div class="sidebar-icon">
+                😱
+            </div>
+
+            <div class="sidebar-text">
+                Скримеры
+
+                <span class="sidebar-small">
+                    Скоро
+                </span>
+            </div>
+
+        </div>
+
+
     </div>
 
-    <div class="sidebar-item">
-        <div class="sidebar-icon">😂</div>
-        <div class="sidebar-text">Роффл<br>звуки</div>
-    </div>
-
-    <div class="sidebar-item">
-        <div class="sidebar-icon">🎤</div>
-        <div class="sidebar-text">Gachi</div>
-    </div>
-
-    <div class="sidebar-item">
-        <div class="sidebar-icon">😱</div>
-        <div class="sidebar-text">Скримеры</div>
-    </div>
 </div>
 
+
+<!-- =======================================================
+     MAIN
+     ======================================================= -->
+
 <div class="main">
+
     <header class="header">
-        <h1 class="header-title">🎧 МаЛяВоЧка - Music 🎧</h1>
+
+        <h1 class="header-title">
+            🎧 МаЛяВоЧка - Music 🎧
+        </h1>
+
 
         <div class="search-wrap">
-            <span class="search-icon">🔍</span>
+
+            <span class="search-icon">
+                🔍
+            </span>
+
             <input
                 id="search"
                 class="search"
@@ -295,15 +746,28 @@ body{
                 placeholder="Найти трек..."
                 autocomplete="off"
             >
+
         </div>
+
     </header>
 
-    <main id="musicList" class="content">
-        <div class="status loading">Загрузка музыки... 🎵</div>
+
+    <main
+        id="musicList"
+        class="content"
+    >
+
+        <div class="status loading">
+            Загрузка музыки... 🎵
+        </div>
+
     </main>
+
 </div>
 
+
 <script>
+
 /* =========================================================
    НАСТРОЙКИ
    ========================================================= */
@@ -346,10 +810,12 @@ const EN_TO_RU=[
     ["u","у"],["v","в"],["w","в"],["x","кс"],["y","й"],["z","з"]
 ];
 
+
 /*
  * Большая база распространённых слов и имён.
  * Она нужна именно для вариантов "как слышится".
  */
+
 const COMMON_TRANSLITERATIONS=[
     ["feat","фит"],["feat","фич"],["ft","фит"],["ft","фт"],
     ["psy","пси"],["psy","пс"],["daryana","дарьяна"],["daryana","дарья"],
@@ -456,9 +922,14 @@ function uniqueVariants(values){
 
 function transliterateRuToEn(text){
     let result="";
+
     for(const char of String(text||"").toLowerCase()){
-        result+=RU_TO_EN[char]!==undefined?RU_TO_EN[char]:char;
+        result+=
+            RU_TO_EN[char]!==undefined
+                ?RU_TO_EN[char]
+                :char;
     }
+
     return result;
 }
 
@@ -483,49 +954,70 @@ function transliterateEnToRu(text){
    ========================================================= */
 
 function makeSearchVariants(text){
+
     const original=String(text||"").toLowerCase();
+
     const variants=[original];
 
-    variants.push(transliterateRuToEn(original));
-    variants.push(transliterateEnToRu(original));
+    variants.push(
+        transliterateRuToEn(original)
+    );
 
-    const normalized=normalizeSearchText(original);
+    variants.push(
+        transliterateEnToRu(original)
+    );
+
+    const normalized=
+        normalizeSearchText(original);
 
     for(const pair of COMMON_TRANSLITERATIONS){
-        const en=normalizeSearchText(pair[0]);
+
+        const en=
+            normalizeSearchText(pair[0]);
 
         if(normalized.includes(en)){
             variants.push(pair[1]);
         }
     }
 
+
     /*
      * Заменяем известные английские слова
      * на русское произношение.
      */
+
     let commonVersion=original;
 
     for(const pair of COMMON_TRANSLITERATIONS){
-        commonVersion=commonVersion
-            .split(pair[0])
-            .join(pair[1]);
+
+        commonVersion=
+            commonVersion
+                .split(pair[0])
+                .join(pair[1]);
+
     }
 
     variants.push(commonVersion);
+
 
     /*
      * Также делаем обратную замену русских
      * вариантов на английские.
      */
+
     let reverseVersion=original;
 
     for(const pair of COMMON_TRANSLITERATIONS){
-        reverseVersion=reverseVersion
-            .split(pair[1])
-            .join(pair[0]);
+
+        reverseVersion=
+            reverseVersion
+                .split(pair[1])
+                .join(pair[0]);
+
     }
 
     variants.push(reverseVersion);
+
 
     return uniqueVariants(variants);
 }
@@ -536,7 +1028,12 @@ function makeSearchVariants(text){
    ========================================================= */
 
 function buildTrackSearchText(track){
-    const name=removeExtension(String(track.name||""));
+
+    const name=
+        removeExtension(
+            String(track.name||"")
+        );
+
     return makeSearchVariants(name);
 }
 
@@ -546,26 +1043,39 @@ function buildTrackSearchText(track){
    ========================================================= */
 
 function levenshtein(a,b){
+
     a=String(a||"");
     b=String(b||"");
 
     if(a===b)return 0;
+
     if(!a.length)return b.length;
+
     if(!b.length)return a.length;
 
-    let prev=Array.from({length:b.length+1},(_,i)=>i);
+    let prev=
+        Array.from(
+            {length:b.length+1},
+            (_,i)=>i
+        );
 
     for(let i=1;i<=a.length;i++){
+
         const cur=[i];
 
         for(let j=1;j<=b.length;j++){
-            const cost=a[i-1]===b[j-1]?0:1;
+
+            const cost=
+                a[i-1]===b[j-1]
+                    ?0
+                    :1;
 
             cur[j]=Math.min(
                 cur[j-1]+1,
                 prev[j]+1,
                 prev[j-1]+cost
             );
+
         }
 
         prev=cur;
@@ -580,30 +1090,56 @@ function levenshtein(a,b){
    ========================================================= */
 
 function fuzzyWordMatch(query,text){
-    if(!query||!text)return false;
 
-    if(text.includes(query))return true;
+    if(!query||!text)
+        return false;
 
-    if(query.length<3)return false;
+    if(text.includes(query))
+        return true;
 
-    const words=text
-        .split(/[\s\-_.,!?()[\]{}]+/)
-        .filter(Boolean);
+    if(query.length<3)
+        return false;
 
-    const candidates=words.length?words:[text];
+    const words=
+        text
+            .split(/[\s\-_.,!?()[\]{}]+/)
+            .filter(Boolean);
+
+    const candidates=
+        words.length
+            ?words
+            :[text];
 
     for(const word of candidates){
-        const distance=levenshtein(query,word);
 
-        if(query.length<=4&&distance<=1)return true;
-        if(query.length<=7&&distance<=2)return true;
+        const distance=
+            levenshtein(
+                query,
+                word
+            );
+
+        if(
+            query.length<=4 &&
+            distance<=1
+        )
+            return true;
+
+        if(
+            query.length<=7 &&
+            distance<=2
+        )
+            return true;
 
         if(
             query.length>7 &&
-            distance<=Math.max(2,Math.floor(query.length*.25))
+            distance<=Math.max(
+                2,
+                Math.floor(query.length*.25)
+            )
         ){
             return true;
         }
+
     }
 
     return false;
@@ -615,25 +1151,38 @@ function fuzzyWordMatch(query,text){
    ========================================================= */
 
 function smartSearchMatch(track,query){
-    const cleanQuery=normalizeSearchText(query);
 
-    if(!cleanQuery)return true;
+    const cleanQuery=
+        normalizeSearchText(query);
 
-    const variants=buildTrackSearchText(track);
+    if(!cleanQuery)
+        return true;
+
+    const variants=
+        buildTrackSearchText(track);
+
 
     /*
      * Обычное совпадение.
      */
+
     for(const variant of variants){
-        if(variant.includes(cleanQuery))return true;
+
+        if(
+            variant.includes(
+                cleanQuery
+            )
+        )
+            return true;
 
         if(
             cleanQuery.length>=3 &&
             cleanQuery.includes(variant)
-        ){
+        )
             return true;
-        }
+
     }
+
 
     /*
      * Варианты самого запроса.
@@ -643,14 +1192,31 @@ function smartSearchMatch(track,query){
      * фит -> feat
      * пс -> psy
      */
-    const queryVariants=makeSearchVariants(query);
+
+    const queryVariants=
+        makeSearchVariants(query);
 
     for(const q of queryVariants){
+
         for(const variant of variants){
-            if(variant.includes(q))return true;
-            if(fuzzyWordMatch(q,variant))return true;
+
+            if(
+                variant.includes(q)
+            )
+                return true;
+
+            if(
+                fuzzyWordMatch(
+                    q,
+                    variant
+                )
+            )
+                return true;
+
         }
+
     }
+
 
     /*
      * Дополнительная проверка отдельных частей запроса.
@@ -660,36 +1226,62 @@ function smartSearchMatch(track,query){
      * а трек называется:
      * "Daryana..."
      */
-    const queryParts=String(query||"")
-        .toLowerCase()
-        .split(/[\s\-_.,!?()[\]{}]+/)
-        .filter(v=>v.length>=2);
+
+    const queryParts=
+        String(query||"")
+            .toLowerCase()
+            .split(
+                /[\s\-_.,!?()[\]{}]+/
+            )
+            .filter(
+                v=>v.length>=2
+            );
 
     if(queryParts.length>1){
+
         let matched=0;
 
         for(const part of queryParts){
-            const partVariants=makeSearchVariants(part);
+
+            const partVariants=
+                makeSearchVariants(part);
+
             let partFound=false;
 
             for(const q of partVariants){
+
                 for(const variant of variants){
+
                     if(
                         variant.includes(q) ||
-                        fuzzyWordMatch(q,variant)
+                        fuzzyWordMatch(
+                            q,
+                            variant
+                        )
                     ){
+
                         partFound=true;
+
                         break;
                     }
+
                 }
 
-                if(partFound)break;
+                if(partFound)
+                    break;
+
             }
 
-            if(partFound)matched++;
+            if(partFound)
+                matched++;
+
         }
 
-        if(matched===queryParts.length)return true;
+        if(
+            matched===queryParts.length
+        )
+            return true;
+
     }
 
     return false;
@@ -701,53 +1293,107 @@ function smartSearchMatch(track,query){
    ========================================================= */
 
 async function loadMusic(){
+
     try{
-        const response=await fetch(
-            LIST_URL+"?t="+Date.now(),
-            {
-                method:"GET",
-                cache:"no-store",
-                headers:{Accept:"application/json"}
-            }
-        );
+
+        const response=
+            await fetch(
+                LIST_URL+
+                "?t="+
+                Date.now(),
+                {
+                    method:"GET",
+                    cache:"no-store",
+                    headers:{
+                        Accept:
+                            "application/json"
+                    }
+                }
+            );
+
 
         if(!response.ok){
-            throw new Error("Worker HTTP "+response.status);
+
+            throw new Error(
+                "Worker HTTP "+
+                response.status
+            );
+
         }
 
-        const data=await response.json();
+
+        const data=
+            await response.json();
+
 
         if(!Array.isArray(data)){
-            throw new Error("Worker вернул неправильный JSON");
+
+            throw new Error(
+                "Worker вернул неправильный JSON"
+            );
+
         }
 
-        tracks=data.filter(
-            track=>track&&track.id&&track.name
-        );
+
+        tracks=
+            data.filter(
+                track=>
+                    track &&
+                    track.id &&
+                    track.name
+            );
+
 
         currentPage=1;
+
         renderTracks();
+
     }
     catch(error){
-        console.error("Ошибка загрузки музыки:",error);
+
+        console.error(
+            "Ошибка загрузки музыки:",
+            error
+        );
+
 
         musicList.innerHTML=`
+
             <div class="status error">
-                <strong>🎧 Не удалось загрузить музыку</strong>
-                <div>Worker HTTP ошибка</div>
+
+                <strong>
+                    🎧 Не удалось загрузить музыку
+                </strong>
+
+                <div>
+                    Worker HTTP ошибка
+                </div>
+
                 <br>
-                <small>${escapeHTML(error.message)}</small>
+
+                <small>
+                    ${escapeHTML(error.message)}
+                </small>
+
                 <br><br>
+
                 <button
                     class="btn download-btn"
                     onclick="loadMusic()"
-                    style="max-width:220px;padding:10px 20px"
+                    style="
+                        max-width:220px;
+                        padding:10px 20px
+                    "
                 >
                     ↻ Повторить
                 </button>
+
             </div>
+
         `;
+
     }
+
 }
 
 
@@ -756,11 +1402,23 @@ async function loadMusic(){
    ========================================================= */
 
 function getPlayURL(track){
-    return WORKER_URL+"/music/"+encodeURIComponent(track.id);
+
+    return (
+        WORKER_URL+
+        "/music/"+
+        encodeURIComponent(track.id)
+    );
+
 }
 
+
 function getDownloadURL(track){
-    return getPlayURL(track)+"?download=1";
+
+    return (
+        getPlayURL(track)+
+        "?download=1"
+    );
+
 }
 
 
@@ -769,49 +1427,109 @@ function getDownloadURL(track){
    ========================================================= */
 
 function stopAllAudio(exceptAudio=null){
-    document.querySelectorAll("audio").forEach(audio=>{
-        if(audio===exceptAudio)return;
 
-        try{
-            audio.pause();
-            audio.currentTime=0;
-        }catch(error){}
-    });
+    document
+        .querySelectorAll("audio")
+        .forEach(audio=>{
 
-    if(currentAudio&&currentAudio!==exceptAudio){
+            if(audio===exceptAudio)
+                return;
+
+            try{
+
+                audio.pause();
+
+                audio.currentTime=0;
+
+            }
+            catch(error){}
+
+        });
+
+
+    if(
+        currentAudio &&
+        currentAudio!==exceptAudio
+    ){
+
         currentAudio=null;
+
     }
+
 }
 
 
 function setupAudio(audio){
-    if(!audio)return;
 
-    audio.addEventListener("play",()=>{
-        if(currentAudio&&currentAudio!==audio){
-            try{
-                currentAudio.pause();
-                currentAudio.currentTime=0;
-            }catch(error){}
-        }
+    if(!audio)
+        return;
 
-        document.querySelectorAll("audio").forEach(other=>{
-            if(other!==audio&&!other.paused){
+
+    audio.addEventListener(
+        "play",
+        ()=>{
+
+            if(
+                currentAudio &&
+                currentAudio!==audio
+            ){
+
                 try{
-                    other.pause();
-                    other.currentTime=0;
-                }catch(error){}
+
+                    currentAudio.pause();
+
+                    currentAudio.currentTime=0;
+
+                }
+                catch(error){}
+
             }
-        });
 
-        currentAudio=audio;
-    });
 
-    audio.addEventListener("ended",()=>{
-        if(currentAudio===audio){
-            currentAudio=null;
+            document
+                .querySelectorAll("audio")
+                .forEach(other=>{
+
+                    if(
+                        other!==audio &&
+                        !other.paused
+                    ){
+
+                        try{
+
+                            other.pause();
+
+                            other.currentTime=0;
+
+                        }
+                        catch(error){}
+
+                    }
+
+                });
+
+
+            currentAudio=audio;
+
         }
-    });
+    );
+
+
+    audio.addEventListener(
+        "ended",
+        ()=>{
+
+            if(
+                currentAudio===audio
+            ){
+
+                currentAudio=null;
+
+            }
+
+        }
+    );
+
 }
 
 
@@ -820,51 +1538,106 @@ function setupAudio(audio){
    ========================================================= */
 
 function renderTracks(){
-    const query=searchInput.value.trim();
 
-    filteredTracks=tracks.filter(
-        track=>smartSearchMatch(track,query)
-    );
+    const query=
+        searchInput.value.trim();
 
-    const totalPages=Math.max(
-        1,
-        Math.ceil(filteredTracks.length/TRACKS_PER_PAGE)
-    );
 
-    if(currentPage>totalPages){
-        currentPage=totalPages;
+    filteredTracks=
+        tracks.filter(
+            track=>
+                smartSearchMatch(
+                    track,
+                    query
+                )
+        );
+
+
+    const totalPages=
+        Math.max(
+            1,
+            Math.ceil(
+                filteredTracks.length/
+                TRACKS_PER_PAGE
+            )
+        );
+
+
+    if(
+        currentPage>totalPages
+    ){
+
+        currentPage=
+            totalPages;
+
     }
+
 
     stopAllAudio();
 
-    if(!filteredTracks.length){
+
+    if(
+        !filteredTracks.length
+    ){
+
         musicList.innerHTML=`
-            <div class="empty">🎵 Ничего не найдено</div>
+
+            <div class="empty">
+                🎵 Ничего не найдено
+            </div>
+
         `;
+
         currentAudio=null;
+
         return;
+
     }
 
-    const start=(currentPage-1)*TRACKS_PER_PAGE;
-    const pageTracks=filteredTracks.slice(
-        start,
-        start+TRACKS_PER_PAGE
-    );
 
-    musicList.innerHTML=
-        pageTracks.map(createTrackHTML).join("")+
-        createPaginationHTML(totalPages);
+    const start=
+        (currentPage-1)*
+        TRACKS_PER_PAGE;
 
-    pageTracks.forEach(track=>{
-        const audio=document.getElementById(
-            "audio-"+track.id
+
+    const pageTracks=
+        filteredTracks.slice(
+            start,
+            start+TRACKS_PER_PAGE
         );
 
-        if(audio){
-            audio.src=getPlayURL(track);
-            setupAudio(audio);
+
+    musicList.innerHTML=
+        pageTracks
+            .map(createTrackHTML)
+            .join("")+
+        createPaginationHTML(
+            totalPages
+        );
+
+
+    pageTracks.forEach(
+        track=>{
+
+            const audio=
+                document.getElementById(
+                    "audio-"+
+                    track.id
+                );
+
+
+            if(audio){
+
+                audio.src=
+                    getPlayURL(track);
+
+                setupAudio(audio);
+
+            }
+
         }
-    });
+    );
+
 }
 
 
@@ -873,17 +1646,40 @@ function renderTracks(){
    ========================================================= */
 
 function createTrackHTML(track){
-    const id=escapeHTML(String(track.id));
-    const name=escapeHTML(
-        removeExtension(String(track.name||""))
-    );
+
+    const id=
+        escapeHTML(
+            String(track.id)
+        );
+
+
+    const name=
+        escapeHTML(
+            removeExtension(
+                String(track.name||"")
+            )
+        );
+
 
     return `
-        <div class="track" data-track-id="${id}">
+
+        <div
+            class="track"
+            data-track-id="${id}"
+        >
+
             <div class="track-title">
-                <span class="track-icon">🎵</span>
-                <span class="track-name">${name}</span>
+
+                <span class="track-icon">
+                    🎵
+                </span>
+
+                <span class="track-name">
+                    ${name}
+                </span>
+
             </div>
+
 
             <audio
                 id="audio-${id}"
@@ -891,29 +1687,41 @@ function createTrackHTML(track){
                 controls
                 preload="metadata"
             >
-                Ваш браузер не поддерживает воспроизведение аудио.
+                Ваш браузер не поддерживает
+                воспроизведение аудио.
             </audio>
 
+
             <div class="buttons">
+
                 <a
                     class="btn download-btn"
-                    href="${escapeAttribute(getDownloadURL(track))}"
+                    href="${escapeAttribute(
+                        getDownloadURL(track)
+                    )}"
                     download
                     target="_self"
                 >
                     ↓ Скачать MP3
                 </a>
 
+
                 <button
                     class="btn copy-btn"
                     type="button"
-                    onclick="copyMusicLink(this,'${escapeJS(getPlayURL(track))}')"
+                    onclick="copyMusicLink(this,'${escapeJS(
+                        getPlayURL(track)
+                    )}')"
                 >
                     🔗 Копировать ссылку
                 </button>
+
             </div>
+
         </div>
+
     `;
+
 }
 
 
@@ -922,19 +1730,34 @@ function createTrackHTML(track){
    ========================================================= */
 
 function createPaginationHTML(totalPages){
-    if(totalPages<=1)return "";
 
-    const start=(currentPage-1)*TRACKS_PER_PAGE+1;
-    const end=Math.min(
-        currentPage*TRACKS_PER_PAGE,
-        filteredTracks.length
-    );
+    if(totalPages<=1)
+        return "";
+
+
+    const start=
+        (currentPage-1)*
+        TRACKS_PER_PAGE+
+        1;
+
+
+    const end=
+        Math.min(
+            currentPage*
+            TRACKS_PER_PAGE,
+            filteredTracks.length
+        );
+
 
     let html=`
+
         <div class="pagination">
+
             <div class="page-info">
-                Показано ${start}–${end} из ${filteredTracks.length}
+                Показано ${start}–${end}
+                из ${filteredTracks.length}
             </div>
+
 
             <button
                 class="page-btn"
@@ -943,74 +1766,133 @@ function createPaginationHTML(totalPages){
             >
                 ←
             </button>
+
     `;
 
+
     const pages=[];
+
 
     /*
      * Показываем первые страницы,
      * текущую и последние.
      */
-    for(let i=1;i<=totalPages;i++){
+
+    for(
+        let i=1;
+        i<=totalPages;
+        i++
+    ){
+
         if(
             i===1 ||
             i===totalPages ||
-            Math.abs(i-currentPage)<=2
+            Math.abs(
+                i-currentPage
+            )<=2
         ){
+
             pages.push(i);
+
         }
+
     }
+
 
     let previous=0;
 
+
     for(const page of pages){
-        if(previous&&page-previous>1){
-            html+=`<span class="page-dots">...</span>`;
+
+        if(
+            previous &&
+            page-previous>1
+        ){
+
+            html+=`
+                <span class="page-dots">
+                    ...
+                </span>
+            `;
+
         }
 
+
         html+=`
+
             <button
-                class="page-btn ${page===currentPage?"active":""}"
+                class="page-btn ${
+                    page===currentPage
+                        ?"active"
+                        :""
+                }"
                 onclick="changePage(${page})"
             >
                 ${page}
             </button>
+
         `;
 
+
         previous=page;
+
     }
 
+
     html+=`
+
             <button
                 class="page-btn"
                 onclick="changePage(${currentPage+1})"
-                ${currentPage===totalPages?"disabled":""}
+                ${
+                    currentPage===totalPages
+                        ?"disabled"
+                        :""
+                }
             >
                 →
             </button>
+
         </div>
+
     `;
 
+
     return html;
+
 }
 
 
 function changePage(page){
-    const totalPages=Math.max(
-        1,
-        Math.ceil(filteredTracks.length/TRACKS_PER_PAGE)
-    );
 
-    if(page<1||page>totalPages)return;
+    const totalPages=
+        Math.max(
+            1,
+            Math.ceil(
+                filteredTracks.length/
+                TRACKS_PER_PAGE
+            )
+        );
+
+
+    if(
+        page<1 ||
+        page>totalPages
+    )
+        return;
+
 
     currentPage=page;
 
+
     renderTracks();
+
 
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
+
 }
 
 
@@ -1019,54 +1901,128 @@ function changePage(page){
    ========================================================= */
 
 async function copyMusicLink(button,url){
-    const oldText=button.textContent;
+
+    const oldText=
+        button.textContent;
+
 
     try{
-        await navigator.clipboard.writeText(url);
 
-        button.textContent="✓ Ссылка скопирована";
-        button.classList.add("copied");
+        await navigator.clipboard
+            .writeText(url);
 
-        setTimeout(()=>{
-            button.textContent=oldText;
-            button.classList.remove("copied");
-        },1800);
+
+        button.textContent=
+            "✓ Ссылка скопирована";
+
+
+        button.classList.add(
+            "copied"
+        );
+
+
+        setTimeout(
+            ()=>{
+
+                button.textContent=
+                    oldText;
+
+                button.classList.remove(
+                    "copied"
+                );
+
+            },
+            1800
+        );
+
     }
     catch(error){
-        const textarea=document.createElement("textarea");
+
+        const textarea=
+            document.createElement(
+                "textarea"
+            );
+
 
         textarea.value=url;
-        textarea.style.position="fixed";
-        textarea.style.left="-9999px";
-        textarea.style.top="0";
 
-        document.body.appendChild(textarea);
+        textarea.style.position=
+            "fixed";
+
+        textarea.style.left=
+            "-9999px";
+
+        textarea.style.top=
+            "0";
+
+
+        document.body.appendChild(
+            textarea
+        );
+
+
         textarea.focus();
+
         textarea.select();
+
 
         let success=false;
 
+
         try{
-            success=document.execCommand("copy");
-        }catch(e){
-            success=false;
+
+            success=
+                document.execCommand(
+                    "copy"
+                );
+
         }
+        catch(e){
+
+            success=false;
+
+        }
+
 
         textarea.remove();
 
-        if(success){
-            button.textContent="✓ Ссылка скопирована";
-            button.classList.add("copied");
 
-            setTimeout(()=>{
-                button.textContent=oldText;
-                button.classList.remove("copied");
-            },1800);
+        if(success){
+
+            button.textContent=
+                "✓ Ссылка скопирована";
+
+            button.classList.add(
+                "copied"
+            );
+
+
+            setTimeout(
+                ()=>{
+
+                    button.textContent=
+                        oldText;
+
+                    button.classList.remove(
+                        "copied"
+                    );
+
+                },
+                1800
+            );
+
         }
         else{
-            window.prompt("Скопируй эту ссылку:",url);
+
+            window.prompt(
+                "Скопируй эту ссылку:",
+                url
+            );
+
         }
+
     }
+
 }
 
 
@@ -1074,10 +2030,16 @@ async function copyMusicLink(button,url){
    ПОИСК
    ========================================================= */
 
-searchInput.addEventListener("input",()=>{
-    currentPage=1;
-    renderTracks();
-});
+searchInput.addEventListener(
+    "input",
+    ()=>{
+
+        currentPage=1;
+
+        renderTracks();
+
+    }
+);
 
 
 /* =========================================================
@@ -1085,7 +2047,12 @@ searchInput.addEventListener("input",()=>{
    ========================================================= */
 
 function removeExtension(name){
-    return name.replace(/\.mp3$/i,"");
+
+    return name.replace(
+        /\.mp3$/i,
+        ""
+    );
+
 }
 
 
@@ -1094,25 +2061,73 @@ function removeExtension(name){
    ========================================================= */
 
 function escapeHTML(value){
+
     return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
 }
+
 
 function escapeAttribute(value){
+
     return escapeHTML(value);
+
 }
 
+
 function escapeJS(value){
+
     return String(value)
-        .replace(/\\/g,"\\\\")
-        .replace(/'/g,"\\'")
-        .replace(/"/g,'\\"')
-        .replace(/\r/g,"\\r")
-        .replace(/\n/g,"\\n");
+
+        .replace(
+            /\\/g,
+            "\\\\"
+        )
+
+        .replace(
+            /'/g,
+            "\\'"
+        )
+
+        .replace(
+            /"/g,
+            '\\"'
+        )
+
+        .replace(
+            /\r/g,
+            "\\r"
+        )
+
+        .replace(
+            /\n/g,
+            "\\n"
+        );
+
 }
 
 
@@ -1121,10 +2136,48 @@ function escapeJS(value){
    ========================================================= */
 
 function scrollTopPage(){
+
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
+
+}
+
+
+/* =========================================================
+   НАВИГАЦИЯ
+   ========================================================= */
+
+function goMusic(){
+
+    window.location.href=
+        "index.html";
+
+}
+
+
+function goRoflan(){
+
+    window.location.href=
+        "roflan.html";
+
+}
+
+
+function goGachi(){
+
+    window.location.href=
+        "gachi.html";
+
+}
+
+
+function goScreamer(){
+
+    window.location.href=
+        "screamer.html";
+
 }
 
 
@@ -1133,6 +2186,7 @@ function scrollTopPage(){
    ========================================================= */
 
 loadMusic();
+
 </script>
 
 </body>
