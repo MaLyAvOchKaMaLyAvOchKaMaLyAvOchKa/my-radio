@@ -1,1723 +1,1186 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width,initial-scale=1.0">
-
-<title>МаЛяВоЧка - Roflan</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>МаЛяВоЧка - Рофлан</title>
 
 <style>
-
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 html{
     scroll-behavior:smooth;
 }
 
 body{
-
     margin:0;
-
     background:
-        radial-gradient(
-            circle at 20% 10%,
-            rgba(255,0,100,.12),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 80% 20%,
-            rgba(0,160,255,.12),
-            transparent 35%
-        ),
-        #08090d;
-
-    color:#fff;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
+        radial-gradient(circle at 60% 15%,rgba(255,180,0,.045),transparent 35%),
+        radial-gradient(circle at 85% 80%,rgba(255,80,0,.035),transparent 40%),
+        #090b0c;
+    color:#eee;
+    font-family:Arial,Helvetica,sans-serif;
     min-height:100vh;
-
-    padding-bottom:150px;
 }
 
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:205px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #151719 0%,
+            #101214 55%,
+            #0d0f10 100%
+        );
+
+    border-right:1px solid rgba(255,255,255,.075);
+
+    z-index:100;
+
+    padding:220px 12px 20px;
+
+    box-shadow:
+        8px 0 35px rgba(0,0,0,.16);
+}
+
+.sidebar-menu{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.sidebar-item{
+    position:relative;
+
+    display:flex;
+    align-items:center;
+
+    gap:13px;
+
+    min-height:56px;
+
+    padding:10px 14px;
+
+    border-radius:13px;
+
+    color:#aeb2b4;
+
+    font-size:17px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:
+        background .2s,
+        color .2s,
+        transform .18s,
+        box-shadow .2s;
+}
+
+.sidebar-item:hover{
+    background:rgba(255,255,255,.045);
+    color:#fff;
+
+    transform:translateX(2px);
+}
+
+.sidebar-item.active{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,145,0,.16),
+            rgba(255,90,0,.07)
+        );
+
+    color:#ffae3d;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,160,40,.12),
+        0 5px 20px rgba(0,0,0,.14);
+}
+
+.sidebar-item.active::before{
+    content:"";
+
+    position:absolute;
+
+    left:-12px;
+    top:11px;
+    bottom:11px;
+
+    width:3px;
+
+    border-radius:0 5px 5px 0;
+
+    background:#ff9d25;
+
+    box-shadow:
+        0 0 10px rgba(255,150,30,.45);
+}
+
+.sidebar-icon{
+    width:30px;
+    height:30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:9px;
+
+    background:rgba(255,255,255,.035);
+
+    font-size:19px;
+
+    flex:none;
+
+    transition:.2s;
+}
+
+.sidebar-item:hover .sidebar-icon{
+    background:rgba(255,255,255,.07);
+}
+
+.sidebar-item.active .sidebar-icon{
+    background:rgba(255,150,30,.12);
+}
+
+.sidebar-text{
+    line-height:1.15;
+}
+
+.sidebar-small{
+    display:block;
+    margin-top:3px;
+
+    font-size:11px;
+    font-weight:400;
+
+    color:#666;
+}
 
 /* =========================================================
-   TOP BAR
-========================================================= */
+   MAIN
+   ========================================================= */
 
-.topbar{
+.main{
+    margin-left:205px;
+    min-height:100vh;
+}
 
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header{
     position:sticky;
 
     top:0;
 
-    z-index:1000;
+    z-index:50;
 
-    height:70px;
+    min-height:114px;
 
     display:flex;
-
     align-items:center;
+    justify-content:center;
 
-    justify-content:space-between;
-
-    padding:
-        0 28px;
+    padding:18px 30px;
 
     background:
-        rgba(8,9,13,.82);
+        linear-gradient(
+            180deg,
+            rgba(24,25,28,.97),
+            rgba(20,21,23,.94)
+        );
 
-    backdrop-filter:
-        blur(18px);
+    border-bottom:1px solid rgba(255,255,255,.08);
 
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.08);
-
-    box-shadow:
-        0 10px 35px
-        rgba(0,0,0,.25);
-
+    backdrop-filter:blur(10px);
 }
 
+.header-title{
+    margin:0;
 
-.logo{
+    color:#ffae3d;
 
-    font-size:22px;
-
+    font-size:39px;
     font-weight:800;
 
     letter-spacing:.5px;
 
-    white-space:nowrap;
+    text-align:center;
 
+    text-shadow:
+        0 0 10px rgba(255,160,30,.42),
+        0 0 25px rgba(255,120,0,.15);
 }
-
-
-.logo span{
-
-    opacity:.5;
-
-    font-weight:400;
-
-}
-
-
-.top-buttons{
-
-    display:flex;
-
-    gap:10px;
-
-}
-
-
-.top-button{
-
-    border:1px solid
-        rgba(255,255,255,.1);
-
-    background:
-        rgba(255,255,255,.05);
-
-    color:white;
-
-    padding:
-        10px 15px;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-    text-decoration:none;
-
-    font-size:14px;
-
-}
-
-
-.top-button:hover{
-
-    background:
-        rgba(255,255,255,.1);
-
-    transform:
-        translateY(-1px);
-
-}
-
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-
-    max-width:1200px;
-
-    margin:
-        55px auto 25px;
-
-    padding:
-        0 22px;
-
-}
-
-
-.hero h1{
-
-    margin:0;
-
-    font-size:
-        clamp(35px,6vw,68px);
-
-    line-height:1;
-
-    letter-spacing:-2px;
-
-}
-
-
-.hero h1 span{
-
-    background:
-        linear-gradient(
-            90deg,
-            #ff3b81,
-            #9b6cff,
-            #39b9ff
-        );
-
-    -webkit-background-clip:text;
-
-    background-clip:text;
-
-    color:transparent;
-
-}
-
-
-.hero p{
-
-    color:
-        rgba(255,255,255,.5);
-
-    margin:
-        18px 0 0;
-
-    font-size:16px;
-
-}
-
 
 /* =========================================================
    SEARCH
-========================================================= */
+   ========================================================= */
 
-.controls{
+.search-wrap{
+    position:absolute;
 
-    max-width:1200px;
-
-    margin:
-        0 auto 25px;
-
-    padding:
-        0 22px;
-
-    display:flex;
-
-    gap:12px;
-
-    flex-wrap:wrap;
-
+    right:24px;
+    top:34px;
 }
-
 
 .search{
+    width:252px;
+    height:45px;
 
-    flex:1;
+    border-radius:25px;
 
-    min-width:240px;
+    border:1px solid rgba(255,255,255,.12);
 
-    position:relative;
+    background:rgba(0,0,0,.24);
 
-}
-
-
-.search input{
-
-    width:100%;
-
-    height:50px;
-
-    border-radius:15px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.1);
-
-    background:
-        rgba(255,255,255,.055);
-
-    color:white;
+    color:#fff;
 
     outline:none;
 
-    padding:
-        0 18px;
+    padding:0 18px 0 43px;
 
     font-size:15px;
 
-    transition:.2s;
-
+    transition:
+        border-color .2s,
+        box-shadow .2s,
+        background .2s;
 }
 
-
-.search input:focus{
-
-    border-color:
-        rgba(155,108,255,.6);
-
-    background:
-        rgba(255,255,255,.08);
+.search:focus{
+    border-color:rgba(255,160,30,.55);
 
     box-shadow:
-        0 0 0 3px
-        rgba(155,108,255,.08);
+        0 0 15px rgba(255,150,30,.08);
 
+    background:rgba(0,0,0,.32);
 }
 
-
-.select{
-
-    height:50px;
-
-    border-radius:15px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.1);
-
-    background:#11131a;
-
-    color:white;
-
-    padding:
-        0 15px;
-
-    outline:none;
-
-    cursor:pointer;
-
+.search::placeholder{
+    color:#777;
 }
 
+.search-icon{
+    position:absolute;
+
+    left:16px;
+    top:12px;
+
+    color:#aaa;
+
+    font-size:19px;
+
+    pointer-events:none;
+}
 
 /* =========================================================
-   STATS
-========================================================= */
+   CONTENT
+   ========================================================= */
 
-.stats{
+.content{
+    max-width:790px;
 
-    max-width:1200px;
+    margin:0 auto;
 
-    margin:
-        0 auto 22px;
-
-    padding:
-        0 22px;
-
-    color:
-        rgba(255,255,255,.45);
-
-    font-size:14px;
-
+    padding:34px 30px 80px;
 }
-
 
 /* =========================================================
-   TRACK LIST
-========================================================= */
+   STATUS
+   ========================================================= */
 
-.track-list{
+.status{
+    text-align:center;
 
-    max-width:1200px;
+    padding:60px 20px;
 
-    margin:
-        0 auto;
+    color:#777;
 
-    padding:
-        0 22px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:8px;
-
+    font-size:17px;
 }
 
+.status.loading{
+    color:#888;
+}
+
+.status.error{
+    max-width:700px;
+
+    margin:40px auto;
+
+    padding:30px;
+
+    border:1px solid rgba(255,60,60,.25);
+
+    background:rgba(80,10,10,.16);
+
+    border-radius:14px;
+
+    color:#ff7777;
+}
+
+.status.error strong{
+    display:block;
+
+    color:#ff4f4f;
+
+    margin-bottom:15px;
+
+    font-size:18px;
+}
+
+/* =========================================================
+   ROFLAN CARD
+   ========================================================= */
 
 .track{
-
-    display:grid;
-
-    grid-template-columns:
-        54px
-        minmax(0,1fr)
-        auto;
-
-    align-items:center;
-
-    gap:14px;
-
-    min-height:72px;
-
-    padding:
-        10px 12px;
-
-    border-radius:17px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid
-        rgba(255,255,255,.055);
-
-    transition:.2s;
-
-}
-
-
-.track:hover{
-
-    background:
-        rgba(255,255,255,.065);
-
-    border-color:
-        rgba(255,255,255,.1);
-
-    transform:
-        translateY(-1px);
-
-}
-
-
-.track.playing{
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(255,59,129,.12),
-            rgba(155,108,255,.1),
-            rgba(57,185,255,.08)
-        );
-
-    border-color:
-        rgba(155,108,255,.35);
-
-}
-
-
-.track-number{
-
-    width:44px;
-
-    height:44px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:13px;
-
-    background:
-        rgba(255,255,255,.06);
-
-    color:
-        rgba(255,255,255,.45);
-
-    font-size:13px;
-
-}
-
-
-.track.playing
-.track-number{
-
-    color:white;
-
     background:
         linear-gradient(
             135deg,
-            #ff3b81,
-            #8d62ff
+            rgba(31,33,34,.94),
+            rgba(21,22,23,.94)
         );
 
+    border:1px solid rgba(255,255,255,.075);
+
+    border-radius:16px;
+
+    padding:17px;
+
+    margin-bottom:13px;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.18);
+
+    transition:
+        transform .18s,
+        border-color .18s,
+        box-shadow .18s;
 }
 
+.track:hover{
+    transform:translateY(-1px);
 
-.track-info{
+    border-color:rgba(255,160,30,.20);
 
-    min-width:0;
-
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.27);
 }
 
+.track-title{
+    display:flex;
 
-.track-name{
+    align-items:center;
 
-    font-size:15px;
+    gap:10px;
+
+    color:#f0f0f0;
+
+    font-size:19px;
 
     font-weight:600;
 
+    margin-bottom:10px;
+
     overflow:hidden;
-
-    white-space:nowrap;
-
-    text-overflow:ellipsis;
-
 }
 
-
-.track-meta{
-
-    margin-top:5px;
-
-    color:
-        rgba(255,255,255,.35);
-
-    font-size:12px;
-
-}
-
-
-.track-actions{
+.track-icon{
+    width:34px;
+    height:34px;
 
     display:flex;
 
     align-items:center;
+    justify-content:center;
 
-    gap:7px;
+    flex:none;
 
-}
-
-
-.icon-button{
-
-    width:40px;
-
-    height:40px;
-
-    border-radius:12px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.08);
+    border-radius:10px;
 
     background:
-        rgba(255,255,255,.045);
+        rgba(255,160,30,.08);
 
-    color:white;
+    font-size:21px;
+}
+
+.track-name{
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+}
+
+/* =========================================================
+   AUDIO
+   ========================================================= */
+
+.audio{
+    width:100%;
+
+    height:42px;
+
+    display:block;
+
+    margin-bottom:10px;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.buttons{
+    display:flex;
+
+    gap:9px;
+}
+
+.btn{
+    flex:1;
+
+    min-height:34px;
+
+    border:0;
+
+    border-radius:8px;
 
     cursor:pointer;
 
-    transition:.2s;
+    font-size:15px;
+
+    font-weight:700;
+
+    color:white;
+
+    transition:
+        filter .15s,
+        transform .1s,
+        opacity .15s;
+}
+
+.btn:hover{
+    filter:brightness(1.08);
+}
+
+.btn:active{
+    transform:scale(.985);
+}
+
+.download-btn{
+    background:#e58a18;
+
+    text-decoration:none;
 
     display:flex;
 
     align-items:center;
 
     justify-content:center;
-
-    font-size:16px;
-
 }
 
-
-.icon-button:hover{
-
-    background:
-        rgba(255,255,255,.1);
-
+.copy-btn{
+    background:#1389d7;
 }
 
-
-.play-button{
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff3b81,
-            #895fff
-        );
-
-    border:none;
-
+.copy-btn.copied{
+    background:#00b878;
 }
-
-
-.play-button:hover{
-
-    filter:
-        brightness(1.12);
-
-}
-
 
 /* =========================================================
    EMPTY
-========================================================= */
+   ========================================================= */
 
 .empty{
-
-    max-width:1200px;
-
-    margin:
-        40px auto;
-
-    padding:
-        0 22px;
-
     text-align:center;
 
-    color:
-        rgba(255,255,255,.35);
+    color:#777;
 
+    padding:80px 20px;
+
+    font-size:17px;
 }
-
-
-.loader{
-
-    width:35px;
-
-    height:35px;
-
-    border-radius:50%;
-
-    border:
-        3px solid
-        rgba(255,255,255,.1);
-
-    border-top-color:
-        #9b6cff;
-
-    animation:
-        spin .8s linear infinite;
-
-    margin:
-        30px auto;
-
-}
-
-
-@keyframes spin{
-
-    to{
-        transform:rotate(360deg);
-    }
-
-}
-
 
 /* =========================================================
-   PLAYER
-========================================================= */
+   PAGINATION
+   ========================================================= */
 
-.player{
-
-    position:fixed;
-
-    z-index:2000;
-
-    left:18px;
-
-    right:18px;
-
-    bottom:18px;
-
-    min-height:92px;
-
-    border-radius:22px;
-
-    background:
-        rgba(13,14,20,.9);
-
-    backdrop-filter:
-        blur(25px);
-
-    border:
-        1px solid
-        rgba(255,255,255,.1);
-
-    box-shadow:
-        0 20px 70px
-        rgba(0,0,0,.5);
-
-    padding:
-        13px 18px;
-
-    display:grid;
-
-    grid-template-columns:
-        minmax(180px,1fr)
-        minmax(250px,2fr)
-        minmax(160px,1fr);
+.pagination{
+    display:flex;
 
     align-items:center;
 
-    gap:20px;
+    justify-content:center;
 
+    gap:7px;
+
+    flex-wrap:wrap;
+
+    margin-top:30px;
 }
 
+.page-btn{
+    min-width:40px;
 
-.player-info{
+    height:40px;
 
-    min-width:0;
+    padding:0 12px;
 
-}
+    border:1px solid rgba(255,255,255,.1);
 
+    border-radius:8px;
 
-.player-title{
+    background:#17191b;
+
+    color:#bbb;
+
+    cursor:pointer;
 
     font-size:14px;
 
     font-weight:700;
 
-    overflow:hidden;
-
-    white-space:nowrap;
-
-    text-overflow:ellipsis;
-
+    transition:.15s;
 }
 
+.page-btn:hover{
+    background:#202427;
 
-.player-sub{
+    color:#ffae3d;
 
-    color:
-        rgba(255,255,255,.35);
-
-    font-size:11px;
-
-    margin-top:5px;
-
+    border-color:
+        rgba(255,160,30,.25);
 }
 
+.page-btn.active{
+    background:#e58a18;
 
-.player-center{
+    color:#fff;
 
-    display:flex;
-
-    flex-direction:column;
-
-    gap:9px;
-
+    border-color:#e58a18;
 }
 
+.page-btn:disabled{
+    opacity:.35;
 
-.player-buttons{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:8px;
-
+    cursor:default;
 }
 
-
-.player-main-button{
-
-    width:43px;
-
-    height:43px;
-
-    border-radius:50%;
-
-    border:none;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff3b81,
-            #8b60ff
-        );
-
-    color:white;
-
-    cursor:pointer;
-
-    font-size:16px;
-
-}
-
-
-.player-small-button{
-
-    width:35px;
-
-    height:35px;
-
-    border-radius:50%;
-
-    border:
-        1px solid
-        rgba(255,255,255,.08);
-
-    background:
-        rgba(255,255,255,.04);
-
-    color:white;
-
-    cursor:pointer;
-
-}
-
-
-.progress-row{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-}
-
-
-.time{
-
-    width:42px;
-
-    color:
-        rgba(255,255,255,.4);
-
-    font-size:10px;
+.page-info{
+    width:100%;
 
     text-align:center;
 
-}
-
-
-.progress{
-
-    flex:1;
-
-    height:5px;
-
-    appearance:none;
-
-    -webkit-appearance:none;
-
-    border-radius:20px;
-
-    background:
-        rgba(255,255,255,.12);
-
-    outline:none;
-
-    cursor:pointer;
-
-}
-
-
-.progress::-webkit-slider-thumb{
-
-    appearance:none;
-
-    -webkit-appearance:none;
-
-    width:12px;
-
-    height:12px;
-
-    border-radius:50%;
-
-    background:#fff;
-
-}
-
-
-.player-right{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:flex-end;
-
-    gap:9px;
-
-}
-
-
-.volume{
-
-    width:90px;
-
-    appearance:none;
-
-    -webkit-appearance:none;
-
-    height:4px;
-
-    border-radius:10px;
-
-    background:
-        rgba(255,255,255,.12);
-
-}
-
-
-.volume::-webkit-slider-thumb{
-
-    appearance:none;
-
-    -webkit-appearance:none;
-
-    width:11px;
-
-    height:11px;
-
-    border-radius:50%;
-
-    background:white;
-
-}
-
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-.toast{
-
-    position:fixed;
-
-    z-index:5000;
-
-    left:50%;
-
-    bottom:125px;
-
-    transform:
-        translate(-50%,20px);
-
-    opacity:0;
-
-    pointer-events:none;
-
-    background:
-        rgba(20,21,28,.95);
-
-    border:
-        1px solid
-        rgba(255,255,255,.1);
-
-    padding:
-        12px 17px;
-
-    border-radius:13px;
-
-    color:white;
+    color:#666;
 
     font-size:13px;
 
-    transition:.25s;
-
+    margin-bottom:7px;
 }
 
+.page-dots{
+    color:#666;
 
-.toast.show{
-
-    opacity:1;
-
-    transform:
-        translate(-50%,0);
-
+    padding:0 3px;
 }
-
 
 /* =========================================================
    MOBILE
-========================================================= */
+   ========================================================= */
 
-@media(max-width:800px){
+@media(max-width:900px){
 
-    .topbar{
-
-        padding:
-            0 15px;
-
-    }
-
-
-    .logo{
-
-        font-size:18px;
-
-    }
-
-
-    .top-button{
+    .sidebar{
+        width:76px;
 
         padding:
-            9px 11px;
-
-        font-size:12px;
-
+            170px 7px 20px;
     }
 
-
-    .hero{
-
-        margin-top:38px;
-
-    }
-
-
-    .track{
-
-        grid-template-columns:
-            43px
-            minmax(0,1fr)
-            auto;
-
-        gap:9px;
-
-    }
-
-
-    .track-number{
-
-        width:38px;
-
-        height:38px;
-
-    }
-
-
-    .track-actions
-    .download-btn{
-
-        display:none;
-
-    }
-
-
-    .player{
-
-        left:8px;
-
-        right:8px;
-
-        bottom:8px;
-
-        padding:12px;
-
-        grid-template-columns:
-            1fr;
-
-        gap:8px;
-
-    }
-
-
-    .player-info{
-
-        text-align:center;
-
-    }
-
-
-    .player-right{
-
+    .sidebar-item{
         justify-content:center;
 
+        padding:10px 5px;
     }
 
-
-    .player{
-
-        min-height:auto;
-
+    .sidebar-text{
+        display:none;
     }
 
-
-    body{
-
-        padding-bottom:260px;
-
+    .sidebar-item.active::before{
+        left:-7px;
     }
 
+    .main{
+        margin-left:76px;
+    }
+
+    .header{
+        min-height:135px;
+
+        padding-top:15px;
+
+        align-items:flex-start;
+    }
+
+    .header-title{
+        font-size:27px;
+
+        padding-top:3px;
+    }
+
+    .search-wrap{
+        position:absolute;
+
+        top:77px;
+
+        left:20px;
+        right:20px;
+    }
+
+    .search{
+        width:100%;
+    }
+
+    .content{
+        padding:
+            25px 15px 60px;
+    }
 }
 
+@media(max-width:600px){
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .btn{
+        min-height:42px;
+    }
+
+    .track-title{
+        font-size:17px;
+    }
+}
 
 /* =========================================================
-   REDUCE MOTION
-========================================================= */
+   SCROLLBAR
+   ========================================================= */
 
-@media(prefers-reduced-motion:reduce){
-
-    *{
-
-        scroll-behavior:auto!important;
-
-        animation:none!important;
-
-        transition:none!important;
-
-    }
-
+::-webkit-scrollbar{
+    width:9px;
 }
 
+::-webkit-scrollbar-track{
+    background:#090a0b;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#292c2e;
+
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#363a3d;
+}
 </style>
-
 </head>
-
 
 <body>
 
-
 <!-- =======================================================
-     TOP BAR
-======================================================= -->
+     SIDEBAR
+     ======================================================= -->
 
-<header class="topbar">
+<div class="sidebar">
 
-    <div class="logo">
-
-        МаЛяВоЧка
-        <span>/ Roflan</span>
-
-    </div>
-
-
-    <div class="top-buttons">
-
-        <a
-            class="top-button"
-            href="/"
-        >
-            🎵 Music
-        </a>
-
-    </div>
-
-</header>
-
-
-
-<!-- =======================================================
-     HERO
-======================================================= -->
-
-<section class="hero">
-
-    <h1>
-
-        <span>Roflan</span>
-
-    </h1>
-
-    <p>
-
-        Коллекция рофл-звуков и приколов
-
-    </p>
-
-</section>
-
-
-
-<!-- =======================================================
-     CONTROLS
-======================================================= -->
-
-<section class="controls">
-
-    <div class="search">
-
-        <input
-            id="search"
-            type="text"
-            placeholder="Поиск по названию..."
-            autocomplete="off"
-        >
-
-    </div>
-
-
-    <select
-        id="sort"
-        class="select"
-    >
-
-        <option value="name">
-            По названию
-        </option>
-
-        <option value="name-desc">
-            Название: Я → А
-        </option>
-
-        <option value="size">
-            По размеру
-        </option>
-
-        <option value="size-desc">
-            Размер: больше → меньше
-        </option>
-
-    </select>
-
-</section>
-
-
-
-<!-- =======================================================
-     STATS
-======================================================= -->
-
-<div
-    id="stats"
-    class="stats"
->
-    Загрузка...
-</div>
-
-
-
-<!-- =======================================================
-     LIST
-======================================================= -->
-
-<main
-    id="trackList"
-    class="track-list"
->
-
-    <div class="loader"></div>
-
-</main>
-
-
-
-<!-- =======================================================
-     EMPTY
-======================================================= -->
-
-<div
-    id="empty"
-    class="empty"
-    style="display:none"
->
-
-    Ничего не найдено.
-
-</div>
-
-
-
-<!-- =======================================================
-     PLAYER
-======================================================= -->
-
-<div class="player">
-
-
-    <div class="player-info">
+    <div class="sidebar-menu">
 
         <div
-            id="playerTitle"
-            class="player-title"
+            class="sidebar-item"
+            onclick="goMusic()"
         >
-            Ничего не играет
+            <div class="sidebar-icon">🎧</div>
+
+            <div class="sidebar-text">
+                Music
+                <span class="sidebar-small">
+                    Музыка
+                </span>
+            </div>
         </div>
 
 
         <div
-            id="playerSub"
-            class="player-sub"
+            class="sidebar-item active"
+            onclick="scrollTopPage()"
         >
-            Roflan
+            <div class="sidebar-icon">😂</div>
+
+            <div class="sidebar-text">
+                Рофлан
+                <span class="sidebar-small">
+                    Звуки
+                </span>
+            </div>
+        </div>
+
+
+        <div
+            class="sidebar-item"
+            onclick="goGachi()"
+        >
+            <div class="sidebar-icon">🎤</div>
+
+            <div class="sidebar-text">
+                Gachi
+                <span class="sidebar-small">
+                    Скоро
+                </span>
+            </div>
+        </div>
+
+
+        <div
+            class="sidebar-item"
+            onclick="goScreamer()"
+        >
+            <div class="sidebar-icon">😱</div>
+
+            <div class="sidebar-text">
+                Скримеры
+                <span class="sidebar-small">
+                    Скоро
+                </span>
+            </div>
         </div>
 
     </div>
 
+</div>
 
 
-    <div class="player-center">
+<!-- =======================================================
+     MAIN
+     ======================================================= -->
+
+<div class="main">
+
+    <header class="header">
+
+        <h1 class="header-title">
+            😂 МаЛяВоЧка - Рофлан 😂
+        </h1>
 
 
-        <div class="player-buttons">
+        <div class="search-wrap">
 
-
-            <button
-                id="prevBtn"
-                class="player-small-button"
-                title="Предыдущий"
-            >
-                ⏮
-            </button>
-
-
-            <button
-                id="playBtn"
-                class="player-main-button"
-                title="Play / Pause"
-            >
-                ▶
-            </button>
-
-
-            <button
-                id="nextBtn"
-                class="player-small-button"
-                title="Следующий"
-            >
-                ⏭
-            </button>
-
-        </div>
-
-
-        <div class="progress-row">
-
-
-            <span
-                id="currentTime"
-                class="time"
-            >
-                0:00
+            <span class="search-icon">
+                🔍
             </span>
-
 
             <input
-                id="progress"
-                class="progress"
-                type="range"
-                min="0"
-                max="100"
-                value="0"
-                step="0.1"
+                id="search"
+                class="search"
+                type="text"
+                placeholder="Найти рофлан..."
+                autocomplete="off"
             >
-
-
-            <span
-                id="duration"
-                class="time"
-            >
-                0:00
-            </span>
-
 
         </div>
 
-
-    </div>
-
+    </header>
 
 
-    <div class="player-right">
+    <main
+        id="musicList"
+        class="content"
+    >
 
+        <div class="status loading">
+            Загрузка рофлан-звуков... 😂
+        </div>
 
-        <span>
-            🔊
-        </span>
-
-
-        <input
-            id="volume"
-            class="volume"
-            type="range"
-            min="0"
-            max="1"
-            value="1"
-            step="0.01"
-        >
-
-
-        <button
-            id="downloadCurrent"
-            class="icon-button"
-            title="Скачать"
-        >
-            ↓
-        </button>
-
-
-        <button
-            id="copyCurrent"
-            class="icon-button"
-            title="Скопировать ссылку"
-        >
-            🔗
-        </button>
-
-
-    </div>
-
+    </main>
 
 </div>
-
-
-
-<!-- =======================================================
-     AUDIO
-======================================================= -->
-
-<audio
-    id="audio"
-    preload="metadata"
-></audio>
-
-
-
-<!-- =======================================================
-     TOAST
-======================================================= -->
-
-<div
-    id="toast"
-    class="toast"
-></div>
-
 
 
 <script>
 
-
 /* =========================================================
    НАСТРОЙКИ
-========================================================= */
+   ========================================================= */
 
-const WORKER =
+const WORKER_URL =
     "https://malyavochka-music.rxmlopdt.workers.dev";
 
 
+/*
+ * ВАЖНО:
+ *
+ * Здесь именно /roflan/list.json
+ *
+ * Поэтому музыка из /list.json
+ * сюда попасть НЕ МОЖЕТ.
+ */
+
 const LIST_URL =
-    WORKER +
-    "/roflan/list.json";
+    WORKER_URL + "/roflan/list.json";
 
 
-const MUSIC_URL =
-    WORKER +
-    "/roflan/music/";
+const TRACKS_PER_PAGE = 50;
 
 
-
-/* =========================================================
-   DOM
-========================================================= */
-
-const audio =
-    document.getElementById(
-        "audio"
-    );
+const musicList =
+    document.getElementById("musicList");
 
 
-const search =
-    document.getElementById(
-        "search"
-    );
+const searchInput =
+    document.getElementById("search");
 
-
-const sort =
-    document.getElementById(
-        "sort"
-    );
-
-
-const trackList =
-    document.getElementById(
-        "trackList"
-    );
-
-
-const empty =
-    document.getElementById(
-        "empty"
-    );
-
-
-const stats =
-    document.getElementById(
-        "stats"
-    );
-
-
-const playerTitle =
-    document.getElementById(
-        "playerTitle"
-    );
-
-
-const playerSub =
-    document.getElementById(
-        "playerSub"
-    );
-
-
-const playBtn =
-    document.getElementById(
-        "playBtn"
-    );
-
-
-const prevBtn =
-    document.getElementById(
-        "prevBtn"
-    );
-
-
-const nextBtn =
-    document.getElementById(
-        "nextBtn"
-    );
-
-
-const progress =
-    document.getElementById(
-        "progress"
-    );
-
-
-const currentTime =
-    document.getElementById(
-        "currentTime"
-    );
-
-
-const duration =
-    document.getElementById(
-        "duration"
-    );
-
-
-const volume =
-    document.getElementById(
-        "volume"
-    );
-
-
-const downloadCurrent =
-    document.getElementById(
-        "downloadCurrent"
-    );
-
-
-const copyCurrent =
-    document.getElementById(
-        "copyCurrent"
-    );
-
-
-const toast =
-    document.getElementById(
-        "toast"
-    );
-
-
-
-/* =========================================================
-   STATE
-========================================================= */
 
 let tracks = [];
 
 let filteredTracks = [];
 
-let currentIndex = -1;
+let currentPage = 1;
 
-let currentTrack = null;
-
+let currentAudio = null;
 
 
 /* =========================================================
-   TOAST
-========================================================= */
+   ПОИСК
+   ========================================================= */
 
-let toastTimer = null;
+function normalizeSearchText(value){
 
-
-function showToast(
-    text
-){
-
-    toast.textContent =
-        text;
-
-    toast.classList.add(
-        "show"
-    );
-
-
-    clearTimeout(
-        toastTimer
-    );
-
-
-    toastTimer =
-        setTimeout(
-            () => {
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            1800
-        );
-
+    return String(value || "")
+        .toLowerCase()
+        .replace(/ё/g,"е")
+        .replace(/[^a-zа-я0-9]+/gi,"");
 }
 
 
+/* =========================================================
+   RU -> EN
+   ========================================================= */
+
+const RU_TO_EN = {
+
+    "а":"a",
+    "б":"b",
+    "в":"v",
+    "г":"g",
+    "д":"d",
+    "е":"e",
+    "ё":"yo",
+    "ж":"zh",
+    "з":"z",
+    "и":"i",
+    "й":"y",
+    "к":"k",
+    "л":"l",
+    "м":"m",
+    "н":"n",
+    "о":"o",
+    "п":"p",
+    "р":"r",
+    "с":"s",
+    "т":"t",
+    "у":"u",
+    "ф":"f",
+    "х":"h",
+    "ц":"c",
+    "ч":"ch",
+    "ш":"sh",
+    "щ":"sch",
+    "ъ":"",
+    "ы":"y",
+    "ь":"",
+    "э":"e",
+    "ю":"yu",
+    "я":"ya"
+
+};
+
+
+function transliterateRuToEn(text){
+
+    let result = "";
+
+    for(
+        const char of
+        String(text || "").toLowerCase()
+    ){
+
+        result +=
+            RU_TO_EN[char] !== undefined
+                ? RU_TO_EN[char]
+                : char;
+
+    }
+
+    return result;
+}
+
 
 /* =========================================================
-   TIME
-========================================================= */
+   EN -> RU
+   ========================================================= */
 
-function formatTime(
-    seconds
-){
+const EN_TO_RU = [
 
-    if (
-        !Number.isFinite(
-            seconds
+    ["sch","щ"],
+    ["sh","ш"],
+    ["ch","ч"],
+    ["zh","ж"],
+    ["yo","ё"],
+    ["yu","ю"],
+    ["ya","я"],
+    ["ts","ц"],
+
+    ["a","а"],
+    ["b","б"],
+    ["c","к"],
+    ["d","д"],
+    ["e","е"],
+    ["f","ф"],
+    ["g","г"],
+    ["h","х"],
+    ["i","и"],
+    ["j","дж"],
+    ["k","к"],
+    ["l","л"],
+    ["m","м"],
+    ["n","н"],
+    ["o","о"],
+    ["p","п"],
+    ["q","к"],
+    ["r","р"],
+    ["s","с"],
+    ["t","т"],
+    ["u","у"],
+    ["v","в"],
+    ["w","в"],
+    ["x","кс"],
+    ["y","й"],
+    ["z","з"]
+
+];
+
+
+function transliterateEnToRu(text){
+
+    let result =
+        String(text || "").toLowerCase();
+
+    for(
+        const pair of EN_TO_RU
+    ){
+
+        result =
+            result
+                .split(pair[0])
+                .join(pair[1]);
+
+    }
+
+    return result;
+}
+
+
+/* =========================================================
+   ВАРИАНТЫ
+   ========================================================= */
+
+function makeSearchVariants(text){
+
+    const original =
+        String(text || "").toLowerCase();
+
+    const variants = [
+        original,
+        transliterateRuToEn(original),
+        transliterateEnToRu(original)
+    ];
+
+    return [
+        ...new Set(
+            variants
+                .map(normalizeSearchText)
+                .filter(Boolean)
         )
-    ){
-
-        return "0:00";
-
-    }
-
-
-    seconds =
-        Math.max(
-            0,
-            Math.floor(
-                seconds
-            )
-        );
-
-
-    const minutes =
-        Math.floor(
-            seconds / 60
-        );
-
-
-    const secs =
-        String(
-            seconds % 60
-        ).padStart(
-            2,
-            "0"
-        );
-
-
-    return (
-        minutes +
-        ":" +
-        secs
-    );
-
+    ];
 }
 
 
-
 /* =========================================================
-   SIZE
-========================================================= */
+   ПОИСК ТРЕКА
+   ========================================================= */
 
-function formatSize(
-    bytes
+function smartSearchMatch(
+    track,
+    query
 ){
 
-    bytes =
-        Number(
-            bytes || 0
+    const cleanQuery =
+        normalizeSearchText(query);
+
+    if(!cleanQuery)
+        return true;
+
+
+    const name =
+        removeExtension(
+            String(track.name || "")
         );
 
 
-    if (
-        bytes < 1024
+    const variants =
+        makeSearchVariants(name);
+
+
+    const queryVariants =
+        makeSearchVariants(query);
+
+
+    for(
+        const q of queryVariants
     ){
 
-        return (
-            bytes +
-            " B"
-        );
+        for(
+            const variant of variants
+        ){
+
+            if(
+                variant.includes(q)
+            ){
+                return true;
+            }
+
+        }
 
     }
 
 
-    if (
-        bytes < 1024 * 1024
-    ){
+    /*
+     * Дополнительно ищем отдельные слова.
+     */
 
-        return (
-            (bytes / 1024)
-                .toFixed(1) +
-            " KB"
-        );
+    const parts =
+        String(query || "")
+            .toLowerCase()
+            .split(
+                /[\s\-_.,!?()[\]{}]+/
+            )
+            .filter(
+                v => v.length >= 2
+            );
+
+
+    if(parts.length > 1){
+
+        let found = 0;
+
+
+        for(
+            const part of parts
+        ){
+
+            const partVariants =
+                makeSearchVariants(part);
+
+            let partFound = false;
+
+
+            for(
+                const q of partVariants
+            ){
+
+                for(
+                    const variant of variants
+                ){
+
+                    if(
+                        variant.includes(q)
+                    ){
+
+                        partFound = true;
+
+                        break;
+                    }
+
+                }
+
+                if(partFound)
+                    break;
+
+            }
+
+
+            if(partFound)
+                found++;
+
+        }
+
+
+        if(
+            found === parts.length
+        ){
+            return true;
+        }
 
     }
 
 
-    return (
-        (bytes / 1024 / 1024)
-            .toFixed(1) +
-        " MB"
-    );
-
+    return false;
 }
 
 
-
 /* =========================================================
-   LOAD LIST
-========================================================= */
+   ЗАГРУЗКА СПИСКА
+   ========================================================= */
 
-async function loadTracks(){
+async function loadRoflan(){
 
     try{
 
-        stats.textContent =
-            "Загрузка списка Roflan...";
-
-
         const response =
             await fetch(
-                LIST_URL,
+                LIST_URL +
+                "?t=" +
+                Date.now(),
                 {
-                    cache:
-                        "no-store"
+                    method:"GET",
+                    cache:"no-store",
+                    headers:{
+                        Accept:
+                            "application/json"
+                    }
                 }
             );
 
 
-        if (
-            !response.ok
-        ){
+        if(!response.ok){
 
             throw new Error(
-                "HTTP " +
+                "Worker HTTP " +
                 response.status
             );
 
@@ -1728,11 +1191,7 @@ async function loadTracks(){
             await response.json();
 
 
-        if (
-            !Array.isArray(
-                data
-            )
-        ){
+        if(!Array.isArray(data)){
 
             throw new Error(
                 "Worker вернул неправильный JSON"
@@ -1743,168 +1202,165 @@ async function loadTracks(){
 
         tracks =
             data.filter(
-                item =>
-                    item &&
-                    item.id &&
-                    item.name
+                track =>
+                    track &&
+                    track.id &&
+                    track.name
             );
 
 
-        filteredTracks =
-            [...tracks];
+        currentPage = 1;
 
-
-        applySort();
 
         renderTracks();
-
-
-        stats.textContent =
-            "Roflan: " +
-            tracks.length +
-            " треков";
-
 
     }
     catch(error){
 
         console.error(
+            "Ошибка загрузки рофланов:",
             error
         );
 
 
-        trackList.innerHTML =
-            "";
+        musicList.innerHTML = `
 
+            <div class="status error">
 
-        empty.style.display =
-            "block";
+                <strong>
+                    😂 Не удалось загрузить рофлан-звуки
+                </strong>
 
+                <div>
+                    Worker HTTP ошибка
+                </div>
 
-        empty.textContent =
-            "Ошибка загрузки Roflan: " +
-            error.message;
+                <br>
 
+                <small>
+                    ${escapeHTML(error.message)}
+                </small>
 
-        stats.textContent =
-            "Ошибка загрузки";
+                <br><br>
 
+                <button
+                    class="btn download-btn"
+                    onclick="loadRoflan()"
+                    style="
+                        max-width:220px;
+                        padding:10px 20px;
+                    "
+                >
+                    ↻ Повторить
+                </button>
+
+            </div>
+
+        `;
 
     }
 
 }
 
 
-
 /* =========================================================
-   FILTER
-========================================================= */
+   URL
+   ========================================================= */
 
-function applyFilter(){
+function getPlayURL(track){
 
-    const query =
-        search.value
-            .trim()
-            .toLowerCase();
-
-
-    if (
-        !query
-    ){
-
-        filteredTracks =
-            [...tracks];
-
-    }
-    else{
-
-        filteredTracks =
-            tracks.filter(
-                track =>
-                    String(
-                        track.name
-                    )
-                    .toLowerCase()
-                    .includes(
-                        query
-                    )
-            );
-
-    }
-
-
-    applySort();
-
-    renderTracks();
+    return (
+        WORKER_URL +
+        "/roflan/" +
+        encodeURIComponent(track.id)
+    );
 
 }
 
 
+function getDownloadURL(track){
+
+    return (
+        getPlayURL(track) +
+        "?download=1"
+    );
+
+}
+
 
 /* =========================================================
-   SORT
-========================================================= */
+   AUDIO
+   ========================================================= */
 
-function applySort(){
+function setupAudio(audio){
 
-    const mode =
-        sort.value;
+    if(!audio)
+        return;
 
 
-    filteredTracks.sort(
-        (a,b) => {
+    audio.addEventListener(
+        "play",
+        ()=>{
 
-            if (
-                mode === "name"
+            if(
+                currentAudio &&
+                currentAudio !== audio
             ){
 
-                return String(a.name)
-                    .localeCompare(
-                        String(b.name),
-                        "ru"
-                    );
+                try{
+
+                    currentAudio.pause();
+
+                    currentAudio.currentTime = 0;
+
+                }
+                catch(error){}
 
             }
 
 
-            if (
-                mode === "name-desc"
-            ){
+            document
+                .querySelectorAll("audio")
+                .forEach(
+                    other => {
 
-                return String(b.name)
-                    .localeCompare(
-                        String(a.name),
-                        "ru"
-                    );
+                        if(
+                            other !== audio &&
+                            !other.paused
+                        ){
 
-            }
+                            try{
 
+                                other.pause();
 
-            if (
-                mode === "size"
-            ){
+                                other.currentTime = 0;
 
-                return (
-                    Number(a.size || 0) -
-                    Number(b.size || 0)
+                            }
+                            catch(error){}
+
+                        }
+
+                    }
                 );
 
-            }
+
+            currentAudio = audio;
+
+        }
+    );
 
 
-            if (
-                mode === "size-desc"
+    audio.addEventListener(
+        "ended",
+        ()=>{
+
+            if(
+                currentAudio === audio
             ){
 
-                return (
-                    Number(b.size || 0) -
-                    Number(a.size || 0)
-                );
+                currentAudio = null;
 
             }
-
-
-            return 0;
 
         }
     );
@@ -1912,879 +1368,698 @@ function applySort(){
 }
 
 
-
 /* =========================================================
-   RENDER
-========================================================= */
+   STOP AUDIO
+   ========================================================= */
 
-function renderTracks(){
+function stopAllAudio(){
 
-    trackList.innerHTML =
-        "";
+    document
+        .querySelectorAll("audio")
+        .forEach(
+            audio => {
 
+                try{
 
-    empty.style.display =
-        filteredTracks.length
-            ? "none"
-            : "block";
+                    audio.pause();
 
+                    audio.currentTime = 0;
 
-    if (
-        !filteredTracks.length
-    ){
-
-        return;
-
-    }
-
-
-    filteredTracks.forEach(
-        (track, index) => {
-
-            const originalIndex =
-                tracks.indexOf(
-                    track
-                );
-
-
-            const item =
-                document.createElement(
-                    "div"
-                );
-
-
-            item.className =
-                "track";
-
-
-            if (
-                currentTrack &&
-                currentTrack.id ===
-                track.id
-            ){
-
-                item.classList.add(
-                    "playing"
-                );
+                }
+                catch(error){}
 
             }
-
-
-            const number =
-                document.createElement(
-                    "div"
-                );
-
-
-            number.className =
-                "track-number";
-
-
-            number.textContent =
-                String(
-                    index + 1
-                );
-
-
-            const info =
-                document.createElement(
-                    "div"
-                );
-
-
-            info.className =
-                "track-info";
-
-
-            const name =
-                document.createElement(
-                    "div"
-                );
-
-
-            name.className =
-                "track-name";
-
-
-            name.textContent =
-                track.name;
-
-
-            const meta =
-                document.createElement(
-                    "div"
-                );
-
-
-            meta.className =
-                "track-meta";
-
-
-            meta.textContent =
-                formatSize(
-                    track.size
-                );
-
-
-            info.appendChild(
-                name
-            );
-
-
-            info.appendChild(
-                meta
-            );
-
-
-            const actions =
-                document.createElement(
-                    "div"
-                );
-
-
-            actions.className =
-                "track-actions";
-
-
-            const play =
-                document.createElement(
-                    "button"
-                );
-
-
-            play.className =
-                "icon-button play-button";
-
-
-            play.title =
-                "Воспроизвести";
-
-
-            play.textContent =
-                (
-                    currentTrack &&
-                    currentTrack.id ===
-                    track.id &&
-                    !audio.paused
-                )
-                    ? "❚❚"
-                    : "▶";
-
-
-            play.onclick =
-                () => {
-
-                    playTrack(
-                        originalIndex
-                    );
-
-                };
-
-
-            const download =
-                document.createElement(
-                    "button"
-                );
-
-
-            download.className =
-                "icon-button download-btn";
-
-
-            download.title =
-                "Скачать";
-
-
-            download.textContent =
-                "↓";
-
-
-            download.onclick =
-                () => {
-
-                    downloadTrack(
-                        track
-                    );
-
-                };
-
-
-            const copy =
-                document.createElement(
-                    "button"
-                );
-
-
-            copy.className =
-                "icon-button";
-
-
-            copy.title =
-                "Скопировать ссылку";
-
-
-            copy.textContent =
-                "🔗";
-
-
-            copy.onclick =
-                () => {
-
-                    copyTrackLink(
-                        track
-                    );
-
-                };
-
-
-            actions.appendChild(
-                play
-            );
-
-
-            actions.appendChild(
-                download
-            );
-
-
-            actions.appendChild(
-                copy
-            );
-
-
-            item.appendChild(
-                number
-            );
-
-
-            item.appendChild(
-                info
-            );
-
-
-            item.appendChild(
-                actions
-            );
-
-
-            trackList.appendChild(
-                item
-            );
-
-        }
-    );
-
-}
-
-
-
-/* =========================================================
-   PLAY TRACK
-========================================================= */
-
-async function playTrack(
-    index
-){
-
-    if (
-        index < 0 ||
-        index >= tracks.length
-    ){
-
-        return;
-
-    }
-
-
-    const track =
-        tracks[index];
-
-
-    currentIndex =
-        index;
-
-
-    currentTrack =
-        track;
-
-
-    const url =
-        MUSIC_URL +
-        encodeURIComponent(
-            track.id
         );
 
 
-    playerTitle.textContent =
-        track.name;
+    currentAudio = null;
+
+}
 
 
-    playerSub.textContent =
-        "Roflan";
+/* =========================================================
+   ОТРИСОВКА
+   ========================================================= */
+
+function renderTracks(){
+
+    const query =
+        searchInput.value.trim();
 
 
-    audio.src =
-        url;
+    filteredTracks =
+        tracks.filter(
+            track =>
+                smartSearchMatch(
+                    track,
+                    query
+                )
+        );
 
 
-    audio.load();
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                filteredTracks.length /
+                TRACKS_PER_PAGE
+            )
+        );
+
+
+    if(
+        currentPage > totalPages
+    ){
+
+        currentPage =
+            totalPages;
+
+    }
+
+
+    stopAllAudio();
+
+
+    if(
+        !filteredTracks.length
+    ){
+
+        musicList.innerHTML = `
+
+            <div class="empty">
+                😂 Ничего не найдено
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const start =
+        (currentPage - 1) *
+        TRACKS_PER_PAGE;
+
+
+    const pageTracks =
+        filteredTracks.slice(
+            start,
+            start + TRACKS_PER_PAGE
+        );
+
+
+    musicList.innerHTML =
+        pageTracks
+            .map(createTrackHTML)
+            .join("") +
+        createPaginationHTML(
+            totalPages
+        );
+
+
+    pageTracks.forEach(
+        track => {
+
+            const audio =
+                document.getElementById(
+                    "audio-" +
+                    track.id
+                );
+
+
+            if(audio){
+
+                audio.src =
+                    getPlayURL(track);
+
+                setupAudio(audio);
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   КАРТОЧКА
+   ========================================================= */
+
+function createTrackHTML(track){
+
+    const id =
+        escapeHTML(
+            String(track.id)
+        );
+
+
+    const name =
+        escapeHTML(
+            removeExtension(
+                String(track.name || "")
+            )
+        );
+
+
+    return `
+
+        <div
+            class="track"
+            data-track-id="${id}"
+        >
+
+            <div class="track-title">
+
+                <span class="track-icon">
+                    😂
+                </span>
+
+                <span class="track-name">
+                    ${name}
+                </span>
+
+            </div>
+
+
+            <audio
+                id="audio-${id}"
+                class="audio"
+                controls
+                preload="metadata"
+            >
+                Ваш браузер не поддерживает
+                воспроизведение аудио.
+            </audio>
+
+
+            <div class="buttons">
+
+                <a
+                    class="btn download-btn"
+                    href="${escapeAttribute(
+                        getDownloadURL(track)
+                    )}"
+                    download
+                    target="_self"
+                >
+                    ↓ Скачать
+                </a>
+
+
+                <button
+                    class="btn copy-btn"
+                    type="button"
+                    onclick="
+                        copyMusicLink(
+                            this,
+                            '${escapeJS(
+                                getPlayURL(track)
+                            )}'
+                        )
+                    "
+                >
+                    🔗 Копировать ссылку
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   ПАГИНАЦИЯ
+   ========================================================= */
+
+function createPaginationHTML(
+    totalPages
+){
+
+    if(totalPages <= 1)
+        return "";
+
+
+    const start =
+        (currentPage - 1) *
+        TRACKS_PER_PAGE + 1;
+
+
+    const end =
+        Math.min(
+            currentPage *
+            TRACKS_PER_PAGE,
+            filteredTracks.length
+        );
+
+
+    let html = `
+
+        <div class="pagination">
+
+            <div class="page-info">
+                Показано ${start}–${end}
+                из ${filteredTracks.length}
+            </div>
+
+
+            <button
+                class="page-btn"
+                onclick="
+                    changePage(
+                        ${currentPage - 1}
+                    )
+                "
+                ${currentPage === 1
+                    ? "disabled"
+                    : ""}
+            >
+                ←
+            </button>
+
+    `;
+
+
+    const pages = [];
+
+
+    for(
+        let i = 1;
+        i <= totalPages;
+        i++
+    ){
+
+        if(
+            i === 1 ||
+            i === totalPages ||
+            Math.abs(
+                i - currentPage
+            ) <= 2
+        ){
+
+            pages.push(i);
+
+        }
+
+    }
+
+
+    let previous = 0;
+
+
+    for(
+        const page of pages
+    ){
+
+        if(
+            previous &&
+            page - previous > 1
+        ){
+
+            html += `
+                <span class="page-dots">
+                    ...
+                </span>
+            `;
+
+        }
+
+
+        html += `
+
+            <button
+                class="page-btn ${
+                    page === currentPage
+                        ? "active"
+                        : ""
+                }"
+                onclick="
+                    changePage(${page})
+                "
+            >
+                ${page}
+            </button>
+
+        `;
+
+
+        previous = page;
+
+    }
+
+
+    html += `
+
+            <button
+                class="page-btn"
+                onclick="
+                    changePage(
+                        ${currentPage + 1}
+                    )
+                "
+                ${
+                    currentPage === totalPages
+                        ? "disabled"
+                        : ""
+                }
+            >
+                →
+            </button>
+
+        </div>
+
+    `;
+
+
+    return html;
+
+}
+
+
+function changePage(page){
+
+    const totalPages =
+        Math.max(
+            1,
+            Math.ceil(
+                filteredTracks.length /
+                TRACKS_PER_PAGE
+            )
+        );
+
+
+    if(
+        page < 1 ||
+        page > totalPages
+    ){
+
+        return;
+
+    }
+
+
+    currentPage = page;
+
+
+    renderTracks();
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   КОПИРОВАНИЕ
+   ========================================================= */
+
+async function copyMusicLink(
+    button,
+    url
+){
+
+    const oldText =
+        button.textContent;
 
 
     try{
 
-        await audio.play();
+        await navigator.clipboard
+            .writeText(url);
 
-        playBtn.textContent =
-            "❚❚";
+
+        button.textContent =
+            "✓ Ссылка скопирована";
+
+
+        button.classList.add(
+            "copied"
+        );
+
+
+        setTimeout(
+            ()=>{
+
+                button.textContent =
+                    oldText;
+
+                button.classList.remove(
+                    "copied"
+                );
+
+            },
+            1800
+        );
 
     }
     catch(error){
 
-        console.error(
-            error
+        const textarea =
+            document.createElement(
+                "textarea"
+            );
+
+
+        textarea.value = url;
+
+        textarea.style.position =
+            "fixed";
+
+        textarea.style.left =
+            "-9999px";
+
+        textarea.style.top =
+            "0";
+
+
+        document.body.appendChild(
+            textarea
         );
 
-        showToast(
-            "Не удалось запустить трек"
-        );
 
-        playBtn.textContent =
-            "▶";
+        textarea.focus();
 
-    }
+        textarea.select();
 
 
-    renderTracks();
-
-}
+        let success = false;
 
 
+        try{
 
-/* =========================================================
-   PLAY / PAUSE
-========================================================= */
-
-playBtn.onclick =
-    async () => {
-
-        if (
-            !currentTrack
-        ){
-
-            if (
-                tracks.length
-            ){
-
-                await playTrack(
-                    0
+            success =
+                document.execCommand(
+                    "copy"
                 );
 
-            }
+        }
+        catch(e){
 
-            return;
+            success = false;
 
         }
 
 
-        if (
-            audio.paused
-        ){
+        textarea.remove();
 
-            try{
 
-                await audio.play();
+        if(success){
 
-                playBtn.textContent =
-                    "❚❚";
+            button.textContent =
+                "✓ Ссылка скопирована";
 
-            }
-            catch(error){
+            button.classList.add(
+                "copied"
+            );
 
-                console.error(
-                    error
-                );
 
-            }
+            setTimeout(
+                ()=>{
+
+                    button.textContent =
+                        oldText;
+
+                    button.classList.remove(
+                        "copied"
+                    );
+
+                },
+                1800
+            );
 
         }
         else{
 
-            audio.pause();
-
-            playBtn.textContent =
-                "▶";
+            window.prompt(
+                "Скопируй эту ссылку:",
+                url
+            );
 
         }
 
+    }
+
+}
+
+
+/* =========================================================
+   ПОИСК
+   ========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    ()=>{
+
+        currentPage = 1;
 
         renderTracks();
 
-    };
-
-
-
-/* =========================================================
-   PREVIOUS
-========================================================= */
-
-prevBtn.onclick =
-    () => {
-
-        if (
-            !tracks.length
-        ){
-
-            return;
-
-        }
-
-
-        let index =
-            currentIndex - 1;
-
-
-        if (
-            index < 0
-        ){
-
-            index =
-                tracks.length - 1;
-
-        }
-
-
-        playTrack(
-            index
-        );
-
-    };
-
-
-
-/* =========================================================
-   NEXT
-========================================================= */
-
-nextBtn.onclick =
-    () => {
-
-        if (
-            !tracks.length
-        ){
-
-            return;
-
-        }
-
-
-        let index =
-            currentIndex + 1;
-
-
-        if (
-            index >= tracks.length
-        ){
-
-            index =
-                0;
-
-        }
-
-
-        playTrack(
-            index
-        );
-
-    };
-
-
-
-/* =========================================================
-   AUTO NEXT
-========================================================= */
-
-audio.addEventListener(
-    "ended",
-    () => {
-
-        if (
-            !tracks.length
-        ){
-
-            return;
-
-        }
-
-
-        let next =
-            currentIndex + 1;
-
-
-        if (
-            next >= tracks.length
-        ){
-
-            next = 0;
-
-        }
-
-
-        playTrack(
-            next
-        );
-
     }
 );
 
 
-
 /* =========================================================
-   PROGRESS
-========================================================= */
+   MP3
+   ========================================================= */
 
-audio.addEventListener(
-    "timeupdate",
-    () => {
+function removeExtension(name){
 
-        if (
-            !audio.duration ||
-            !Number.isFinite(
-                audio.duration
-            )
-        ){
-
-            return;
-
-        }
-
-
-        const percent =
-            (
-                audio.currentTime /
-                audio.duration
-            ) *
-            100;
-
-
-        progress.value =
-            percent;
-
-
-        currentTime.textContent =
-            formatTime(
-                audio.currentTime
-            );
-
-
-        duration.textContent =
-            formatTime(
-                audio.duration
-            );
-
-    }
-);
-
-
-
-/* =========================================================
-   SEEK
-========================================================= */
-
-progress.addEventListener(
-    "input",
-    () => {
-
-        if (
-            !audio.duration
-        ){
-
-            return;
-
-        }
-
-
-        audio.currentTime =
-            (
-                Number(
-                    progress.value
-                ) / 100
-            ) *
-            audio.duration;
-
-    }
-);
-
-
-
-/* =========================================================
-   VOLUME
-========================================================= */
-
-audio.volume =
-    Number(
-        volume.value
-    );
-
-
-volume.addEventListener(
-    "input",
-    () => {
-
-        audio.volume =
-            Number(
-                volume.value
-            );
-
-    }
-);
-
-
-
-/* =========================================================
-   DOWNLOAD
-========================================================= */
-
-function downloadTrack(
-    track
-){
-
-    const url =
-        MUSIC_URL +
-        encodeURIComponent(
-            track.id
-        ) +
-        "?download=1";
-
-
-    const a =
-        document.createElement(
-            "a"
+    return String(name)
+        .replace(
+            /\.mp3$/i,
+            ""
         );
-
-
-    a.href =
-        url;
-
-
-    a.download =
-        track.name;
-
-
-    document.body.appendChild(
-        a
-    );
-
-
-    a.click();
-
-
-    a.remove();
 
 }
 
 
-
 /* =========================================================
-   DOWNLOAD CURRENT
-========================================================= */
+   ESCAPE
+   ========================================================= */
 
-downloadCurrent.onclick =
-    () => {
+function escapeHTML(value){
 
-        if (
-            !currentTrack
-        ){
-
-            showToast(
-                "Сначала выбери трек"
-            );
-
-            return;
-
-        }
-
-
-        downloadTrack(
-            currentTrack
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
         );
-
-    };
-
-
-
-/* =========================================================
-   COPY LINK
-========================================================= */
-
-async function copyTrackLink(
-    track
-){
-
-    const url =
-        MUSIC_URL +
-        encodeURIComponent(
-            track.id
-        );
-
-
-    try{
-
-        await navigator.clipboard.writeText(
-            url
-        );
-
-
-        showToast(
-            "Ссылка скопирована"
-        );
-
-    }
-    catch(error){
-
-        showToast(
-            "Не удалось скопировать ссылку"
-        );
-
-    }
 
 }
 
 
+function escapeAttribute(value){
 
-/* =========================================================
-   COPY CURRENT
-========================================================= */
+    return escapeHTML(value);
 
-copyCurrent.onclick =
-    () => {
-
-        if (
-            !currentTrack
-        ){
-
-            showToast(
-                "Сначала выбери трек"
-            );
-
-            return;
-
-        }
+}
 
 
-        copyTrackLink(
-            currentTrack
+function escapeJS(value){
+
+    return String(value)
+        .replace(
+            /\\/g,
+            "\\\\"
+        )
+        .replace(
+            /'/g,
+            "\\'"
+        )
+        .replace(
+            /"/g,
+            '\\"'
+        )
+        .replace(
+            /\r/g,
+            "\\r"
+        )
+        .replace(
+            /\n/g,
+            "\\n"
         );
 
-    };
-
-
-
-/* =========================================================
-   SEARCH EVENTS
-========================================================= */
-
-search.addEventListener(
-    "input",
-    () => {
-
-        applyFilter();
-
-    }
-);
-
-
-sort.addEventListener(
-    "change",
-    () => {
-
-        applyFilter();
-
-    }
-);
-
+}
 
 
 /* =========================================================
-   KEYBOARD
-========================================================= */
+   НАВИГАЦИЯ
+   ========================================================= */
 
-document.addEventListener(
-    "keydown",
-    event => {
+function scrollTopPage(){
 
-        if (
-            event.target.tagName ===
-            "INPUT"
-        ){
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
-            return;
-
-        }
+}
 
 
-        if (
-            event.code ===
-            "Space"
-        ){
+/*
+ * Сюда поставлен адрес твоего основного сайта.
+ *
+ * Если Music.html лежит в том же месте,
+ * можно оставить просто "index.html".
+ */
 
-            event.preventDefault();
+function goMusic(){
 
-            playBtn.click();
+    window.location.href =
+        "index.html";
 
-        }
-
-
-        if (
-            event.code ===
-            "ArrowRight"
-        ){
-
-            if (
-                audio.duration
-            ){
-
-                audio.currentTime =
-                    Math.min(
-                        audio.duration,
-                        audio.currentTime + 5
-                    );
-
-            }
-
-        }
+}
 
 
-        if (
-            event.code ===
-            "ArrowLeft"
-        ){
+function goGachi(){
 
-            if (
-                audio.duration
-            ){
+    alert(
+        "Раздел Gachi пока находится в разработке 😎"
+    );
 
-                audio.currentTime =
-                    Math.max(
-                        0,
-                        audio.currentTime - 5
-                    );
+}
 
-            }
 
-        }
+function goScreamer(){
 
-    }
-);
+    alert(
+        "Раздел Скримеры пока находится в разработке 😱"
+    );
 
+}
 
 
 /* =========================================================
-   START
-========================================================= */
+   ЗАПУСК
+   ========================================================= */
 
-loadTracks();
+loadRoflan();
 
 </script>
 
 </body>
 </html>
+```
