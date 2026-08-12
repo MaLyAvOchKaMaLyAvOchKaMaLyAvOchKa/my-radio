@@ -7,7 +7,7 @@
 
 <meta
     name="viewport"
-    content="width=device-width,initial-scale=1.0"
+    content="width=device-width, initial-scale=1.0"
 >
 
 <title>МаЛяВоЧка - Music</title>
@@ -23,22 +23,23 @@ html{
 }
 
 body{
+
     margin:0;
 
     background:
         radial-gradient(
-            circle at 70% 10%,
-            rgba(0,255,136,.07),
-            transparent 30%
+            circle at 70% 20%,
+            rgba(0,255,170,0.045),
+            transparent 35%
         ),
         radial-gradient(
-            circle at 90% 80%,
-            rgba(0,180,255,.05),
-            transparent 30%
+            circle at 80% 80%,
+            rgba(0,130,255,0.035),
+            transparent 40%
         ),
-        #0d0d0f;
+        #090b0c;
 
-    color:#fff;
+    color:#eee;
 
     font-family:
         Arial,
@@ -59,68 +60,92 @@ body{
 
     left:0;
     top:0;
+    bottom:0;
 
-    width:190px;
-    height:100vh;
+    width:184px;
 
     background:
         linear-gradient(
             180deg,
-            #18181b,
-            #111113
+            #16181b,
+            #101113
         );
 
     border-right:
         1px solid
-        rgba(255,255,255,.06);
-
-    box-shadow:
-        5px 0 25px
-        rgba(0,0,0,.45);
-
-    padding-top:110px;
+        rgba(255,255,255,0.08);
 
     z-index:100;
+
+    padding-top:240px;
+
 }
 
 
-.menu{
+.sidebar-item{
 
     display:flex;
 
     align-items:center;
 
-    gap:12px;
+    gap:14px;
+
+    padding:
+        16px
+        30px;
 
     color:#ddd;
 
-    text-decoration:none;
+    font-size:19px;
 
-    font-size:20px;
+    cursor:pointer;
 
-    padding:17px 20px;
+    transition:
+        background .2s,
+        color .2s,
+        transform .2s;
 
-    margin:5px 10px;
-
-    border-radius:12px;
-
-    transition:.2s;
 }
 
 
-.menu:hover{
+.sidebar-item:hover{
 
     background:
-        rgba(0,255,136,.08);
+        rgba(0,255,170,0.06);
 
-    color:#00ff88;
+    color:#00ffae;
 
-    transform:
-        translateX(4px);
+}
 
-    box-shadow:
-        inset 3px 0 0
-        #00ff88;
+
+.sidebar-icon{
+
+    width:24px;
+
+    text-align:center;
+
+    font-size:20px;
+
+}
+
+
+.sidebar-text{
+
+    line-height:1.1;
+
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main{
+
+    margin-left:184px;
+
+    min-height:100vh;
+
 }
 
 
@@ -128,192 +153,137 @@ body{
    HEADER
    ========================================================= */
 
-header{
+.header{
 
-    margin-left:190px;
+    position:sticky;
 
-    padding:30px 20px;
+    top:0;
 
-    text-align:center;
+    z-index:50;
 
-    background:
-        linear-gradient(
-            180deg,
-            #18181a,
-            #151517
-        );
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,.06);
-
-    box-shadow:
-        0 8px 30px
-        rgba(0,0,0,.35);
-
-    font-size:42px;
-
-    font-weight:bold;
-
-    color:#00ff88;
-
-    letter-spacing:1px;
-
-    text-shadow:
-        0 0 15px
-        rgba(0,255,136,.25);
-
-    position:relative;
-}
-
-
-/* =========================================================
-   SEARCH
-   ========================================================= */
-
-.search{
-
-    position:absolute;
-
-    right:25px;
-
-    top:50%;
-
-    transform:
-        translateY(-50%);
-
-    width:260px;
-
-    height:43px;
+    min-height:114px;
 
     display:flex;
 
     align-items:center;
 
+    justify-content:center;
+
+    padding:
+        18px
+        30px;
+
     background:
-        rgba(20,20,22,.85);
 
-    border:
+        linear-gradient(
+            180deg,
+            rgba(24,25,28,.97),
+            rgba(20,21,23,.94)
+        );
+
+    border-bottom:
         1px solid
-        rgba(255,255,255,.1);
+        rgba(255,255,255,0.08);
 
-    border-radius:22px;
-
-    overflow:hidden;
-
-    transition:.2s;
-
-    box-shadow:
-        inset 0 0 15px
-        rgba(0,0,0,.25);
 }
 
 
-.search:focus-within{
+.header-title{
 
-    border-color:#00ff88;
+    margin:0;
+
+    color:#00f7a5;
+
+    font-size:39px;
+
+    font-weight:800;
+
+    letter-spacing:.5px;
+
+    text-align:center;
+
+    text-shadow:
+        0 0 10px rgba(0,255,170,.45),
+        0 0 25px rgba(0,255,170,.18);
+
+}
+
+
+.search-wrap{
+
+    position:absolute;
+
+    right:24px;
+
+    top:34px;
+
+}
+
+
+.search{
+
+    width:252px;
+
+    height:45px;
+
+    border-radius:25px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    background:
+        rgba(0,0,0,.24);
+
+    color:#fff;
+
+    outline:none;
+
+    padding:
+        0 18px 0 43px;
+
+    font-size:15px;
+
+    transition:
+        border-color .2s,
+        box-shadow .2s;
+
+}
+
+
+.search:focus{
+
+    border-color:
+        rgba(0,255,170,.55);
 
     box-shadow:
-        0 0 12px
-        rgba(0,255,136,.18),
-        inset 0 0 15px
-        rgba(0,0,0,.25);
+        0 0 15px
+        rgba(0,255,170,.08);
+
+}
+
+
+.search::placeholder{
+
+    color:#777;
+
 }
 
 
 .search-icon{
 
-    position:relative;
-
-    width:45px;
-
-    height:100%;
-
-    flex-shrink:0;
-}
-
-
-.search-icon:before{
-
-    content:"";
-
     position:absolute;
 
-    width:11px;
-    height:11px;
+    left:16px;
 
-    border:
-        2px solid
-        #aaa;
-
-    border-radius:50%;
-
-    left:14px;
     top:12px;
 
-    transition:.2s;
-}
+    color:#aaa;
 
+    font-size:19px;
 
-.search-icon:after{
+    pointer-events:none;
 
-    content:"";
-
-    position:absolute;
-
-    width:7px;
-    height:2px;
-
-    background:#aaa;
-
-    transform:
-        rotate(45deg);
-
-    left:25px;
-    top:25px;
-
-    border-radius:2px;
-
-    transition:.2s;
-}
-
-
-.search:focus-within
-.search-icon:before{
-
-    border-color:#00ff88;
-}
-
-
-.search:focus-within
-.search-icon:after{
-
-    background:#00ff88;
-}
-
-
-.search input{
-
-    width:100%;
-    height:100%;
-
-    border:0;
-    outline:0;
-
-    background:transparent;
-
-    color:#fff;
-
-    font-size:15px;
-
-    padding:
-        0 15px 0 0;
-}
-
-
-.search input::placeholder{
-
-    color:#888;
 }
 
 
@@ -323,151 +293,130 @@ header{
 
 .content{
 
-    margin-left:190px;
+    max-width:850px;
 
-    width:
-        calc(100% - 190px);
+    margin:0 auto;
 
     padding:
-        35px 30px 80px;
+        34px
+        30px
+        80px;
+
 }
 
 
 /* =========================================================
-   LOADING
+   STATUS
    ========================================================= */
 
-.loading,
-.no-results,
-.error{
-
-    width:min(760px,90%);
-
-    margin:30px auto;
+.status{
 
     text-align:center;
-}
 
-
-.loading{
+    padding:60px 20px;
 
     color:#777;
 
     font-size:17px;
+
 }
 
 
-.loading span{
+.status.loading{
 
-    color:#00ff88;
+    color:#888;
+
 }
 
 
-.error{
+.status.error{
 
-    display:none;
+    max-width:700px;
 
-    padding:20px;
+    margin:40px auto;
 
-    border-radius:12px;
-
-    background:
-        rgba(255,50,50,.06);
+    padding:30px;
 
     border:
         1px solid
-        rgba(255,50,50,.15);
-
-    color:#aaa;
-
-    line-height:1.6;
-}
-
-
-.error b{
-
-    color:#ff6666;
-}
-
-
-.no-results{
-
-    display:none;
-
-    color:#777;
-
-    font-size:18px;
-}
-
-
-/* =========================================================
-   SONG
-   ========================================================= */
-
-.song{
+        rgba(255,60,60,.25);
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(27,31,31,.97),
-            rgba(22,25,26,.97)
-        );
-
-    width:min(760px,90%);
-
-    margin:
-        0 auto 12px;
+        rgba(80,10,10,.16);
 
     border-radius:14px;
 
-    padding:
-        13px 18px 10px;
+    color:#ff7777;
 
-    border:
-        1px solid
-        rgba(255,255,255,.055);
-
-    box-shadow:
-        0 8px 25px
-        rgba(0,0,0,.28),
-        inset 0 0 20px
-        rgba(0,255,136,.015);
-
-    transition:.2s;
 }
 
 
-.song:hover{
+.status.error strong{
 
-    transform:
-        translateY(-2px);
+    display:block;
 
-    border-color:
-        rgba(0,255,136,.18);
+    color:#ff4f4f;
 
-    box-shadow:
-        0 12px 30px
-        rgba(0,0,0,.4),
-        0 0 20px
-        rgba(0,255,136,.035);
-}
+    margin-bottom:15px;
 
+    font-size:18px;
 
-.song.hidden{
-
-    display:none;
 }
 
 
 /* =========================================================
-   TITLE
+   TRACK CARD
    ========================================================= */
 
-.title{
+.track{
 
-    min-height:37px;
+    background:
 
-    font-size:20px;
+        linear-gradient(
+            135deg,
+            rgba(31,33,34,.92),
+            rgba(21,22,23,.92)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.075);
+
+    border-radius:16px;
+
+    padding:
+        17px;
+
+    margin-bottom:13px;
+
+    box-shadow:
+        0 8px 30px
+        rgba(0,0,0,.18);
+
+    transition:
+        transform .18s,
+        border-color .18s,
+        box-shadow .18s;
+
+}
+
+
+.track:hover{
+
+    transform:
+        translateY(-1px);
+
+    border-color:
+        rgba(0,255,170,.18);
+
+    box-shadow:
+        0 10px 35px
+        rgba(0,0,0,.26);
+
+}
+
+
+.track-title{
 
     display:flex;
 
@@ -475,59 +424,36 @@ header{
 
     gap:10px;
 
-    color:#f2f2f2;
+    color:#f0f0f0;
 
-    white-space:nowrap;
+    font-size:19px;
+
+    font-weight:600;
+
+    margin-bottom:10px;
 
     overflow:hidden;
+
 }
 
 
-.title .music-icon{
+.track-icon{
 
-    font-size:24px;
+    font-size:25px;
 
-    color:#9b62ff;
+    flex:none;
 
-    filter:
-        drop-shadow(
-            0 0 5px
-            rgba(140,70,255,.45)
-        );
-
-    flex-shrink:0;
 }
 
 
-.title > span:nth-child(2){
+.track-name{
 
     overflow:hidden;
 
     text-overflow:ellipsis;
-}
 
+    white-space:nowrap;
 
-/* =========================================================
-   FFT
-   ========================================================= */
-
-.fft{
-
-    display:none;
-
-    width:220px;
-
-    height:48px;
-
-    margin-left:auto;
-
-    flex-shrink:0;
-}
-
-
-.song.playing .fft{
-
-    display:block;
 }
 
 
@@ -535,18 +461,16 @@ header{
    AUDIO
    ========================================================= */
 
-audio{
-
-    display:block;
+.audio{
 
     width:100%;
 
-    height:48px;
+    height:42px;
 
-    border-radius:12px;
+    display:block;
 
-    margin:
-        0 0 9px;
+    margin-bottom:10px;
+
 }
 
 
@@ -558,9 +482,8 @@ audio{
 
     display:flex;
 
-    gap:10px;
+    gap:9px;
 
-    width:100%;
 }
 
 
@@ -568,67 +491,95 @@ audio{
 
     flex:1;
 
+    min-height:34px;
+
     border:0;
 
     border-radius:7px;
 
-    padding:
-        8px 15px;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    text-align:center;
-
-    text-decoration:none;
-
     cursor:pointer;
 
-    transition:.15s;
+    font-size:15px;
+
+    font-weight:700;
+
+    color:white;
+
+    transition:
+        filter .15s,
+        transform .1s,
+        opacity .15s;
+
 }
 
 
 .btn:hover{
 
-    transform:
-        translateY(-1px);
-
     filter:
         brightness(1.08);
+
 }
 
 
 .btn:active{
 
     transform:
-        translateY(0);
+        scale(.985);
+
 }
 
 
-.download{
+.download-btn{
 
-    background:#00c878;
+    background:
+        #00c985;
 
-    color:#fff;
-
-    box-shadow:
-        0 4px 12px
-        rgba(0,200,120,.1);
 }
 
 
-.copy{
+.copy-btn{
 
-    background:#087fd0;
+    background:
+        #1389d7;
 
-    color:#fff;
 }
 
 
-.copy.copied{
+.copy-btn.copied{
 
-    background:#00b86b;
+    background:
+        #00b878;
+
+}
+
+
+.download-btn{
+
+    text-decoration:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+/* =========================================================
+   EMPTY
+   ========================================================= */
+
+.empty{
+
+    text-align:center;
+
+    color:#777;
+
+    padding:80px 20px;
+
+    font-size:17px;
+
 }
 
 
@@ -636,132 +587,147 @@ audio{
    MOBILE
    ========================================================= */
 
-@media(max-width:800px){
+@media(max-width:900px){
 
     .sidebar{
 
         width:70px;
 
-        padding-top:90px;
+        padding-top:170px;
+
     }
 
 
-    .menu{
+    .sidebar-item{
 
         justify-content:center;
 
-        font-size:0;
+        padding:
+            17px 5px;
 
-        padding:15px;
-
-        margin:6px;
     }
 
 
-    .menu:first-letter{
+    .sidebar-text{
 
-        font-size:25px;
+        display:none;
+
     }
 
 
-    header{
+    .main{
 
         margin-left:70px;
 
-        font-size:30px;
+    }
 
-        padding:
-            25px 10px;
+
+    .header{
+
+        min-height:135px;
+
+        padding-top:15px;
+
+        align-items:flex-start;
+
+    }
+
+
+    .header-title{
+
+        font-size:27px;
+
+        padding-top:3px;
+
+    }
+
+
+    .search-wrap{
+
+        position:absolute;
+
+        top:77px;
+
+        left:20px;
+
+        right:20px;
+
     }
 
 
     .search{
 
-        position:relative;
+        width:100%;
 
-        right:auto;
-
-        top:auto;
-
-        transform:none;
-
-        margin:
-            18px auto 0;
-
-        width:min(400px,90%);
-
-        height:40px;
     }
 
 
     .content{
 
-        margin-left:70px;
-
-        width:
-            calc(100% - 70px);
-
         padding:
-            25px 10px 60px;
+            25px 15px 60px;
+
     }
 
 
-    .song{
+}
 
-        width:100%;
 
-        padding:12px;
-    }
-
+@media(max-width:600px){
 
     .buttons{
 
         flex-direction:column;
+
     }
 
 
     .btn{
 
-        width:100%;
+        min-height:42px;
+
     }
 
 
-    .title{
+    .track-title{
 
-        font-size:19px;
-    }
+        font-size:17px;
 
-
-    .fft{
-
-        width:150px;
-
-        height:40px;
     }
 
 }
 
 
-@media(max-width:500px){
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
 
-    .title{
+::-webkit-scrollbar{
 
-        gap:6px;
-    }
+    width:9px;
 
-
-    .title .music-icon{
-
-        font-size:21px;
-    }
+}
 
 
-    .fft{
+::-webkit-scrollbar-track{
 
-        width:120px;
+    background:#090a0b;
 
-        height:34px;
-    }
+}
+
+
+::-webkit-scrollbar-thumb{
+
+    background:#292c2e;
+
+    border-radius:10px;
+
+}
+
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#363a3d;
 
 }
 
@@ -773,242 +739,751 @@ audio{
 <body>
 
 
-<!-- =========================================================
+<!-- =======================================================
      SIDEBAR
-     ========================================================= -->
+     ======================================================= -->
 
 <div class="sidebar">
 
-    <a href="index.html" class="menu">
-        🎧 <span>Music</span>
-    </a>
+    <div
+        class="sidebar-item"
+        onclick="scrollTopPage()"
+    >
 
-    <a href="Roflan.html" class="menu">
-        😂 <span>Рофл звуки</span>
-    </a>
+        <div class="sidebar-icon">
+            🎧
+        </div>
 
-    <a href="Gachi.html" class="menu">
-        🎤 <span>Gachi</span>
-    </a>
+        <div class="sidebar-text">
+            Music
+        </div>
 
-    <a href="Skrimer.html" class="menu">
-        😱 <span>Скримеры</span>
-    </a>
+    </div>
+
+
+    <div class="sidebar-item">
+
+        <div class="sidebar-icon">
+            😂
+        </div>
+
+        <div class="sidebar-text">
+            Роффл<br>звуки
+        </div>
+
+    </div>
+
+
+    <div class="sidebar-item">
+
+        <div class="sidebar-icon">
+            🎤
+        </div>
+
+        <div class="sidebar-text">
+            Gachi
+        </div>
+
+    </div>
+
+
+    <div class="sidebar-item">
+
+        <div class="sidebar-icon">
+            😱
+        </div>
+
+        <div class="sidebar-text">
+            Скримеры
+        </div>
+
+    </div>
 
 </div>
 
 
-<!-- =========================================================
-     HEADER
-     ========================================================= -->
 
-<header>
+<!-- =======================================================
+     MAIN
+     ======================================================= -->
 
-    🎧 МаЛяВоЧка - Music 🎧
-
-    <div class="search">
-
-        <span class="search-icon"></span>
-
-        <input
-            id="searchInput"
-            type="text"
-            placeholder="Найти трек..."
-        >
-
-    </div>
-
-</header>
+<div class="main">
 
 
-<!-- =========================================================
-     CONTENT
-     ========================================================= -->
+    <!-- ===================================================
+         HEADER
+         =================================================== -->
 
-<div class="content">
+    <header class="header">
 
-    <div
-        class="loading"
-        id="loading"
+        <h1 class="header-title">
+            🎧 МаЛяВоЧка - Music 🎧
+        </h1>
+
+
+        <div class="search-wrap">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                id="search"
+                class="search"
+                type="text"
+                placeholder="Найти трек..."
+                autocomplete="off"
+            >
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ===================================================
+         CONTENT
+         =================================================== -->
+
+    <main
+        id="musicList"
+        class="content"
     >
-        Загрузка музыки...
-        <span>♪</span>
-    </div>
 
+        <div class="status loading">
 
-    <div
-        class="error"
-        id="error"
-    ></div>
+            Загрузка музыки... 🎵
 
+        </div>
 
-    <div
-        id="songsContainer"
-    ></div>
+    </main>
 
-
-    <div
-        class="no-results"
-        id="noResults"
-    >
-        Ничего не найдено 😔
-    </div>
 
 </div>
+
 
 
 <script>
 
 /* =========================================================
-   WORKER
+   НАСТРОЙКИ
    ========================================================= */
 
-const WORKER =
+
+/*
+ * Твой Cloudflare Worker.
+ *
+ * ВАЖНО:
+ * Здесь НЕ ставим /music/.
+ * Он добавляется автоматически.
+ */
+
+const WORKER_URL =
     "https://malyavochka-music.rxmlopdt.workers.dev";
 
 
+/*
+ * Список музыки.
+ */
+
 const LIST_URL =
-    WORKER + "/list.json";
+    WORKER_URL + "/list.json";
 
-
-/* =========================================================
-   GLOBAL
-   ========================================================= */
-
-let songs = [];
-
-let players = [];
-
-let currentAudio = null;
-
-let fakeFFTAnimation = null;
 
 
 /* =========================================================
-   TRANSLIT
+   DOM
    ========================================================= */
 
-const translit = {
+const musicList =
+    document.getElementById(
+        "musicList"
+    );
 
-    "а":"a",
-    "б":"b",
-    "в":"v",
-    "г":"g",
-    "д":"d",
-    "е":"e",
-    "ё":"yo",
-    "ж":"zh",
-    "з":"z",
-    "и":"i",
-    "й":"y",
-    "к":"k",
-    "л":"l",
-    "м":"m",
-    "н":"n",
-    "о":"o",
-    "п":"p",
-    "р":"r",
-    "с":"s",
-    "т":"t",
-    "у":"u",
-    "ф":"f",
-    "х":"h",
-    "ц":"ts",
-    "ч":"ch",
-    "ш":"sh",
-    "щ":"sch",
-    "ъ":"",
-    "ы":"y",
-    "ь":"",
-    "э":"e",
-    "ю":"yu",
-    "я":"ya"
 
-};
+const searchInput =
+    document.getElementById(
+        "search"
+    );
+
 
 
 /* =========================================================
-   NORMALIZE
+   ДАННЫЕ
    ========================================================= */
 
-function normalizeSearch(text){
+let tracks = [];
 
-    return String(text)
 
-        .toLowerCase()
 
-        .replace(
-            /ё/g,
-            "е"
-        )
+/* =========================================================
+   ЗАГРУЗКА СПИСКА
+   ========================================================= */
 
-        .replace(
-            /й/g,
-            "и"
-        )
+async function loadMusic(){
 
-        .replace(
-            /[_\-–—]+/g,
-            " "
-        )
+    try{
 
-        .replace(
-            /[^a-zа-я0-9\s]/gi,
-            " "
-        )
+        /*
+         * Добавляем timestamp.
+         *
+         * Это важно:
+         * браузер не будет использовать старый
+         * list.json после добавления новых песен.
+         */
 
-        .replace(
-            /\s+/g,
-            " "
-        )
+        const url =
+            LIST_URL +
+            "?t=" +
+            Date.now();
 
-        .trim();
+
+        const response =
+            await fetch(
+                url,
+                {
+                    method:"GET",
+
+                    cache:"no-store",
+
+                    headers:{
+                        "Accept":
+                            "application/json"
+                    }
+                }
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                "Worker HTTP " +
+                response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if(!Array.isArray(data)){
+
+            throw new Error(
+                "Worker вернул неправильный JSON"
+            );
+
+        }
+
+
+        tracks =
+            data.filter(
+                track =>
+                    track &&
+                    track.id &&
+                    track.name
+            );
+
+
+        renderTracks();
+
+
+    }
+    catch(error){
+
+        console.error(
+            "Ошибка загрузки музыки:",
+            error
+        );
+
+
+        musicList.innerHTML = `
+
+            <div class="status error">
+
+                <strong>
+                    🎧 Не удалось загрузить музыку
+                </strong>
+
+                <div>
+                    Worker HTTP ошибка
+                </div>
+
+                <br>
+
+                <small>
+                    ${escapeHTML(error.message)}
+                </small>
+
+                <br><br>
+
+                <button
+                    class="btn download-btn"
+                    onclick="loadMusic()"
+                    style="max-width:220px;padding:10px 20px"
+                >
+                    ↻ Повторить
+                </button>
+
+            </div>
+
+        `;
+
+    }
 
 }
 
 
+
 /* =========================================================
-   SEARCH VARIANTS
+   URL ДЛЯ ВОСПРОИЗВЕДЕНИЯ
    ========================================================= */
 
-function makeSearchVariants(text){
+function getPlayURL(track){
 
-    const base =
-        normalizeSearch(text);
+    /*
+     * Это ГЛАВНАЯ ссылка.
+     *
+     * Именно её нужно:
+     *
+     * - вставлять в E2
+     * - использовать в <audio>
+     * - копировать кнопкой
+     *
+     * Никакого ?download=1 здесь НЕТ.
+     */
 
-    let transliterated = "";
+    return (
+        WORKER_URL +
+        "/music/" +
+        encodeURIComponent(
+            track.id
+        )
+    );
+
+}
 
 
-    for(
-        const char of base
-    ){
 
-        transliterated +=
-            translit[char] !== undefined
-                ? translit[char]
-                : char;
+/* =========================================================
+   URL ДЛЯ СКАЧИВАНИЯ
+   ========================================================= */
+
+function getDownloadURL(track){
+
+    /*
+     * Для скачивания добавляем:
+     *
+     * ?download=1
+     *
+     * Worker тогда ставит:
+     *
+     * Content-Disposition: attachment
+     */
+
+    return (
+        getPlayURL(track) +
+        "?download=1"
+    );
+
+}
+
+
+
+/* =========================================================
+   ОТРИСОВКА
+   ========================================================= */
+
+function renderTracks(){
+
+    const query =
+        searchInput.value
+            .trim()
+            .toLowerCase();
+
+
+    const filtered =
+        tracks.filter(
+            track =>
+                String(
+                    track.name || ""
+                )
+                .toLowerCase()
+                .includes(query)
+        );
+
+
+    if(!filtered.length){
+
+        musicList.innerHTML = `
+
+            <div class="empty">
+
+                🎵 Ничего не найдено
+
+            </div>
+
+        `;
+
+        return;
 
     }
 
 
-    return (
-        base +
-        " " +
-        normalizeSearch(
-            transliterated
-        )
-    ).trim();
+    musicList.innerHTML =
+        filtered
+            .map(
+                track =>
+                    createTrackHTML(
+                        track
+                    )
+            )
+            .join("");
+
+
+    /*
+     * После вставки HTML
+     * назначаем источники audio.
+     */
+
+    filtered.forEach(
+        track => {
+
+            const audio =
+                document.getElementById(
+                    "audio-" +
+                    track.id
+                );
+
+
+            if(audio){
+
+                audio.src =
+                    getPlayURL(
+                        track
+                    );
+
+            }
+
+        }
+    );
 
 }
+
+
+
+/* =========================================================
+   СОЗДАНИЕ КАРТОЧКИ
+   ========================================================= */
+
+function createTrackHTML(track){
+
+    const id =
+        escapeHTML(
+            String(
+                track.id
+            )
+        );
+
+
+    const name =
+        escapeHTML(
+            removeExtension(
+                String(
+                    track.name || ""
+                )
+            )
+        );
+
+
+    return `
+
+        <div
+            class="track"
+            data-track-id="${id}"
+        >
+
+            <div class="track-title">
+
+                <span class="track-icon">
+                    🎵
+                </span>
+
+                <span class="track-name">
+                    ${name}
+                </span>
+
+            </div>
+
+
+            <audio
+                id="audio-${id}"
+                class="audio"
+                controls
+                preload="metadata"
+            >
+
+                Ваш браузер не поддерживает
+                воспроизведение аудио.
+
+            </audio>
+
+
+            <div class="buttons">
+
+
+                <!-- =====================================
+                     DOWNLOAD
+                     ===================================== -->
+
+                <a
+                    class="btn download-btn"
+                    href="${escapeAttribute(
+                        getDownloadURL(track)
+                    )}"
+                    download
+                    target="_self"
+                >
+                    ↓ Скачать MP3
+                </a>
+
+
+                <!-- =====================================
+                     COPY
+                     ===================================== -->
+
+                <button
+                    class="btn copy-btn"
+                    type="button"
+                    onclick="copyMusicLink(this, '${escapeJS(
+                        getPlayURL(track)
+                    )}')"
+                >
+                    🔗 Копировать ссылку
+                </button>
+
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* =========================================================
+   КОПИРОВАНИЕ ССЫЛКИ
+   ========================================================= */
+
+async function copyMusicLink(
+    button,
+    url
+){
+
+    /*
+     * ВАЖНО:
+     *
+     * Здесь НЕТ:
+     *
+     * window.location
+     * window.open
+     * <a href>
+     *
+     * Поэтому кнопка НИКОГДА
+     * не должна открывать MP3.
+     *
+     * Она только кладёт URL
+     * в буфер обмена.
+     */
+
+
+    const oldText =
+        button.textContent;
+
+
+    try{
+
+        /*
+         * Современный способ.
+         */
+
+        await navigator.clipboard.writeText(
+            url
+        );
+
+
+        button.textContent =
+            "✓ Ссылка скопирована";
+
+
+        button.classList.add(
+            "copied"
+        );
+
+
+        setTimeout(
+            () => {
+
+                button.textContent =
+                    oldText;
+
+                button.classList.remove(
+                    "copied"
+                );
+
+            },
+            1800
+        );
+
+
+    }
+    catch(error){
+
+        /*
+         * Запасной способ для браузеров,
+         * где clipboard API запрещён.
+         */
+
+        const textarea =
+            document.createElement(
+                "textarea"
+            );
+
+
+        textarea.value =
+            url;
+
+
+        textarea.style.position =
+            "fixed";
+
+        textarea.style.left =
+            "-9999px";
+
+        textarea.style.top =
+            "0";
+
+
+        document.body.appendChild(
+            textarea
+        );
+
+
+        textarea.focus();
+
+        textarea.select();
+
+
+        let success =
+            false;
+
+
+        try{
+
+            success =
+                document.execCommand(
+                    "copy"
+                );
+
+        }
+        catch(e){
+
+            success =
+                false;
+
+        }
+
+
+        textarea.remove();
+
+
+        if(success){
+
+            button.textContent =
+                "✓ Ссылка скопирована";
+
+
+            button.classList.add(
+                "copied"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    button.textContent =
+                        oldText;
+
+                    button.classList.remove(
+                        "copied"
+                    );
+
+                },
+                1800
+            );
+
+        }
+        else{
+
+            /*
+             * Если браузер вообще не разрешил
+             * автоматическое копирование,
+             * показываем URL пользователю.
+             */
+
+            window.prompt(
+                "Скопируй эту ссылку:",
+                url
+            );
+
+        }
+
+    }
+
+}
+
+
+
+/* =========================================================
+   ПОИСК
+   ========================================================= */
+
+searchInput.addEventListener(
+    "input",
+    () => {
+
+        renderTracks();
+
+    }
+);
+
+
+
+/* =========================================================
+   УДАЛИТЬ .MP3 ИЗ НАЗВАНИЯ
+   ========================================================= */
+
+function removeExtension(name){
+
+    return name.replace(
+        /\.mp3$/i,
+        ""
+    );
+
+}
+
 
 
 /* =========================================================
    HTML ESCAPE
    ========================================================= */
 
-function escapeHTML(text){
+function escapeHTML(value){
 
-    return String(text)
+    return String(value)
 
         .replace(
             /&/g,
@@ -1038,1383 +1513,84 @@ function escapeHTML(text){
 }
 
 
+
 /* =========================================================
-   FETCH
+   ATTRIBUTE ESCAPE
    ========================================================= */
 
-async function getMusicList(){
+function escapeAttribute(value){
 
-    const url =
-        LIST_URL +
-        "?t=" +
-        Date.now();
-
-
-    const response =
-        await fetch(
-            url,
-            {
-                method:"GET",
-                cache:"no-store"
-            }
-        );
-
-
-    if(
-        !response.ok
-    ){
-
-        throw new Error(
-            "Worker HTTP " +
-            response.status
-        );
-
-    }
-
-
-    const text =
-        await response.text();
-
-
-    if(
-        !text.trim()
-    ){
-
-        throw new Error(
-            "Worker вернул пустой ответ."
-        );
-
-    }
-
-
-    let data;
-
-
-    try{
-
-        data =
-            JSON.parse(text);
-
-    }
-    catch(error){
-
-        console.error(
-            "Ответ Worker:",
-            text
-        );
-
-        throw new Error(
-            "Worker вернул неправильный JSON."
-        );
-
-    }
-
-
-    if(
-        !Array.isArray(data)
-    ){
-
-        throw new Error(
-            "Worker должен вернуть массив файлов."
-        );
-
-    }
-
-
-    return data;
+    return escapeHTML(
+        value
+    );
 
 }
 
 
+
 /* =========================================================
-   CREATE SONG
+   JS STRING ESCAPE
    ========================================================= */
 
-function createSong(file){
+function escapeJS(value){
 
-    const fileName =
-        String(
-            file.name || ""
-        );
+    return String(value)
 
-
-    /*
-       На главной странице показываем
-       ТОЛЬКО папку Music.
-    */
-
-    const path =
-        String(
-            file.path || ""
-        );
-
-
-    if(
-        !path.toLowerCase().startsWith("music/")
-    ){
-
-        return false;
-
-    }
-
-
-    /*
-       Только MP3.
-    */
-
-    if(
-        !fileName.toLowerCase().endsWith(".mp3")
-    ){
-
-        return false;
-
-    }
-
-
-    /*
-       Название песни.
-    */
-
-    let title =
-        fileName.replace(
-            /\.mp3$/i,
-            ""
-        );
-
-
-    try{
-
-        title =
-            decodeURIComponent(
-                title
-            );
-
-    }
-    catch(e){}
-
-
-    /*
-       ID GitHub файла.
-    */
-
-    const id =
-        String(
-            file.id || ""
-        );
-
-
-    if(
-        !id
-    ){
-
-        return false;
-
-    }
-
-
-    /*
-       Прямая ссылка Worker.
-
-       ВАЖНО:
-
-       encodeURIComponent нужен потому,
-       что GitHub ID содержит символы,
-       которые нельзя просто вставлять
-       в URL.
-    */
-
-    const fullURL =
-        WORKER +
-        "/music/" +
-        encodeURIComponent(id);
-
-
-    /*
-       Поиск.
-    */
-
-    const searchText =
-        title
-            .replace(
-                /[_\-–—]+/g,
-                " "
-            )
-            .replace(
-                /\s+/g,
-                " "
-            )
-            .trim();
-
-
-    /*
-       Создаём карточку.
-    */
-
-    const song =
-        document.createElement(
-            "div"
-        );
-
-
-    song.className =
-        "song";
-
-
-    song.dataset.search =
-        makeSearchVariants(
-            searchText
-        );
-
-
-    song.dataset.path =
-        path;
-
-
-    song.innerHTML = `
-
-        <div class="title">
-
-            <span class="music-icon">
-                🎵
-            </span>
-
-            <span title="${escapeHTML(title)}">
-                ${escapeHTML(title)}
-            </span>
-
-            <canvas
-                class="fft"
-                width="440"
-                height="96"
-            ></canvas>
-
-        </div>
-
-
-        <audio
-            controls
-            preload="metadata"
-            crossorigin="anonymous"
-        >
-
-            <source
-                src="${escapeHTML(fullURL)}"
-                type="audio/mpeg"
-            >
-
-            Ваш браузер не поддерживает
-            воспроизведение MP3.
-
-        </audio>
-
-
-        <div class="buttons">
-
-            <a
-                class="btn download"
-                href="${escapeHTML(fullURL)}"
-                download
-            >
-                ↓ Скачать MP3
-            </a>
-
-
-            <button
-                class="btn copy"
-                type="button"
-            >
-                🔗 Копировать ссылку
-            </button>
-
-        </div>
-
-    `;
-
-
-    /*
-       Кнопка копирования.
-    */
-
-    const copyButton =
-        song.querySelector(
-            ".copy"
-        );
-
-
-    copyButton.addEventListener(
-        "click",
-        function(){
-
-            copyLink(
-                copyButton,
-                fullURL
-            );
-
-        }
-    );
-
-
-    /*
-       Добавляем карточку.
-    */
-
-    document
-        .getElementById(
-            "songsContainer"
+        .replace(
+            /\\/g,
+            "\\\\"
         )
-        .appendChild(
-            song
-        );
 
-
-    return true;
-
-}
-
-
-/* =========================================================
-   LOAD MUSIC
-   ========================================================= */
-
-async function loadMusic(){
-
-    const loading =
-        document.getElementById(
-            "loading"
-        );
-
-
-    const error =
-        document.getElementById(
-            "error"
-        );
-
-
-    const container =
-        document.getElementById(
-            "songsContainer"
-        );
-
-
-    const noResults =
-        document.getElementById(
-            "noResults"
-        );
-
-
-    loading.style.display =
-        "block";
-
-
-    error.style.display =
-        "none";
-
-
-    noResults.style.display =
-        "none";
-
-
-    container.innerHTML =
-        "";
-
-
-    try{
-
-        loading.innerHTML =
-            'Загрузка музыки... <span>♪</span>';
-
-
-        const files =
-            await getMusicList();
-
-
-        console.log(
-            "Worker вернул файлов:",
-            files.length
-        );
-
-
-        let created =
-            0;
-
-
-        /*
-           Worker может вернуть
-           не только Music в будущем.
-
-           Поэтому index.html
-           дополнительно фильтрует:
-           Music/*.mp3
-        */
-
-        for(
-            const file of files
-        ){
-
-            if(
-                createSong(file)
-            ){
-
-                created++;
-
-            }
-
-        }
-
-
-        if(
-            created === 0
-        ){
-
-            throw new Error(
-                "В папке Music не найдено MP3-файлов."
-            );
-
-        }
-
-
-        songs =
-            Array.from(
-                document.querySelectorAll(
-                    ".song"
-                )
-            );
-
-
-        players =
-            Array.from(
-                document.querySelectorAll(
-                    "audio"
-                )
-            );
-
-
-        setupPlayers();
-
-        setupVolume();
-
-        setupSearch();
-
-
-        loading.style.display =
-            "none";
-
-
-        console.log(
-            "Создано треков:",
-            created
-        );
-
-    }
-    catch(e){
-
-        console.error(
-            "LOAD ERROR:",
-            e
-        );
-
-
-        loading.style.display =
-            "none";
-
-
-        error.style.display =
-            "block";
-
-
-        error.innerHTML = `
-
-            <b>
-                🎧 Не удалось загрузить музыку
-            </b>
-
-            <br><br>
-
-            ${escapeHTML(
-                e.message ||
-                "Неизвестная ошибка"
-            )}
-
-            <br><br>
-
-            <small>
-
-                Worker:
-
-                <br>
-
-                ${escapeHTML(
-                    LIST_URL
-                )}
-
-            </small>
-
-            <br><br>
-
-            <button
-                onclick="location.reload()"
-                style="
-                    background:#00c878;
-                    color:white;
-                    border:0;
-                    border-radius:8px;
-                    padding:10px 18px;
-                    cursor:pointer;
-                    font-weight:bold;
-                "
-            >
-                ↻ Повторить
-            </button>
-
-        `;
-
-    }
-
-}
-
-
-/* =========================================================
-   PLAYERS
-   ========================================================= */
-
-function setupPlayers(){
-
-    players.forEach(
-        player => {
-
-            player.addEventListener(
-                "play",
-                function(){
-
-                    pauseOthers(
-                        player
-                    );
-
-                    startFFT(
-                        player
-                    );
-
-                }
-            );
-
-
-            player.addEventListener(
-                "pause",
-                function(){
-
-                    const song =
-                        player.closest(
-                            ".song"
-                        );
-
-
-                    if(
-                        song
-                    ){
-
-                        song.classList.remove(
-                            "playing"
-                        );
-
-                        clearFFT(
-                            song
-                        );
-
-                    }
-
-
-                    if(
-                        player === currentAudio
-                    ){
-
-                        stopFFT();
-
-                    }
-
-                }
-            );
-
-
-            player.addEventListener(
-                "ended",
-                function(){
-
-                    const song =
-                        player.closest(
-                            ".song"
-                        );
-
-
-                    if(
-                        song
-                    ){
-
-                        song.classList.remove(
-                            "playing"
-                        );
-
-                        clearFFT(
-                            song
-                        );
-
-                    }
-
-
-                    if(
-                        player === currentAudio
-                    ){
-
-                        stopFFT();
-
-                        currentAudio =
-                            null;
-
-                    }
-
-                }
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   PAUSE OTHERS
-   ========================================================= */
-
-function pauseOthers(current){
-
-    players.forEach(
-        player => {
-
-            if(
-                player !== current
-            ){
-
-                player.pause();
-
-                player.currentTime =
-                    0;
-
-
-                const oldSong =
-                    player.closest(
-                        ".song"
-                    );
-
-
-                if(
-                    oldSong
-                ){
-
-                    oldSong.classList.remove(
-                        "playing"
-                    );
-
-                    clearFFT(
-                        oldSong
-                    );
-
-                }
-
-            }
-
-        }
-    );
-
-
-    currentAudio =
-        current;
-
-
-    const currentSong =
-        current.closest(
-            ".song"
-        );
-
-
-    if(
-        currentSong
-    ){
-
-        currentSong.classList.add(
-            "playing"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   CLEAR FFT
-   ========================================================= */
-
-function clearFFT(song){
-
-    if(
-        !song
-    ){
-
-        return;
-
-    }
-
-
-    const canvas =
-        song.querySelector(
-            ".fft"
-        );
-
-
-    if(
-        !canvas
-    ){
-
-        return;
-
-    }
-
-
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
-
-
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-}
-
-
-/* =========================================================
-   STOP FFT
-   ========================================================= */
-
-function stopFFT(){
-
-    if(
-        fakeFFTAnimation
-    ){
-
-        cancelAnimationFrame(
-            fakeFFTAnimation
-        );
-
-        fakeFFTAnimation =
-            null;
-
-    }
-
-}
-
-
-/* =========================================================
-   START FFT
-   ========================================================= */
-
-function startFFT(audio){
-
-    stopFFT();
-
-
-    if(
-        !audio ||
-        audio.paused
-    ){
-
-        return;
-
-    }
-
-
-    const song =
-        audio.closest(
-            ".song"
-        );
-
-
-    if(
-        !song
-    ){
-
-        return;
-
-    }
-
-
-    const canvas =
-        song.querySelector(
-            ".fft"
-        );
-
-
-    if(
-        !canvas
-    ){
-
-        return;
-
-    }
-
-
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
-
-
-    const bars =
-        38;
-
-
-    const values =
-        new Float32Array(
-            bars
-        );
-
-
-    function draw(){
-
-        if(
-            audio !== currentAudio ||
-            audio.paused ||
-            audio.ended ||
-            !song.classList.contains(
-                "playing"
-            )
-        ){
-
-            ctx.clearRect(
-                0,
-                0,
-                canvas.width,
-                canvas.height
-            );
-
-            fakeFFTAnimation =
-                null;
-
-            return;
-
-        }
-
-
-        ctx.clearRect(
-            0,
-            0,
-            canvas.width,
-            canvas.height
-        );
-
-
-        const gap =
-            3;
-
-
-        const bw =
-            (
-                canvas.width -
-                gap *
-                (bars - 1)
-            ) /
-            bars;
-
-
-        const time =
-            performance.now();
-
-
-        const duration =
-            audio.duration || 100;
-
-
-        const progress =
-            audio.currentTime /
-            duration;
-
-
-        for(
-            let i = 0;
-            i < bars;
-            i++
-        ){
-
-            const wave =
-                Math.sin(
-                    time * .012 +
-                    i * 1.7
-                );
-
-
-            const wave2 =
-                Math.sin(
-                    time * .007 -
-                    i * .9
-                );
-
-
-            const center =
-                1 -
-                Math.abs(
-                    i -
-                    bars / 2
-                ) /
-                (bars / 2);
-
-
-            let value =
-                .16 +
-                center * .12 +
-                Math.abs(wave) * .18 +
-                Math.abs(wave2) * .08;
-
-
-            value +=
-                progress * .05;
-
-
-            if(
-                value >
-                values[i]
-            ){
-
-                values[i] +=
-                    (
-                        value -
-                        values[i]
-                    ) *
-                    .35;
-
-            }
-            else{
-
-                values[i] +=
-                    (
-                        value -
-                        values[i]
-                    ) *
-                    .18;
-
-            }
-
-
-            const h =
-                Math.max(
-                    2,
-                    Math.min(
-                        canvas.height,
-                        values[i] *
-                        canvas.height
-                    )
-                );
-
-
-            const x =
-                i *
-                (
-                    bw +
-                    gap
-                );
-
-
-            const y =
-                canvas.height -
-                h;
-
-
-            const grad =
-                ctx.createLinearGradient(
-                    0,
-                    y,
-                    0,
-                    canvas.height
-                );
-
-
-            grad.addColorStop(
-                0,
-                "#00ff88"
-            );
-
-
-            grad.addColorStop(
-                .45,
-                "#00ed91"
-            );
-
-
-            grad.addColorStop(
-                1,
-                "#00a96b"
-            );
-
-
-            ctx.fillStyle =
-                grad;
-
-
-            ctx.globalAlpha =
-                .95;
-
-
-            ctx.fillRect(
-                Math.round(x),
-                Math.round(y),
-                Math.max(
-                    1,
-                    Math.round(bw)
-                ),
-                Math.round(h)
-            );
-
-        }
-
-
-        ctx.globalAlpha =
-            1;
-
-
-        fakeFFTAnimation =
-            requestAnimationFrame(
-                draw
-            );
-
-    }
-
-
-    draw();
-
-}
-
-
-/* =========================================================
-   COPY LINK
-   ========================================================= */
-
-async function copyLink(button, link){
-
-    try{
-
-        await navigator.clipboard.writeText(
-            link
-        );
-
-
-        showCopied(
-            button
-        );
-
-    }
-    catch(error){
-
-        console.warn(
-            "Clipboard API:",
-            error
-        );
-
-
-        try{
-
-            const input =
-                document.createElement(
-                    "input"
-                );
-
-
-            input.value =
-                link;
-
-
-            input.style.position =
-                "fixed";
-
-
-            input.style.opacity =
-                "0";
-
-
-            document.body.appendChild(
-                input
-            );
-
-
-            input.focus();
-
-            input.select();
-
-
-            input.setSelectionRange(
-                0,
-                input.value.length
-            );
-
-
-            const success =
-                document.execCommand(
-                    "copy"
-                );
-
-
-            document.body.removeChild(
-                input
-            );
-
-
-            if(
-                success
-            ){
-
-                showCopied(
-                    button
-                );
-
-            }
-            else{
-
-                throw new Error(
-                    "Не удалось скопировать"
-                );
-
-            }
-
-        }
-        catch(e){
-
-            alert(
-                "Не удалось скопировать ссылку:\n\n" +
-                link
-            );
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   COPIED
-   ========================================================= */
-
-function showCopied(button){
-
-    const old =
-        button.innerHTML;
-
-
-    button.innerHTML =
-        "✓ Ссылка скопирована!";
-
-
-    button.classList.add(
-        "copied"
-    );
-
-
-    setTimeout(
-        function(){
-
-            button.innerHTML =
-                old;
-
-
-            button.classList.remove(
-                "copied"
-            );
-
-        },
-        1500
-    );
-
-}
-
-
-/* =========================================================
-   VOLUME
-   ========================================================= */
-
-function setupVolume(){
-
-    const saved =
-        localStorage.getItem(
-            "musicVolume"
-        );
-
-
-    let volume =
-        saved === null
-            ? 1
-            : parseFloat(saved);
-
-
-    if(
-        !Number.isFinite(
-            volume
+        .replace(
+            /'/g,
+            "\\'"
         )
-    ){
 
-        volume =
-            1;
+        .replace(
+            /"/g,
+            '\\"'
+        )
 
-    }
+        .replace(
+            /\r/g,
+            "\\r"
+        )
 
-
-    volume =
-        Math.max(
-            0,
-            Math.min(
-                1,
-                volume
-            )
+        .replace(
+            /\n/g,
+            "\\n"
         );
-
-
-    players.forEach(
-        player => {
-
-            player.volume =
-                volume;
-
-
-            player.addEventListener(
-                "volumechange",
-                function(){
-
-                    localStorage.setItem(
-                        "musicVolume",
-                        String(
-                            player.volume
-                        )
-                    );
-
-
-                    players.forEach(
-                        other => {
-
-                            if(
-                                other !== player
-                            ){
-
-                                other.volume =
-                                    player.volume;
-
-                            }
-
-                        }
-                    );
-
-                }
-            );
-
-        }
-    );
 
 }
 
 
+
 /* =========================================================
-   SEARCH
+   НАВЕРХ
    ========================================================= */
 
-function setupSearch(){
+function scrollTopPage(){
 
-    const input =
-        document.getElementById(
-            "searchInput"
-        );
+    window.scrollTo({
 
+        top:0,
 
-    const noResults =
-        document.getElementById(
-            "noResults"
-        );
+        behavior:"smooth"
 
-
-    input.addEventListener(
-        "input",
-        function(){
-
-            const query =
-                normalizeSearch(
-                    this.value
-                );
-
-
-            const words =
-                query
-                    .split(" ")
-                    .filter(Boolean);
-
-
-            let found =
-                0;
-
-
-            songs.forEach(
-                song => {
-
-                    const text =
-                        song.dataset.search ||
-                        "";
-
-
-                    const visible =
-                        !words.length ||
-                        words.every(
-                            word =>
-                                text.includes(
-                                    word
-                                )
-                        );
-
-
-                    song.classList.toggle(
-                        "hidden",
-                        !visible
-                    );
-
-
-                    if(
-                        visible
-                    ){
-
-                        found++;
-
-                    }
-
-                }
-            );
-
-
-            noResults.style.display =
-                (
-                    found === 0 &&
-                    words.length
-                )
-                ? "block"
-                : "none";
-
-        }
-    );
+    });
 
 }
 
 
+
 /* =========================================================
-   START
+   ЗАПУСК
    ========================================================= */
 
 loadMusic();
 
 </script>
+
 
 </body>
 
