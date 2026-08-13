@@ -765,6 +765,44 @@ body{
 
 .mini-close:hover{background:rgba(227,75,183,.28);color:#fff}
 
+.mini-visualizer{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    width:132px;
+    height:42px;
+    padding:7px 12px;
+    border-left:1px solid rgba(230,157,255,.18);
+}
+
+.mini-visualizer span{
+    width:5px;
+    height:8px;
+    border-radius:8px;
+    background:linear-gradient(180deg,#f4a0ff 0%,#c64fff 55%,#e34bb7 100%);
+    box-shadow:0 0 9px rgba(218,88,255,.7);
+    transform-origin:center;
+}
+
+.mini-player.playing .mini-visualizer span{
+    animation:equalizer .82s ease-in-out infinite alternate;
+}
+
+.mini-player.playing .mini-visualizer span:nth-child(2){animation-delay:-.38s}
+.mini-player.playing .mini-visualizer span:nth-child(3){animation-delay:-.12s}
+.mini-player.playing .mini-visualizer span:nth-child(4){animation-delay:-.55s}
+.mini-player.playing .mini-visualizer span:nth-child(5){animation-delay:-.25s}
+.mini-player.playing .mini-visualizer span:nth-child(6){animation-delay:-.64s}
+.mini-player.playing .mini-visualizer span:nth-child(7){animation-delay:-.05s}
+.mini-player.playing .mini-visualizer span:nth-child(8){animation-delay:-.45s}
+.mini-player.playing .mini-visualizer span:nth-child(9){animation-delay:-.18s}
+
+@keyframes equalizer{
+    from{height:7px;opacity:.55}
+    to{height:29px;opacity:1}
+}
+
 
 /* =========================================================
    BUTTONS
@@ -1063,6 +1101,7 @@ body{
     .mini-player-label{font-size:9px}
     .mini-player-title{font-size:12px}
     .mini-audio{width:42%;height:32px}
+    .mini-visualizer{display:none}
 
 
     .buttons{
@@ -1318,6 +1357,10 @@ body{
         <div id="miniPlayerTitle" class="mini-player-title">Выберите опенинг</div>
     </div>
     <audio id="miniAudio" class="mini-audio" controls preload="metadata"></audio>
+    <div class="mini-visualizer" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+    </div>
     <button id="miniClose" class="mini-close" type="button" aria-label="Закрыть плеер">×</button>
 </section>
 
@@ -1392,8 +1435,13 @@ function playInMiniPlayer(track){
 miniClose.addEventListener("click",()=>{
     miniAudio.pause();
     miniPlayer.classList.remove("visible");
+    miniPlayer.classList.remove("playing");
     currentAudio=null;
 });
+
+miniAudio.addEventListener("play",()=>miniPlayer.classList.add("playing"));
+miniAudio.addEventListener("pause",()=>miniPlayer.classList.remove("playing"));
+miniAudio.addEventListener("ended",()=>miniPlayer.classList.remove("playing"));
 
 
 /* =========================================================
