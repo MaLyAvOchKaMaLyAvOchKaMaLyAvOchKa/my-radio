@@ -358,15 +358,13 @@ body{
    ========================================================= */
 
 .content{
-    max-width:850px;
+    max-width:1120px;
 
-    margin:
-        0
-        auto;
+    margin:0;
 
     padding:
-        34px
-        30px
+        24px
+        36px
         80px;
 }
 
@@ -428,6 +426,8 @@ body{
    ========================================================= */
 
 .track{
+    position:relative;
+
     background:
         linear-gradient(
             135deg,
@@ -439,11 +439,11 @@ body{
         1px solid
         rgba(255,255,255,.075);
 
-    border-radius:16px;
+    border-radius:13px;
 
-    padding:17px;
+    padding:7px 12px;
 
-    margin-bottom:13px;
+    margin-bottom:6px;
 
     box-shadow:
         0 8px 30px
@@ -472,21 +472,23 @@ body{
 
     align-items:center;
 
-    gap:10px;
+    gap:8px;
 
     color:#f0f0f0;
 
-    font-size:19px;
+    font-size:16px;
 
     font-weight:600;
 
-    margin-bottom:10px;
+    margin-bottom:4px;
 
     overflow:hidden;
+
+    padding-right:260px;
 }
 
 .track-icon{
-    font-size:25px;
+    font-size:22px;
 
     flex:none;
 }
@@ -499,6 +501,13 @@ body{
     white-space:nowrap;
 }
 
+.track-actions{
+    display:flex;
+    gap:7px;
+    margin-left:auto;
+    flex:none;
+}
+
 
 /* =========================================================
    AUDIO
@@ -507,11 +516,11 @@ body{
 .audio{
     width:100%;
 
-    height:42px;
+    height:32px;
 
     display:block;
 
-    margin-bottom:10px;
+    margin-bottom:0;
 }
 
 
@@ -523,20 +532,29 @@ body{
     display:flex;
 
     gap:9px;
+
+    position:absolute;
+
+    top:7px;
+    right:12px;
 }
 
 .btn{
-    flex:1;
+    flex:none;
 
-    min-height:34px;
+    min-height:30px;
+
+    min-width:116px;
+
+    padding:0 12px;
 
     border:0;
 
-    border-radius:7px;
+    border-radius:8px;
 
     cursor:pointer;
 
-    font-size:15px;
+    font-size:13px;
 
     font-weight:700;
 
@@ -546,6 +564,15 @@ body{
         filter .15s,
         transform .1s,
         opacity .15s;
+}
+
+.track-actions .btn{
+    flex:none;
+    min-height:30px;
+    padding:0 12px;
+    border-radius:8px;
+    font-size:13px;
+    box-shadow:0 3px 10px rgba(0,0,0,.18);
 }
 
 .btn:hover{
@@ -770,6 +797,31 @@ body{
 
     .track-title{
         font-size:17px;
+    }
+}
+
+@media(max-width:600px){
+
+    .track-title{
+        padding-right:0;
+    }
+
+    .buttons{
+        position:static;
+        flex-direction:row;
+        margin-top:7px;
+    }
+
+    .buttons .btn{
+        flex:1;
+        min-width:0;
+        min-height:36px;
+        padding:0 8px;
+        font-size:12px;
+    }
+
+    .audio{
+        height:38px;
     }
 }
 
