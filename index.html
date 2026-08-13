@@ -1195,6 +1195,17 @@ body{
 .mini-visualizer{border-left-color:rgba(100,255,193,.19)}
 .mini-visualizer span{background:linear-gradient(180deg,#b7ffe4 0%,#23e8a7 55%,#10aeca 100%);box-shadow:0 0 9px rgba(0,255,174,.70)}
 
+.card-player{
+    display:flex;align-items:center;gap:10px;width:100%;height:32px;
+    padding:0 12px;border-radius:17px;background:rgba(235,255,247,.18);
+    color:#dffdf0;
+}
+.card-play-toggle{width:26px;border:0;background:transparent;color:#fff;cursor:pointer;font-size:15px;padding:0}
+.card-time{min-width:82px;color:#c2d4cd;font-size:14px;font-variant-numeric:tabular-nums}
+.card-seek{appearance:none;flex:1;height:4px;border-radius:5px;background:rgba(255,255,255,.28);outline:none;cursor:pointer}
+.card-seek::-webkit-slider-thumb{appearance:none;width:12px;height:12px;border-radius:50%;background:#8affca;box-shadow:0 0 8px rgba(0,255,174,.7)}
+.card-seek::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:#8affca}
+
 /* Search is anchored to its fixed magnifier, never to the page header. */
 .search-toggle{position:fixed !important;left:20px !important;top:20px !important;z-index:1002 !important}
 .search-wrap{position:fixed !important;left:72px !important;top:19px !important;right:auto !important;bottom:auto !important;z-index:1001 !important}
@@ -1448,6 +1459,11 @@ let currentPage=1;
 
 let currentAudio=null;
 let activeTrackAudio=null;
+let activeTrackId=null;
+
+/* The search must be outside the blurred header; otherwise CSS positions it
+   relative to that header instead of to the visible magnifier. */
+document.body.appendChild(document.querySelector(".search-wrap"));
 
 const miniPlayer=document.getElementById("miniPlayer");
 const miniAudio=document.getElementById("miniAudio");
@@ -1469,9 +1485,11 @@ function playInMiniPlayer(track){
     showMiniPlayer(track);
 
     activeTrackAudio=document.getElementById("audio-"+track.id);
+    activeTrackId=String(track.id);
 
     currentAudio=miniAudio;
     miniAudio.play().catch(()=>{});
+    updateActiveCard();
 }
 
 miniClose.addEventListener("click",()=>{
@@ -1480,11 +1498,14 @@ miniClose.addEventListener("click",()=>{
     miniPlayer.classList.remove("playing");
     currentAudio=null;
     activeTrackAudio=null;
+    activeTrackId=null;
 });
 
-miniAudio.addEventListener("play",()=>miniPlayer.classList.add("playing"));
-miniAudio.addEventListener("pause",()=>miniPlayer.classList.remove("playing"));
-miniAudio.addEventListener("ended",()=>miniPlayer.classList.remove("playing"));
+miniAudio.addEventListener("play",()=>{miniPlayer.classList.add("playing");updateActiveCard()});
+miniAudio.addEventListener("pause",()=>{miniPlayer.classList.remove("playing");updateActiveCard()});
+miniAudio.addEventListener("ended",()=>{miniPlayer.classList.remove("playing");updateActiveCard()});
+miniAudio.addEventListener("timeupdate",updateActiveCard);
+miniAudio.addEventListener("loadedmetadata",updateActiveCard);
 
 
 /* =========================================================
@@ -3945,6 +3966,59 @@ function setupAudio(audio){
 
 }
 
+function formatPlayerTime(seconds){
+    if(!Number.isFinite(seconds)) return "0:00";
+    const minutes=Math.floor(seconds/60);
+    const remainder=Math.floor(seconds%60).toString().padStart(2,"0");
+    return minutes+":"+remainder;
+}
+
+function updateActiveCard(){
+    document.querySelectorAll("[data-card-player]").forEach(player=>{
+        const isActive=String(player.dataset.cardPlayer)===activeTrackId;
+        const button=player.querySelector(".card-play-toggle");
+        const time=player.querySelector(".card-time");
+        const seek=player.querySelector(".card-seek");
+        const duration=isActive ? miniAudio.duration : 0;
+        const current=isActive ? miniAudio.currentTime : 0;
+
+        button.textContent=isActive && !miniAudio.paused ? "Ⅱ" : "▶";
+        button.setAttribute("aria-label",isActive && !miniAudio.paused ? "Пауза" : "Воспроизвести");
+        time.textContent=formatPlayerTime(current)+" / "+formatPlayerTime(duration);
+        seek.max=Number.isFinite(duration) && duration>0 ? duration : 100;
+        seek.value=Number.isFinite(current) ? current : 0;
+    });
+}
+
+function setupCardPlayer(track){
+    const player=document.querySelector('[data-card-player="'+CSS.escape(String(track.id))+'"]');
+    if(!player) return;
+
+    const button=player.querySelector(".card-play-toggle");
+    const seek=player.querySelector(".card-seek");
+
+    button.addEventListener("click",()=>{
+        if(activeTrackId===String(track.id)){
+            if(miniAudio.paused) miniAudio.play().catch(()=>{});
+            else miniAudio.pause();
+            return;
+        }
+        playInMiniPlayer(track);
+    });
+
+    seek.addEventListener("input",()=>{
+        if(activeTrackId!==String(track.id)){
+            playInMiniPlayer(track);
+            miniAudio.addEventListener("loadedmetadata",()=>{miniAudio.currentTime=Number(seek.value)}, {once:true});
+            return;
+        }
+        miniAudio.currentTime=Number(seek.value);
+        updateActiveCard();
+    });
+
+    updateActiveCard();
+}
+
 
 /* =========================================================
    ОТРИСОВКА
@@ -4074,26 +4148,7 @@ function renderTracks(){
     pageTracks.forEach(
         track=>{
 
-            const audio=
-                document.getElementById(
-                    "audio-"+
-                    track.id
-                );
-
-
-            if(audio){
-
-                audio.src=
-                    getPlayURL(
-                        track
-                    );
-
-
-                setupAudio(
-                    audio
-                );
-
-            }
+            setupCardPlayer(track);
 
         }
     );
@@ -4151,15 +4206,15 @@ function createTrackHTML(
             </div>
 
 
-            <audio
-                id="audio-${id}"
-                class="audio"
-                controls
-                preload="metadata"
-            >
+            <div class="card-player" data-card-player="${id}">
+                <button class="card-play-toggle" type="button" aria-label="Воспроизвести">▶</button>
+                <span class="card-time">0:00 / 0:00</span>
+                <input class="card-seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Перемотка трека">
+            <!--
                 Ваш браузер не поддерживает
                 воспроизведение аудио.
-            </audio>
+            -->
+            </div>
 
 
             <div class="buttons">
