@@ -1440,6 +1440,7 @@ let currentPage=1;
 
 let currentAudio=null;
 let activeTrackAudio=null;
+let syncingPlayers=false;
 
 const miniPlayer=document.getElementById("miniPlayer");
 const miniAudio=document.getElementById("miniAudio");
@@ -1454,6 +1455,11 @@ function showMiniPlayer(track){
 function playInMiniPlayer(track){
     const url=getPlayURL(track);
 
+    if(activeTrackAudio && activeTrackAudio.id!=="audio-"+track.id){
+        activeTrackAudio.pause();
+        activeTrackAudio.currentTime=0;
+    }
+
     if(miniAudio.src!==url){
         miniAudio.src=url;
     }
@@ -1461,6 +1467,14 @@ function playInMiniPlayer(track){
     showMiniPlayer(track);
 
     activeTrackAudio=document.getElementById("audio-"+track.id);
+
+    if(activeTrackAudio){
+        activeTrackAudio.muted=true;
+        syncingPlayers=true;
+        activeTrackAudio.currentTime=miniAudio.currentTime||0;
+        syncingPlayers=false;
+        activeTrackAudio.play().catch(()=>{});
+    }
 
     currentAudio=miniAudio;
     miniAudio.play().catch(()=>{});
@@ -1474,17 +1488,36 @@ miniClose.addEventListener("click",()=>{
     activeTrackAudio=null;
 });
 
-miniAudio.addEventListener("play",()=>miniPlayer.classList.add("playing"));
-miniAudio.addEventListener("pause",()=>miniPlayer.classList.remove("playing"));
+miniAudio.addEventListener("play",()=>{
+    miniPlayer.classList.add("playing");
+    if(activeTrackAudio && activeTrackAudio.paused){
+        activeTrackAudio.muted=true;
+        activeTrackAudio.play().catch(()=>{});
+    }
+});
+miniAudio.addEventListener("pause",()=>{
+    miniPlayer.classList.remove("playing");
+    if(activeTrackAudio && !activeTrackAudio.paused)
+        activeTrackAudio.pause();
+});
 miniAudio.addEventListener("ended",()=>miniPlayer.classList.remove("playing"));
 miniAudio.addEventListener("timeupdate",()=>{
     if(!activeTrackAudio || !activeTrackAudio.isConnected)
         return;
 
     try{
+        syncingPlayers=true;
         activeTrackAudio.currentTime=miniAudio.currentTime;
     }
     catch(error){}
+    finally{syncingPlayers=false}
+});
+miniAudio.addEventListener("seeking",()=>{
+    if(!activeTrackAudio || !activeTrackAudio.isConnected)
+        return;
+    syncingPlayers=true;
+    activeTrackAudio.currentTime=miniAudio.currentTime;
+    syncingPlayers=false;
 });
 
 
@@ -3939,11 +3972,28 @@ function setupAudio(audio){
         if(!track)
             return;
 
-        /* Native controls remain in each card, but playback moves to the
-           persistent player so it is not lost after filtering or paging. */
-        audio.pause();
-        audio.currentTime=0;
+        /* The visible card is a muted mirror of the persistent player. */
+        if(audio===activeTrackAudio && audio.muted)
+            return;
+
         playInMiniPlayer(track);
+    });
+
+    audio.addEventListener("pause",()=>{
+        if(audio===activeTrackAudio && !syncingPlayers && !miniAudio.paused)
+            miniAudio.pause();
+    });
+
+    audio.addEventListener("seeking",()=>{
+        if(audio!==activeTrackAudio || syncingPlayers)
+            return;
+
+        miniAudio.currentTime=audio.currentTime;
+    });
+
+    audio.addEventListener("ended",()=>{
+        if(audio===activeTrackAudio && !miniAudio.ended)
+            miniAudio.currentTime=miniAudio.duration||miniAudio.currentTime;
     });
 
 }
@@ -4636,15 +4686,17 @@ document.addEventListener(
 
 document.addEventListener(
     "click",
-    ()=>{
+    event=>{
 
-        document
-            .querySelector(
-                ".search-wrap"
-            )
-            .classList.remove(
-                "open"
-            );
+        const searchWrap=document.querySelector(".search-wrap");
+        const searchToggle=document.getElementById("searchToggle");
+
+        if(
+            !searchWrap.contains(event.target) &&
+            !searchToggle.contains(event.target)
+        ){
+            searchWrap.classList.remove("open");
+        }
 
     }
 );
