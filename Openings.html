@@ -18,10 +18,10 @@ body{
     background:
         linear-gradient(
             90deg,
-            rgba(5,7,10,.97) 0%,
-            rgba(6,8,12,.94) 36%,
-            rgba(7,8,14,.72) 62%,
-            rgba(7,8,14,.28) 100%
+            rgba(5,7,10,.88) 0%,
+            rgba(6,8,12,.78) 36%,
+            rgba(7,8,14,.57) 62%,
+            rgba(7,8,14,.18) 100%
         ),
         radial-gradient(
             circle at 70% 20%,
@@ -63,14 +63,14 @@ body{
     background:
         linear-gradient(
             180deg,
-            #151719 0%,
-            #101214 55%,
-            #0d0f10 100%
+            rgba(23,20,36,.76) 0%,
+            rgba(12,14,24,.68) 55%,
+            rgba(8,10,17,.80) 100%
         );
 
     border-right:
         1px solid
-        rgba(255,255,255,.075);
+        rgba(220,143,255,.18);
 
     z-index:100;
 
@@ -81,7 +81,14 @@ body{
 
     box-shadow:
         8px 0 35px
-        rgba(0,0,0,.16);
+        rgba(0,0,0,.25),
+
+        inset -1px 0 0
+        rgba(255,255,255,.06);
+
+    backdrop-filter:
+        blur(16px)
+        saturate(125%);
 }
 
 .sidebar-menu{
@@ -247,11 +254,7 @@ body{
    ========================================================= */
 
 .header{
-    position:sticky;
-
-    top:0;
-
-    z-index:50;
+    position:relative;
 
     min-height:114px;
 
@@ -268,11 +271,13 @@ body{
     background:
         linear-gradient(
             180deg,
-            rgba(17,18,25,.93),
-            rgba(13,14,20,.88)
+            rgba(24,19,39,.72),
+            rgba(10,12,24,.62)
         );
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:
+        blur(16px)
+        saturate(135%);
 
     border-bottom:
         1px solid
@@ -448,13 +453,13 @@ body{
     background:
         linear-gradient(
             135deg,
-            rgba(32,25,56,.66),
-            rgba(8,11,25,.54)
+            rgba(38,27,70,.48),
+            rgba(7,10,25,.34)
         );
 
     border:
         1px solid
-        rgba(219,132,255,.28);
+        rgba(224,145,255,.36);
 
     border-radius:13px;
 
@@ -463,18 +468,18 @@ body{
     margin-bottom:6px;
 
     box-shadow:
-        0 9px 30px
-        rgba(0,0,0,.28),
+        0 10px 30px
+        rgba(0,0,0,.20),
 
         inset 0 1px 0
         rgba(255,255,255,.10),
 
         0 0 16px
-        rgba(176,70,255,.08);
+        rgba(176,70,255,.13);
 
     backdrop-filter:
-        blur(13px)
-        saturate(135%);
+        blur(17px)
+        saturate(145%);
 
     transition:
         transform .18s,
