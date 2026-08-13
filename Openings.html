@@ -313,9 +313,11 @@ body{
 .search-wrap{
     position:fixed;
 
-    right:24px;
+    left:225px;
 
-    top:18px;
+    bottom:24px;
+
+    top:auto;
 
     z-index:200;
 
@@ -337,6 +339,80 @@ body{
         0 0 18px rgba(185,78,255,.10);
 
     backdrop-filter:blur(14px) saturate(145%);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transform:translateX(-12px) scale(.96);
+
+    transform-origin:left center;
+
+    transition:
+        opacity .2s ease,
+        transform .2s ease;
+}
+
+.search-wrap.open{
+    opacity:1;
+
+    pointer-events:auto;
+
+    transform:translateX(0) scale(1);
+}
+
+.search-toggle{
+    position:fixed;
+
+    left:148px;
+    bottom:24px;
+
+    z-index:210;
+
+    width:44px;
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(230,157,255,.40);
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(81,45,128,.64),
+            rgba(13,16,35,.55)
+        );
+
+    color:#f4d7ff;
+
+    font-size:21px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,.26),
+        0 0 18px rgba(192,79,255,.25),
+        inset 0 1px 0 rgba(255,255,255,.16);
+
+    backdrop-filter:blur(13px) saturate(150%);
+
+    transition:transform .18s, box-shadow .18s, border-color .18s;
+}
+
+.search-toggle:hover{
+    transform:scale(1.07);
+
+    border-color:rgba(244,181,255,.75);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.30),
+        0 0 28px rgba(203,83,255,.44),
+        inset 0 1px 0 rgba(255,255,255,.22);
 }
 
 .search{
@@ -474,8 +550,8 @@ body{
     background:
         linear-gradient(
             135deg,
-            rgba(50,33,91,.30),
-            rgba(6,10,25,.18)
+            rgba(55,34,100,.20),
+            rgba(6,10,25,.10)
         );
 
     border:
@@ -499,8 +575,8 @@ body{
         rgba(176,70,255,.22);
 
     backdrop-filter:
-        blur(12px)
-        saturate(155%);
+        blur(8px)
+        saturate(160%);
 
     transition:
         transform .18s,
@@ -583,9 +659,13 @@ body{
 
     color-scheme:dark;
 
-    opacity:.94;
+    opacity:.72;
 
     border-radius:16px;
+
+    filter:
+        saturate(125%)
+        contrast(.92);
 }
 
 
@@ -834,8 +914,15 @@ body{
 
         top:12px;
 
+        bottom:auto;
+
         left:82px;
         right:15px;
+    }
+
+    .search-toggle{
+        left:13px;
+        bottom:20px;
     }
 
     .search{
@@ -1042,9 +1129,19 @@ body{
 </div>
 
 
+<button
+    id="searchToggle"
+    class="search-toggle"
+    type="button"
+    aria-label="Открыть поиск"
+    onclick="toggleSearch()"
+>
+    🔍
+</button>
+
 <!-- =======================================================
-     MAIN
-     ======================================================= -->
+   MAIN
+   ======================================================= -->
 
 <div class="main">
 
@@ -4176,6 +4273,58 @@ searchInput.addEventListener(
         currentPage=1;
 
         renderTracks();
+
+    }
+);
+
+
+/* =========================================================
+   ПОИСК: ПЛАВАЮЩАЯ ЛУПА
+   ========================================================= */
+
+function toggleSearch(){
+
+    const searchWrap=
+        document.querySelector(
+            ".search-wrap"
+        );
+
+
+    const isOpen=
+        searchWrap.classList.toggle(
+            "open"
+        );
+
+
+    if(isOpen){
+
+        setTimeout(
+            ()=>searchInput.focus(),
+            100
+        );
+
+    }
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    event=>{
+
+        if(
+            event.key==="Escape"
+        ){
+
+            document
+                .querySelector(
+                    ".search-wrap"
+                )
+                .classList.remove(
+                    "open"
+                );
+
+        }
 
     }
 );
