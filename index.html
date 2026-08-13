@@ -486,7 +486,7 @@ body{
     padding:
         24px
         36px
-        80px;
+        180px;
 }
 
 
@@ -1075,7 +1075,7 @@ body{
         padding:
             25px
             15px
-            60px;
+            130px;
     }
 }
 
@@ -1439,6 +1439,7 @@ let filteredTracks=[];
 let currentPage=1;
 
 let currentAudio=null;
+let activeTrackAudio=null;
 
 const miniPlayer=document.getElementById("miniPlayer");
 const miniAudio=document.getElementById("miniAudio");
@@ -1458,6 +1459,9 @@ function playInMiniPlayer(track){
     }
 
     showMiniPlayer(track);
+
+    activeTrackAudio=document.getElementById("audio-"+track.id);
+
     currentAudio=miniAudio;
     miniAudio.play().catch(()=>{});
 }
@@ -1467,11 +1471,21 @@ miniClose.addEventListener("click",()=>{
     miniPlayer.classList.remove("visible");
     miniPlayer.classList.remove("playing");
     currentAudio=null;
+    activeTrackAudio=null;
 });
 
 miniAudio.addEventListener("play",()=>miniPlayer.classList.add("playing"));
 miniAudio.addEventListener("pause",()=>miniPlayer.classList.remove("playing"));
 miniAudio.addEventListener("ended",()=>miniPlayer.classList.remove("playing"));
+miniAudio.addEventListener("timeupdate",()=>{
+    if(!activeTrackAudio || !activeTrackAudio.isConnected)
+        return;
+
+    try{
+        activeTrackAudio.currentTime=miniAudio.currentTime;
+    }
+    catch(error){}
+});
 
 
 /* =========================================================
