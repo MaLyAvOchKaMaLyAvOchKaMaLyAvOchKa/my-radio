@@ -3398,6 +3398,90 @@ function smartSearchMatch(
    ЗАГРУЗКА СПИСКА
    ========================================================= */
 
+/* =========================================================
+   ПРИОРИТЕТ РЕЗУЛЬТАТОВ ПОИСКА
+   ========================================================= */
+
+function getSearchScore(
+    track,
+    query
+){
+
+    const cleanQuery=
+        normalizeSearchText(
+            query
+        );
+
+
+    if(!cleanQuery)
+        return 0;
+
+
+    const trackName=
+        normalizeSearchText(
+            removeExtension(
+                String(
+                    track.name||""
+                )
+            )
+        );
+
+
+    /* Точное название песни всегда показывается первым. */
+    if(trackName===cleanQuery)
+        return 10000;
+
+
+    if(trackName.includes(cleanQuery))
+        return 9000;
+
+
+    const queryVariants=
+        makeSearchVariants(
+            query
+        );
+
+
+    for(
+        const variant
+        of queryVariants
+    ){
+
+        if(
+            variant &&
+            trackName.includes(variant)
+        )
+            return 8500;
+
+    }
+
+
+    /* Совпадения через алиасы аниме идут после имени песни. */
+    const variants=
+        buildTrackSearchText(
+            track
+        );
+
+
+    for(
+        const variant
+        of variants
+    ){
+
+        if(
+            variant.includes(cleanQuery)
+        )
+            return 5000;
+
+    }
+
+
+    /* Неточные совпадения остаются, но всегда находятся внизу. */
+    return 1;
+
+}
+
+
 async function loadMusic(){
 
     try{
@@ -3683,13 +3767,35 @@ function renderTracks(){
 
 
     filteredTracks=
-        tracks.filter(
-            track=>
-                smartSearchMatch(
+        tracks
+            .filter(
+                track=>
+                    smartSearchMatch(
+                        track,
+                        query
+                    )
+            )
+            .map(
+                track=>({
                     track,
-                    query
-                )
-        );
+                    score:getSearchScore(
+                        track,
+                        query
+                    )
+                })
+            )
+            .sort(
+                (a,b)=>
+                    b.score-a.score ||
+                    String(a.track.name)
+                        .localeCompare(
+                            String(b.track.name),
+                            "ru"
+                        )
+            )
+            .map(
+                item=>item.track
+            );
 
 
     const totalPages=
