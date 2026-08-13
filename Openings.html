@@ -313,11 +313,11 @@ body{
 .search-wrap{
     position:fixed;
 
-    left:225px;
+    left:72px;
 
-    bottom:24px;
+    top:19px;
 
-    top:auto;
+    bottom:auto;
 
     z-index:200;
 
@@ -344,7 +344,7 @@ body{
 
     pointer-events:none;
 
-    transform:translateX(-12px) scale(.96);
+    transform:translateX(-18px) scaleX(.12);
 
     transform-origin:left center;
 
@@ -358,14 +358,16 @@ body{
 
     pointer-events:auto;
 
-    transform:translateX(0) scale(1);
+    transform:translateX(0) scaleX(1);
 }
 
 .search-toggle{
     position:fixed;
 
-    left:148px;
-    bottom:24px;
+    left:20px;
+    top:20px;
+
+    bottom:auto;
 
     z-index:210;
 
@@ -550,13 +552,13 @@ body{
     background:
         linear-gradient(
             135deg,
-            rgba(55,34,100,.20),
-            rgba(6,10,25,.10)
+            rgba(55,34,100,.15),
+            rgba(6,10,25,.06)
         );
 
     border:
         1px solid
-        rgba(230,157,255,.46);
+        rgba(230,157,255,.34);
 
     border-radius:13px;
 
@@ -589,17 +591,20 @@ body{
         translateY(-1px);
 
     border-color:
-        rgba(222,135,255,.55);
+        rgba(240,169,255,.92);
 
     box-shadow:
         0 12px 38px
-        rgba(0,0,0,.34),
+        rgba(0,0,0,.25),
 
         inset 0 1px 0
         rgba(255,255,255,.16),
 
-        0 0 24px
-        rgba(197,79,255,.19);
+        0 0 12px
+        rgba(247,150,255,.45),
+
+        0 0 32px
+        rgba(184,68,255,.36);
 }
 
 .track-title{
@@ -912,17 +917,18 @@ body{
     .search-wrap{
         position:fixed;
 
-        top:12px;
+        top:16px;
 
         bottom:auto;
 
-        left:82px;
+        left:62px;
         right:15px;
     }
 
     .search-toggle{
-        left:13px;
-        bottom:20px;
+        left:10px;
+        top:16px;
+        bottom:auto;
     }
 
     .search{
@@ -1134,7 +1140,7 @@ body{
     class="search-toggle"
     type="button"
     aria-label="Открыть поиск"
-    onclick="toggleSearch()"
+    onclick="toggleSearch(event)"
 >
     🔍
 </button>
@@ -1152,7 +1158,7 @@ body{
         </h1>
 
 
-        <div class="search-wrap">
+        <div class="search-wrap" onclick="event.stopPropagation()">
 
             <span class="search-icon">
                 🔍
@@ -4282,7 +4288,13 @@ searchInput.addEventListener(
    ПОИСК: ПЛАВАЮЩАЯ ЛУПА
    ========================================================= */
 
-function toggleSearch(){
+function toggleSearch(event){
+
+    if(event){
+
+        event.stopPropagation();
+
+    }
 
     const searchWrap=
         document.querySelector(
@@ -4325,6 +4337,22 @@ document.addEventListener(
                 );
 
         }
+
+    }
+);
+
+
+document.addEventListener(
+    "click",
+    ()=>{
+
+        document
+            .querySelector(
+                ".search-wrap"
+            )
+            .classList.remove(
+                "open"
+            );
 
     }
 );
