@@ -675,6 +675,98 @@ body{
 
 
 /* =========================================================
+   MINI PLAYER
+   ========================================================= */
+
+.mini-player{
+    position:fixed;
+    left:calc(205px + 24px);
+    right:24px;
+    bottom:18px;
+    z-index:300;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    min-height:72px;
+    padding:10px 16px;
+    border:1px solid rgba(230,157,255,.38);
+    border-radius:18px;
+    background:linear-gradient(135deg,rgba(45,26,88,.88),rgba(12,13,31,.88));
+    box-shadow:0 14px 38px rgba(0,0,0,.36),0 0 26px rgba(190,80,255,.24),inset 0 1px 0 rgba(255,255,255,.12);
+    backdrop-filter:blur(18px) saturate(150%);
+    transform:translateY(115px);
+    opacity:0;
+    pointer-events:none;
+    transition:transform .28s ease,opacity .28s ease;
+}
+
+.mini-player.visible{
+    transform:translateY(0);
+    opacity:1;
+    pointer-events:auto;
+}
+
+.mini-player-icon{
+    width:45px;
+    height:45px;
+    display:grid;
+    place-items:center;
+    flex:none;
+    border-radius:13px;
+    background:linear-gradient(135deg,#b64cff,#e34bb7);
+    box-shadow:0 0 18px rgba(205,83,255,.45);
+    font-size:22px;
+}
+
+.mini-player-info{
+    min-width:120px;
+    max-width:330px;
+    flex:1;
+    overflow:hidden;
+}
+
+.mini-player-label{
+    display:block;
+    margin-bottom:3px;
+    color:#c894df;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.mini-player-title{
+    overflow:hidden;
+    color:#fff;
+    font-weight:700;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.mini-audio{
+    width:min(520px,48%);
+    height:34px;
+    color-scheme:dark;
+    opacity:.9;
+}
+
+.mini-close{
+    width:32px;
+    height:32px;
+    flex:none;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.07);
+    color:#e7c8f4;
+    cursor:pointer;
+    font-size:19px;
+    line-height:1;
+}
+
+.mini-close:hover{background:rgba(227,75,183,.28);color:#fff}
+
+
+/* =========================================================
    BUTTONS
    ========================================================= */
 
@@ -871,6 +963,12 @@ body{
 
 @media(max-width:900px){
 
+    .mini-player{
+        left:84px;
+        right:14px;
+        bottom:12px;
+    }
+
     .sidebar{
         width:70px;
 
@@ -944,6 +1042,28 @@ body{
 }
 
 @media(max-width:600px){
+
+    .mini-player{
+        left:10px;
+        right:10px;
+        gap:9px;
+        min-height:64px;
+        padding:8px 10px;
+        border-radius:15px;
+    }
+
+    .mini-player-icon{
+        width:38px;
+        height:38px;
+        border-radius:11px;
+        font-size:18px;
+    }
+
+    .mini-player-info{min-width:0}
+    .mini-player-label{font-size:9px}
+    .mini-player-title{font-size:12px}
+    .mini-audio{width:42%;height:32px}
+
 
     .buttons{
         flex-direction:column;
@@ -1191,6 +1311,16 @@ body{
 </div>
 
 
+<section id="miniPlayer" class="mini-player" aria-label="Мини-плеер">
+    <div class="mini-player-icon" aria-hidden="true">🎵</div>
+    <div class="mini-player-info">
+        <span class="mini-player-label">Сейчас играет</span>
+        <div id="miniPlayerTitle" class="mini-player-title">Выберите опенинг</div>
+    </div>
+    <audio id="miniAudio" class="mini-audio" controls preload="metadata"></audio>
+    <button id="miniClose" class="mini-close" type="button" aria-label="Закрыть плеер">×</button>
+</section>
+
 <script>
 
 /* =========================================================
@@ -1236,6 +1366,34 @@ let filteredTracks=[];
 let currentPage=1;
 
 let currentAudio=null;
+
+const miniPlayer=document.getElementById("miniPlayer");
+const miniAudio=document.getElementById("miniAudio");
+const miniPlayerTitle=document.getElementById("miniPlayerTitle");
+const miniClose=document.getElementById("miniClose");
+
+function showMiniPlayer(track){
+    miniPlayerTitle.textContent=removeExtension(String(track.name||""));
+    miniPlayer.classList.add("visible");
+}
+
+function playInMiniPlayer(track){
+    const url=getPlayURL(track);
+
+    if(miniAudio.src!==url){
+        miniAudio.src=url;
+    }
+
+    showMiniPlayer(track);
+    currentAudio=miniAudio;
+    miniAudio.play().catch(()=>{});
+}
+
+miniClose.addEventListener("click",()=>{
+    miniAudio.pause();
+    miniPlayer.classList.remove("visible");
+    currentAudio=null;
+});
 
 
 /* =========================================================
@@ -3682,76 +3840,19 @@ function setupAudio(audio){
     if(!audio)
         return;
 
+    audio.addEventListener("play",()=>{
+        const id=audio.id.replace("audio-","");
+        const track=tracks.find(item=>String(item.id)===id);
 
-    audio.addEventListener(
-        "play",
-        ()=>{
+        if(!track)
+            return;
 
-            if(
-                currentAudio &&
-                currentAudio!==audio
-            ){
-
-                try{
-
-                    currentAudio.pause();
-
-                    currentAudio.currentTime=0;
-
-                }
-                catch(error){}
-
-            }
-
-
-            document
-                .querySelectorAll(
-                    "audio"
-                )
-                .forEach(
-                    other=>{
-
-                        if(
-                            other!==audio &&
-                            !other.paused
-                        ){
-
-                            try{
-
-                                other.pause();
-
-                                other.currentTime=0;
-
-                            }
-                            catch(error){}
-
-                        }
-
-                    }
-                );
-
-
-            currentAudio=audio;
-
-        }
-    );
-
-
-    audio.addEventListener(
-        "ended",
-        ()=>{
-
-            if(
-                currentAudio===
-                audio
-            ){
-
-                currentAudio=null;
-
-            }
-
-        }
-    );
+        /* Native controls remain in each card, but playback moves to the
+           persistent player so it is not lost after filtering or paging. */
+        audio.pause();
+        audio.currentTime=0;
+        playInMiniPlayer(track);
+    });
 
 }
 
@@ -3824,9 +3925,6 @@ function renderTracks(){
     }
 
 
-    stopAllAudio();
-
-
     if(
         !filteredTracks.length
     ){
@@ -3857,8 +3955,6 @@ function renderTracks(){
 
         `;
 
-
-        currentAudio=null;
 
         return;
 
@@ -4399,6 +4495,7 @@ function toggleSearch(event){
     if(event){
 
         event.stopPropagation();
+        event.preventDefault();
 
     }
 
@@ -4417,7 +4514,7 @@ function toggleSearch(event){
     if(isOpen){
 
         setTimeout(
-            ()=>searchInput.focus(),
+            ()=>searchInput.focus({preventScroll:true}),
             100
         );
 
