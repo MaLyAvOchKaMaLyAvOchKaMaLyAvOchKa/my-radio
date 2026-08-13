@@ -1194,6 +1194,14 @@ body{
 .mini-player-label{color:#91e8c5}.mini-close{color:#d0f6e4}.mini-close:hover{background:rgba(8,201,135,.28)}
 .mini-visualizer{border-left-color:rgba(100,255,193,.19)}
 .mini-visualizer span{background:linear-gradient(180deg,#b7ffe4 0%,#23e8a7 55%,#10aeca 100%);box-shadow:0 0 9px rgba(0,255,174,.70)}
+
+/* Search is anchored to its fixed magnifier, never to the page header. */
+.search-toggle{position:fixed !important;left:20px !important;top:20px !important;z-index:1002 !important}
+.search-wrap{position:fixed !important;left:72px !important;top:19px !important;right:auto !important;bottom:auto !important;z-index:1001 !important}
+@media(max-width:900px){
+    .search-toggle{left:10px !important;top:16px !important}
+    .search-wrap{left:62px !important;top:16px !important;right:15px !important}
+}
 </style>
 </head>
 
@@ -1440,7 +1448,6 @@ let currentPage=1;
 
 let currentAudio=null;
 let activeTrackAudio=null;
-let syncingPlayers=false;
 
 const miniPlayer=document.getElementById("miniPlayer");
 const miniAudio=document.getElementById("miniAudio");
@@ -1455,11 +1462,6 @@ function showMiniPlayer(track){
 function playInMiniPlayer(track){
     const url=getPlayURL(track);
 
-    if(activeTrackAudio && activeTrackAudio.id!=="audio-"+track.id){
-        activeTrackAudio.pause();
-        activeTrackAudio.currentTime=0;
-    }
-
     if(miniAudio.src!==url){
         miniAudio.src=url;
     }
@@ -1467,14 +1469,6 @@ function playInMiniPlayer(track){
     showMiniPlayer(track);
 
     activeTrackAudio=document.getElementById("audio-"+track.id);
-
-    if(activeTrackAudio){
-        activeTrackAudio.muted=true;
-        syncingPlayers=true;
-        activeTrackAudio.currentTime=miniAudio.currentTime||0;
-        syncingPlayers=false;
-        activeTrackAudio.play().catch(()=>{});
-    }
 
     currentAudio=miniAudio;
     miniAudio.play().catch(()=>{});
@@ -1488,37 +1482,9 @@ miniClose.addEventListener("click",()=>{
     activeTrackAudio=null;
 });
 
-miniAudio.addEventListener("play",()=>{
-    miniPlayer.classList.add("playing");
-    if(activeTrackAudio && activeTrackAudio.paused){
-        activeTrackAudio.muted=true;
-        activeTrackAudio.play().catch(()=>{});
-    }
-});
-miniAudio.addEventListener("pause",()=>{
-    miniPlayer.classList.remove("playing");
-    if(activeTrackAudio && !activeTrackAudio.paused)
-        activeTrackAudio.pause();
-});
+miniAudio.addEventListener("play",()=>miniPlayer.classList.add("playing"));
+miniAudio.addEventListener("pause",()=>miniPlayer.classList.remove("playing"));
 miniAudio.addEventListener("ended",()=>miniPlayer.classList.remove("playing"));
-miniAudio.addEventListener("timeupdate",()=>{
-    if(!activeTrackAudio || !activeTrackAudio.isConnected)
-        return;
-
-    try{
-        syncingPlayers=true;
-        activeTrackAudio.currentTime=miniAudio.currentTime;
-    }
-    catch(error){}
-    finally{syncingPlayers=false}
-});
-miniAudio.addEventListener("seeking",()=>{
-    if(!activeTrackAudio || !activeTrackAudio.isConnected)
-        return;
-    syncingPlayers=true;
-    activeTrackAudio.currentTime=miniAudio.currentTime;
-    syncingPlayers=false;
-});
 
 
 /* =========================================================
@@ -3972,28 +3938,9 @@ function setupAudio(audio){
         if(!track)
             return;
 
-        /* The visible card is a muted mirror of the persistent player. */
-        if(audio===activeTrackAudio && audio.muted)
-            return;
-
+        audio.pause();
+        audio.currentTime=0;
         playInMiniPlayer(track);
-    });
-
-    audio.addEventListener("pause",()=>{
-        if(audio===activeTrackAudio && !syncingPlayers && !miniAudio.paused)
-            miniAudio.pause();
-    });
-
-    audio.addEventListener("seeking",()=>{
-        if(audio!==activeTrackAudio || syncingPlayers)
-            return;
-
-        miniAudio.currentTime=audio.currentTime;
-    });
-
-    audio.addEventListener("ended",()=>{
-        if(audio===activeTrackAudio && !miniAudio.ended)
-            miniAudio.currentTime=miniAudio.duration||miniAudio.currentTime;
     });
 
 }
