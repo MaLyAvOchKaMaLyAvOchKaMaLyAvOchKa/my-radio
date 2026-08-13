@@ -7,16 +7,42 @@
 
 <style>
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+
+html{
+    scroll-behavior:smooth;
+}
 
 body{
     margin:0;
+
     background:
-        radial-gradient(circle at 70% 20%,rgba(255,50,50,.045),transparent 35%),
-        radial-gradient(circle at 80% 80%,rgba(180,0,0,.035),transparent 40%),
+        linear-gradient(
+            90deg,
+            rgba(5,7,10,.66) 0%,
+            rgba(6,8,12,.52) 28%,
+            rgba(7,8,14,.34) 55%,
+            rgba(7,8,14,.12) 100%
+        ),
+        radial-gradient(
+            circle at 70% 20%,
+            rgba(190,80,255,.13),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(255,50,180,.10),
+            transparent 40%
+        ),
+        url("assets/simpotka-bg.png") right center / cover fixed,
         #090b0c;
+
     color:#eee;
-    font-family:Arial,Helvetica,sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     min-height:100vh;
 }
 
@@ -27,32 +53,49 @@ body{
 
 .sidebar{
     position:fixed;
+
     left:0;
     top:0;
     bottom:0;
+
     width:205px;
 
     background:
         linear-gradient(
             180deg,
-            #151719 0%,
-            #101214 55%,
-            #0d0f10 100%
+            rgba(23,20,36,.54) 0%,
+            rgba(12,14,24,.43) 55%,
+            rgba(8,10,17,.59) 100%
         );
 
-    border-right:1px solid rgba(255,255,255,.075);
+    border-right:
+        1px solid
+        rgba(220,143,255,.18);
 
     z-index:100;
 
-    padding:220px 12px 20px;
+    padding:
+        220px
+        12px
+        20px;
 
     box-shadow:
-        8px 0 35px rgba(0,0,0,.16);
+        8px 0 35px
+        rgba(0,0,0,.25),
+
+        inset -1px 0 0
+        rgba(255,255,255,.06);
+
+    backdrop-filter:
+        blur(16px)
+        saturate(125%);
 }
 
 .sidebar-menu{
     display:flex;
+
     flex-direction:column;
+
     gap:8px;
 }
 
@@ -60,19 +103,23 @@ body{
     position:relative;
 
     display:flex;
+
     align-items:center;
 
     gap:13px;
 
     min-height:56px;
 
-    padding:10px 14px;
+    padding:
+        10px
+        14px;
 
     border-radius:13px;
 
     color:#aeb2b4;
 
     font-size:17px;
+
     font-weight:600;
 
     cursor:pointer;
@@ -85,26 +132,31 @@ body{
 }
 
 .sidebar-item:hover{
-    background:rgba(255,50,50,.045);
+    background:
+        rgba(190,80,255,.045);
 
     color:#fff;
 
-    transform:translateX(2px);
+    transform:
+        translateX(2px);
 }
 
 .sidebar-item.active{
     background:
         linear-gradient(
             135deg,
-            rgba(255,60,60,.14),
-            rgba(180,20,20,.055)
+            rgba(190,80,255,.15),
+            rgba(255,70,190,.055)
         );
 
-    color:#ff5555;
+    color:#d36cff;
 
     box-shadow:
-        inset 0 0 0 1px rgba(255,60,60,.12),
-        0 5px 20px rgba(0,0,0,.14);
+        inset 0 0 0 1px
+        rgba(190,80,255,.12),
+
+        0 5px 20px
+        rgba(0,0,0,.14);
 }
 
 .sidebar-item.active::before{
@@ -113,17 +165,20 @@ body{
     position:absolute;
 
     left:-12px;
+
     top:11px;
     bottom:11px;
 
     width:3px;
 
-    border-radius:0 5px 5px 0;
+    border-radius:
+        0 5px 5px 0;
 
-    background:#ff5555;
+    background:#d36cff;
 
     box-shadow:
-        0 0 10px rgba(255,60,60,.45);
+        0 0 10px
+        rgba(190,80,255,.5);
 }
 
 .sidebar-icon{
@@ -131,12 +186,14 @@ body{
     height:30px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
     border-radius:9px;
 
-    background:rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 
     font-size:19px;
 
@@ -145,12 +202,16 @@ body{
     transition:.2s;
 }
 
-.sidebar-item:hover .sidebar-icon{
-    background:rgba(255,50,50,.07);
+.sidebar-item:hover
+.sidebar-icon{
+    background:
+        rgba(190,80,255,.07);
 }
 
-.sidebar-item.active .sidebar-icon{
-    background:rgba(255,50,50,.10);
+.sidebar-item.active
+.sidebar-icon{
+    background:
+        rgba(190,80,255,.10);
 }
 
 .sidebar-text{
@@ -163,6 +224,7 @@ body{
     margin-top:3px;
 
     font-size:11px;
+
     font-weight:400;
 
     color:#666;
@@ -175,7 +237,15 @@ body{
 
 .main{
     margin-left:205px;
+
     min-height:100vh;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(9,11,12,.18),
+            transparent 72%
+        );
 }
 
 
@@ -184,34 +254,43 @@ body{
    ========================================================= */
 
 .header{
-    position:sticky;
-    top:0;
-    z-index:50;
+    position:relative;
 
     min-height:114px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
-    padding:18px 30px;
+    padding:
+        18px
+        30px;
 
     background:
         linear-gradient(
             180deg,
-            rgba(24,25,28,.97),
-            rgba(20,21,23,.94)
+            rgba(24,19,39,.72),
+            rgba(10,12,24,.62)
         );
 
-    border-bottom:1px solid rgba(255,255,255,.08);
+    backdrop-filter:
+        blur(16px)
+        saturate(135%);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
 }
 
 .header-title{
     margin:0;
 
-    color:#ff5555;
+    color:#d36cff;
 
     font-size:39px;
+
     font-weight:800;
 
     letter-spacing:.5px;
@@ -219,8 +298,11 @@ body{
     text-align:center;
 
     text-shadow:
-        0 0 10px rgba(255,60,60,.45),
-        0 0 25px rgba(255,60,60,.18);
+        0 0 10px
+        rgba(190,80,255,.5),
+
+        0 0 25px
+        rgba(255,70,190,.2);
 }
 
 
@@ -229,10 +311,110 @@ body{
    ========================================================= */
 
 .search-wrap{
-    position:absolute;
+    position:fixed;
 
-    right:24px;
-    top:34px;
+    left:72px;
+
+    top:19px;
+
+    bottom:auto;
+
+    z-index:200;
+
+    padding:4px;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(50,31,82,.40),
+            rgba(10,12,29,.34)
+        );
+
+    border:1px solid rgba(225,145,255,.22);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.20),
+        0 0 18px rgba(185,78,255,.10);
+
+    backdrop-filter:blur(14px) saturate(145%);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transform:translateX(-18px) scaleX(.12);
+
+    transform-origin:left center;
+
+    transition:
+        opacity .2s ease,
+        transform .2s ease;
+}
+
+.search-wrap.open{
+    opacity:1;
+
+    pointer-events:auto;
+
+    transform:translateX(0) scaleX(1);
+}
+
+.search-toggle{
+    position:fixed;
+
+    left:20px;
+    top:20px;
+
+    bottom:auto;
+
+    z-index:210;
+
+    width:44px;
+    height:44px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(230,157,255,.40);
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(81,45,128,.64),
+            rgba(13,16,35,.55)
+        );
+
+    color:#f4d7ff;
+
+    font-size:21px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,.26),
+        0 0 18px rgba(192,79,255,.25),
+        inset 0 1px 0 rgba(255,255,255,.16);
+
+    backdrop-filter:blur(13px) saturate(150%);
+
+    transition:transform .18s, box-shadow .18s, border-color .18s;
+}
+
+.search-toggle:hover{
+    transform:scale(1.07);
+
+    border-color:rgba(244,181,255,.75);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.30),
+        0 0 28px rgba(203,83,255,.44),
+        inset 0 1px 0 rgba(255,255,255,.22);
 }
 
 .search{
@@ -241,15 +423,22 @@ body{
 
     border-radius:25px;
 
-    border:1px solid rgba(255,255,255,.12);
+    border:
+        1px solid
+        rgba(255,255,255,.12);
 
-    background:rgba(0,0,0,.24);
+    background:
+        rgba(8,9,21,.38);
 
     color:#fff;
 
     outline:none;
 
-    padding:0 18px 0 43px;
+    padding:
+        0
+        18px
+        0
+        43px;
 
     font-size:15px;
 
@@ -259,10 +448,12 @@ body{
 }
 
 .search:focus{
-    border-color:rgba(255,60,60,.55);
+    border-color:
+        rgba(190,80,255,.6);
 
     box-shadow:
-        0 0 15px rgba(255,60,60,.08);
+        0 0 15px
+        rgba(190,80,255,.1);
 }
 
 .search::placeholder{
@@ -288,11 +479,14 @@ body{
    ========================================================= */
 
 .content{
-    max-width:850px;
+    max-width:1120px;
 
-    margin:0 auto;
+    margin:0;
 
-    padding:34px 30px 80px;
+    padding:
+        24px
+        36px
+        180px;
 }
 
 
@@ -303,7 +497,9 @@ body{
 .status{
     text-align:center;
 
-    padding:60px 20px;
+    padding:
+        60px
+        20px;
 
     color:#777;
 
@@ -317,12 +513,15 @@ body{
 .status.error{
     max-width:700px;
 
-    margin:40px auto;
+    margin:
+        40px
+        auto;
 
     padding:30px;
 
     border:
-        1px solid rgba(255,60,60,.25);
+        1px solid
+        rgba(255,60,60,.25);
 
     background:
         rgba(80,10,10,.16);
@@ -348,24 +547,38 @@ body{
    ========================================================= */
 
 .track{
+    position:relative;
+
     background:
         linear-gradient(
             135deg,
-            rgba(31,33,34,.92),
-            rgba(21,22,23,.92)
+            rgba(55,34,100,.15),
+            rgba(6,10,25,.06)
         );
 
     border:
-        1px solid rgba(255,255,255,.075);
+        1px solid
+        rgba(230,157,255,.34);
 
-    border-radius:16px;
+    border-radius:13px;
 
-    padding:17px;
+    padding:7px 12px;
 
-    margin-bottom:13px;
+    margin-bottom:6px;
 
     box-shadow:
-        0 8px 30px rgba(0,0,0,.18);
+        0 10px 30px
+        rgba(0,0,0,.14),
+
+        inset 0 1px 0
+        rgba(255,255,255,.10),
+
+        0 0 16px
+        rgba(176,70,255,.22);
+
+    backdrop-filter:
+        blur(8px)
+        saturate(160%);
 
     transition:
         transform .18s,
@@ -374,13 +587,24 @@ body{
 }
 
 .track:hover{
-    transform:translateY(-1px);
+    transform:
+        translateY(-1px);
 
     border-color:
-        rgba(255,60,60,.18);
+        rgba(240,169,255,.92);
 
     box-shadow:
-        0 10px 35px rgba(0,0,0,.26);
+        0 12px 38px
+        rgba(0,0,0,.25),
+
+        inset 0 1px 0
+        rgba(255,255,255,.16),
+
+        0 0 12px
+        rgba(247,150,255,.45),
+
+        0 0 32px
+        rgba(184,68,255,.36);
 }
 
 .track-title{
@@ -388,28 +612,25 @@ body{
 
     align-items:center;
 
-    gap:10px;
+    gap:8px;
 
     color:#f0f0f0;
 
-    font-size:19px;
+    font-size:16px;
 
     font-weight:600;
 
-    margin-bottom:10px;
+    margin-bottom:4px;
 
     overflow:hidden;
+
+    padding-right:260px;
 }
 
 .track-icon{
-    font-size:25px;
+    font-size:22px;
 
     flex:none;
-
-    filter:
-        drop-shadow(
-            0 0 6px rgba(255,50,50,.35)
-        );
 }
 
 .track-name{
@@ -420,6 +641,13 @@ body{
     white-space:nowrap;
 }
 
+.track-actions{
+    display:flex;
+    gap:7px;
+    margin-left:auto;
+    flex:none;
+}
+
 
 /* =========================================================
    AUDIO
@@ -428,11 +656,151 @@ body{
 .audio{
     width:100%;
 
-    height:42px;
+    height:32px;
 
     display:block;
 
-    margin-bottom:10px;
+    margin-bottom:0;
+
+    color-scheme:dark;
+
+    opacity:.72;
+
+    border-radius:16px;
+
+    filter:
+        saturate(125%)
+        contrast(.92);
+}
+
+
+/* =========================================================
+   MINI PLAYER
+   ========================================================= */
+
+.mini-player{
+    position:fixed;
+    left:calc(205px + 24px);
+    right:24px;
+    bottom:18px;
+    z-index:300;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    min-height:72px;
+    padding:10px 16px;
+    border:1px solid rgba(230,157,255,.38);
+    border-radius:18px;
+    background:linear-gradient(135deg,rgba(45,26,88,.88),rgba(12,13,31,.88));
+    box-shadow:0 14px 38px rgba(0,0,0,.36),0 0 26px rgba(190,80,255,.24),inset 0 1px 0 rgba(255,255,255,.12);
+    backdrop-filter:blur(18px) saturate(150%);
+    transform:translateY(115px);
+    opacity:0;
+    pointer-events:none;
+    transition:transform .28s ease,opacity .28s ease;
+}
+
+.mini-player.visible{
+    transform:translateY(0);
+    opacity:1;
+    pointer-events:auto;
+}
+
+.mini-player-icon{
+    width:45px;
+    height:45px;
+    display:grid;
+    place-items:center;
+    flex:none;
+    border-radius:13px;
+    background:linear-gradient(135deg,#b64cff,#e34bb7);
+    box-shadow:0 0 18px rgba(205,83,255,.45);
+    font-size:22px;
+}
+
+.mini-player-info{
+    min-width:120px;
+    max-width:330px;
+    flex:1;
+    overflow:hidden;
+}
+
+.mini-player-label{
+    display:block;
+    margin-bottom:3px;
+    color:#c894df;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.mini-player-title{
+    overflow:hidden;
+    color:#fff;
+    font-weight:700;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.mini-audio{
+    width:min(520px,48%);
+    height:34px;
+    color-scheme:dark;
+    opacity:.9;
+}
+
+.mini-close{
+    width:32px;
+    height:32px;
+    flex:none;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.07);
+    color:#e7c8f4;
+    cursor:pointer;
+    font-size:19px;
+    line-height:1;
+}
+
+.mini-close:hover{background:rgba(227,75,183,.28);color:#fff}
+
+.mini-visualizer{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    width:132px;
+    height:42px;
+    padding:7px 12px;
+    border-left:1px solid rgba(230,157,255,.18);
+}
+
+.mini-visualizer span{
+    width:5px;
+    height:8px;
+    border-radius:8px;
+    background:linear-gradient(180deg,#f4a0ff 0%,#c64fff 55%,#e34bb7 100%);
+    box-shadow:0 0 9px rgba(218,88,255,.7);
+    transform-origin:center;
+}
+
+.mini-player.playing .mini-visualizer span{
+    animation:equalizer .82s ease-in-out infinite alternate;
+}
+
+.mini-player.playing .mini-visualizer span:nth-child(2){animation-delay:-.38s}
+.mini-player.playing .mini-visualizer span:nth-child(3){animation-delay:-.12s}
+.mini-player.playing .mini-visualizer span:nth-child(4){animation-delay:-.55s}
+.mini-player.playing .mini-visualizer span:nth-child(5){animation-delay:-.25s}
+.mini-player.playing .mini-visualizer span:nth-child(6){animation-delay:-.64s}
+.mini-player.playing .mini-visualizer span:nth-child(7){animation-delay:-.05s}
+.mini-player.playing .mini-visualizer span:nth-child(8){animation-delay:-.45s}
+.mini-player.playing .mini-visualizer span:nth-child(9){animation-delay:-.18s}
+
+@keyframes equalizer{
+    from{height:7px;opacity:.55}
+    to{height:29px;opacity:1}
 }
 
 
@@ -444,20 +812,29 @@ body{
     display:flex;
 
     gap:9px;
+
+    position:absolute;
+
+    top:7px;
+    right:12px;
 }
 
 .btn{
-    flex:1;
+    flex:none;
 
-    min-height:34px;
+    min-height:30px;
+
+    min-width:116px;
+
+    padding:0 12px;
 
     border:0;
 
-    border-radius:7px;
+    border-radius:8px;
 
     cursor:pointer;
 
-    font-size:15px;
+    font-size:13px;
 
     font-weight:700;
 
@@ -469,17 +846,38 @@ body{
         opacity .15s;
 }
 
+.track-actions .btn{
+    flex:none;
+    min-height:30px;
+    padding:0 12px;
+    border-radius:8px;
+    font-size:13px;
+    box-shadow:0 3px 10px rgba(0,0,0,.18);
+}
+
 .btn:hover{
-    filter:brightness(1.08);
+    filter:
+        brightness(1.08);
 }
 
 .btn:active{
-    transform:scale(.985);
+    transform:
+        scale(.985);
 }
 
 .download-btn{
-    background:#00c985;
+    background:#b64cff;
+}
 
+.copy-btn{
+    background:#e34bb7;
+}
+
+.copy-btn.copied{
+    background:#a83fda;
+}
+
+.download-btn{
     text-decoration:none;
 
     display:flex;
@@ -487,14 +885,6 @@ body{
     align-items:center;
 
     justify-content:center;
-}
-
-.copy-btn{
-    background:#1389d7;
-}
-
-.copy-btn.copied{
-    background:#00b878;
 }
 
 
@@ -507,7 +897,9 @@ body{
 
     color:#777;
 
-    padding:80px 20px;
+    padding:
+        80px
+        20px;
 
     font-size:17px;
 }
@@ -536,10 +928,13 @@ body{
 
     height:40px;
 
-    padding:0 12px;
+    padding:
+        0
+        12px;
 
     border:
-        1px solid rgba(255,255,255,.1);
+        1px solid
+        rgba(255,255,255,.1);
 
     border-radius:8px;
 
@@ -559,18 +954,18 @@ body{
 .page-btn:hover{
     background:#202427;
 
-    color:#ff5555;
+    color:#d36cff;
 
     border-color:
-        rgba(255,60,60,.25);
+        rgba(190,80,255,.3);
 }
 
 .page-btn.active{
-    background:#d83a3a;
+    background:#b64cff;
 
     color:#fff;
 
-    border-color:#d83a3a;
+    border-color:#b64cff;
 }
 
 .page-btn:disabled{
@@ -594,7 +989,9 @@ body{
 .page-dots{
     color:#666;
 
-    padding:0 3px;
+    padding:
+        0
+        3px;
 }
 
 
@@ -603,6 +1000,12 @@ body{
    ========================================================= */
 
 @media(max-width:900px){
+
+    .mini-player{
+        left:84px;
+        right:14px;
+        bottom:12px;
+    }
 
     .sidebar{
         width:70px;
@@ -616,7 +1019,9 @@ body{
     .sidebar-item{
         justify-content:center;
 
-        padding:17px 5px;
+        padding:
+            17px
+            5px;
     }
 
     .sidebar-text{
@@ -646,12 +1051,20 @@ body{
     }
 
     .search-wrap{
-        position:absolute;
+        position:fixed;
 
-        top:77px;
+        top:16px;
 
-        left:20px;
-        right:20px;
+        bottom:auto;
+
+        left:62px;
+        right:15px;
+    }
+
+    .search-toggle{
+        left:10px;
+        top:16px;
+        bottom:auto;
     }
 
     .search{
@@ -659,11 +1072,37 @@ body{
     }
 
     .content{
-        padding:25px 15px 60px;
+        padding:
+            25px
+            15px
+            130px;
     }
 }
 
 @media(max-width:600px){
+
+    .mini-player{
+        left:10px;
+        right:10px;
+        gap:9px;
+        min-height:64px;
+        padding:8px 10px;
+        border-radius:15px;
+    }
+
+    .mini-player-icon{
+        width:38px;
+        height:38px;
+        border-radius:11px;
+        font-size:18px;
+    }
+
+    .mini-player-info{min-width:0}
+    .mini-player-label{font-size:9px}
+    .mini-player-title{font-size:12px}
+    .mini-audio{width:42%;height:32px}
+    .mini-visualizer{display:none}
+
 
     .buttons{
         flex-direction:column;
@@ -675,6 +1114,31 @@ body{
 
     .track-title{
         font-size:17px;
+    }
+}
+
+@media(max-width:600px){
+
+    .track-title{
+        padding-right:0;
+    }
+
+    .buttons{
+        position:static;
+        flex-direction:row;
+        margin-top:7px;
+    }
+
+    .buttons .btn{
+        flex:1;
+        min-width:0;
+        min-height:36px;
+        padding:0 8px;
+        font-size:12px;
+    }
+
+    .audio{
+        height:38px;
     }
 }
 
@@ -700,6 +1164,59 @@ body{
 ::-webkit-scrollbar-thumb:hover{
     background:#363a3d;
 }
+/* =========================================================
+   MUSIC — EMERALD THEME (background image can be added later)
+   ========================================================= */
+body{
+    background:
+        linear-gradient(90deg,rgba(2,12,10,.88) 0%,rgba(2,14,11,.70) 34%,rgba(2,14,11,.26) 72%,rgba(2,13,11,.12) 100%),
+        linear-gradient(180deg,rgba(0,18,14,.18),rgba(0,10,8,.38)),
+        url("assets/Fon2.jpg") center center / cover fixed,
+        #061410;
+}
+.main{background:linear-gradient(90deg,rgba(2,16,12,.22),transparent 72%)}
+.sidebar{border-right-color:rgba(88,255,193,.18)}
+.sidebar-item:hover{background:rgba(0,255,174,.05)}
+.sidebar-item.active{background:linear-gradient(135deg,rgba(0,255,174,.15),rgba(25,213,145,.055));color:#35ffbf;box-shadow:inset 0 0 0 1px rgba(0,255,174,.15),0 5px 20px rgba(0,0,0,.14)}
+.sidebar-item.active::before{background:#20f5ad;box-shadow:0 0 10px rgba(0,255,174,.55)}
+.sidebar-item:hover .sidebar-icon,.sidebar-item.active .sidebar-icon{background:rgba(0,255,174,.10)}
+.header{background:linear-gradient(180deg,rgba(11,34,28,.78),rgba(6,18,16,.70));border-bottom-color:rgba(191,255,226,.09)}
+.header-title{color:#24f5ae;text-shadow:0 0 10px rgba(0,255,174,.52),0 0 25px rgba(0,255,174,.22)}
+.search-wrap{background:linear-gradient(135deg,rgba(18,81,61,.48),rgba(5,28,22,.43));border-color:rgba(108,255,196,.28);box-shadow:0 8px 25px rgba(0,0,0,.20),0 0 18px rgba(0,255,174,.12)}
+.search-toggle{border-color:rgba(112,255,203,.45);background:linear-gradient(135deg,rgba(22,111,80,.72),rgba(6,32,25,.62));color:#d6ffed;box-shadow:0 8px 22px rgba(0,0,0,.26),0 0 18px rgba(0,255,174,.27),inset 0 1px 0 rgba(255,255,255,.16)}
+.search-toggle:hover{border-color:rgba(185,255,222,.78);box-shadow:0 8px 25px rgba(0,0,0,.30),0 0 28px rgba(0,255,174,.46),inset 0 1px 0 rgba(255,255,255,.22)}
+.search:focus{border-color:rgba(0,255,174,.62);box-shadow:0 0 15px rgba(0,255,174,.14)}
+.track{background:linear-gradient(135deg,rgba(20,87,65,.20),rgba(4,29,22,.10));border-color:rgba(105,255,198,.32);box-shadow:0 10px 30px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.10),0 0 16px rgba(0,255,174,.16)}
+.track:hover{border-color:rgba(162,255,214,.92);box-shadow:0 12px 38px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.16),0 0 12px rgba(100,255,190,.44),0 0 32px rgba(0,255,174,.26)}
+.download-btn{background:#08c987}.copy-btn{background:#159cce}.copy-btn.copied{background:#08a870}
+.page-btn:hover{color:#28f5b2;border-color:rgba(0,255,174,.36)}.page-btn.active{background:#08c987;border-color:#08c987}
+.mini-player{border-color:rgba(100,255,193,.40);background:linear-gradient(135deg,rgba(12,72,53,.91),rgba(5,24,20,.91));box-shadow:0 14px 38px rgba(0,0,0,.36),0 0 26px rgba(0,255,174,.22),inset 0 1px 0 rgba(255,255,255,.12)}
+.mini-player-icon{background:linear-gradient(135deg,#08c987,#18a8cb);box-shadow:0 0 18px rgba(0,255,174,.44)}
+.mini-player-label{color:#91e8c5}.mini-close{color:#d0f6e4}.mini-close:hover{background:rgba(8,201,135,.28)}
+.mini-visualizer{border-left-color:rgba(100,255,193,.19)}
+.mini-visualizer span{background:linear-gradient(180deg,#b7ffe4 0%,#23e8a7 55%,#10aeca 100%);box-shadow:0 0 9px rgba(0,255,174,.70)}
+
+.card-player{
+    display:flex;align-items:center;gap:10px;width:100%;height:32px;
+    padding:0 12px;border-radius:17px;background:rgba(235,255,247,.18);
+    color:#dffdf0;
+}
+.card-play-toggle{width:26px;border:0;background:transparent;color:#fff;cursor:pointer;font-size:15px;padding:0}
+.card-time{min-width:82px;color:#c2d4cd;font-size:14px;font-variant-numeric:tabular-nums}
+.card-seek{appearance:none;flex:1;height:4px;border-radius:5px;background:rgba(255,255,255,.28);outline:none;cursor:pointer}
+.card-seek::-webkit-slider-thumb{appearance:none;width:12px;height:12px;border-radius:50%;background:#8affca;box-shadow:0 0 8px rgba(0,255,174,.7)}
+.card-seek::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:#8affca}
+
+/* Search is anchored to its fixed magnifier, never to the page header. */
+.search-toggle{position:fixed !important;left:20px !important;top:20px !important;z-index:1002 !important}
+.search-wrap{position:fixed !important;left:72px !important;top:19px !important;right:auto !important;bottom:auto !important;z-index:1001 !important}
+@media(max-width:900px){
+    .search-toggle{left:10px !important;top:16px !important}
+    .search-wrap{left:62px !important;top:16px !important;right:15px !important}
+}
+
+/* SCREAMERS — ROFLAN LAYOUT, DARK BLOOD THEME */
+body{background:linear-gradient(90deg,rgba(12,3,4,.93) 0%,rgba(25,5,7,.78) 34%,rgba(34,7,9,.34) 72%,rgba(18,3,5,.17) 100%),linear-gradient(180deg,rgba(99,10,17,.16),rgba(10,2,3,.50)),url("assets/Fon5.jpg") center center / cover fixed,#0d0304}.main{background:linear-gradient(90deg,rgba(30,5,7,.28),transparent 72%)}.sidebar{background:linear-gradient(180deg,rgba(38,10,13,.66),rgba(13,3,5,.62));border-right-color:rgba(174,52,59,.23)}.sidebar-item:hover{background:rgba(164,37,45,.10)}.sidebar-item.active{background:linear-gradient(135deg,rgba(142,23,34,.28),rgba(202,68,47,.08));color:#f18a81;box-shadow:inset 0 0 0 1px rgba(197,59,62,.25),0 5px 20px rgba(0,0,0,.20)}.sidebar-item.active::before{background:#c43842;box-shadow:0 0 11px rgba(204,43,54,.67)}.sidebar-item:hover .sidebar-icon,.sidebar-item.active .sidebar-icon{background:rgba(190,45,52,.16)}.header{background:linear-gradient(180deg,rgba(68,13,17,.85),rgba(25,4,7,.80));border-bottom-color:rgba(255,172,163,.12)}.header-title{color:#e46661;text-shadow:0 0 10px rgba(205,38,48,.65),0 0 28px rgba(124,11,22,.42)}.search-wrap{background:linear-gradient(135deg,rgba(104,20,27,.58),rgba(35,5,8,.57));border-color:rgba(214,86,82,.32);box-shadow:0 8px 25px rgba(0,0,0,.28),0 0 18px rgba(183,31,43,.22)}.search-toggle{border-color:rgba(232,120,111,.52);background:linear-gradient(135deg,rgba(126,22,31,.78),rgba(39,5,8,.74));color:#ffe0db;box-shadow:0 8px 22px rgba(0,0,0,.30),0 0 18px rgba(195,34,46,.38),inset 0 1px 0 rgba(255,255,255,.14)}.search-toggle:hover{border-color:rgba(255,194,183,.84);box-shadow:0 8px 25px rgba(0,0,0,.34),0 0 28px rgba(219,48,58,.60),inset 0 1px 0 rgba(255,255,255,.20)}.search:focus{border-color:rgba(216,67,68,.76);box-shadow:0 0 15px rgba(193,35,45,.24)}.track{background:linear-gradient(135deg,rgba(100,17,24,.30),rgba(31,4,7,.21));border-color:rgba(192,62,63,.42);box-shadow:0 10px 30px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.08),0 0 16px rgba(167,27,38,.25)}.track:hover{border-color:rgba(244,147,133,.94);box-shadow:0 12px 38px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.15),0 0 13px rgba(226,67,63,.48),0 0 32px rgba(165,19,31,.40)}.download-btn{background:#a92f37}.copy-btn{background:#762932}.copy-btn.copied{background:#84242e}.page-btn:hover{color:#ee8a80;border-color:rgba(213,71,71,.46)}.page-btn.active{background:#a92f37;border-color:#a92f37}.mini-player{border-color:rgba(206,72,71,.48);background:linear-gradient(135deg,rgba(86,13,19,.95),rgba(27,3,6,.96));box-shadow:0 14px 38px rgba(0,0,0,.40),0 0 27px rgba(177,25,39,.38),inset 0 1px 0 rgba(255,255,255,.11)}.mini-player-icon{background:linear-gradient(135deg,#bd3941,#711e28);box-shadow:0 0 18px rgba(212,47,57,.52)}.mini-player-label{color:#f2aaa0}.mini-close{color:#ffd5cf}.mini-close:hover{background:rgba(177,32,44,.48)}.mini-visualizer{border-left-color:rgba(218,91,84,.27)}.mini-visualizer span{background:linear-gradient(180deg,#ffd0c5 0%,#df665c 55%,#9c2631 100%);box-shadow:0 0 9px rgba(219,57,62,.82)}.card-player{background:rgba(255,208,199,.15);color:#fff0eb}.card-time{color:#e8bcb5}.card-seek::-webkit-slider-thumb{background:#ed8276;box-shadow:0 0 8px rgba(219,57,62,.88)}.card-seek::-moz-range-thumb{background:#ed8276}
 </style>
 </head>
 
@@ -744,11 +1261,16 @@ body{
             onclick="goOpenings()"
         >
 
-            <div class="sidebar-icon">🎬</div>
+            <div class="sidebar-icon">
+                🎬
+            </div>
 
             <div class="sidebar-text">
                 Openings
-                <span class="sidebar-small">Аниме</span>
+
+                <span class="sidebar-small">
+                    Аниме
+                </span>
             </div>
 
         </div>
@@ -791,7 +1313,7 @@ body{
                 Gachi
 
                 <span class="sidebar-small">
-                    Скоро
+                    Гачи
                 </span>
             </div>
 
@@ -825,20 +1347,28 @@ body{
 </div>
 
 
+<button
+    id="searchToggle"
+    class="search-toggle"
+    type="button"
+    aria-label="Открыть поиск"
+    onclick="toggleSearch(event)"
+>
+    🔍
+</button>
+
 <!-- =======================================================
-     MAIN
-     ======================================================= -->
+   MAIN
+   ======================================================= -->
 
 <div class="main">
 
     <header class="header">
 
-        <h1 class="header-title">
-            😱 МаЛяВоЧка - Скримеры 😱
-        </h1>
+        <h1 class="header-title">😱 МаЛяВоЧка - Скримеры 😱</h1>
 
 
-        <div class="search-wrap">
+        <div class="search-wrap" onclick="event.stopPropagation()">
 
             <span class="search-icon">
                 🔍
@@ -848,7 +1378,7 @@ body{
                 id="search"
                 class="search"
                 type="text"
-                placeholder="Найти скример..."
+                placeholder="Найти рофлан..."
                 autocomplete="off"
             >
 
@@ -863,13 +1393,27 @@ body{
     >
 
         <div class="status loading">
-            Загрузка скримеров... 😱
+            Загрузка рофланов... 😂
         </div>
 
     </main>
 
 </div>
 
+
+<section id="miniPlayer" class="mini-player" aria-label="Мини-плеер">
+    <div class="mini-player-icon" aria-hidden="true">🎵</div>
+    <div class="mini-player-info">
+        <span class="mini-player-label">Сейчас играет</span>
+        <div id="miniPlayerTitle" class="mini-player-title">Выберите опенинг</div>
+    </div>
+    <audio id="miniAudio" class="mini-audio" controls preload="metadata"></audio>
+    <div class="mini-visualizer" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+    </div>
+    <button id="miniClose" class="mini-close" type="button" aria-label="Закрыть плеер">×</button>
+</section>
 
 <script>
 
@@ -880,11 +1424,23 @@ body{
 const WORKER_URL=
     "https://malyavochka-music.rxmlopdt.workers.dev";
 
+
+/*
+ * Если твой Worker для Openings использует другой JSON,
+ * меняется только эта строка.
+ *
+ * Сейчас предполагается:
+ *
+ * /openings.json
+ */
+
 const LIST_URL=
     WORKER_URL+
     "/skrimers/list.json";
 
+
 const TRACKS_PER_PAGE=50;
+
 
 const musicList=
     document.getElementById(
@@ -896,6 +1452,7 @@ const searchInput=
         "search"
     );
 
+
 let tracks=[];
 
 let filteredTracks=[];
@@ -903,227 +1460,1296 @@ let filteredTracks=[];
 let currentPage=1;
 
 let currentAudio=null;
+let activeTrackAudio=null;
+let activeTrackId=null;
+
+/* The search must be outside the blurred header; otherwise CSS positions it
+   relative to that header instead of to the visible magnifier. */
+document.body.appendChild(document.querySelector(".search-wrap"));
+
+const miniPlayer=document.getElementById("miniPlayer");
+const miniAudio=document.getElementById("miniAudio");
+const miniPlayerTitle=document.getElementById("miniPlayerTitle");
+const miniClose=document.getElementById("miniClose");
+
+function showMiniPlayer(track){
+    miniPlayerTitle.textContent=removeExtension(String(track.name||""));
+    miniPlayer.classList.add("visible");
+}
+
+function playInMiniPlayer(track){
+    const url=getPlayURL(track);
+
+    if(miniAudio.src!==url){
+        miniAudio.src=url;
+    }
+
+    showMiniPlayer(track);
+
+    activeTrackAudio=document.getElementById("audio-"+track.id);
+    activeTrackId=String(track.id);
+
+    currentAudio=miniAudio;
+    miniAudio.play().catch(()=>{});
+    updateActiveCard();
+}
+
+miniClose.addEventListener("click",()=>{
+    miniAudio.pause();
+    miniPlayer.classList.remove("visible");
+    miniPlayer.classList.remove("playing");
+    currentAudio=null;
+    activeTrackAudio=null;
+    activeTrackId=null;
+});
+
+miniAudio.addEventListener("play",()=>{miniPlayer.classList.add("playing");updateActiveCard()});
+miniAudio.addEventListener("pause",()=>{miniPlayer.classList.remove("playing");updateActiveCard()});
+miniAudio.addEventListener("ended",()=>{miniPlayer.classList.remove("playing");updateActiveCard()});
+miniAudio.addEventListener("timeupdate",updateActiveCard);
+miniAudio.addEventListener("loadedmetadata",updateActiveCard);
 
 
 /* =========================================================
-   УМНЫЙ ПОИСК
+   АЛИАСЫ АНИМЕ
+   =========================================================
+   
+   Здесь находится база русских названий.
+
+   Например:
+
+   файл:
+   Attack on Titan Opening 1.mp3
+
+   пользователь вводит:
+
+   атака титанов
+
+   → найдётся.
+
+   Также:
+
+   shingeki no kyojin
+   титан
+   атака титанов
+
+   → тоже найдётся.
    ========================================================= */
 
-const RU_TO_EN={
+const ANIME_ALIASES={
 
-    "а":"a",
-    "б":"b",
-    "в":"v",
-    "г":"g",
-    "д":"d",
-    "е":"e",
-    "ё":"yo",
-    "ж":"zh",
-    "з":"z",
-    "и":"i",
-    "й":"y",
-    "к":"k",
-    "л":"l",
-    "м":"m",
-    "н":"n",
-    "о":"o",
-    "п":"p",
-    "р":"r",
-    "с":"s",
-    "т":"t",
-    "у":"u",
-    "ф":"f",
-    "х":"h",
-    "ц":"c",
-    "ч":"ch",
-    "ш":"sh",
-    "щ":"sch",
-    "ъ":"",
-    "ы":"y",
-    "ь":"",
-    "э":"e",
-    "ю":"yu",
-    "я":"ya"
+
+    /* =====================================================
+       ТОКИЙСКИЙ ГУЛЬ
+       ===================================================== */
+
+    "tokyo ghoul":[
+        "токийский гуль",
+        "токийский гуль",
+        "токио гуль",
+        "токийский гуль аниме",
+        "tokyoghoul",
+        "tg"
+    ],
+
+
+    /* =====================================================
+       АТАКА ТИТАНОВ
+       ===================================================== */
+
+    "attack on titan":[
+        "атака титанов",
+        "атака титана",
+        "атакa титанов",
+        "атакa титана",
+        "шингэки но кёдзин",
+        "шингеки но кёджин",
+        "шингеки но кёжин",
+        "аттaка титанов",
+        "титаны",
+        "атака титанов аниме",
+        "shingeki no kyojin",
+        "shingekinokyojin",
+        "aot"
+    ],
+
+
+    /* =====================================================
+       НАРУТО
+       ===================================================== */
+
+    "naruto":[
+        "наруто",
+        "наруто ураганные хроники",
+        "наруто шипуден",
+        "наруто шиппуден",
+        "наруто сёнэн",
+        "naruto shippuden",
+        "narutoshippuden"
+    ],
+
+
+    /* =====================================================
+       БОРУТО
+       ===================================================== */
+
+    "boruto":[
+        "боруто",
+        "боруто новое поколение",
+        "боруто наруто новое поколение",
+        "boruto naruto next generations"
+    ],
+
+
+    /* =====================================================
+       ONE PIECE
+       ===================================================== */
+
+    "one piece":[
+        "ван пис",
+        "ванпич",
+        "ван пис аниме",
+        "большой куш",
+        "onepiece"
+    ],
+
+
+    /* =====================================================
+       BLEACH
+       ===================================================== */
+
+    "bleach":[
+        "блич",
+        "блич аниме",
+        "блич тысяча лет кровавой войны",
+        "bleach thousand year blood war",
+        "tybw"
+    ],
+
+
+    /* =====================================================
+       DEATH NOTE
+       ===================================================== */
+
+    "death note":[
+        "тетрадь смерти",
+        "тетрадь смерти аниме",
+        "смертельная записка",
+        "deathnote"
+    ],
+
+
+    /* =====================================================
+       DEMON SLAYER
+       ===================================================== */
+
+    "demon slayer":[
+        "клинок рассекающий демонов",
+        "клинок рассекающий демонов",
+        "клинок демонов",
+        "убийца демонов",
+        "клинок рассекающий",
+        "кимэцу но яиба",
+        "кимецу но яиба",
+        "kimetsu no yaiba",
+        "kimetsunoyaiba"
+    ],
+
+
+    /* =====================================================
+       JUJUTSU KAISEN
+       ===================================================== */
+
+    "jujutsu kaisen":[
+        "магическая битва",
+        "магическая битва аниме",
+        "дзюдзюцу кайсен",
+        "джуджутсу кайсен",
+        "дзюдзюцу",
+        "jujutsukaisen"
+    ],
+
+
+    /* =====================================================
+       MY HERO ACADEMIA
+       ===================================================== */
+
+    "my hero academia":[
+        "моя геройская академия",
+        "моя геройская академия",
+        "моя геройская",
+        "академия героев",
+        "boku no hero academia",
+        "boku no hero",
+        "bnha",
+        "mha"
+    ],
+
+
+    /* =====================================================
+       FULLMETAL ALCHEMIST
+       ===================================================== */
+
+    "fullmetal alchemist":[
+        "стальной алхимик",
+        "стальной алхимик братство",
+        "алхимик братство",
+        "fma",
+        "fmab",
+        "fullmetal alchemist brotherhood"
+    ],
+
+
+    /* =====================================================
+       HUNTER X HUNTER
+       ===================================================== */
+
+    "hunter x hunter":[
+        "хантер х хантер",
+        "хантер хантер",
+        "охотник х охотник",
+        "охотник охотник",
+        "hxh",
+        "hunterxhunter"
+    ],
+
+
+    /* =====================================================
+       FAIRY TAIL
+       ===================================================== */
+
+    "fairy tail":[
+        "хвост феи",
+        "сказочный хвост",
+        "хвост феи аниме",
+        "fairytail"
+    ],
+
+
+    /* =====================================================
+       BLACK CLOVER
+       ===================================================== */
+
+    "black clover":[
+        "черный клевер",
+        "чёрный клевер",
+        "черный клевер аниме",
+        "blackclover"
+    ],
+
+
+    /* =====================================================
+       SWORD ART ONLINE
+       ===================================================== */
+
+    "sword art online":[
+        "мастер меча онлайн",
+        "искусство меча онлайн",
+        "сао",
+        "меч онлайн",
+        "sao",
+        "swordartonline"
+    ],
+
+
+    /* =====================================================
+       RE:ZERO
+       ===================================================== */
+
+    "re zero":[
+        "резеро",
+        "ре зеро",
+        "жизнь с нуля в альтернативном мире",
+        "жизнь с нуля",
+        "re zero kara hajimeru isekai seikatsu",
+        "rezero"
+    ],
+
+
+    /* =====================================================
+       KONOSUBA
+       ===================================================== */
+
+    "konosuba":[
+        "коносуба",
+        "божество благословило этот прекрасный мир",
+        "этот прекрасный мир",
+        "коно суба",
+        "kono subarashii sekai ni shukufuku wo",
+        "konosuba"
+    ],
+
+
+    /* =====================================================
+       NO GAME NO LIFE
+       ===================================================== */
+
+    "no game no life":[
+        "нет игры нет жизни",
+        "нет игры нет жизни",
+        "ноу гейм ноу лайф",
+        "нгнл",
+        "ngnl",
+        "nogamenolife"
+    ],
+
+
+    /* =====================================================
+       STEINS GATE
+       ===================================================== */
+
+    "steins gate":[
+        "врата штейна",
+        "врата штайнера",
+        "штейны врата",
+        "стейнс гейт",
+        "steinsgate"
+    ],
+
+
+    /* =====================================================
+       EVANGELION
+       ===================================================== */
+
+    "neon genesis evangelion":[
+        "евангелион",
+        "неон генезис евангелион",
+        "евангелион новое поколение",
+        "нге",
+        "nge",
+        "neon genesis evangelion"
+    ],
+
+
+    /* =====================================================
+       COWBOY BEBOP
+       ===================================================== */
+
+    "cowboy bebop":[
+        "ковбой бибоп",
+        "ковбой бибоп аниме",
+        "cowboybebop"
+    ],
+
+
+    /* =====================================================
+       SAMURAI CHAMPLOO
+       ===================================================== */
+
+    "samurai champloo":[
+        "самурай чамплу",
+        "самурай шамплу",
+        "самурай чамплу аниме",
+        "samuraichamploo"
+    ],
+
+
+    /* =====================================================
+       VINLAND SAGA
+       ===================================================== */
+
+    "vinland saga":[
+        "сага о винланде",
+        "сага винланд",
+        "винланд сага",
+        "винланд",
+        "vinlandsaga"
+    ],
+
+
+    /* =====================================================
+       CHAINSAW MAN
+       ===================================================== */
+
+    "chainsaw man":[
+        "человек бензопила",
+        "человек бензопила аниме",
+        "бензопила",
+        "человек бензопила",
+        "chainsawman"
+    ],
+
+
+    /* =====================================================
+       ONE PUNCH MAN
+       ===================================================== */
+
+    "one punch man":[
+        "ванпанчмен",
+        "ванпанч мен",
+        "один удар человек",
+        "человек одного удара",
+        "опм",
+        "onepunchman"
+    ],
+
+
+    /* =====================================================
+       MOB PSYCHO 100
+       ===================================================== */
+
+    "mob psycho 100":[
+        "моб психо 100",
+        "моб психо",
+        "моб психо сто",
+        "mobpsycho100"
+    ],
+
+
+    /* =====================================================
+       DRAGON BALL
+       ===================================================== */
+
+    "dragon ball":[
+        "драконий жемчуг",
+        "драгон болл",
+        "драгонболл",
+        "драгон бол",
+        "dragonball"
+    ],
+
+
+    /* =====================================================
+       FAIRY TAIL
+       ===================================================== */
+
+    "fairy tail":[
+        "хвост феи",
+        "хвост феи",
+        "fairytail"
+    ],
+
+
+    /* =====================================================
+       SAILOR MOON
+       ===================================================== */
+
+    "sailor moon":[
+        "сейлор мун",
+        "сейлор мун",
+        "луна моряк",
+        "кристалл луны",
+        "sailormoon"
+    ],
+
+
+    /* =====================================================
+       INUYASHA
+       ===================================================== */
+
+    "inuyasha":[
+        "инуяша",
+        "инуюша",
+        "инуяша аниме"
+    ],
+
+
+    /* =====================================================
+       CODE GEASS
+       ===================================================== */
+
+    "code geass":[
+        "код гиас",
+        "код гиасс",
+        "код геасс",
+        "код гиас рикушия",
+        "codegeass"
+    ],
+
+
+    /* =====================================================
+       GURREN LAGANN
+       ===================================================== */
+
+    "gurren lagann":[
+        "гуррен лаганн",
+        "гуррен лаган",
+        "тэнгэн топпа гуррен лаганн",
+        "гуррен",
+        "gurrenlagann"
+    ],
+
+
+    /* =====================================================
+       AKAME GA KILL
+       ===================================================== */
+
+    "akame ga kill":[
+        "убийца акаме",
+        "акаме га килл",
+        "акаме",
+        "akamegakill"
+    ],
+
+
+    /* =====================================================
+       PARASYTE":[
+        "паразит",
+        "паразит учение о жизни",
+        "паразит максим",
+        "кисэйдзю",
+        "parasyte",
+        "parasyte maxim"
+    ],
+
+
+    /* =====================================================
+       ERASED
+       ===================================================== */
+
+    "erased":[
+        "город в котором меня нет",
+        "город где меня нет",
+        "стерто",
+        "стертый",
+        "убийство в другом мире",
+        "boku dake ga inai machi",
+        "erased anime"
+    ],
+
+
+    /* =====================================================
+       YOUR NAME
+       ===================================================== */
+
+    "your name":[
+        "твое имя",
+        "твоё имя",
+        "твоё имя аниме",
+        "kimi no na wa",
+        "kimi no na wa"
+    ],
+
+
+    /* =====================================================
+       A SILENT VOICE
+       ===================================================== */
+
+    "a silent voice":[
+        "форма голоса",
+        "безмолвный голос",
+        "тихий голос",
+        "коэ но катачи",
+        "koe no katachi"
+    ],
+
+
+    /* =====================================================
+       WEATHERING WITH YOU
+       ===================================================== */
+
+    "weathering with you":[
+        "дитя погоды",
+        "дитя погоды аниме",
+        "дитя погоды",
+        "tenki no ko",
+        "tenkinoko"
+    ],
+
+
+    /* =====================================================
+       SPIRITED AWAY
+       ===================================================== */
+
+    "spirited away":[
+        "унесенные призраками",
+        "унесённые призраками",
+        "унесенные духами",
+        "унесённые духами",
+        "сен и тихиро",
+        "сен и тихаиро"
+    ],
+
+
+    /* =====================================================
+       HOWL'S MOVING CASTLE
+       ===================================================== */
+
+    "howl's moving castle":[
+        "ходячий замок",
+        "ходячий замок хаула",
+        "замок хаула",
+        "howl moving castle"
+    ],
+
+
+    /* =====================================================
+       PRINCESS MONONOKE
+       ===================================================== */
+
+    "princess mononoke":[
+        "принцесса мононоке",
+        "мононоке",
+        "принцесса мононокэ"
+    ],
+
+
+    /* =====================================================
+       TOKYO REVENGERS
+       ===================================================== */
+
+    "tokyo revengers":[
+        "токийские мстители",
+        "токийские мстители аниме",
+        "токийские мстители",
+        "токио ревенджерс",
+        "tokyorevengers"
+    ],
+
+
+    /* =====================================================
+       BLUE LOCK
+       ===================================================== */
+
+    "blue lock":[
+        "синяя тюрьма",
+        "блю лок",
+        "синий замок",
+        "blue lock",
+        "bluelock"
+    ],
+
+
+    /* =====================================================
+       HAIKYUU
+       ===================================================== */
+
+    "haikyuu":[
+        "волейбол",
+        "волейбол аниме",
+        "хаикью",
+        "хайкью",
+        "haikyu",
+        "haikyuu"
+    ],
+
+
+    /* =====================================================
+       KAGUYA SAMA
+       ===================================================== */
+
+    "kaguya sama":[
+        "госпожа кагуя",
+        "любовь война",
+        "любовь как на войне",
+        "кагуя сама",
+        "kaguya sama love is war"
+    ],
+
+
+    /* =====================================================
+       HORIMIYA
+       ===================================================== */
+
+    "horimiya":[
+        "хоримия",
+        "хори и миямура",
+        "хоримия аниме"
+    ],
+
+
+    /* =====================================================
+       TORADORA
+       ===================================================== */
+
+    "toradora":[
+        "торадора",
+        "тородора",
+        "торадора аниме"
+    ],
+
+
+    /* =====================================================
+       ANGEL BEATS
+       ===================================================== */
+
+    "angel beats":[
+        "ангельские ритмы",
+        "ангельские ритмы аниме",
+        "angelbeats"
+    ],
+
+
+    /* =====================================================
+       CLANNAD
+       ===================================================== */
+
+    "clannad":[
+        "кланнад",
+        "кланнад аниме",
+        "clannad after story",
+        "кланнад после истории"
+    ],
+
+
+    /* =====================================================
+       THE PROMISED NEVERLAND
+       ===================================================== */
+
+    "the promised neverland":[
+        "обещанный неверленд",
+        "обещанный никогдаленд",
+        "обещанный неверланд",
+        "yakusoku no neverland",
+        "promisedneverland"
+    ],
+
+
+    /* =====================================================
+       MADE IN ABYSS
+       ===================================================== */
+
+    "made in abyss":[
+        "созданный в бездне",
+        "сделано в бездне",
+        "бездна",
+        "madeinabyss"
+    ],
+
+
+    /* =====================================================
+       OVERLORD
+       ===================================================== */
+
+    "overlord":[
+        "повелитель",
+        "оверлорд",
+        "overlord аниме"
+    ],
+
+
+    /* =====================================================
+       THAT TIME I GOT REINCARNATED AS A SLIME
+       ===================================================== */
+
+    "that time i got reincarnated as a slime":[
+        "о моем перерождении в слизь",
+        "перерождение в слизь",
+        "слизь",
+        "тенсура",
+        "tensura",
+        "reincarnated as a slime"
+    ],
+
+
+    /* =====================================================
+       JOBLESS REINCARNATION
+       ===================================================== */
+
+    "mushoku tensei":[
+        "реинкарнация безработного",
+        "реинкарнация безработного",
+        "безработный",
+        "мусоку тенсей",
+        "mushoku tensei"
+    ],
+
+
+    /* =====================================================
+       SAGA OF TANYA THE EVIL
+       ===================================================== */
+
+    "the saga of tanya the evil":[
+        "сага о злой тани",
+        "сага о тани во зло",
+        "военная хроника маленькой девочки",
+        "таня злая",
+        "youjo senki"
+    ],
+
+
+    /* =====================================================
+       DR STONE
+       ===================================================== */
+
+    "dr stone":[
+        "доктор стоун",
+        "доктор стоун аниме",
+        "drstone"
+    ],
+
+
+    /* =====================================================
+       FIRE FORCE
+       ===================================================== */
+
+    "fire force":[
+        "пламенная бригада пожарных",
+        "пожарная бригада",
+        "огненная сила",
+        "fireforce"
+    ],
+
+
+    /* =====================================================
+       SOUL EATER
+       ===================================================== */
+
+    "soul eater":[
+        "пожиратель душ",
+        "пожиратель душ аниме",
+        "souleater"
+    ],
+
+
+    /* =====================================================
+       NORAGAMI
+       ===================================================== */
+
+    "noragami":[
+        "бездарный бог",
+        "бездомный бог",
+        "норагами",
+        "noragami"
+    ],
+
+
+    /* =====================================================
+       BUNGOU STRAY DOGS
+       ===================================================== */
+
+    "bungou stray dogs":[
+        "великие из бродячих псов",
+        "бунго странные псы",
+        "бродячие псы",
+        "банго страй догс",
+        "bungou stray dogs"
+    ],
+
+
+    /* =====================================================
+       MONSTER
+       ===================================================== */
+
+    "monster":[
+        "монстр",
+        "монстр аниме",
+        "monster anime"
+    ],
+
+
+    /* =====================================================
+       PSYCHO PASS
+       ===================================================== */
+
+    "psycho pass":[
+        "психопаспорт",
+        "психо пасс",
+        "психо паспорт",
+        "psycho pass"
+    ],
+
+
+    /* =====================================================
+       ELITE CLASSROOM
+       ===================================================== */
+
+    "classroom of the elite":[
+        "класс превосходства",
+        "класс элиты",
+        "добро пожаловать в класс превосходства",
+        "youkoso jitsuryoku shijou shugi no kyoushitsu e"
+    ],
+
+
+    /* =====================================================
+       OREGAIRU
+       ===================================================== */
+
+    "oregairu":[
+        "как и ожидалось моя школьная романтическая жизнь",
+        "моя подростковая романтическая комедия",
+        "орегайру",
+        "яхаари",
+        "yahari ore no seishun love comedy"
+    ],
+
+
+    /* =====================================================
+       SAO
+       ===================================================== */
+
+    "sword art online":[
+        "меч искусство онлайн",
+        "мастер меча онлайн",
+        "сао"
+    ],
+
+
+    /* =====================================================
+       FATE
+       ===================================================== */
+
+    "fate stay night":[
+        "судьба начало",
+        "судьба ночь схватки",
+        "судьба",
+        "fate",
+        "fate stay night",
+        "fate zero"
+    ],
+
+
+    /* =====================================================
+       FATE ZERO
+       ===================================================== */
+
+    "fate zero":[
+        "судьба ноль",
+        "судьба зеро",
+        "fate zero",
+        "fatezero"
+    ],
+
+
+    /* =====================================================
+       RECORD OF RAGNAROK
+       ===================================================== */
+
+    "record of ragnarok":[
+        "повесть о конце света",
+        "рекорд рагнарёка",
+        "рекорд рагнарок",
+        "рагнарек",
+        "shuumatsu no valkyrie"
+    ],
+
+
+    /* =====================================================
+       HELL'S PARADISE
+       ===================================================== */
+
+    "hell's paradise":[
+        "адский рай",
+        "рай ада",
+        "дзигокураку",
+        "jigokuraku"
+    ],
+
+
+    /* =====================================================
+       SOLO LEVELING
+       ===================================================== */
+
+    "solo leveling":[
+        "поднятие уровня в одиночку",
+        "поднятие уровня в одиночку",
+        "сололевелинг",
+        "сололейвелинг",
+        "соло левелинг",
+        "solo leveling"
+    ],
+
+
+    /* =====================================================
+       MASHLE
+       ===================================================== */
+
+    "mashle":[
+        "мэшл",
+        "машле",
+        "магия и мускулы",
+        "mashle magic and muscles"
+    ],
+
+
+    /* =====================================================
+       ODD TAXI
+       ===================================================== */
+
+    "odd taxi":[
+        "необычное такси",
+        "странное такси",
+        "одд такси",
+        "oddtaxi"
+    ],
+
+
+    /* =====================================================
+       ZOM 100
+       ===================================================== */
+
+    "zom 100":[
+        "зом 100",
+        "зомби 100",
+        "100 дел до того как стать зомби",
+        "zom100"
+    ],
+
+
+    /* =====================================================
+       BOCCHI THE ROCK
+       ===================================================== */
+
+    "bocchi the rock":[
+        "одинокий рокер",
+        "боччи",
+        "боччи зе рок",
+        "bocchi"
+    ],
+
+
+    /* =====================================================
+       OSHI NO KO
+       ===================================================== */
+
+    "oshi no ko":[
+        "звездное дитя",
+        "звёздное дитя",
+        "дитя айдола",
+        "оши но ко",
+        "oshi no ko"
+    ],
+
+
+    /* =====================================================
+       SPY X FAMILY
+       ===================================================== */
+
+    "spy x family":[
+        "семья шпионов",
+        "шпионская семья",
+        "спай х фэмили",
+        "spy family",
+        "spyxfamily"
+    ],
+
+
+    /* =====================================================
+       FRUITS BASKET
+       ===================================================== */
+
+    "fruits basket":[
+        "корзинка фруктов",
+        "фруктовая корзина",
+        "фрутс баскет",
+        "fruitsbasket"
+    ],
+
+
+    /* =====================================================
+       YOUR LIE IN APRIL
+       ===================================================== */
+
+    "your lie in april":[
+        "твоя апрельская ложь",
+        "ложь в апреле",
+        "твоя ложь в апреле",
+        "shigatsu wa kimi no uso",
+        "shigatsu"
+    ],
+
+
+    /* =====================================================
+       ANOHANA
+       ===================================================== */
+
+    "anohana":[
+        "цветок который мы увидели в тот день",
+        "анохана",
+        "мы видели цветок",
+        "anohana"
+    ],
+
+
+    /* =====================================================
+       ANGEL BEATS
+       ===================================================== */
+
+    "angel beats":[
+        "ангельские ритмы",
+        "ангел битс",
+        "angel beats"
+    ],
+
+
+    /* =====================================================
+       KILL LA KILL
+       ===================================================== */
+
+    "kill la kill":[
+        "убей или умри",
+        "килл ла килл",
+        "killlakill"
+    ],
+
+
+    /* =====================================================
+       DARLING IN THE FRANXX
+       ===================================================== */
+
+    "darling in the franxx":[
+        "милый во франксе",
+        "милый во франксе",
+        "дарлинг ин зе франкс",
+        "дарлинг",
+        "darlinginthefranxx"
+    ],
+
+
+    /* =====================================================
+       AKUDAMA DRIVE
+       ===================================================== */
+
+    "akudama drive":[
+        "акудама драйв",
+        "акудама",
+        "akudama"
+    ],
+
+
+    /* =====================================================
+       CYBERPUNK EDGERUNNERS
+       ===================================================== */
+
+    "cyberpunk edgerunners":[
+        "киберпанк бегущие по краю",
+        "киберпанк",
+        "эджраннеры",
+        "эджраннерс",
+        "cyberpunk",
+        "edgerunners"
+    ],
+
+
+    /* =====================================================
+       ARCANE
+       ===================================================== */
+
+    "arcane":[
+        "аркан",
+        "аркайн",
+        "аркане",
+        "arcane"
+    ],
+
+
+    /* =====================================================
+       CASTLEVANIA
+       ===================================================== */
+
+    "castlevania":[
+        "кастлвания",
+        "кастельвания",
+        "castlevania"
+    ],
+
+
+    /* =====================================================
+       DORORO
+       ===================================================== */
+
+    "dororo":[
+        "дороро",
+        "дороро аниме"
+    ],
+
+
+    /* =====================================================
+       TO YOUR ETERNITY
+       ===================================================== */
+
+    "to your eternity":[
+        "к твоей вечности",
+        "твоя вечность",
+        "фумэцу но аната э",
+        "fumetsu no anata e"
+    ],
+
+
+    /* =====================================================
+       TOWER OF GOD
+       ===================================================== */
+
+    "tower of god":[
+        "башня бога",
+        "башня бога аниме",
+        "kami no tou"
+    ],
+
+
+    /* =====================================================
+       THE GOD OF HIGH SCHOOL
+       ===================================================== */
+
+    "the god of high school":[
+        "бог старшей школы",
+        "бог школы",
+        "god of high school"
+    ],
+
+
+    /* =====================================================
+       LOOKISM
+       ===================================================== */
+
+    "lookism":[
+        "лукизм",
+        "лукизм аниме",
+        "lookism"
+    ],
+
+
+    /* =====================================================
+       LINK CLICK
+       ===================================================== */
+
+    "link click":[
+        "агент времени",
+        "связь во времени",
+        "линк клик",
+        "shiguang daili ren"
+    ],
+
+
+    /* =====================================================
+       SCUM'S WISH
+       ===================================================== */
+
+    "scum's wish":[
+        "желание отбросов",
+        "желание подонков",
+        "кузу но хонкай",
+        "kuzu no honkai"
+    ],
+
+
+    /* =====================================================
+       DOMESTIC GIRLFRIEND
+       ===================================================== */
+
+    "domestic girlfriend":[
+        "домашняя девушка",
+        "домашняя подружка",
+        "домашняя девушка аниме",
+        "domestic na kanojo"
+    ],
+
+
+    /* =====================================================
+       RENT A GIRLFRIEND
+       ===================================================== */
+
+    "rent a girlfriend":[
+        "девушка напрокат",
+        "девушка в аренду",
+        "ренд а гирлфренд",
+        "kanokari"
+    ],
+
+
+    /* =====================================================
+       KANOJO OKARISHIMASU
+       ===================================================== */
+
+    "rent a girlfriend":[
+        "девушка напрокат",
+        "девушка напрокат аниме",
+        "девушка напрокат"
+    ]
+
 
 };
-
-
-const EN_TO_RU=[
-
-    ["sch","щ"],
-    ["sh","ш"],
-    ["ch","ч"],
-    ["zh","ж"],
-    ["tch","ч"],
-    ["yo","ё"],
-    ["yu","ю"],
-    ["ya","я"],
-    ["ye","е"],
-    ["ts","ц"],
-    ["th","т"],
-    ["ph","ф"],
-    ["ck","к"],
-    ["ee","и"],
-    ["oo","у"],
-    ["ou","у"],
-    ["ow","ау"],
-    ["ai","эй"],
-    ["ay","эй"],
-    ["ei","эй"],
-    ["ey","эй"],
-
-    ["a","а"],
-    ["b","б"],
-    ["c","к"],
-    ["d","д"],
-    ["e","е"],
-    ["f","ф"],
-    ["g","г"],
-    ["h","х"],
-    ["i","и"],
-    ["j","дж"],
-    ["k","к"],
-    ["l","л"],
-    ["m","м"],
-    ["n","н"],
-    ["o","о"],
-    ["p","п"],
-    ["q","к"],
-    ["r","р"],
-    ["s","с"],
-    ["t","т"],
-    ["u","у"],
-    ["v","в"],
-    ["w","в"],
-    ["x","кс"],
-    ["y","й"],
-    ["z","з"]
-
-];
-
-
-/* =========================================================
-   РАСПРОСТРАНЁННЫЕ ВАРИАНТЫ
-   ========================================================= */
-
-const COMMON_TRANSLITERATIONS=[
-
-    ["screamer","скример"],
-    ["screamers","скримеры"],
-    ["screamer","скример"],
-    ["jump","джамп"],
-    ["scare","скэр"],
-    ["scary","скэри"],
-
-    ["sound","саунд"],
-    ["sounds","саундз"],
-
-    ["funny","фанни"],
-    ["fun","фан"],
-
-    ["laugh","лаф"],
-    ["laughing","лафинг"],
-
-    ["voice","войс"],
-    ["voices","войсиз"],
-
-    ["monster","монстер"],
-    ["horror","хоррор"],
-    ["horror","хорор"],
-
-    ["ghost","гоуст"],
-    ["ghosts","гоустс"],
-
-    ["dark","дарк"],
-    ["darkness","даркнесс"],
-
-    ["death","дэс"],
-    ["dead","дэд"],
-
-    ["devil","дэвил"],
-    ["demon","демон"],
-
-    ["hell","хэл"],
-    ["heaven","хэвен"],
-
-    ["night","найт"],
-    ["nightmare","найтмэр"],
-
-    ["evil","ивил"],
-    ["evil","эвил"],
-
-    ["blood","блад"],
-    ["bloody","блади"],
-
-    ["cry","край"],
-    ["crying","крайинг"],
-
-    ["scream","скрим"],
-    ["screaming","скриминг"],
-
-    ["noise","нойз"],
-    ["loud","лауд"],
-
-    ["music","мьюзик"],
-    ["song","сонг"],
-
-    ["one","уан"],
-    ["two","ту"],
-    ["three","три"],
-    ["four","фор"],
-    ["five","файв"],
-    ["six","сикс"],
-    ["seven","севен"],
-    ["eight","эйт"],
-    ["nine","найн"],
-    ["ten","тэн"],
-
-    ["black","блэк"],
-    ["white","вайт"],
-    ["red","рэд"],
-    ["blue","блу"],
-    ["green","грин"],
-
-    ["fire","файр"],
-    ["ice","айс"],
-    ["rain","рэйн"],
-    ["snow","сноу"],
-    ["storm","сторм"],
-    ["thunder","сандер"],
-
-    ["crazy","крейзи"],
-    ["insane","инсейн"],
-    ["mental","ментал"],
-
-    ["girl","герл"],
-    ["girls","герлз"],
-    ["boy","бой"],
-    ["boys","бойз"],
-
-    ["baby","бейби"],
-    ["love","лав"],
-    ["heart","харт"],
-    ["dream","дрим"],
-    ["dreams","дримс"],
-
-    ["one","уан"],
-    ["again","эгейн"],
-    ["tonight","тунайт"],
-    ["today","тудэй"],
-    ["tomorrow","тумороу"],
-
-    ["intro","интро"],
-    ["outro","аутро"],
-    ["remix","ремикс"],
-    ["version","версион"],
-    ["original","оригинал"],
-    ["edit","эдит"],
-    ["official","офишал"],
-    ["video","видео"],
-    ["audio","аудио"],
-    ["mix","микс"]
-
-];
 
 
 /* =========================================================
@@ -1179,13 +2805,52 @@ function uniqueVariants(values){
    RU -> EN
    ========================================================= */
 
+const RU_TO_EN={
+
+    "а":"a",
+    "б":"b",
+    "в":"v",
+    "г":"g",
+    "д":"d",
+    "е":"e",
+    "ё":"yo",
+    "ж":"zh",
+    "з":"z",
+    "и":"i",
+    "й":"y",
+    "к":"k",
+    "л":"l",
+    "м":"m",
+    "н":"n",
+    "о":"o",
+    "п":"p",
+    "р":"r",
+    "с":"s",
+    "т":"t",
+    "у":"u",
+    "ф":"f",
+    "х":"h",
+    "ц":"c",
+    "ч":"ch",
+    "ш":"sh",
+    "щ":"sch",
+    "ъ":"",
+    "ы":"y",
+    "ь":"",
+    "э":"e",
+    "ю":"yu",
+    "я":"ya"
+
+};
+
+
 function transliterateRuToEn(text){
 
     let result="";
 
     for(
-        const char of
-        String(text||"").toLowerCase()
+        const char
+        of String(text||"").toLowerCase()
     ){
 
         result+=
@@ -1204,14 +2869,59 @@ function transliterateRuToEn(text){
    EN -> RU
    ========================================================= */
 
+const EN_TO_RU=[
+
+    ["shch","щ"],
+    ["sch","щ"],
+    ["tch","ч"],
+    ["sh","ш"],
+    ["ch","ч"],
+    ["zh","ж"],
+    ["yo","ё"],
+    ["yu","ю"],
+    ["ya","я"],
+    ["ye","е"],
+    ["ts","ц"],
+
+    ["a","а"],
+    ["b","б"],
+    ["c","к"],
+    ["d","д"],
+    ["e","е"],
+    ["f","ф"],
+    ["g","г"],
+    ["h","х"],
+    ["i","и"],
+    ["j","дж"],
+    ["k","к"],
+    ["l","л"],
+    ["m","м"],
+    ["n","н"],
+    ["o","о"],
+    ["p","п"],
+    ["q","к"],
+    ["r","р"],
+    ["s","с"],
+    ["t","т"],
+    ["u","у"],
+    ["v","в"],
+    ["w","в"],
+    ["x","кс"],
+    ["y","й"],
+    ["z","з"]
+
+];
+
+
 function transliterateEnToRu(text){
 
     let result=
-        String(text||"").toLowerCase();
-
+        String(text||"")
+            .toLowerCase();
 
     for(
-        const pair of EN_TO_RU
+        const pair
+        of EN_TO_RU
     ){
 
         result=
@@ -1224,6 +2934,89 @@ function transliterateEnToRu(text){
     return result;
 
 }
+
+
+/* =========================================================
+   ОБЩИЕ ВАРИАНТЫ
+   ========================================================= */
+
+const COMMON_TRANSLITERATIONS=[
+
+    ["opening","опенинг"],
+    ["op","оп"],
+    ["ending","эндинг"],
+    ["ed","эд"],
+    ["season","сезон"],
+    ["movie","фильм"],
+    ["episode","серия"],
+    ["ep","серия"],
+
+    ["one","уан"],
+    ["two","ту"],
+    ["three","три"],
+    ["four","фор"],
+    ["five","файв"],
+    ["six","сикс"],
+    ["seven","севен"],
+    ["eight","эйт"],
+    ["nine","найн"],
+    ["ten","тэн"],
+
+    ["night","найт"],
+    ["love","лав"],
+    ["baby","бейби"],
+    ["girl","герл"],
+    ["boy","бой"],
+    ["world","ворлд"],
+    ["life","лайф"],
+    ["death","дэс"],
+    ["dark","дарк"],
+    ["black","блэк"],
+    ["white","вайт"],
+    ["red","рэд"],
+    ["blue","блу"],
+    ["green","грин"],
+    ["fire","файр"],
+    ["heart","харт"],
+    ["dream","дрим"],
+    ["angel","энджел"],
+    ["devil","дэвил"],
+    ["king","кинг"],
+    ["queen","квин"],
+    ["hero","хиро"],
+    ["heroes","хироу"],
+    ["man","мэн"],
+    ["men","мэн"],
+    ["woman","вумен"],
+    ["women","вимен"],
+    ["moon","мун"],
+    ["star","стар"],
+    ["stars","старз"],
+    ["sky","скай"],
+    ["rain","рэйн"],
+    ["snow","сноу"],
+    ["summer","саммер"],
+    ["winter","винтер"],
+    ["spring","спринг"],
+    ["fall","фол"],
+
+    ["tokyo","токио"],
+    ["japan","джапан"],
+    ["japanese","джапаниз"],
+
+    ["and","энд"],
+    ["the","зе"],
+    ["of","оф"],
+    ["on","он"],
+    ["in","ин"],
+    ["no","но"],
+    ["to","ту"],
+    ["your","йор"],
+    ["you","ю"],
+    ["my","май"],
+    ["me","ми"]
+
+];
 
 
 /* =========================================================
@@ -1263,8 +3056,8 @@ function makeSearchVariants(text){
 
 
     for(
-        const pair of
-        COMMON_TRANSLITERATIONS
+        const pair
+        of COMMON_TRANSLITERATIONS
     ){
 
         const en=
@@ -1286,50 +3079,6 @@ function makeSearchVariants(text){
     }
 
 
-    let commonVersion=
-        original;
-
-
-    for(
-        const pair of
-        COMMON_TRANSLITERATIONS
-    ){
-
-        commonVersion=
-            commonVersion
-                .split(pair[0])
-                .join(pair[1]);
-
-    }
-
-
-    variants.push(
-        commonVersion
-    );
-
-
-    let reverseVersion=
-        original;
-
-
-    for(
-        const pair of
-        COMMON_TRANSLITERATIONS
-    ){
-
-        reverseVersion=
-            reverseVersion
-                .split(pair[1])
-                .join(pair[0]);
-
-    }
-
-
-    variants.push(
-        reverseVersion
-    );
-
-
     return uniqueVariants(
         variants
     );
@@ -1338,7 +3087,97 @@ function makeSearchVariants(text){
 
 
 /* =========================================================
-   ПОИСКОВЫЙ ТЕКСТ
+   ПОЛУЧЕНИЕ АЛИАСОВ АНИМЕ
+   ========================================================= */
+
+function getAnimeAliasesForTrack(name){
+
+    const normalizedName=
+        normalizeSearchText(
+            name
+        );
+
+
+    const result=[];
+
+
+    for(
+        const animeName
+        in ANIME_ALIASES
+    ){
+
+        const normalizedAnime=
+            normalizeSearchText(
+                animeName
+            );
+
+
+        /*
+         * Если английское название уже есть
+         * в имени файла — добавляем русские алиасы.
+         */
+
+        if(
+            normalizedName.includes(
+                normalizedAnime
+            )
+        ){
+
+            result.push(
+                ...ANIME_ALIASES[
+                    animeName
+                ]
+            );
+
+        }
+
+
+        /*
+         * Проверяем алиасы.
+         */
+
+        for(
+            const alias
+            of ANIME_ALIASES[
+                animeName
+            ]
+        ){
+
+            const normalizedAlias=
+                normalizeSearchText(
+                    alias
+                );
+
+
+            if(
+                normalizedAlias &&
+                normalizedName.includes(
+                    normalizedAlias
+                )
+            ){
+
+                result.push(
+                    ...ANIME_ALIASES[
+                        animeName
+                    ]
+                );
+
+                break;
+
+            }
+
+        }
+
+    }
+
+
+    return result;
+
+}
+
+
+/* =========================================================
+   ПОИСКОВЫЙ ТЕКСТ ТРЕКА
    ========================================================= */
 
 function buildTrackSearchText(track){
@@ -1351,15 +3190,43 @@ function buildTrackSearchText(track){
         );
 
 
-    return makeSearchVariants(
+    const values=[
         name
+    ];
+
+
+    /*
+     * Добавляем русские названия
+     * известных аниме.
+     */
+
+    values.push(
+        ...getAnimeAliasesForTrack(
+            name
+        )
+    );
+
+
+    /*
+     * Обычная транслитерация.
+     */
+
+    values.push(
+        ...makeSearchVariants(
+            name
+        )
+    );
+
+
+    return uniqueVariants(
+        values
     );
 
 }
 
 
 /* =========================================================
-   ЛЕВЕНШТЕЙН
+   LEVENSHTEIN
    ========================================================= */
 
 function levenshtein(a,b){
@@ -1397,7 +3264,9 @@ function levenshtein(a,b){
         i++
     ){
 
-        const cur=[i];
+        const cur=[
+            i
+        ];
 
 
         for(
@@ -1431,7 +3300,9 @@ function levenshtein(a,b){
     }
 
 
-    return prev[b.length];
+    return prev[
+        b.length
+    ];
 
 }
 
@@ -1453,7 +3324,9 @@ function fuzzyWordMatch(
 
 
     if(
-        text.includes(query)
+        text.includes(
+            query
+        )
     )
         return true;
 
@@ -1479,7 +3352,8 @@ function fuzzyWordMatch(
 
 
     for(
-        const word of candidates
+        const word
+        of candidates
     ){
 
         const distance=
@@ -1505,14 +3379,18 @@ function fuzzyWordMatch(
 
         if(
             query.length>7 &&
-            distance<=Math.max(
-                2,
-                Math.floor(
-                    query.length*.25
+            distance<=
+                Math.max(
+                    2,
+                    Math.floor(
+                        query.length*.25
+                    )
                 )
-            )
-        )
+        ){
+
             return true;
+
+        }
 
     }
 
@@ -1523,7 +3401,7 @@ function fuzzyWordMatch(
 
 
 /* =========================================================
-   УЛУЧШЕННОЕ СРАВНЕНИЕ
+   УМНЫЙ ПОИСК АНИМЕ
    ========================================================= */
 
 function smartSearchMatch(
@@ -1537,9 +3415,7 @@ function smartSearchMatch(
         );
 
 
-    if(
-        !cleanQuery
-    )
+    if(!cleanQuery)
         return true;
 
 
@@ -1550,19 +3426,23 @@ function smartSearchMatch(
 
 
     /*
-     * Прямое совпадение
+     * Обычное совпадение.
      */
 
     for(
-        const variant of variants
+        const variant
+        of variants
     ){
 
         if(
             variant.includes(
                 cleanQuery
             )
-        )
+        ){
+
             return true;
+
+        }
 
 
         if(
@@ -1570,14 +3450,17 @@ function smartSearchMatch(
             cleanQuery.includes(
                 variant
             )
-        )
+        ){
+
             return true;
+
+        }
 
     }
 
 
     /*
-     * Варианты самого запроса
+     * Варианты самого запроса.
      */
 
     const queryVariants=
@@ -1586,12 +3469,89 @@ function smartSearchMatch(
         );
 
 
+    /*
+     * Проверяем русский алиас
+     * напрямую по базе аниме.
+     */
+
     for(
-        const q of queryVariants
+        const animeName
+        in ANIME_ALIASES
+    ){
+
+        const aliases=
+            ANIME_ALIASES[
+                animeName
+            ];
+
+
+        for(
+            const alias
+            of aliases
+        ){
+
+            const aliasNormalized=
+                normalizeSearchText(
+                    alias
+                );
+
+
+            if(
+                aliasNormalized===
+                cleanQuery
+            ){
+
+                const allNames=[
+                    animeName,
+                    ...aliases
+                ];
+
+
+                for(
+                    const name
+                    of allNames
+                ){
+
+                    const normalizedName=
+                        normalizeSearchText(
+                            name
+                        );
+
+
+                    if(
+                        variants.some(
+                            variant=>
+                                variant.includes(
+                                    normalizedName
+                                )
+                        )
+                    ){
+
+                        return true;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+    /*
+     * Fuzzy поиск.
+     */
+
+    for(
+        const q
+        of queryVariants
     ){
 
         for(
-            const variant of variants
+            const variant
+            of variants
         ){
 
             if(
@@ -1614,7 +3574,7 @@ function smartSearchMatch(
 
 
     /*
-     * Поиск отдельных слов
+     * Проверка частей запроса.
      */
 
     const queryParts=
@@ -1624,8 +3584,8 @@ function smartSearchMatch(
                 /[\s\-_.,!?()[\]{}]+/
             )
             .filter(
-                v=>
-                    v.length>=2
+                value=>
+                    value.length>=2
             );
 
 
@@ -1637,7 +3597,8 @@ function smartSearchMatch(
 
 
         for(
-            const part of queryParts
+            const part
+            of queryParts
         ){
 
             const partVariants=
@@ -1650,11 +3611,13 @@ function smartSearchMatch(
 
 
             for(
-                const q of partVariants
+                const q
+                of partVariants
             ){
 
                 for(
-                    const variant of variants
+                    const variant
+                    of variants
                 ){
 
                     if(
@@ -1689,8 +3652,11 @@ function smartSearchMatch(
         if(
             matched===
             queryParts.length
-        )
+        ){
+
             return true;
+
+        }
 
     }
 
@@ -1704,7 +3670,91 @@ function smartSearchMatch(
    ЗАГРУЗКА СПИСКА
    ========================================================= */
 
-async function loadScreamers(){
+/* =========================================================
+   ПРИОРИТЕТ РЕЗУЛЬТАТОВ ПОИСКА
+   ========================================================= */
+
+function getSearchScore(
+    track,
+    query
+){
+
+    const cleanQuery=
+        normalizeSearchText(
+            query
+        );
+
+
+    if(!cleanQuery)
+        return 0;
+
+
+    const trackName=
+        normalizeSearchText(
+            removeExtension(
+                String(
+                    track.name||""
+                )
+            )
+        );
+
+
+    /* Точное название песни всегда показывается первым. */
+    if(trackName===cleanQuery)
+        return 10000;
+
+
+    if(trackName.includes(cleanQuery))
+        return 9000;
+
+
+    const queryVariants=
+        makeSearchVariants(
+            query
+        );
+
+
+    for(
+        const variant
+        of queryVariants
+    ){
+
+        if(
+            variant &&
+            trackName.includes(variant)
+        )
+            return 8500;
+
+    }
+
+
+    /* Совпадения через алиасы аниме идут после имени песни. */
+    const variants=
+        buildTrackSearchText(
+            track
+        );
+
+
+    for(
+        const variant
+        of variants
+    ){
+
+        if(
+            variant.includes(cleanQuery)
+        )
+            return 5000;
+
+    }
+
+
+    /* Неточные совпадения остаются, но всегда находятся внизу. */
+    return 1;
+
+}
+
+
+async function loadMusic(){
 
     try{
 
@@ -1724,6 +3774,7 @@ async function loadScreamers(){
                         Accept:
                             "application/json"
                     }
+
                 }
 
             );
@@ -1774,7 +3825,7 @@ async function loadScreamers(){
     catch(error){
 
         console.error(
-            "Ошибка загрузки скримеров:",
+            "Ошибка загрузки музыки:",
             error
         );
 
@@ -1784,7 +3835,7 @@ async function loadScreamers(){
             <div class="status error">
 
                 <strong>
-                    😱 Не удалось загрузить скримеры
+                    🎧 Не удалось загрузить музыку
                 </strong>
 
                 <div>
@@ -1803,7 +3854,7 @@ async function loadScreamers(){
 
                 <button
                     class="btn download-btn"
-                    onclick="loadScreamers()"
+                    onclick="loadMusic()"
                     style="
                         max-width:220px;
                         padding:10px 20px
@@ -1822,31 +3873,31 @@ async function loadScreamers(){
 
 
 /* =========================================================
-   URL ПРОИГРЫВАНИЯ
+   URL
    ========================================================= */
 
 function getPlayURL(track){
 
     return (
+
         WORKER_URL+
         "/skrimers/"+
         encodeURIComponent(
             track.id
         )
+
     );
 
 }
 
 
-/* =========================================================
-   URL СКАЧИВАНИЯ
-   ========================================================= */
-
 function getDownloadURL(track){
 
     return (
+
         getPlayURL(track)+
         "?download=1"
+
     );
 
 }
@@ -1861,9 +3912,7 @@ function stopAllAudio(
 ){
 
     document
-        .querySelectorAll(
-            "audio"
-        )
+        .querySelectorAll("audio")
         .forEach(
             audio=>{
 
@@ -1900,86 +3949,76 @@ function stopAllAudio(
 }
 
 
-/* =========================================================
-   НАСТРОЙКА AUDIO
-   ========================================================= */
-
 function setupAudio(audio){
 
     if(!audio)
         return;
 
+    audio.addEventListener("play",()=>{
+        const id=audio.id.replace("audio-","");
+        const track=tracks.find(item=>String(item.id)===id);
 
-    audio.addEventListener(
-        "play",
-        ()=>{
+        if(!track)
+            return;
 
-            if(
-                currentAudio &&
-                currentAudio!==audio
-            ){
+        audio.pause();
+        audio.currentTime=0;
+        playInMiniPlayer(track);
+    });
 
-                try{
+}
 
-                    currentAudio.pause();
+function formatPlayerTime(seconds){
+    if(!Number.isFinite(seconds)) return "0:00";
+    const minutes=Math.floor(seconds/60);
+    const remainder=Math.floor(seconds%60).toString().padStart(2,"0");
+    return minutes+":"+remainder;
+}
 
-                    currentAudio.currentTime=0;
+function updateActiveCard(){
+    document.querySelectorAll("[data-card-player]").forEach(player=>{
+        const isActive=String(player.dataset.cardPlayer)===activeTrackId;
+        const button=player.querySelector(".card-play-toggle");
+        const time=player.querySelector(".card-time");
+        const seek=player.querySelector(".card-seek");
+        const duration=isActive ? miniAudio.duration : 0;
+        const current=isActive ? miniAudio.currentTime : 0;
 
-                }
-                catch(error){}
+        button.textContent=isActive && !miniAudio.paused ? "Ⅱ" : "▶";
+        button.setAttribute("aria-label",isActive && !miniAudio.paused ? "Пауза" : "Воспроизвести");
+        time.textContent=formatPlayerTime(current)+" / "+formatPlayerTime(duration);
+        seek.max=Number.isFinite(duration) && duration>0 ? duration : 100;
+        seek.value=Number.isFinite(current) ? current : 0;
+    });
+}
 
-            }
+function setupCardPlayer(track){
+    const player=document.querySelector('[data-card-player="'+CSS.escape(String(track.id))+'"]');
+    if(!player) return;
 
+    const button=player.querySelector(".card-play-toggle");
+    const seek=player.querySelector(".card-seek");
 
-            document
-                .querySelectorAll(
-                    "audio"
-                )
-                .forEach(
-                    other=>{
-
-                        if(
-                            other!==audio &&
-                            !other.paused
-                        ){
-
-                            try{
-
-                                other.pause();
-
-                                other.currentTime=0;
-
-                            }
-                            catch(error){}
-
-                        }
-
-                    }
-                );
-
-
-            currentAudio=audio;
-
+    button.addEventListener("click",()=>{
+        if(activeTrackId===String(track.id)){
+            if(miniAudio.paused) miniAudio.play().catch(()=>{});
+            else miniAudio.pause();
+            return;
         }
-    );
+        playInMiniPlayer(track);
+    });
 
-
-    audio.addEventListener(
-        "ended",
-        ()=>{
-
-            if(
-                currentAudio===
-                audio
-            ){
-
-                currentAudio=null;
-
-            }
-
+    seek.addEventListener("input",()=>{
+        if(activeTrackId!==String(track.id)){
+            playInMiniPlayer(track);
+            miniAudio.addEventListener("loadedmetadata",()=>{miniAudio.currentTime=Number(seek.value)}, {once:true});
+            return;
         }
-    );
+        miniAudio.currentTime=Number(seek.value);
+        updateActiveCard();
+    });
 
+    updateActiveCard();
 }
 
 
@@ -1994,22 +4033,49 @@ function renderTracks(){
 
 
     filteredTracks=
-        tracks.filter(
-            track=>
-                smartSearchMatch(
+        tracks
+            .filter(
+                track=>
+                    smartSearchMatch(
+                        track,
+                        query
+                    )
+            )
+            .map(
+                track=>({
                     track,
-                    query
-                )
-        );
+                    score:getSearchScore(
+                        track,
+                        query
+                    )
+                })
+            )
+            .sort(
+                (a,b)=>
+                    b.score-a.score ||
+                    String(a.track.name)
+                        .localeCompare(
+                            String(b.track.name),
+                            "ru"
+                        )
+            )
+            .map(
+                item=>item.track
+            );
 
 
     const totalPages=
         Math.max(
+
             1,
+
             Math.ceil(
+
                 filteredTracks.length/
                 TRACKS_PER_PAGE
+
             )
+
         );
 
 
@@ -2024,9 +4090,6 @@ function renderTracks(){
     }
 
 
-    stopAllAudio();
-
-
     if(
         !filteredTracks.length
     ){
@@ -2034,13 +4097,26 @@ function renderTracks(){
         musicList.innerHTML=`
 
             <div class="empty">
-                😱 Ничего не найдено
+
+                🎵 Ничего не найдено
+
+                <br><br>
+
+                <span
+                    style="
+                        color:#555;
+                        font-size:14px
+                    "
+                >
+                    Попробуй:
+                    название трека,
+                    исполнителя или часть названия
+                </span>
+
             </div>
 
         `;
 
-
-        currentAudio=null;
 
         return;
 
@@ -2056,7 +4132,7 @@ function renderTracks(){
         filteredTracks.slice(
             start,
             start+
-            TRACKS_PER_PAGE
+                TRACKS_PER_PAGE
         );
 
 
@@ -2074,26 +4150,7 @@ function renderTracks(){
     pageTracks.forEach(
         track=>{
 
-            const audio=
-                document.getElementById(
-                    "audio-"+
-                    track.id
-                );
-
-
-            if(audio){
-
-                audio.src=
-                    getPlayURL(
-                        track
-                    );
-
-
-                setupAudio(
-                    audio
-                );
-
-            }
+            setupCardPlayer(track);
 
         }
     );
@@ -2102,10 +4159,12 @@ function renderTracks(){
 
 
 /* =========================================================
-   КАРТОЧКА
+   КАРТОЧКА ТРЕКА
    ========================================================= */
 
-function createTrackHTML(track){
+function createTrackHTML(
+    track
+){
 
     const id=
         escapeHTML(
@@ -2134,26 +4193,30 @@ function createTrackHTML(track){
 
             <div class="track-title">
 
-                <span class="track-icon">
-                    😱
+                <span
+                    class="track-icon"
+                >
+                    🎵
                 </span>
 
-                <span class="track-name">
+                <span
+                    class="track-name"
+                >
                     ${name}
                 </span>
 
             </div>
 
 
-            <audio
-                id="audio-${id}"
-                class="audio"
-                controls
-                preload="metadata"
-            >
+            <div class="card-player" data-card-player="${id}">
+                <button class="card-play-toggle" type="button" aria-label="Воспроизвести">▶</button>
+                <span class="card-time">0:00 / 0:00</span>
+                <input class="card-seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Перемотка трека">
+            <!--
                 Ваш браузер не поддерживает
                 воспроизведение аудио.
-            </audio>
+            -->
+            </div>
 
 
             <div class="buttons">
@@ -2218,9 +4281,12 @@ function createPaginationHTML(
 
     const end=
         Math.min(
+
             currentPage*
             TRACKS_PER_PAGE,
+
             filteredTracks.length
+
         );
 
 
@@ -2265,11 +4331,15 @@ function createPaginationHTML(
     ){
 
         if(
+
             i===1 ||
+
             i===totalPages ||
+
             Math.abs(
                 i-currentPage
             )<=2
+
         ){
 
             pages.push(i);
@@ -2283,7 +4353,8 @@ function createPaginationHTML(
 
 
     for(
-        const page of pages
+        const page
+        of pages
     ){
 
         if(
@@ -2293,7 +4364,9 @@ function createPaginationHTML(
 
             html+=`
 
-                <span class="page-dots">
+                <span
+                    class="page-dots"
+                >
                     ...
                 </span>
 
@@ -2353,19 +4426,22 @@ function createPaginationHTML(
 }
 
 
-/* =========================================================
-   СМЕНА СТРАНИЦЫ
-   ========================================================= */
-
-function changePage(page){
+function changePage(
+    page
+){
 
     const totalPages=
         Math.max(
+
             1,
+
             Math.ceil(
+
                 filteredTracks.length/
                 TRACKS_PER_PAGE
+
             )
+
         );
 
 
@@ -2376,7 +4452,8 @@ function changePage(page){
         return;
 
 
-    currentPage=page;
+    currentPage=
+        page;
 
 
     renderTracks();
@@ -2394,7 +4471,7 @@ function changePage(page){
 
 
 /* =========================================================
-   КОПИРОВАНИЕ ССЫЛКИ
+   КОПИРОВАНИЕ
    ========================================================= */
 
 async function copyMusicLink(
@@ -2408,7 +4485,8 @@ async function copyMusicLink(
 
     try{
 
-        await navigator.clipboard
+        await navigator
+            .clipboard
             .writeText(
                 url
             );
@@ -2447,7 +4525,8 @@ async function copyMusicLink(
             );
 
 
-        textarea.value=url;
+        textarea.value=
+            url;
 
 
         textarea.style.position=
@@ -2458,7 +4537,8 @@ async function copyMusicLink(
             "-9999px";
 
 
-        textarea.style.top="0";
+        textarea.style.top=
+            "0";
 
 
         document.body.appendChild(
@@ -2467,7 +4547,6 @@ async function copyMusicLink(
 
 
         textarea.focus();
-
 
         textarea.select();
 
@@ -2551,10 +4630,89 @@ searchInput.addEventListener(
 
 
 /* =========================================================
+   ПОИСК: ПЛАВАЮЩАЯ ЛУПА
+   ========================================================= */
+
+function toggleSearch(event){
+
+    if(event){
+
+        event.stopPropagation();
+        event.preventDefault();
+
+    }
+
+    const searchWrap=
+        document.querySelector(
+            ".search-wrap"
+        );
+
+
+    const isOpen=
+        searchWrap.classList.toggle(
+            "open"
+        );
+
+
+    if(isOpen){
+
+        setTimeout(
+            ()=>searchInput.focus({preventScroll:true}),
+            100
+        );
+
+    }
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    event=>{
+
+        if(
+            event.key==="Escape"
+        ){
+
+            document
+                .querySelector(
+                    ".search-wrap"
+                )
+                .classList.remove(
+                    "open"
+                );
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "click",
+    event=>{
+
+        const searchWrap=document.querySelector(".search-wrap");
+        const searchToggle=document.getElementById("searchToggle");
+
+        if(
+            !searchWrap.contains(event.target) &&
+            !searchToggle.contains(event.target)
+        ){
+            searchWrap.classList.remove("open");
+        }
+
+    }
+);
+
+
+/* =========================================================
    УДАЛЕНИЕ .MP3
    ========================================================= */
 
-function removeExtension(name){
+function removeExtension(
+    name
+){
 
     return name.replace(
         /\.mp3$/i,
@@ -2565,10 +4723,12 @@ function removeExtension(name){
 
 
 /* =========================================================
-   ESCAPE HTML
+   ESCAPE
    ========================================================= */
 
-function escapeHTML(value){
+function escapeHTML(
+    value
+){
 
     return String(value)
 
@@ -2600,11 +4760,9 @@ function escapeHTML(value){
 }
 
 
-/* =========================================================
-   ESCAPE ATTRIBUTE
-   ========================================================= */
-
-function escapeAttribute(value){
+function escapeAttribute(
+    value
+){
 
     return escapeHTML(
         value
@@ -2613,11 +4771,9 @@ function escapeAttribute(value){
 }
 
 
-/* =========================================================
-   ESCAPE JS
-   ========================================================= */
-
-function escapeJS(value){
+function escapeJS(
+    value
+){
 
     return String(value)
 
@@ -2645,23 +4801,6 @@ function escapeJS(value){
             /\n/g,
             "\\n"
         );
-
-}
-
-
-/* =========================================================
-   НАВЕРХ
-   ========================================================= */
-
-function scrollTopPage(){
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
 
 }
 
@@ -2714,7 +4853,7 @@ function goScreamer(){
    ЗАПУСК
    ========================================================= */
 
-loadScreamers();
+loadMusic();
 
 </script>
 
