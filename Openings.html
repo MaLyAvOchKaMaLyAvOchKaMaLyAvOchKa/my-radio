@@ -486,7 +486,7 @@ body{
     padding:
         24px
         36px
-        80px;
+        180px;
 }
 
 
@@ -1075,7 +1075,7 @@ body{
         padding:
             25px
             15px
-            60px;
+            130px;
     }
 }
 
@@ -1163,6 +1163,91 @@ body{
 
 ::-webkit-scrollbar-thumb:hover{
     background:#363a3d;
+}
+/* =========================================================
+   MUSIC — EMERALD THEME (background image can be added later)
+   ========================================================= */
+body{
+    background:
+        linear-gradient(90deg,rgba(2,12,10,.88) 0%,rgba(2,14,11,.70) 34%,rgba(2,14,11,.26) 72%,rgba(2,13,11,.12) 100%),
+        linear-gradient(180deg,rgba(0,18,14,.18),rgba(0,10,8,.38)),
+        url("assets/Fon2.jpg") center center / cover fixed,
+        #061410;
+}
+.main{background:linear-gradient(90deg,rgba(2,16,12,.22),transparent 72%)}
+.sidebar{border-right-color:rgba(88,255,193,.18)}
+.sidebar-item:hover{background:rgba(0,255,174,.05)}
+.sidebar-item.active{background:linear-gradient(135deg,rgba(0,255,174,.15),rgba(25,213,145,.055));color:#35ffbf;box-shadow:inset 0 0 0 1px rgba(0,255,174,.15),0 5px 20px rgba(0,0,0,.14)}
+.sidebar-item.active::before{background:#20f5ad;box-shadow:0 0 10px rgba(0,255,174,.55)}
+.sidebar-item:hover .sidebar-icon,.sidebar-item.active .sidebar-icon{background:rgba(0,255,174,.10)}
+.header{background:linear-gradient(180deg,rgba(11,34,28,.78),rgba(6,18,16,.70));border-bottom-color:rgba(191,255,226,.09)}
+.header-title{color:#24f5ae;text-shadow:0 0 10px rgba(0,255,174,.52),0 0 25px rgba(0,255,174,.22)}
+.search-wrap{background:linear-gradient(135deg,rgba(18,81,61,.48),rgba(5,28,22,.43));border-color:rgba(108,255,196,.28);box-shadow:0 8px 25px rgba(0,0,0,.20),0 0 18px rgba(0,255,174,.12)}
+.search-toggle{border-color:rgba(112,255,203,.45);background:linear-gradient(135deg,rgba(22,111,80,.72),rgba(6,32,25,.62));color:#d6ffed;box-shadow:0 8px 22px rgba(0,0,0,.26),0 0 18px rgba(0,255,174,.27),inset 0 1px 0 rgba(255,255,255,.16)}
+.search-toggle:hover{border-color:rgba(185,255,222,.78);box-shadow:0 8px 25px rgba(0,0,0,.30),0 0 28px rgba(0,255,174,.46),inset 0 1px 0 rgba(255,255,255,.22)}
+.search:focus{border-color:rgba(0,255,174,.62);box-shadow:0 0 15px rgba(0,255,174,.14)}
+.track{background:linear-gradient(135deg,rgba(20,87,65,.20),rgba(4,29,22,.10));border-color:rgba(105,255,198,.32);box-shadow:0 10px 30px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.10),0 0 16px rgba(0,255,174,.16)}
+.track:hover{border-color:rgba(162,255,214,.92);box-shadow:0 12px 38px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.16),0 0 12px rgba(100,255,190,.44),0 0 32px rgba(0,255,174,.26)}
+.download-btn{background:#08c987}.copy-btn{background:#159cce}.copy-btn.copied{background:#08a870}
+.page-btn:hover{color:#28f5b2;border-color:rgba(0,255,174,.36)}.page-btn.active{background:#08c987;border-color:#08c987}
+.mini-player{border-color:rgba(100,255,193,.40);background:linear-gradient(135deg,rgba(12,72,53,.91),rgba(5,24,20,.91));box-shadow:0 14px 38px rgba(0,0,0,.36),0 0 26px rgba(0,255,174,.22),inset 0 1px 0 rgba(255,255,255,.12)}
+.mini-player-icon{background:linear-gradient(135deg,#08c987,#18a8cb);box-shadow:0 0 18px rgba(0,255,174,.44)}
+.mini-player-label{color:#91e8c5}.mini-close{color:#d0f6e4}.mini-close:hover{background:rgba(8,201,135,.28)}
+.mini-visualizer{border-left-color:rgba(100,255,193,.19)}
+.mini-visualizer span{background:linear-gradient(180deg,#b7ffe4 0%,#23e8a7 55%,#10aeca 100%);box-shadow:0 0 9px rgba(0,255,174,.70)}
+
+.card-player{
+    display:flex;align-items:center;gap:10px;width:100%;height:32px;
+    padding:0 12px;border-radius:17px;background:rgba(235,255,247,.18);
+    color:#dffdf0;
+}
+.card-play-toggle{width:26px;border:0;background:transparent;color:#fff;cursor:pointer;font-size:15px;padding:0}
+.card-time{min-width:82px;color:#c2d4cd;font-size:14px;font-variant-numeric:tabular-nums}
+.card-seek{appearance:none;flex:1;height:4px;border-radius:5px;background:rgba(255,255,255,.28);outline:none;cursor:pointer}
+.card-seek::-webkit-slider-thumb{appearance:none;width:12px;height:12px;border-radius:50%;background:#8affca;box-shadow:0 0 8px rgba(0,255,174,.7)}
+.card-seek::-moz-range-thumb{width:12px;height:12px;border:0;border-radius:50%;background:#8affca}
+
+/* =========================================================
+   OPENINGS — ANIME VIOLET THEME
+   ========================================================= */
+body{
+    background:
+        linear-gradient(90deg,rgba(5,7,14,.79) 0%,rgba(8,8,20,.59) 34%,rgba(11,8,24,.22) 72%,rgba(10,8,22,.10) 100%),
+        linear-gradient(180deg,rgba(17,8,35,.16),rgba(6,5,16,.34)),
+        url("assets/Simpotka.jpg") center center / cover fixed,
+        #090b0c;
+}
+.main{background:linear-gradient(90deg,rgba(9,11,18,.18),transparent 72%)}
+.sidebar{border-right-color:rgba(220,143,255,.18)}
+.sidebar-item:hover{background:rgba(190,80,255,.05)}
+.sidebar-item.active{background:linear-gradient(135deg,rgba(190,80,255,.15),rgba(255,70,190,.055));color:#d36cff;box-shadow:inset 0 0 0 1px rgba(190,80,255,.12),0 5px 20px rgba(0,0,0,.14)}
+.sidebar-item.active::before{background:#d36cff;box-shadow:0 0 10px rgba(190,80,255,.5)}
+.sidebar-item:hover .sidebar-icon,.sidebar-item.active .sidebar-icon{background:rgba(190,80,255,.10)}
+.header{background:linear-gradient(180deg,rgba(24,19,39,.72),rgba(10,12,24,.62));border-bottom-color:rgba(255,255,255,.08)}
+.header-title{color:#d36cff;text-shadow:0 0 10px rgba(190,80,255,.5),0 0 25px rgba(255,70,190,.2)}
+.search-wrap{background:linear-gradient(135deg,rgba(50,31,82,.40),rgba(10,12,29,.34));border-color:rgba(225,145,255,.22);box-shadow:0 8px 25px rgba(0,0,0,.20),0 0 18px rgba(185,78,255,.10)}
+.search-toggle{border-color:rgba(230,157,255,.40);background:linear-gradient(135deg,rgba(81,45,128,.64),rgba(13,16,35,.55));color:#f4d7ff;box-shadow:0 8px 22px rgba(0,0,0,.26),0 0 18px rgba(192,79,255,.25),inset 0 1px 0 rgba(255,255,255,.16)}
+.search-toggle:hover{border-color:rgba(244,181,255,.75);box-shadow:0 8px 25px rgba(0,0,0,.30),0 0 28px rgba(203,83,255,.44),inset 0 1px 0 rgba(255,255,255,.22)}
+.search:focus{border-color:rgba(190,80,255,.6);box-shadow:0 0 15px rgba(190,80,255,.1)}
+.track{background:linear-gradient(135deg,rgba(55,34,100,.15),rgba(6,10,25,.06));border-color:rgba(230,157,255,.34);box-shadow:0 10px 30px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.10),0 0 16px rgba(176,70,255,.22)}
+.track:hover{border-color:rgba(240,169,255,.92);box-shadow:0 12px 38px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.16),0 0 12px rgba(247,150,255,.45),0 0 32px rgba(184,68,255,.36)}
+.download-btn{background:#b64cff}.copy-btn{background:#e34bb7}.copy-btn.copied{background:#a83fda}
+.page-btn:hover{color:#d36cff;border-color:rgba(190,80,255,.3)}.page-btn.active{background:#b64cff;border-color:#b64cff}
+.mini-player{border-color:rgba(230,157,255,.38);background:linear-gradient(135deg,rgba(45,26,88,.88),rgba(12,13,31,.88));box-shadow:0 14px 38px rgba(0,0,0,.36),0 0 26px rgba(190,80,255,.24),inset 0 1px 0 rgba(255,255,255,.12)}
+.mini-player-icon{background:linear-gradient(135deg,#b64cff,#e34bb7);box-shadow:0 0 18px rgba(205,83,255,.45)}
+.mini-player-label{color:#c894df}.mini-close{color:#e7c8f4}.mini-close:hover{background:rgba(227,75,183,.28)}
+.mini-visualizer{border-left-color:rgba(230,157,255,.18)}
+.mini-visualizer span{background:linear-gradient(180deg,#f4a0ff 0%,#c64fff 55%,#e34bb7 100%);box-shadow:0 0 9px rgba(218,88,255,.7)}
+.card-player{background:rgba(235,214,255,.18)}
+.card-seek::-webkit-slider-thumb{background:#efa3ff;box-shadow:0 0 8px rgba(205,83,255,.7)}
+.card-seek::-moz-range-thumb{background:#efa3ff}
+
+/* Search is anchored to its fixed magnifier, never to the page header. */
+.search-toggle{position:fixed !important;left:20px !important;top:20px !important;z-index:1002 !important}
+.search-wrap{position:fixed !important;left:72px !important;top:19px !important;right:auto !important;bottom:auto !important;z-index:1001 !important}
+@media(max-width:900px){
+    .search-toggle{left:10px !important;top:16px !important}
+    .search-wrap{left:62px !important;top:16px !important;right:15px !important}
 }
 </style>
 </head>
@@ -1409,6 +1494,12 @@ let filteredTracks=[];
 let currentPage=1;
 
 let currentAudio=null;
+let activeTrackAudio=null;
+let activeTrackId=null;
+
+/* The search must be outside the blurred header; otherwise CSS positions it
+   relative to that header instead of to the visible magnifier. */
+document.body.appendChild(document.querySelector(".search-wrap"));
 
 const miniPlayer=document.getElementById("miniPlayer");
 const miniAudio=document.getElementById("miniAudio");
@@ -1428,8 +1519,13 @@ function playInMiniPlayer(track){
     }
 
     showMiniPlayer(track);
+
+    activeTrackAudio=document.getElementById("audio-"+track.id);
+    activeTrackId=String(track.id);
+
     currentAudio=miniAudio;
     miniAudio.play().catch(()=>{});
+    updateActiveCard();
 }
 
 miniClose.addEventListener("click",()=>{
@@ -1437,11 +1533,15 @@ miniClose.addEventListener("click",()=>{
     miniPlayer.classList.remove("visible");
     miniPlayer.classList.remove("playing");
     currentAudio=null;
+    activeTrackAudio=null;
+    activeTrackId=null;
 });
 
-miniAudio.addEventListener("play",()=>miniPlayer.classList.add("playing"));
-miniAudio.addEventListener("pause",()=>miniPlayer.classList.remove("playing"));
-miniAudio.addEventListener("ended",()=>miniPlayer.classList.remove("playing"));
+miniAudio.addEventListener("play",()=>{miniPlayer.classList.add("playing");updateActiveCard()});
+miniAudio.addEventListener("pause",()=>{miniPlayer.classList.remove("playing");updateActiveCard()});
+miniAudio.addEventListener("ended",()=>{miniPlayer.classList.remove("playing");updateActiveCard()});
+miniAudio.addEventListener("timeupdate",updateActiveCard);
+miniAudio.addEventListener("loadedmetadata",updateActiveCard);
 
 
 /* =========================================================
@@ -3895,13 +3995,64 @@ function setupAudio(audio){
         if(!track)
             return;
 
-        /* Native controls remain in each card, but playback moves to the
-           persistent player so it is not lost after filtering or paging. */
         audio.pause();
         audio.currentTime=0;
         playInMiniPlayer(track);
     });
 
+}
+
+function formatPlayerTime(seconds){
+    if(!Number.isFinite(seconds)) return "0:00";
+    const minutes=Math.floor(seconds/60);
+    const remainder=Math.floor(seconds%60).toString().padStart(2,"0");
+    return minutes+":"+remainder;
+}
+
+function updateActiveCard(){
+    document.querySelectorAll("[data-card-player]").forEach(player=>{
+        const isActive=String(player.dataset.cardPlayer)===activeTrackId;
+        const button=player.querySelector(".card-play-toggle");
+        const time=player.querySelector(".card-time");
+        const seek=player.querySelector(".card-seek");
+        const duration=isActive ? miniAudio.duration : 0;
+        const current=isActive ? miniAudio.currentTime : 0;
+
+        button.textContent=isActive && !miniAudio.paused ? "Ⅱ" : "▶";
+        button.setAttribute("aria-label",isActive && !miniAudio.paused ? "Пауза" : "Воспроизвести");
+        time.textContent=formatPlayerTime(current)+" / "+formatPlayerTime(duration);
+        seek.max=Number.isFinite(duration) && duration>0 ? duration : 100;
+        seek.value=Number.isFinite(current) ? current : 0;
+    });
+}
+
+function setupCardPlayer(track){
+    const player=document.querySelector('[data-card-player="'+CSS.escape(String(track.id))+'"]');
+    if(!player) return;
+
+    const button=player.querySelector(".card-play-toggle");
+    const seek=player.querySelector(".card-seek");
+
+    button.addEventListener("click",()=>{
+        if(activeTrackId===String(track.id)){
+            if(miniAudio.paused) miniAudio.play().catch(()=>{});
+            else miniAudio.pause();
+            return;
+        }
+        playInMiniPlayer(track);
+    });
+
+    seek.addEventListener("input",()=>{
+        if(activeTrackId!==String(track.id)){
+            playInMiniPlayer(track);
+            miniAudio.addEventListener("loadedmetadata",()=>{miniAudio.currentTime=Number(seek.value)}, {once:true});
+            return;
+        }
+        miniAudio.currentTime=Number(seek.value);
+        updateActiveCard();
+    });
+
+    updateActiveCard();
 }
 
 
@@ -3981,7 +4132,7 @@ function renderTracks(){
 
             <div class="empty">
 
-                🎬 Ничего не найдено
+                🎵 Ничего не найдено
 
                 <br><br>
 
@@ -3992,11 +4143,8 @@ function renderTracks(){
                     "
                 >
                     Попробуй:
-                    «Токийский гуль»,
-                    «Атака титанов»,
-                    «Наруто»,
-                    «Блич»,
-                    «Клинок демонов»
+                    название трека,
+                    исполнителя или часть названия
                 </span>
 
             </div>
@@ -4036,26 +4184,7 @@ function renderTracks(){
     pageTracks.forEach(
         track=>{
 
-            const audio=
-                document.getElementById(
-                    "audio-"+
-                    track.id
-                );
-
-
-            if(audio){
-
-                audio.src=
-                    getPlayURL(
-                        track
-                    );
-
-
-                setupAudio(
-                    audio
-                );
-
-            }
+            setupCardPlayer(track);
 
         }
     );
@@ -4113,15 +4242,15 @@ function createTrackHTML(
             </div>
 
 
-            <audio
-                id="audio-${id}"
-                class="audio"
-                controls
-                preload="metadata"
-            >
+            <div class="card-player" data-card-player="${id}">
+                <button class="card-play-toggle" type="button" aria-label="Воспроизвести">▶</button>
+                <span class="card-time">0:00 / 0:00</span>
+                <input class="card-seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Перемотка трека">
+            <!--
                 Ваш браузер не поддерживает
                 воспроизведение аудио.
-            </audio>
+            -->
+            </div>
 
 
             <div class="buttons">
@@ -4595,15 +4724,17 @@ document.addEventListener(
 
 document.addEventListener(
     "click",
-    ()=>{
+    event=>{
 
-        document
-            .querySelector(
-                ".search-wrap"
-            )
-            .classList.remove(
-                "open"
-            );
+        const searchWrap=document.querySelector(".search-wrap");
+        const searchToggle=document.getElementById("searchToggle");
+
+        if(
+            !searchWrap.contains(event.target) &&
+            !searchToggle.contains(event.target)
+        ){
+            searchWrap.classList.remove("open");
+        }
 
     }
 );
