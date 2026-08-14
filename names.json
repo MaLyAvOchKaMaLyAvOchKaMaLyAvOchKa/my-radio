@@ -126,5 +126,14 @@
 "effects/War/muzzle/cannon_20mm_kwk30_shot_03.mp3": "Выстрел пушки KwK 30 20мм 3",
 "effects/War/muzzle/cannon_20mm_kwk30_shot_far_01.mp3": "Выстрел пушки KwK 30 20мм издалека 1",
 "effects/War/muzzle/cannon_20mm_kwk30_shot_far_02.mp3": "Выстрел пушки KwK 30 20мм издалека 2",
-"effects/War/muzzle/cannon_20mm_kwk30_shot_far_03.mp3": "Выстрел пушки KwK 30 20мм издалека 3"
+"effects/War/muzzle/cannon_20mm_kwk30_shot_far_03.mp3": "Выстрел пушки KwK 30 20мм издалека 3",
+
+"effects/War/muzzle/mg_20mm_m61_lastshot_1.mp3": "M61 Vulcan 20мм: последние выстрелы очереди 1",
+"effects/War/muzzle/mg_20mm_m61_lastshot_2.mp3": "M61 Vulcan 20мм: последние выстрелы очереди 2",
+"effects/War/muzzle/mg_20mm_m61_lastshot_3.mp3": "M61 Vulcan 20мм: последние выстрелы очереди 3"
+
+
+
+
+
 }
