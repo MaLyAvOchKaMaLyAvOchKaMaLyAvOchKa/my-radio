@@ -1,0 +1,11 @@
+{
+  "effects/War/Rockets/buk_launch-001.mp3": "Пуск ракеты «Бук» 1",
+  "effects/War/Rockets/buk_launch-002.mp3": "Пуск ракеты «Бук» 2",
+  "effects/War/Rockets/buk_launch-003.mp3": "Пуск ракеты «Бук» 3",
+  "effects/War/Rockets/buk_launch_far-001.mp3": "Пуск «Бук» издалека 1",
+  "effects/War/Rockets/buk_launch_far-002.mp3": "Пуск «Бук» издалека 2",
+  "effects/War/Rockets/buk_launch_far-003.mp3": "Пуск «Бук» издалека 3",
+  "effects/War/Rockets/buk_launch_interior-001.mp3": "Пуск «Бук» изнутри салона 1",
+  "effects/War/Rockets/buk_launch_interior-002.mp3": "Пуск «Бук» изнутри салона 2",
+  "effects/War/Rockets/buk_launch_interior-003.mp3": "Пуск «Бук» изнутри салона 3"
+}
