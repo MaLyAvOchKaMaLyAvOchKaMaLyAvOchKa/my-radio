@@ -114,5 +114,10 @@
 
 "effects/War/Reload/reload_cannon_20mm_1.mp3": "Перезарядка пушки 20мм 1",
 "effects/War/Reload/reload_cannon_20mm_2.mp3": "Перезарядка пушки 20мм 2",
-"effects/War/Reload/reload_cannon_20mm_3.mp3": "Перезарядка пушки 20мм 3"
+"effects/War/Reload/reload_cannon_20mm_3.mp3": "Перезарядка пушки 20мм 3",
+
+"effects/War/muzzle/muzzle_cannon-001.mp3": "Дульный выстрел танка 1",
+"effects/War/muzzle/muzzle_cannon-002.mp3": "Дульный выстрел танка 2",
+"effects/War/muzzle/muzzle_cannon-003.mp3": "Дульный выстрел танка 3",
+"effects/War/muzzle/muzzle_cannon-004.mp3": "Дульный выстрел танка 4",
 }
