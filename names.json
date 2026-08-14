@@ -77,5 +77,16 @@
 "effects/War/Rockets/tow_shot-003.mp3": "Пуск ракеты «TOW» 3",
 "effects/War/Rockets/tow_tail-001.mp3": "TOW: удаляющаяся ракета 1",
 "effects/War/Rockets/tow_tail-002.mp3": "TOW: удаляющаяся ракета 2",
-"effects/War/Rockets/tow_tail-003.mp3": "TOW: удаляющаяся ракета 3"
+"effects/War/Rockets/tow_tail-003.mp3": "TOW: удаляющаяся ракета 3",
+
+"effects/War/Rockets/atgm_kornet_far-001.mp3": "Пуск ракеты «Корнет» издалека 1",
+"effects/War/Rockets/atgm_kornet_far-002.mp3": "Пуск ракеты «Корнет» издалека 2",
+"effects/War/Rockets/atgm_kornet_far-003.mp3": "Пуск ракеты «Корнет» издалека 3",
+"effects/War/Rockets/atgm_kornet-001.mp3": "Пуск ракеты «Корнет» 1",
+"effects/War/Rockets/atgm_kornet-002.mp3": "Пуск ракеты «Корнет» 2",
+"effects/War/Rockets/atgm_kornet-003.mp3": "Пуск ракеты «Корнет» 3",
+"effects/War/Rockets/tow_shot-001.mp3": "Пуск ракеты «TOW» 1",
+"effects/War/Rockets/tow_shot-002.mp3": "Пуск ракеты «TOW» 2",
+"effects/War/Rockets/tow_shot-003.mp3": "Пуск ракеты «TOW» 3",
+"effects/War/Rockets/tow_shot-004.mp3": "Пуск ракеты «TOW» 4"
 }
