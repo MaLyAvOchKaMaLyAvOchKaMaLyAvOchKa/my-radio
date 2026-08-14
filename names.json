@@ -14,5 +14,14 @@
   "effects/War/Rockets/iris_shot_close-003.mp3": "Пуск ракеты «IRIS-T» вблизи 3",
   "effects/War/Rockets/iris_shot_far-001.mp3": "Пуск ракеты «IRIS-T» издалека 1",
   "effects/War/Rockets/iris_shot_far-002.mp3": "Пуск ракеты «IRIS-T» издалека 2",
-  "effects/War/Rockets/iris_shot_far-003.mp3": "Пуск ракеты «IRIS-T» издалека 3"
+  "effects/War/Rockets/iris_shot_far-003.mp3": "Пуск ракеты «IRIS-T» издалека 3",
+
+  "effects/War/Rockets/rapier_close-001.mp3": "Пуск ракеты «Rapier» вблизи 1",
+  "effects/War/Rockets/rapier_close-002.mp3": "Пуск ракеты «Rapier» вблизи 2",
+  "effects/War/Rockets/rapier_close-003.mp3": "Пуск ракеты «Rapier» вблизи 3",
+  "effects/War/Rockets/rapier_close-004.mp3": "Пуск ракеты «Rapier» вблизи 4",
+  "effects/War/Rockets/rapier_far-001.mp3": "Пуск ракеты «Rapier» издалека 1",
+  "effects/War/Rockets/rapier_far-002.mp3": "Пуск ракеты «Rapier» издалека 2",
+  "effects/War/Rockets/rapier_far-003.mp3": "Пуск ракеты «Rapier» издалека 3",
+  "effects/War/Rockets/rapier_far-004.mp3": "Пуск ракеты «Rapier» издалека 4"
 }
