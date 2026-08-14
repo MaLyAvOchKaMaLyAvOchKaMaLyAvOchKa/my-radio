@@ -88,5 +88,19 @@
 "effects/War/Rockets/tow_shot-001.mp3": "Пуск ракеты «TOW» 1",
 "effects/War/Rockets/tow_shot-002.mp3": "Пуск ракеты «TOW» 2",
 "effects/War/Rockets/tow_shot-003.mp3": "Пуск ракеты «TOW» 3",
-"effects/War/Rockets/tow_shot-004.mp3": "Пуск ракеты «TOW» 4"
+"effects/War/Rockets/tow_shot-004.mp3": "Пуск ракеты «TOW» 4",
+
+"effects/War/Rockets/atgm_pump_01.mp3": "ПТУР: шипение двигателя в полёте 1",
+"effects/War/Rockets/atgm_pump_02.mp3": "ПТУР: шипение двигателя в полёте 2",
+"effects/War/Rockets/atgm_punch_01.mp3": "ПТУР: попадание в цель 1",
+"effects/War/Rockets/atgm_punch_02.mp3": "ПТУР: попадание в цель 2",
+"effects/War/Rockets/atgm_punch_03.mp3": "ПТУР: попадание в цель 3",
+"effects/War/Rockets/atgm_punch_04.mp3": "ПТУР: попадание в цель 4",
+"effects/War/Rockets/atgm_whistle_01.mp3": "ПТУР: свист ракеты в полёте 1",
+"effects/War/Rockets/atgm_whistle_02.mp3": "ПТУР: свист ракеты в полёте 2",
+"effects/War/Rockets/atgm_whistle_03.mp3": "ПТУР: свист ракеты в полёте 3",
+"effects/War/Rockets/atgm_whistle_04.mp3": "ПТУР: свист ракеты в полёте 4",
+"effects/War/Rockets/atgm_zt3a2_shot-001.mp3": "Пуск ракеты «ZT3A2» 1",
+"effects/War/Rockets/atgm_zt3a2_shot-002.mp3": "Пуск ракеты «ZT3A2» 2",
+"effects/War/Rockets/atgm_zt3a2_shot-003.mp3": "Пуск ракеты «ZT3A2» 3"
 }
