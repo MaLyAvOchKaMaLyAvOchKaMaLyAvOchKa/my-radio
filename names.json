@@ -102,5 +102,13 @@
 "effects/War/Rockets/atgm_whistle_04.mp3": "ПТУР: свист ракеты в полёте 4",
 "effects/War/Rockets/atgm_zt3a2_shot-001.mp3": "Пуск ракеты «ZT3A2» 1",
 "effects/War/Rockets/atgm_zt3a2_shot-002.mp3": "Пуск ракеты «ZT3A2» 2",
-"effects/War/Rockets/atgm_zt3a2_shot-003.mp3": "Пуск ракеты «ZT3A2» 3"
+"effects/War/Rockets/atgm_zt3a2_shot-003.mp3": "Пуск ракеты «ZT3A2» 3",
+
+"effects/War/ShellDrop/cannon_shell_drop_01.mp3": "Падение гильзы снаряда 1",
+"effects/War/ShellDrop/cannon_shell_drop_02.mp3": "Падение гильзы снаряда 2",
+"effects/War/ShellDrop/cannon_shell_drop_03.mp3": "Падение гильзы снаряда 3",
+"effects/War/ShellDrop/cannon_shell_drop_04.mp3": "Падение гильзы снаряда 4",
+"effects/War/ShellDrop/cannon_shell_drop_05.mp3": "Падение гильзы снаряда 5",
+"effects/War/ShellDrop/cannon_shell_drop_06.mp3": "Падение гильзы снаряда 6",
+"effects/War/ShellDrop/cannon_shell_drop_07.mp3": "Падение гильзы снаряда 7"
 }
