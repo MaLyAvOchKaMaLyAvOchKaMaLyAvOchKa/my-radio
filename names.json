@@ -194,7 +194,37 @@
 "effects/War/ShellDrop/20mm_shell_fall-005.mp3": "Падение гильзы 20мм 5",
 "effects/War/ShellDrop/20mm_shell_fall-006.mp3": "Падение гильзы 20мм 6",
 "effects/War/ShellDrop/20mm_shell_fall-007.mp3": "Падение гильзы 20мм 7",
-"effects/War/ShellDrop/20mm_shell_fall-008.mp3": "Падение гильзы 20мм 8"
+"effects/War/ShellDrop/20mm_shell_fall-008.mp3": "Падение гильзы 20мм 8",
+
+"effects/War/Commander/voice_message_commander_art_1.mp3": "Командир: вызов артиллерии — квадрат 1",
+"effects/War/Commander/voice_message_commander_art_2.mp3": "Командир: вызов артиллерии — квадрат 2",
+"effects/War/Commander/voice_message_commander_art_3.mp3": "Командир: вызов артиллерии — квадрат 3",
+"effects/War/Commander/voice_message_commander_art_4.mp3": "Командир: вызов артиллерии — квадрат 4",
+"effects/War/Commander/voice_message_commander_art_5.mp3": "Командир: вызов артиллерии — квадрат 5",
+"effects/War/Commander/voice_message_commander_art_6.mp3": "Командир: вызов артиллерии — квадрат 6",
+"effects/War/Commander/voice_message_commander_art_7.mp3": "Командир: вызов артиллерии — квадрат 7",
+"effects/War/Commander/voice_message_commander_art_8.mp3": "Командир: вызов артиллерии — квадрат 8",
+"effects/War/Commander/voice_message_commander_art_9.mp3": "Командир: вызов артиллерии — квадрат 9",
+"effects/War/Commander/voice_message_commander_art_10.mp3": "Командир: вызов артиллерии — квадрат 10",
+"effects/War/Commander/voice_message_commander_art_A.mp3": "Командир: вызов артиллерии — квадрат A",
+"effects/War/Commander/voice_message_commander_art_B.mp3": "Командир: вызов артиллерии — квадрат B",
+"effects/War/Commander/voice_message_commander_art_barrage_v1_1.mp3": "Командир: заградительный огонь артиллерии (вариант 1.1)",
+"effects/War/Commander/voice_message_commander_art_barrage_v1_2.mp3": "Командир: заградительный огонь артиллерии (вариант 1.2)",
+"effects/War/Commander/voice_message_commander_art_barrage_v2_1.mp3": "Командир: заградительный огонь артиллерии (вариант 2.1)",
+"effects/War/Commander/voice_message_commander_art_barrage_v2_2.mp3": "Командир: заградительный огонь артиллерии (вариант 2.2)",
+"effects/War/Commander/voice_message_commander_art_C.mp3": "Командир: вызов артиллерии — квадрат C",
+"effects/War/Commander/voice_message_commander_art_coordinates_v1_1.mp3": "Командир: координаты цели для артиллерии (вариант 1.1)",
+"effects/War/Commander/voice_message_commander_art_coordinates_v1_2.mp3": "Командир: координаты цели для артиллерии (вариант 1.2)",
+"effects/War/Commander/voice_message_commander_art_coordinates_v2_1.mp3": "Командир: координаты цели для артиллерии (вариант 2.1)",
+"effects/War/Commander/voice_message_commander_art_coordinates_v2_2.mp3": "Командир: координаты цели для артиллерии (вариант 2.2)",
+"effects/War/Commander/voice_message_commander_art_D.mp3": "Командир: вызов артиллерии — квадрат D",
+"effects/War/Commander/voice_message_commander_art_destroy_v1.mp3": "Командир: уничтожить цель артиллерией (вариант 1)",
+"effects/War/Commander/voice_message_commander_art_destroy_v2.mp3": "Командир: уничтожить цель артиллерией (вариант 2)",
+"effects/War/Commander/voice_message_commander_art_destroy_v3.mp3": "Командир: уничтожить цель артиллерией (вариант 3)",
+"effects/War/Commander/voice_message_commander_art_E.mp3": "Командир: вызов артиллерии — квадрат E",
+"effects/War/Commander/voice_message_commander_art_F.mp3": "Командир: вызов артиллерии — квадрат F",
+"effects/War/Commander/voice_message_commander_art_G.mp3": "Командир: вызов артиллерии — квадрат G",
+"effects/War/Commander/voice_message_commander_art_H.mp3": "Командир: вызов артиллерии — квадрат H"
 
 
 
