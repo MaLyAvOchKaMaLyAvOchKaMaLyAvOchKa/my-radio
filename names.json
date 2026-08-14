@@ -51,5 +51,21 @@
 "effects/War/Reload/roland_reload_tube_clutch-004.mp3": "Roland: фиксация пусковой трубы 4",
 "effects/War/Reload/roland_shell_drop-001.mp3": "Roland: падение гильзы 1",
 "effects/War/Reload/roland_shell_drop-002.mp3": "Roland: падение гильзы 2",
-"effects/War/Reload/roland_shell_drop-003.mp3": "Roland: падение гильзы 3"
+"effects/War/Reload/roland_shell_drop-003.mp3": "Roland: падение гильзы 3",
+
+"effects/War/Rockets/tor_m1_far-001.mp3": "Пуск ракеты «Тоr-М1» издалека 1",
+"effects/War/Rockets/tor_m1_far-002.mp3": "Пуск ракеты «Тоr-М1» издалека 2",
+"effects/War/Rockets/tor_m1_far-003.mp3": "Пуск ракеты «Тоr-М1» издалека 3",
+"effects/War/Rockets/tor_m1_ignition_interior-001.mp3": "Тоr-М1: воспламенение двигателя изнутри салона 1",
+"effects/War/Rockets/tor_m1_ignition_interior-002.mp3": "Тоr-М1: воспламенение двигателя изнутри салона 2",
+"effects/War/Rockets/tor_m1_ignition_interior-003.mp3": "Тоr-М1: воспламенение двигателя изнутри салона 3",
+"effects/War/Rockets/tor_m1_ignition-001.mp3": "Тоr-М1: воспламенение двигателя ракеты 1",
+"effects/War/Rockets/tor_m1_ignition-002.mp3": "Тоr-М1: воспламенение двигателя ракеты 2",
+"effects/War/Rockets/tor_m1_ignition-003.mp3": "Тоr-М1: воспламенение двигателя ракеты 3",
+"effects/War/Rockets/tor_m1_launch_interior-001.mp3": "Пуск ракеты «Тоr-М1» изнутри салона 1",
+"effects/War/Rockets/tor_m1_launch_interior-002.mp3": "Пуск ракеты «Тоr-М1» изнутри салона 2",
+"effects/War/Rockets/tor_m1_launch_interior-003.mp3": "Пуск ракеты «Тоr-М1» изнутри салона 3",
+"effects/War/Rockets/tor_m1_launch-001.mp3": "Пуск ракеты «Тоr-М1» 1",
+"effects/War/Rockets/tor_m1_launch-002.mp3": "Пуск ракеты «Тоr-М1» 2",
+"effects/War/Rockets/tor_m1_launch-003.mp3": "Пуск ракеты «Тоr-М1» 3"
 }
