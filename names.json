@@ -67,5 +67,15 @@
 "effects/War/Rockets/tor_m1_launch_interior-003.mp3": "Пуск ракеты «Тоr-М1» изнутри салона 3",
 "effects/War/Rockets/tor_m1_launch-001.mp3": "Пуск ракеты «Тоr-М1» 1",
 "effects/War/Rockets/tor_m1_launch-002.mp3": "Пуск ракеты «Тоr-М1» 2",
-"effects/War/Rockets/tor_m1_launch-003.mp3": "Пуск ракеты «Тоr-М1» 3"
+"effects/War/Rockets/tor_m1_launch-003.mp3": "Пуск ракеты «Тоr-М1» 3",
+
+"effects/War/Rockets/tow_initial-001.mp3": "TOW: начало пуска ракеты 1",
+"effects/War/Rockets/tow_initial-002.mp3": "TOW: начало пуска ракеты 2",
+"effects/War/Rockets/tow_initial-003.mp3": "TOW: начало пуска ракеты 3",
+"effects/War/Rockets/tow_shot-001.mp3": "Пуск ракеты «TOW» 1",
+"effects/War/Rockets/tow_shot-002.mp3": "Пуск ракеты «TOW» 2",
+"effects/War/Rockets/tow_shot-003.mp3": "Пуск ракеты «TOW» 3",
+"effects/War/Rockets/tow_tail-001.mp3": "TOW: удаляющаяся ракета 1",
+"effects/War/Rockets/tow_tail-002.mp3": "TOW: удаляющаяся ракета 2",
+"effects/War/Rockets/tow_tail-003.mp3": "TOW: удаляющаяся ракета 3"
 }
