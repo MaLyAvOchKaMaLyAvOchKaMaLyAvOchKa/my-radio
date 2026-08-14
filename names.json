@@ -110,5 +110,9 @@
 "effects/War/ShellDrop/cannon_shell_drop_04.mp3": "Падение гильзы снаряда 4",
 "effects/War/ShellDrop/cannon_shell_drop_05.mp3": "Падение гильзы снаряда 5",
 "effects/War/ShellDrop/cannon_shell_drop_06.mp3": "Падение гильзы снаряда 6",
-"effects/War/ShellDrop/cannon_shell_drop_07.mp3": "Падение гильзы снаряда 7"
+"effects/War/ShellDrop/cannon_shell_drop_07.mp3": "Падение гильзы снаряда 7",
+
+"effects/War/Reload/reload_cannon_20mm_1.mp3": "Перезарядка пушки 20мм 1",
+"effects/War/Reload/reload_cannon_20mm_2.mp3": "Перезарядка пушки 20мм 2",
+"effects/War/Reload/reload_cannon_20mm_3.mp3": "Перезарядка пушки 20мм 3"
 }
