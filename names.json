@@ -7,5 +7,12 @@
   "effects/War/Rockets/buk_launch_far-003.mp3": "Пуск «Бук» издалека 3",
   "effects/War/Rockets/buk_launch_interior-001.mp3": "Пуск «Бук» изнутри салона 1",
   "effects/War/Rockets/buk_launch_interior-002.mp3": "Пуск «Бук» изнутри салона 2",
-  "effects/War/Rockets/buk_launch_interior-003.mp3": "Пуск «Бук» изнутри салона 3"
+  "effects/War/Rockets/buk_launch_interior-003.mp3": "Пуск «Бук» изнутри салона 3",
+
+  "effects/War/Rockets/iris_shot_close-001.mp3": "Пуск ракеты «IRIS-T» вблизи 1",
+  "effects/War/Rockets/iris_shot_close-002.mp3": "Пуск ракеты «IRIS-T» вблизи 2",
+  "effects/War/Rockets/iris_shot_close-003.mp3": "Пуск ракеты «IRIS-T» вблизи 3",
+  "effects/War/Rockets/iris_shot_far-001.mp3": "Пуск ракеты «IRIS-T» издалека 1",
+  "effects/War/Rockets/iris_shot_far-002.mp3": "Пуск ракеты «IRIS-T» издалека 2",
+  "effects/War/Rockets/iris_shot_far-003.mp3": "Пуск ракеты «IRIS-T» издалека 3"
 }
