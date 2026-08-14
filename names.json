@@ -119,5 +119,12 @@
 "effects/War/muzzle/muzzle_cannon-001.mp3": "Дульный выстрел танка 1",
 "effects/War/muzzle/muzzle_cannon-002.mp3": "Дульный выстрел танка 2",
 "effects/War/muzzle/muzzle_cannon-003.mp3": "Дульный выстрел танка 3",
-"effects/War/muzzle/muzzle_cannon-004.mp3": "Дульный выстрел танка 4"
+"effects/War/muzzle/muzzle_cannon-004.mp3": "Дульный выстрел танка 4",
+
+"effects/War/muzzle/cannon_20mm_kwk30_shot_01.mp3": "Выстрел пушки KwK 30 20мм 1",
+"effects/War/muzzle/cannon_20mm_kwk30_shot_02.mp3": "Выстрел пушки KwK 30 20мм 2",
+"effects/War/muzzle/cannon_20mm_kwk30_shot_03.mp3": "Выстрел пушки KwK 30 20мм 3",
+"effects/War/muzzle/cannon_20mm_kwk30_shot_far_01.mp3": "Выстрел пушки KwK 30 20мм издалека 1",
+"effects/War/muzzle/cannon_20mm_kwk30_shot_far_02.mp3": "Выстрел пушки KwK 30 20мм издалека 2",
+"effects/War/muzzle/cannon_20mm_kwk30_shot_far_03.mp3": "Выстрел пушки KwK 30 20мм издалека 3"
 }
